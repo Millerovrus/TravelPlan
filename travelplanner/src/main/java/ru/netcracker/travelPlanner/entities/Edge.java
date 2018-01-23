@@ -1,18 +1,18 @@
 package ru.netcracker.travelPlanner.entities;
 
-import org.postgresql.geometric.PGpoint;
-import org.postgresql.util.PGInterval;
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+
 
 @Entity
 @Table(name="edges")
-public class Edge implements Serializable{
+public class Edge {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "edges_seq")
     @SequenceGenerator(name = "edges_seq", sequenceName = "edge_id_seq")
+    @Column(name = "id")
     private Integer id;
 
     @Column(name="creation_date", nullable = false)
@@ -20,22 +20,22 @@ public class Edge implements Serializable{
     private Date creationDate;
 
     @Column(name="start_point", nullable = false)
-    private PGpoint startPoint;
+    private String startPoint;
 
     @Column(name="destination_point", nullable = false)
-    private PGpoint destinationPoint;
+    private String destinationPoint;
 
     @Column(name="transport_type", nullable = false)
-    private Short transportType;
+    private String transportType;
 
-    @Column(nullable = false)
-    private PGInterval duration;
+    @Column(name = "duration", nullable = false)
+    private Double duration;
 
-    @Column(nullable = false)
-    private Integer cost;
+    @Column(name = "cost")
+    private Double cost;
 
-    @Column(nullable = false)
-    private Integer distance;
+    @Column(name="distance", nullable = false)
+    private Double distance;
 
     @Column(name = "start_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -45,31 +45,8 @@ public class Edge implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
 
-//    @OneToMany(mappedBy = "pk.edge")
-//    private Set<RouteEdge> routeEdges;
-
-    public Edge() {
-    }
-
-    public Edge(Date creationDate, PGpoint startPoint, PGpoint destinationPoint, short transportType, PGInterval duration, int cost, int distance, Date startDate, Date endDate) {
-        this.creationDate = creationDate;
-        this.startPoint = startPoint;
-        this.destinationPoint = destinationPoint;
-        this.transportType = transportType;
-        this.duration = duration;
-        this.cost = cost;
-        this.distance = distance;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @Column(name = "currency")
+    private String currency;
 
     public Date getCreationDate() {
         return creationDate;
@@ -79,51 +56,51 @@ public class Edge implements Serializable{
         this.creationDate = creationDate;
     }
 
-    public PGpoint getStartPoint() {
+    public String getStartPoint() {
         return startPoint;
     }
 
-    public void setStartPoint(PGpoint startPoint) {
+    public void setStartPoint(String startPoint) {
         this.startPoint = startPoint;
     }
 
-    public PGpoint getDestinationPoint() {
+    public String getDestinationPoint() {
         return destinationPoint;
     }
 
-    public void setDestinationPoint(PGpoint destinationPoint) {
+    public void setDestinationPoint(String destinationPoint) {
         this.destinationPoint = destinationPoint;
     }
 
-    public Short getTransportType() {
+    public String getTransportType() {
         return transportType;
     }
 
-    public void setTransportType(Short transportType) {
+    public void setTransportType(String transportType) {
         this.transportType = transportType;
     }
 
-    public PGInterval getDuration() {
+    public Double getDuration() {
         return duration;
     }
 
-    public void setDuration(PGInterval duration) {
+    public void setDuration(Double duration) {
         this.duration = duration;
     }
 
-    public Integer getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(Integer cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 
-    public Integer getDistance() {
+    public Double getDistance() {
         return distance;
     }
 
-    public void setDistance(Integer distance) {
+    public void setDistance(Double distance) {
         this.distance = distance;
     }
 
@@ -143,11 +120,41 @@ public class Edge implements Serializable{
         this.endDate = endDate;
     }
 
-//    public Set<RouteEdge> getRouteEdges() {
-//        return routeEdges;
-//    }
-//
-//    public void setRouteEdges(Set<RouteEdge> routeEdges) {
-//        this.routeEdges = routeEdges;
-//    }
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, Date startDate, Date endDate, String currency) {
+        this.creationDate = creationDate;
+        this.startPoint = startPoint;
+        this.destinationPoint = destinationPoint;
+        this.transportType = transportType;
+        this.duration = duration;
+        this.cost = cost;
+        this.distance = distance;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.currency = currency;
+    }
+
+    @Override
+    public String toString() {
+        return "Edge{" +
+                "id=" + id +
+                ", creationDate=" + creationDate +
+                ", startPoint='" + startPoint + '\'' +
+                ", destinationPoint='" + destinationPoint + '\'' +
+                ", transportType=" + transportType +
+                ", duration=" + duration +
+                ", cost=" + cost +
+                ", distance=" + distance +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", currency='" + currency + '\'' +
+                '}';
+    }
 }

@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 @Embeddable
 public class RouteEdgeId implements Serializable {
+
     @ManyToOne
     private Route route;
 
