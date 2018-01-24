@@ -1,8 +1,8 @@
 package unitTests;
 
 import org.junit.Test;
-import com.netcracker.travelPlanner.entities.Edge;
-import com.netcracker.travelPlanner.service.KiwiService;
+import com.netcracker.travelplanner.entities.Edge;
+import com.netcracker.travelplanner.service.KiwiService;
 
 import java.time.LocalDate;
 import java.util.List;

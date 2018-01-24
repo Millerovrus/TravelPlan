@@ -1,15 +1,16 @@
-﻿
+
 CREATE SEQUENCE IF NOT EXISTS edge_id_seq;
 
 CREATE TABLE IF NOT EXISTS EDGES (
                 ID INTEGER NOT NULL DEFAULT nextval('edge_id_seq'),
                 CREATION_DATE TIMESTAMP NOT NULL,
-                START_POINT POINT NOT NULL,
-                DESTINATION_POINT POINT NOT NULL,
-                TRANSPORT_TYPE SMALLINT NOT NULL,
-                DURATION INTERVAL NOT NULL,
-                COST INTEGER NOT NULL,
-                DISTANCE INTEGER NOT NULL,
+                START_POINT VARCHAR(50) NOT NULL,
+                DESTINATION_POINT VARCHAR(50) NOT NULL,
+                TRANSPORT_TYPE VARCHAR(20) NOT NULL,
+                DURATION NUMERIC NOT NULL,
+                COST NUMERIC NOT NULL,
+				CURRENCY VARCHAR(10),
+                DISTANCE NUMERIC,
                 START_DATE TIMESTAMP NOT NULL,
                 END_DATE TIMESTAMP NOT NULL,
                 CONSTRAINT edges_pk PRIMARY KEY (ID)

@@ -1,8 +1,8 @@
 package unitTests;
 
 import org.junit.Test;
-import com.netcracker.travelPlanner.entities.Edge;
-import com.netcracker.travelPlanner.service.YandexService;
+import com.netcracker.travelplanner.entities.Edge;
+import com.netcracker.travelplanner.service.YandexService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,7 +16,7 @@ public class YandexServiceTest {
 
         List<Edge> edgeList = yandexService.getEdgesFromYandex("c193"
         ,"c213"
-        ,LocalDate.of(2018,02,05));
+        ,LocalDate.of(2018,01,29));
 
         edgeList.forEach(l -> System.out.println(l.toString()));
 
