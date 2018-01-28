@@ -31,8 +31,16 @@ public class Route implements Serializable {
     @Column(name="route_type", nullable = false)
     private Short routeType;
 
-//    @OneToMany(mappedBy = "pk.route")
-//    private Set<RouteEdge> routeEdges;
+   /* @OneToMany(mappedBy = "pk.route")
+    private Set<RouteEdge> routeEdges;
+
+    public Set<RouteEdge> getRouteEdges() {
+        return routeEdges;
+    }
+
+    public void setRouteEdges(Set<RouteEdge> routeEdges) {
+        this.routeEdges = routeEdges;
+    }*/
 
     public Route() {
     }
@@ -58,7 +66,7 @@ public class Route implements Serializable {
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;
         this.routeType = routeType;
-       // this.routeEdges = routeEdges;
+        //this.routeEdges = routeEdges;
     }
 
     public Integer getId() {
@@ -108,12 +116,4 @@ public class Route implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-
-//    public Set<RouteEdge> getRouteEdges() {
-//        return routeEdges;
-//    }
-//
-//    public void setRouteEdges(Set<RouteEdge> routeEdges) {
-//        this.routeEdges = routeEdges;
-//    }
 }

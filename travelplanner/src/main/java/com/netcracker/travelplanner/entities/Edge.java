@@ -50,17 +50,17 @@ public class Edge {
     private String currency;
 
 
-//    @OneToMany(mappedBy = "pk.edge")
-//     private Set<RouteEdge> routeEdges;
-//
-//
-//    public Set<RouteEdge> getRouteEdges() {
-//        return routeEdges;
-//    }
-//
-//    public void setRouteEdges(Set<RouteEdge> routeEdges) {
-//        this.routeEdges = routeEdges;
-//    }
+    /*@OneToMany(mappedBy = "pk.edge")
+     private Set<RouteEdge> routeEdges;
+
+
+    public Set<RouteEdge> getRouteEdges() {
+        return routeEdges;
+    }
+
+    public void setRouteEdges(Set<RouteEdge> routeEdges) {
+        this.routeEdges = routeEdges;
+    }*/
 
     public Date getCreationDate() {
         return creationDate;

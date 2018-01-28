@@ -5,8 +5,8 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "route_edges")
-@AssociationOverrides({@AssociationOverride(name = "pk.route", joinColumns = @JoinColumn(name = "route_id")),
-                       @AssociationOverride(name = "pk.edge", joinColumns = @JoinColumn(name = "edge_id"))})
+@AssociationOverrides({@AssociationOverride(name = "pk.routes", joinColumns = @JoinColumn(name = "route_id")),
+                       @AssociationOverride(name = "pk.edges", joinColumns = @JoinColumn(name = "edge_id"))})
 public class RouteEdge implements Serializable{
     @EmbeddedId
     private RouteEdgeId primaryKey;
