@@ -18,4 +18,8 @@ public class EdgeRepositoryService {
         edgeRepository.save(list);
     }
 
+    public Iterable<Edge> getEdges() {
+        return edgeRepository.findAll();
+    }
+
 }
