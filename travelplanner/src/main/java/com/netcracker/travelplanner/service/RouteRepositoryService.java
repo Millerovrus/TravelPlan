@@ -16,11 +16,11 @@ public class RouteRepositoryService {
         routeRepository.save(route);
     }
 
-    public void addRoutes(List<Route> routeList) {
+    public void addAllRoutes(List<Route> routeList) {
         routeRepository.save(routeList);
     }
 
-    public Iterable<Route> getRoutes() {
+    public Iterable<Route> getAllRoutes() {
         return routeRepository.findAll();
     }
 }

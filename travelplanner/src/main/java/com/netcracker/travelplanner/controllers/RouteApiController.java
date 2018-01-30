@@ -15,6 +15,6 @@ public class RouteApiController {
 
     @GetMapping("/getRoutes")
     public Iterable<Route> getRoutes() {
-        return routeRepositoryService.getRoutes();
+        return routeRepositoryService.getAllRoutes();
     }
 }

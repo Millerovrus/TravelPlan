@@ -41,7 +41,7 @@ public class UserAddTest {
 
     @Test
     public void addUsersTest() {
-        userRepositoryService.addUsers(userList);
+        userRepositoryService.addAllUsers(userList);
     }
 
     @After

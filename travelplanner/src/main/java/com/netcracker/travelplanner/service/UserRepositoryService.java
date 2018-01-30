@@ -12,15 +12,15 @@ public class UserRepositoryService {
     @Autowired
     private UserRepository userRepository;
 
-    public void addUsers(List<User> userList) {
-        userRepository.save(userList);
-    }
-
     public void addUser(User user) {
         userRepository.save(user);
     }
 
-    public Iterable<User> getUsers() {
+    public void addAllUsers(List<User> userList) {
+        userRepository.save(userList);
+    }
+
+    public Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }
 }

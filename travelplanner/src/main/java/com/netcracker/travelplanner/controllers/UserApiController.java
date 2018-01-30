@@ -15,6 +15,6 @@ public class UserApiController {
 
     @GetMapping("/getUsers")
     public Iterable<User> getUsers() {
-        return userRepositoryService.getUsers();
+        return userRepositoryService.getAllUsers();
     }
 }

@@ -15,6 +15,6 @@ public class EdgeApiController {
 
     @GetMapping("/getEdges")
     public Iterable<Edge> getEdges() {
-        return edgeRepositoryService.getEdges();
+        return edgeRepositoryService.getAllEdges();
     }
 }
