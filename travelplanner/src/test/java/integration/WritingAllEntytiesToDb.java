@@ -87,6 +87,9 @@ public class WritingAllEntytiesToDb {
         /*связь пользователя и маршрутов*/
         u.getRoutes().add(routeList.get(0));
 
+        userRepository.deleteAll();
+        edgeRepository.deleteAll();
+        routeRepository.deleteAll();
 
 
 
@@ -101,9 +104,9 @@ public class WritingAllEntytiesToDb {
 
 
 
-//        Assert.assertArrayEquals(edgeRepository.findAll().toArray(), edgeList.toArray());
-//        Assert.assertArrayEquals(routeRepository.findAll().toArray(), routeList.toArray());
-//        Assert.assertArrayEquals(userRepository.findAll().toArray(),userList.toArray());
+        Assert.assertArrayEquals(edgeRepository.findAll().toArray(), edgeList.toArray());
+        Assert.assertArrayEquals(routeRepository.findAll().toArray(), routeList.toArray());
+        Assert.assertArrayEquals(userRepository.findAll().toArray(),userList.toArray());
 
 
 //        userRepository.delete(u);
