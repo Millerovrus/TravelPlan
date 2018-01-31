@@ -31,8 +31,8 @@ public class KiwiIntegrationTest {
 
         List<Edge> edges = kiwiService.getEdgesFlights("Moscow"
                 ,"Voronezh"
-                ,LocalDate.of(2018,02,01)
-                ,LocalDate.of(2018,02,01));
+                ,LocalDate.of(2018,02,10)
+                ,LocalDate.of(2018,02,10));
 
         edges.forEach(l -> System.out.println(l.toString()));
 

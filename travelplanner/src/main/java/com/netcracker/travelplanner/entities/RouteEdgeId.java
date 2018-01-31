@@ -1,49 +1,63 @@
 package com.netcracker.travelplanner.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Objects;
 
+@Deprecated
 @Embeddable
 public class RouteEdgeId implements Serializable {
 
-    @ManyToOne
-    private Route route;
+    @Column(name = "route_id")
+    private int routeId;
 
-    @ManyToOne
-    private Edge edge;
+    @Column(name = "edge_id")
+    private int edgeId;
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+
+        if (o == null || getClass() != o.getClass())
+            return false;
 
         RouteEdgeId that = (RouteEdgeId) o;
-
-        return (route != null ? route.equals(that.route) : that.route == null) && (edge != null ? edge.equals(that.edge) : that.edge == null);
+        return Objects.equals(routeId, that.routeId) &&
+                Objects.equals(edgeId, that.edgeId);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        result = (route != null ? route.hashCode() : 0);
-        result = 31 * result + (edge != null ? edge.hashCode() : 0);
-        return result;
+        return Objects.hash(routeId, edgeId);
     }
 
-    public Route getRoute() {
-        return route;
+    private RouteEdgeId(){}
+    public RouteEdgeId(int routeId, int edgeId) {
+        this.routeId = routeId;
+        this.edgeId = edgeId;
     }
 
-    public void setRoute(Route route) {
-        this.route = route;
-    }
+    //    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        RouteEdgeId that = (RouteEdgeId) o;
+//
+//        return (routeId != 0 ? routeId = that.routeId) : that.routeId == 0) && (edgeId != null ? edgeId.equals(that.edgeId) : that.edgeId == null);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int result;
+//        result = (route != null ? route.hashCode() : 0);
+//        result = 31 * result + (edge != null ? edge.hashCode() : 0);
+//        return result;
+//    }
 
-    public Edge getEdge() {
-        return edge;
-    }
 
-    public void setEdge(Edge edge) {
-        this.edge = edge;
-    }
 }

@@ -1,20 +1,17 @@
 package com.netcracker.travelplanner.entities;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
 @Table(name="edges")
 public class Edge {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "edges_seq")
     @SequenceGenerator(name = "edges_seq", sequenceName = "edge_id_seq")
-    @Column(name = "id")
-    private Integer id;
+    private int id;
 
     @Column(name="creation_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -49,18 +46,24 @@ public class Edge {
     @Column(name = "currency")
     private String currency;
 
+    @OneToMany(mappedBy = "edge", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<RouteEdge> routeEdges;
 
-    /*@OneToMany(mappedBy = "pk.edge")
-     private Set<RouteEdge> routeEdges;
-
-
-    public Set<RouteEdge> getRouteEdges() {
-        return routeEdges;
+    public Set<RouteEdge> getEdges() {
+            return routeEdges;
     }
 
-    public void setRouteEdges(Set<RouteEdge> routeEdges) {
+    public void setEdges(Set<RouteEdge> edges) {
         this.routeEdges = routeEdges;
-    }*/
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Date getCreationDate() {
         return creationDate;
@@ -153,7 +156,9 @@ public class Edge {
         this.startDate = startDate;
         this.endDate = endDate;
         this.currency = currency;
+        routeEdges = new HashSet<>();
     }
+    private Edge(){}
 
     @Override
     public String toString() {

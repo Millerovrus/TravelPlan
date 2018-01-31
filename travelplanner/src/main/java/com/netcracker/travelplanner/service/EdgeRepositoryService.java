@@ -22,4 +22,7 @@ public class EdgeRepositoryService {
         return edgeRepository.findAll();
     }
 
+    public void addEdge(Edge edge){edgeRepository.save(edge);}
+
+
 }
