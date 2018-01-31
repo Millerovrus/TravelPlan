@@ -1,5 +1,8 @@
 package com.netcracker.travelplanner.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -47,7 +50,9 @@ public class Edge {
     private String currency;
 
     @OneToMany(mappedBy = "edge", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private Set<RouteEdge> routeEdges;
+
 
     public Set<RouteEdge> getEdges() {
             return routeEdges;

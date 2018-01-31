@@ -1,5 +1,9 @@
 package com.netcracker.travelplanner.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -15,6 +19,7 @@ public class Route implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
     @Column(name="creation_date", nullable = false)
@@ -31,6 +36,7 @@ public class Route implements Serializable {
     private int routeType;
 
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private Set<RouteEdge> routeEdges;
 
     public Set<RouteEdge> getRouteEdges() {

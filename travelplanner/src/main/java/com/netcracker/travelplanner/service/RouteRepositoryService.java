@@ -20,7 +20,7 @@ public class RouteRepositoryService {
         routeRepository.save(routeList);
     }
 
-    public Iterable<Route> getAllRoutes() {
+    public List<Route> getAllRoutes() {
         return routeRepository.findAll();
     }
 }

@@ -1,5 +1,8 @@
 package com.netcracker.travelplanner.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -38,6 +41,7 @@ public class User implements Serializable {
     private String password;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @JsonManagedReference
     private Set<Route> routes;
 
     public User(String email,String firstName, String lastName, Date birthDate, boolean isAdmin, Date registrationDate, String password) {

@@ -1,5 +1,6 @@
 package com.netcracker.travelplanner.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jdk.nashorn.internal.objects.annotations.Getter;
 import jdk.nashorn.internal.objects.annotations.Setter;
 
@@ -13,11 +14,13 @@ public class RouteEdge implements Serializable{
     @Id
     @ManyToOne
     @JoinColumn(name = "route_id")
+    @JsonBackReference
     private Route route;
 
     @Id
     @ManyToOne
     @JoinColumn(name = "edge_id")
+    @JsonBackReference
     private Edge edge;
 
     @Column(name = "edge_order", nullable = false)
