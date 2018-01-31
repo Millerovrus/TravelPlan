@@ -62,4 +62,7 @@ CREATE TABLE route_edges
   CONSTRAINT route_edges_pkey
   PRIMARY KEY (route_id, edge_id)
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
