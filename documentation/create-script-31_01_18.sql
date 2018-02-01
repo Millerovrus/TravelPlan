@@ -20,7 +20,8 @@ CREATE TABLE edges
   end_date          TIMESTAMP        NOT NULL,  
   cost              DOUBLE PRECISION,
   currency          VARCHAR(255),  
-  transport_type    VARCHAR(255)     NOT NULL
+  transport_type    VARCHAR(255)     NOT NULL,
+  edge_type         INTEGER
 );
 
 CREATE TABLE users
@@ -62,7 +63,4 @@ CREATE TABLE route_edges
   CONSTRAINT route_edges_pkey
   PRIMARY KEY (route_id, edge_id)
 );
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
