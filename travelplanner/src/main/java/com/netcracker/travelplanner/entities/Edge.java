@@ -49,10 +49,20 @@ public class Edge {
     @Column(name = "currency")
     private String currency;
 
+    @Column(name = "edge_type")
+    private int edgeType;
+
     @OneToMany(mappedBy = "edge", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private Set<RouteEdge> routeEdges;
 
+    public int getEdgeType() {
+        return edgeType;
+    }
+
+    public void setEdgeType(int edgeType) {
+        this.edgeType = edgeType;
+    }
 
     public Set<RouteEdge> getEdges() {
             return routeEdges;
@@ -150,7 +160,8 @@ public class Edge {
         this.currency = currency;
     }
 
-    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, Date startDate, Date endDate, String currency) {
+    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, Date startDate, Date endDate, String currency, int edgeType)
+    {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;
@@ -161,6 +172,7 @@ public class Edge {
         this.startDate = startDate;
         this.endDate = endDate;
         this.currency = currency;
+        this.edgeType = edgeType;
         routeEdges = new HashSet<>();
     }
     private Edge(){}

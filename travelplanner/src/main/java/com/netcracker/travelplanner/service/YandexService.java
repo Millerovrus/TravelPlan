@@ -87,7 +87,8 @@ public class YandexService {
                                                         ,null
                                                         ,java.sql.Date.valueOf(LocalDate.parse(l.getDeparture(),DateTimeFormatter.ISO_OFFSET_DATE_TIME))
                                                         ,java.sql.Date.valueOf(LocalDate.parse(l.getArrival(),DateTimeFormatter.ISO_OFFSET_DATE_TIME))
-                                                        ,"RUB")));
+                                                        ,"RUB"
+                                                        ,0)));
 
 
 

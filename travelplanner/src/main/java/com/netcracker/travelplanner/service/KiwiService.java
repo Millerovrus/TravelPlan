@@ -79,7 +79,8 @@ public class KiwiService {
                 ,l.getDistance()
                 ,Date.from(Instant.ofEpochSecond(l.getATime()))
                 ,Date.from(Instant.ofEpochSecond(l.getDTime()))
-                ,currency)));
+                ,currency
+                ,0)));
 
         return listOfEdges;
     }

@@ -52,12 +52,12 @@ public class WritingAllEntytiesToDb {
 
         /*Создаем список рёбер*/
         List<Edge> edgeList = new ArrayList<>();
-        edgeList.add(new Edge(date,"москва","воронеж","plane",10.00,1000.00,100.0,date,date,"Eur"));
-        edgeList.add(new Edge(date,"воронеж","белгород","plane",10.00,1000.00,100.0,date,date,"Eur"));
-        edgeList.add(new Edge(date,"москва","берлин","plane",10.00,1000.00,100.0,date,date,"Eur"));
-        edgeList.add(new Edge(date,"белгород","москва","plane",10.00,1000.00,100.0,date,date,"Eur"));
-        edgeList.add(new Edge(date,"харьков","белгород","train",10.00,1000.00,100.0,date,date,"Eur"));
-        edgeList.add(new Edge(date,"берлин","москва","bus",10.00,1000.00,100.0,date,date,"Eur"));
+        edgeList.add(new Edge(date,"москва","воронеж","plane",10.00,1000.00,100.0,date,date,"Eur",1));
+        edgeList.add(new Edge(date,"воронеж","белгород","plane",10.00,1000.00,100.0,date,date,"Eur",1));
+        edgeList.add(new Edge(date,"москва","берлин","plane",10.00,1000.00,100.0,date,date,"Eur",1));
+        edgeList.add(new Edge(date,"белгород","москва","plane",10.00,1000.00,100.0,date,date,"Eur",1));
+        edgeList.add(new Edge(date,"харьков","белгород","train",10.00,1000.00,100.0,date,date,"Eur",1));
+        edgeList.add(new Edge(date,"берлин","москва","bus",10.00,1000.00,100.0,date,date,"Eur",1));
 
         /*создаем список маршрутов*/
         List<Route> routeList = new ArrayList<>();
