@@ -1,23 +1,47 @@
 package com.netcracker.travelplanner.controllers;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+;
 import com.netcracker.travelplanner.entities.Route;
-import com.netcracker.travelplanner.service.RouteRepositoryService;
+import com.netcracker.travelplanner.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/getRoutes")
 public class RouteApiController {
     @Autowired
-    private RouteRepositoryService routeRepositoryService;
+    private RouteRepository routeRepository;
 
-    @GetMapping("/getRoutes")
+    @GetMapping
     public List<Route> getRoutes() {
-        return routeRepositoryService.getAllRoutes();
+        return routeRepository.findAll();
+    }
+
+    @RequestMapping(value = "/byid", method = RequestMethod.GET)
+    public Route getRouteById(@RequestParam(value = "id", required = true) Integer id) {
+        return routeRepository.findOne(id);
+    }
+
+    @RequestMapping(value = "/bytwopoints", method = RequestMethod.GET)
+    public List<Route> getRoutesByTwoPoints(@RequestParam(value = "start", required = true) String s,
+                                            @RequestParam(value = "destination", required = true) String d){
+        return routeRepository.findByStartPointIsAndDestinationPointIs(s, d);
+    }
+
+    @RequestMapping(value = "/bypoint", method = RequestMethod.GET)
+    public List<Route> getRoutesByPoint(@RequestParam(value = "start", required = false) String s,
+                                        @RequestParam(value = "destination", required = false) String d){
+        return routeRepository.findByStartPointIsOrDestinationPointIs(s, d);
+    }
+
+    @RequestMapping(value = "/bytype", method = RequestMethod.GET)
+    public List<Route> getRoutesByType(@RequestParam(value = "type", required = true) Integer i){
+        return routeRepository.findByRouteTypeIs(i);
+    }
+
+    @RequestMapping(value = "/byuser", method = RequestMethod.GET)
+    public List<Route> getRoutesByUser(@RequestParam(value = "user", required = true) Integer i){
+        return routeRepository.findByUserId(i);
     }
 }
