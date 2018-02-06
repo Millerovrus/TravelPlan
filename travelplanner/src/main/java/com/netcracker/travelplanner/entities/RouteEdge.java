@@ -1,35 +1,57 @@
 package com.netcracker.travelplanner.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jdk.nashorn.internal.objects.annotations.Getter;
+import jdk.nashorn.internal.objects.annotations.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "route_edges")
-@AssociationOverrides({@AssociationOverride(name = "pk.routes", joinColumns = @JoinColumn(name = "route_id")),
-                       @AssociationOverride(name = "pk.edges", joinColumns = @JoinColumn(name = "edge_id"))})
 public class RouteEdge implements Serializable{
-    @EmbeddedId
-    private RouteEdgeId primaryKey;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "route_id")
+    @JsonBackReference
+    private Route route;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "edge_id")
+    @JsonBackReference
+    private Edge edge;
 
     @Column(name = "edge_order", nullable = false)
-    private Short edgeOrder;
+    private int edgeOrder;
 
-    public RouteEdge() {
-    }
-
-    public RouteEdgeId getPrimaryKey() {
-        return primaryKey;
-    }
-
-    public void setPrimaryKey(RouteEdgeId primaryKey) {
-        this.primaryKey = primaryKey;
-    }
-
-    public Short getEdgeOrder() {
+    public int getEdgeOrder() {
         return edgeOrder;
     }
 
-    public void setEdgeOrder(Short edgeOrder) {
+    public void setEdgeOrder(int edgeOrder) {
         this.edgeOrder = edgeOrder;
     }
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public void setRoute(Route route) {
+        this.route = route;
+    }
+
+    public Edge getEdge() {
+        return edge;
+    }
+
+    public void setEdge(Edge edge) {
+        this.edge = edge;
+    }
+
+    public RouteEdge(int order){
+        this.edgeOrder = order;
+    }
+    private RouteEdge(){}
 }

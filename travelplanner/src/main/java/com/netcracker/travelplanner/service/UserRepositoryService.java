@@ -3,10 +3,15 @@ package com.netcracker.travelplanner.service;
 import com.netcracker.travelplanner.entities.User;
 import com.netcracker.travelplanner.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
+@Deprecated
 @Service
 public class UserRepositoryService {
     @Autowired
@@ -20,7 +25,7 @@ public class UserRepositoryService {
         userRepository.save(userList);
     }
 
-    public Iterable<User> getAllUsers() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 }

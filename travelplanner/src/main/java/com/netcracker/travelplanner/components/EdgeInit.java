@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
-
+@Deprecated
 //@Component
 public class EdgeInit {
 

@@ -1,20 +1,23 @@
 package com.netcracker.travelplanner.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name="users")
 public class User implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq")
     @SequenceGenerator(name = "users_seq", sequenceName = "user_id_seq")
-    private Integer id;
+    private int id;
 
-    @Column(nullable = false)
+    @Column(name = "email")
     private String email;
 
     @Column(name="first_name", length = 50, nullable = false)
@@ -37,13 +40,11 @@ public class User implements Serializable {
     @Column(name="password", nullable = false)
     private String password;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @JsonManagedReference
     private Set<Route> routes;
 
-    public User() {
-    }
-
-    public User(String email, String firstName, String lastName, Date birthDate, boolean isAdmin, Date registrationDate, String password) {
+    public User(String email,String firstName, String lastName, Date birthDate, boolean isAdmin, Date registrationDate, String password) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,13 +52,14 @@ public class User implements Serializable {
         this.isAdmin = isAdmin;
         this.registrationDate = registrationDate;
         this.password = password;
+        routes = new HashSet<>();
     }
+    private User(){}
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", Email='" + email + '\'' +
                 ", FirstName='" + firstName + '\'' +
                 ", LastName='" + lastName + '\'' +
                 ", BirthDate=" + BirthDate +
@@ -137,5 +139,18 @@ public class User implements Serializable {
 
     public void setRoutes(Set<Route> routes) {
         this.routes = routes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

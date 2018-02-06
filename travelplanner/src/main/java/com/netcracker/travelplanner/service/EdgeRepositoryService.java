@@ -1,6 +1,7 @@
 package com.netcracker.travelplanner.service;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.netcracker.travelplanner.repository.EdgeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,11 @@ public class EdgeRepositoryService {
         edgeRepository.save(list);
     }
 
-    public Iterable<Edge> getAllEdges() {
+    public List<Edge> getAllEdges() {
         return edgeRepository.findAll();
     }
+
+    public void addEdge(Edge edge){edgeRepository.save(edge);}
+
 
 }

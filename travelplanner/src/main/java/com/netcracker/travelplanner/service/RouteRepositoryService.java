@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Deprecated
 @Service
 public class RouteRepositoryService {
     @Autowired
@@ -20,7 +21,7 @@ public class RouteRepositoryService {
         routeRepository.save(routeList);
     }
 
-    public Iterable<Route> getAllRoutes() {
+    public List<Route> getAllRoutes() {
         return routeRepository.findAll();
     }
 }

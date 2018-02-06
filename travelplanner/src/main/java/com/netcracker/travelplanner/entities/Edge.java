@@ -1,20 +1,20 @@
 package com.netcracker.travelplanner.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
 @Table(name="edges")
 public class Edge {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "edges_seq")
     @SequenceGenerator(name = "edges_seq", sequenceName = "edge_id_seq")
-    @Column(name = "id")
-    private Integer id;
+    private int id;
 
     @Column(name="creation_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -49,18 +49,36 @@ public class Edge {
     @Column(name = "currency")
     private String currency;
 
+    @Column(name = "edge_type")
+    private int edgeType;
 
-    /*@OneToMany(mappedBy = "pk.edge")
-     private Set<RouteEdge> routeEdges;
+    @OneToMany(mappedBy = "edge", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private Set<RouteEdge> routeEdges;
 
-
-    public Set<RouteEdge> getRouteEdges() {
-        return routeEdges;
+    public int getEdgeType() {
+        return edgeType;
     }
 
-    public void setRouteEdges(Set<RouteEdge> routeEdges) {
+    public void setEdgeType(int edgeType) {
+        this.edgeType = edgeType;
+    }
+
+    public Set<RouteEdge> getEdges() {
+            return routeEdges;
+    }
+
+    public void setEdges(Set<RouteEdge> edges) {
         this.routeEdges = routeEdges;
-    }*/
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Date getCreationDate() {
         return creationDate;
@@ -142,7 +160,8 @@ public class Edge {
         this.currency = currency;
     }
 
-    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, Date startDate, Date endDate, String currency) {
+    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, Date startDate, Date endDate, String currency, int edgeType)
+    {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;
@@ -153,7 +172,10 @@ public class Edge {
         this.startDate = startDate;
         this.endDate = endDate;
         this.currency = currency;
+        this.edgeType = edgeType;
+        routeEdges = new HashSet<>();
     }
+    private Edge(){}
 
     @Override
     public String toString() {
@@ -170,5 +192,20 @@ public class Edge {
                 ", endDate=" + endDate +
                 ", currency='" + currency + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Edge edge = (Edge) o;
+
+        return id == edge.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

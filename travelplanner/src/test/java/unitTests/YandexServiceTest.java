@@ -15,8 +15,8 @@ public class YandexServiceTest {
         YandexService yandexService = new YandexService("64d2c4dc-e05a-4574-b51a-bdc03b2bc8a3");
 
         List<Edge> edgeList = yandexService.getEdgesFromYandex("c193"
-        ,"c213"
-        ,LocalDate.of(2018,01,29));
+        ,"c143"
+        ,LocalDate.of(2018,02,15));
 
         edgeList.forEach(l -> System.out.println(l.toString()));
 
