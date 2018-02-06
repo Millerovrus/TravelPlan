@@ -7,21 +7,25 @@ body{
     font-size: 16px;
     color: #555;
     -webkit-font-smoothing: antialiased;
-
     margin-top: 70px;
+    overflow-y: scroll;
 }
 
-h2,h3,h4,h5,h6{
+h1,h2,h3,h4,h5,h6{
     font-family: "Raleway";
     color: #333;
     font-weight: 300;
 }
 
-h1{
+.header h1{
     font-family: "Raleway";
     color: #333;
-    font-size: 45px;
+    font-size: 48px;
     font-weight: 300;
+    text-transform: uppercase;
+    padding: 50px;
+    text-align: center;
+    margin-top: 20px;
 }
 
 p{
@@ -51,6 +55,39 @@ hr{
     margin: 1em 0;
     padding: 0;
 }
+/*  перенести в тэг или отдельный файл */
+.scrollbar{
+    margin-top: -10px;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 25px;
+    margin:150px;
+}
+::-webkit-scrollbar-thumb {
+    height: 2px;
+    border: 4px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    -webkit-border-radius: 7px;
+    background-color: rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+}
+::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
+}
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+
+/* navbar top*/
 
 .navbar-inverse .navbar-brand{
     color: #999;
@@ -75,19 +112,22 @@ hr{
     background-color: #ff7878;
 }
 
+/*background image*/
 .imageMain{
     background: url(../img/imgMain.jpg)no-repeat center;
     width: 100%;
-    height: 92%; /* !!!!!!!!!!*/
+    height: 92%;
     margin-top: -10px;
     background-size: cover;
     position: absolute;
     background-position: center center;
     z-index: 0;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 
 }
 
-/*background image*/
 .imageMain::before {
     content: '';
     position: absolute;
@@ -258,7 +298,6 @@ hr{
     transition: all 0.218s;
 }
 
-
 .btn.btn-signin:hover,
 .btn.btn-signin:active,
 .btn.btn-signin:focus {
@@ -303,4 +342,36 @@ hr{
 
 .row-sign-up{
     margin-top: -50px;
+}
+/* toDo change colors of navbar menu when it's minimized*/
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+.background-main-pic{
+    width: 100%;
+    height: 180px;
+    margin-top: -10px;
+    object-fit: cover;
+    position: absolute;
+    display: block;
+
+    background-blend-mode: lighten;
+
+   /* -webkit-filter: opacity(50%);
+    -webkit-filter: brightness(150%);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;*/
+}
+
+img{
+    opacity: 0.75;
+}
+
+
+#map{
+    width: 100%;
+    height: 400px;
+    background-color: #2d2d2d;
 }

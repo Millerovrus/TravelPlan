@@ -73,9 +73,20 @@ function supportsHTML5Storage() {
  *
  * @returns {boolean}
  */
+/* ??????????? */
 function testLocalStorageData() {
     if(!supportsHTML5Storage()) { return false; }
     localStorage.setItem("PROFILE_IMG_SRC", "//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" );
     localStorage.setItem("PROFILE_NAME", "César Izquierdo Tello");
     localStorage.setItem("PROFILE_REAUTH_EMAIL", "oneaccount@gmail.com");
 }
+
+/* datetimepicker */
+$(function () {
+    $('#datetimepicker1').datetimepicker({
+        locale: 'en',
+        stepping: 10,
+        format: 'DD.MM.YYYY'
+    });
+});
+
