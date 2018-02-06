@@ -64,3 +64,19 @@ CREATE TABLE route_edges
   PRIMARY KEY (route_id, edge_id)
 );
 
+CREATE TABLE airports
+(
+  id           VARCHAR(255) NOT NULL
+    CONSTRAINT airports_pkey
+    PRIMARY KEY,
+  code         VARCHAR(255),
+  type         VARCHAR(255),
+  name         VARCHAR(255),
+  latitude     DOUBLE PRECISION,
+  longitude    DOUBLE PRECISION,
+  city_name    VARCHAR(255),
+  city_code    VARCHAR(255),
+  country_name VARCHAR(255),
+  country_code VARCHAR(255),  
+  timezone     VARCHAR(255)
+);
