@@ -37,13 +37,13 @@ public class Route implements Serializable {
 
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private Set<RouteEdge> routeEdges;
+    private List<RouteEdge> routeEdges;
 
-    public Set<RouteEdge> getRouteEdges() {
+    public List<RouteEdge> getRouteEdges() {
         return routeEdges;
     }
 
-    public void setRouteEdges(Set<RouteEdge> routeEdges) {
+    public void setRouteEdges(List<RouteEdge> routeEdges) {
         this.routeEdges = routeEdges;
     }
 
@@ -100,7 +100,7 @@ public class Route implements Serializable {
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;
         this.routeType = routeType;
-        routeEdges = new HashSet<>();
+        routeEdges = new LinkedList<>();
     }
     private Route(){}
 

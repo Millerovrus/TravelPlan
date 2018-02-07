@@ -26,7 +26,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = TravelPlannerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 
-public class WritingAllEntytiesToDb {
+public class WritingAllEntitiesToDb {
 
     @Autowired
     EdgeRepository edgeRepository;
