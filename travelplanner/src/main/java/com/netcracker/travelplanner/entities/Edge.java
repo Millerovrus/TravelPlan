@@ -56,6 +56,46 @@ public class Edge {
     @JsonManagedReference
     private Set<RouteEdge> routeEdges;
 
+    @Transient
+    private double weight;
+
+    public void setData(int type){
+        setEdgeType(type);
+
+        switch (type){
+            case 0:
+                setWeight(getCost() + getDuration() / 3600 * 50);
+                break;
+
+            case 1:
+                setWeight(getCost() + getDuration() / 3600 * 400);
+                break;
+
+            case 2:
+                setWeight(getCost() + getDuration() / 3600 * 1500);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public Set<RouteEdge> getRouteEdges() {
+        return routeEdges;
+    }
+
+    public void setRouteEdges(Set<RouteEdge> routeEdges) {
+        this.routeEdges = routeEdges;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
     public int getEdgeType() {
         return edgeType;
     }
