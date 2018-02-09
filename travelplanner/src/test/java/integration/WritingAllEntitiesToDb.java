@@ -40,8 +40,8 @@ public class WritingAllEntitiesToDb {
 
         /*создаем пользователей*/
         List<User> userList = new ArrayList<>();
-        User u = new User("john@mail.com","John","Jonson",new Date(),false, date,"12345");
-        User u1 = new User("johnG@mail.com","John","Gibson",new Date(),false, date,"12345");
+        User u = new User("johnny@mail.com","John","Jonson",new Date(),false, date,"12345");
+        User u1 = new User("johnGuu@mail.com","John","Gibson",new Date(),false, date,"12345");
         userList.add(u);
         userList.add(u1);
 
@@ -96,8 +96,6 @@ public class WritingAllEntitiesToDb {
         userRepository.save(u1);
 
         routeRepository.save(routeList);
-
-
 
 //        Assert.assertArrayEquals(edgeRepository.findAll().toArray(), edgeList.toArray());
 //        Assert.assertArrayEquals(routeRepository.findAll().toArray(), routeList.toArray());

@@ -1,5 +1,6 @@
 package com.netcracker.travelplanner.repository;
 
+import com.netcracker.travelplanner.entities.RouteType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
@@ -15,5 +16,5 @@ public interface EdgeRepository extends JpaRepository<Edge,Integer>, JpaSpecific
     List<Edge> findByDuration(double d);
     List<Edge> findByCost(double d);
     List<Edge> findByTransportType(String type);
-    List<Edge> findByEdgeType(Integer i);
+    List<Edge> findByEdgeType(RouteType i);
 }

@@ -14,10 +14,9 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq")
-    @SequenceGenerator(name = "users_seq", sequenceName = "user_id_seq")
+    @SequenceGenerator(name = "users_seq", sequenceName = "user_id_seq", allocationSize = 2)
     private int id;
 
-    @Column(name = "email")
     private String email;
 
     @Column(name="first_name", length = 50, nullable = false)
@@ -37,7 +36,7 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date registrationDate;
 
-    @Column(name="password", nullable = false)
+    @Column(nullable = false)
     private String password;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true)

@@ -14,7 +14,7 @@ public class Route implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "routes_seq")
-    @SequenceGenerator(name = "routes_seq", sequenceName = "route_id_seq")
+    @SequenceGenerator(name = "routes_seq", sequenceName = "route_id_seq", allocationSize = 2)
     private int id;
 
     @ManyToOne
@@ -116,5 +116,18 @@ public class Route implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Route{" +
+                "id=" + id +
+                ", user=" + user +
+                ", creationDate=" + creationDate +
+                ", startPoint='" + startPoint + '\'' +
+                ", destinationPoint='" + destinationPoint + '\'' +
+                ", routeType=" + routeType +
+                ", routeEdges=" + routeEdges +
+                '}';
     }
 }

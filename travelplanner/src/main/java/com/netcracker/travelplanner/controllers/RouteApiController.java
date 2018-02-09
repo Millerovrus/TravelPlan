@@ -1,6 +1,7 @@
 package com.netcracker.travelplanner.controllers;
 ;
 import com.netcracker.travelplanner.entities.Route;
+import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.repository.RouteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +41,7 @@ public class RouteApiController {
     }
 
     @RequestMapping(value = "/bytype", method = RequestMethod.GET)
-    public List<Route> getRoutesByType(@RequestParam(value = "type", required = true) Integer i){
+    public List<Route> getRoutesByType(@RequestParam(value = "type", required = true) RouteType i){
         return routeRepository.findByRouteTypeIs(i);
     }
 

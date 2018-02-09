@@ -13,7 +13,7 @@ public class Edge {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "edges_seq")
-    @SequenceGenerator(name = "edges_seq", sequenceName = "edge_id_seq")
+    @SequenceGenerator(name = "edges_seq", sequenceName = "edge_id_seq", allocationSize = 2)
     private int id;
 
     @Column(name="creation_date", nullable = false)
@@ -29,7 +29,7 @@ public class Edge {
     @Column(name="transport_type", nullable = false)
     private String transportType;
 
-    @Column(name = "duration", nullable = false)
+    @Column(nullable = false)
     private Double duration;
 
     private Double cost;

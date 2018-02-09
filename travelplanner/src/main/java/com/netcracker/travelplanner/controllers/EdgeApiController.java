@@ -1,6 +1,7 @@
 package com.netcracker.travelplanner.controllers;
 
 import com.netcracker.travelplanner.entities.Edge;
+import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.repository.EdgeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +56,7 @@ public class EdgeApiController {
     }
 
     @RequestMapping(value = "/byedgetype", method = RequestMethod.GET)
-    public List<Edge> getEdgesByEdgeType(@RequestParam(value = "edgetype", required = true) Integer i) {
+    public List<Edge> getEdgesByEdgeType(@RequestParam(value = "edgetype", required = true) RouteType i) {
         return edgeRepository.findByEdgeType(i);
     }
 }

@@ -31,7 +31,7 @@ CREATE TABLE users
     PRIMARY KEY,
   first_name        VARCHAR(50)  NOT NULL,
   last_name         VARCHAR(50)  NOT NULL,
-  email             VARCHAR(255),
+  email             VARCHAR(255) UNIQUE,
   birth_date        DATE,
   password          VARCHAR(255) NOT NULL,
   registration_date TIMESTAMP    NOT NULL,
