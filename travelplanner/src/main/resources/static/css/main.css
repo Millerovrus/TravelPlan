@@ -1,0 +1,383 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Raleway');
+
+body{
+    background-color: #f2f2f2;
+    font-family: "Lato";
+    font-weight: 300;
+    font-size: 16px;
+    color: #555;
+    -webkit-font-smoothing: antialiased;
+    margin-top: 70px;
+    overflow-y: scroll;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: "Raleway";
+    color: #333;
+    font-weight: 300;
+}
+
+.header h1{
+    font-family: "Raleway";
+    color: #333;
+    font-size: 48px;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding: 50px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+p{
+    line-height: 28px;
+    margin-bottom: 25px;
+}
+
+.centered{
+    text-align: center;
+}
+
+a{
+    color: #f86c37;
+}
+
+a:hover,a:focus{
+    color: #7b7b7b;
+    text-decoration: none;
+    outline: 0;
+}
+
+hr{
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+/*  перенести в тэг или отдельный файл */
+.scrollbar{
+    margin-top: -10px;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 25px;
+    margin:150px;
+}
+::-webkit-scrollbar-thumb {
+    height: 2px;
+    border: 4px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    -webkit-border-radius: 7px;
+    background-color: rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+}
+::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
+}
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+
+/* navbar top*/
+
+.navbar-inverse .navbar-brand{
+    color: #999;
+    font-weight: bolder;
+    font-family: "Raleway";
+    font-size: 25px;
+    letter-spacing: 1px;
+}
+
+.navbar{
+    height: 60px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+.navbar-inverse{
+    background-color: #2d2d2d;
+    border-color: #2d2d2d;
+}
+
+.navbar-inverse .navbar-nav > .active > a{
+    background-color: #ff7878;
+}
+
+/*background image*/
+.imageMain{
+    background: url(../img/imgMain.jpg)no-repeat center;
+    width: 100%;
+    height: 92%;
+    margin-top: -10px;
+    background-size: cover;
+    position: absolute;
+    background-position: center center;
+    z-index: 0;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+
+}
+
+.imageMain::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.35);
+    z-index: 0; /*!!!!!!!!!*/
+}
+
+/* login and sign up form styles*/
+.card-container.card {
+    max-width: 450px;
+    padding: 40px 40px;
+}
+
+.btn {
+    font-weight: 700;
+    height: 36px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+/*
+ * Card component
+ */
+.card {
+    /*background-color: #F7F7F7;*/
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    /* shadows and rounded borders */
+    /*-moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);*/
+}
+
+/*.profile-img-card {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 5%;
+    -webkit-border-radius: 5%;
+    border-radius: 5%;
+    z-index: 2;
+}*/
+
+/*
+ * Form styles
+ */
+.profile-name-card {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0 0;
+    min-height: 1em;
+}
+
+.reauth-email {
+    display: block;
+    color: #404040;
+    line-height: 2;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin{
+    margin-top: 70px;
+}
+
+.form-signup{
+    margin-top: 0px;
+}
+
+.form-signin #inputEmail,
+.form-signin #inputPassword{
+    direction: ltr;
+    height: 44px;
+    font-size: 16px;
+}
+
+.form-signup #inputEmail,
+.form-signup #inputPassword,
+.form-signup #inputBirthDate,
+.form-signup #inputFirstName,
+.form-signup #inputLastName{
+    direction: ltr;
+    height: 44px;
+    font-size: 16px;
+}
+
+.form-signin input[type=email],
+.form-signin input[type=password],
+.form-signin button {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signup input[type=email],
+.form-signup input[type=password],
+.form-signup input[type=text],
+.form-signup button {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin input[type="checkbox"] {
+    display: inline;
+}
+
+.form-signin .checkbox{
+    margin-bottom: 10px;
+    margin-left: 10px;
+    font-weight: bold;
+    margin-top: -2px;
+    color: #0f0f0f;
+}
+
+.form-signin .form-control:focus {
+    border-color:#ff7878;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px #ff7878;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px #ff7878;
+}
+
+.btn.btn-signin {
+    /*background-color: #4d90fe; */
+    background-color: #ff7878;
+    /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+    padding: 0px;
+    font-weight: 700;
+    font-size: 14px;
+    height: 36px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+    -o-transition: all 0.218s;
+    -moz-transition: all 0.218s;
+    -webkit-transition: all 0.218s;
+    transition: all 0.218s;
+}
+
+.btn.btn-signin:hover,
+.btn.btn-signin:active,
+.btn.btn-signin:focus {
+    background-color: #ff7878;
+}
+
+/* bottom */
+.row-first{
+    margin-bottom:10px;
+    margin-top:50px;
+}
+
+.contact a{
+    display:block;
+    font-size:15px;
+    text-align:center;
+    color:#ccc;
+    padding:5px
+}
+
+.row-sign-in{
+    margin-top: 11px;
+}
+
+.contact a:hover{
+    background-color:rgba(0,0,0,0.25);
+    text-decoration:none
+}
+
+.contact a.skype:hover,.fa-skype{
+    color:#00aff0
+}
+.contact a.google:hover,.fa-google-plus{
+    color:#dd4b39
+}
+.contact a.linkedin:hover,.fa-linkedin{
+    color:#0e76a8
+}
+.contact a.twitter:hover,.fa-twitter{
+    color:#00acee
+}
+
+.row-sign-up{
+    margin-top: -50px;
+}
+/* toDo change colors of navbar menu when it's minimized*/
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+.background-main-pic{
+    width: 100%;
+    height: 180px;
+    margin-top: -10px;
+    object-fit: cover;
+    position: absolute;
+    display: block;
+
+    background-blend-mode: lighten;
+
+    /* -webkit-filter: opacity(50%);
+     -webkit-filter: brightness(150%);
+     -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+     -o-transition: all 1s ease;
+     -ms-transition: all 1s ease;
+     transition: all 1s ease;*/
+}
+
+img{
+    opacity: 0.75;
+}
+
+
+#map{
+    width: 100%;
+    height: 470px;
+
+}
+
+.container-map{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    align-items: center;
+}
