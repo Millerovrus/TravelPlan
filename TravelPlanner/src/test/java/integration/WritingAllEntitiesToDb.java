@@ -1,13 +1,8 @@
 package integration;
 
 import com.netcracker.travelplanner.TravelPlannerApplication;
-import com.netcracker.travelplanner.entities.Edge;
-import com.netcracker.travelplanner.entities.Route;
-import com.netcracker.travelplanner.entities.RouteEdge;
-import com.netcracker.travelplanner.entities.User;
-import com.netcracker.travelplanner.repository.EdgeRepository;
-import com.netcracker.travelplanner.repository.RouteRepository;
-import com.netcracker.travelplanner.repository.UserRepository;
+import com.netcracker.travelplanner.entities.*;
+import com.netcracker.travelplanner.repository.*;
 import com.netcracker.travelplanner.service.EdgeRepositoryService;
 import com.netcracker.travelplanner.service.RouteRepositoryService;
 import org.junit.Assert;
@@ -52,17 +47,17 @@ public class WritingAllEntitiesToDb {
 
         /*Создаем список рёбер*/
         List<Edge> edgeList = new ArrayList<>();
-        edgeList.add(new Edge(date,"москва","воронеж","plane",10.00,1000.00,100.0,date,date,"Eur",1));
-        edgeList.add(new Edge(date,"воронеж","белгород","plane",10.00,1000.00,100.0,date,date,"Eur",1));
-        edgeList.add(new Edge(date,"москва","берлин","plane",10.00,1000.00,100.0,date,date,"Eur",1));
-        edgeList.add(new Edge(date,"белгород","москва","plane",10.00,1000.00,100.0,date,date,"Eur",1));
-        edgeList.add(new Edge(date,"харьков","белгород","train",10.00,1000.00,100.0,date,date,"Eur",1));
-        edgeList.add(new Edge(date,"берлин","москва","bus",10.00,1000.00,100.0,date,date,"Eur",1));
+        edgeList.add(new Edge(date,"москва","воронеж", "plane",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
+        edgeList.add(new Edge(date,"воронеж","белгород","plane", 10.00,1000.00,100.0,date,date,"Eur", RouteType.cheap));
+        edgeList.add(new Edge(date,"москва","берлин","plane",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
+        edgeList.add(new Edge(date,"белгород","москва","plane",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
+        edgeList.add(new Edge(date,"харьков","белгород","train",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
+        edgeList.add(new Edge(date,"берлин","москва","bus",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
 
         /*создаем список маршрутов*/
         List<Route> routeList = new ArrayList<>();
-        routeList.add(new Route(date,"воронеж","берлин",1));
-        routeList.add(new Route(date,"берлин","воронеж",1));
+        routeList.add(new Route(date,"воронеж","берлин", RouteType.cheap));
+        routeList.add(new Route(date,"берлин","воронеж", RouteType.comfort));
 
         /*добавляем ребра к маршруту*/
         RouteEdge routeEdge = new RouteEdge(123);

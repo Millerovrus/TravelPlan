@@ -1,6 +1,7 @@
 package com.netcracker.travelplanner.service;
 
 import com.google.gson.Gson;
+import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.entities.yandex.YandexRasp;
 import com.netcracker.travelplanner.entities.Edge;
 
@@ -88,7 +89,7 @@ public class YandexService {
                                                         ,java.sql.Date.valueOf(LocalDate.parse(l.getDeparture(),DateTimeFormatter.ISO_OFFSET_DATE_TIME))
                                                         ,java.sql.Date.valueOf(LocalDate.parse(l.getArrival(),DateTimeFormatter.ISO_OFFSET_DATE_TIME))
                                                         ,"RUB"
-                                                        ,0)));
+                                                        , RouteType.cheap)));
 
 
 

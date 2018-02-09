@@ -32,8 +32,9 @@ public class Route implements Serializable {
     @Column(name="destination_point", nullable = false)
     private String destinationPoint;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name="route_type", nullable = false)
-    private int routeType;
+    private RouteType routeType;
 
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -79,11 +80,11 @@ public class Route implements Serializable {
         this.destinationPoint = destinationPoint;
     }
 
-    public int getRouteType() {
+    public RouteType getRouteType() {
         return routeType;
     }
 
-    public void setRouteType(int routeType) {
+    public void setRouteType(RouteType routeType) {
         this.routeType = routeType;
     }
 
@@ -95,7 +96,7 @@ public class Route implements Serializable {
         this.user = user;
     }
 
-    public Route(Date creationDate, String startPoint, String destinationPoint, int routeType) {
+    public Route(Date creationDate, String startPoint, String destinationPoint, RouteType routeType) {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;

@@ -1,4 +1,4 @@
-CREATE SEQUENCE edge_id_seq;
+﻿CREATE SEQUENCE edge_id_seq;
 
 CREATE SEQUENCE hibernate_sequence;
 
@@ -20,8 +20,8 @@ CREATE TABLE edges
   end_date          TIMESTAMP        NOT NULL,  
   cost              DOUBLE PRECISION,
   currency          VARCHAR(255),  
-  transport_type    VARCHAR(255)     NOT NULL,
-  edge_type         INTEGER
+  transport_type    VARCHAR(255) NOT NULL,
+  edge_type         SMALLINT
 );
 
 CREATE TABLE users
@@ -45,7 +45,7 @@ CREATE TABLE routes
   creation_date     TIMESTAMP    NOT NULL,
   start_point       VARCHAR(255) NOT NULL,
   destination_point VARCHAR(255) NOT NULL,
-  route_type        INTEGER      NOT NULL,
+  route_type        SMALLINT      NOT NULL,
   user_id           INTEGER
     CONSTRAINT fktn5l1ci7sxbp52akvblqjg4jm
     REFERENCES users

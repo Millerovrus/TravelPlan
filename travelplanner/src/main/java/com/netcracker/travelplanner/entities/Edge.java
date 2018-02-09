@@ -32,10 +32,8 @@ public class Edge {
     @Column(name = "duration", nullable = false)
     private Double duration;
 
-    @Column(name = "cost")
     private Double cost;
 
-    @Column(name="distance")
     private Double distance;
 
     @Column(name = "start_date", nullable = false)
@@ -46,11 +44,11 @@ public class Edge {
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
 
-    @Column(name = "currency")
     private String currency;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "edge_type")
-    private int edgeType;
+    private RouteType edgeType;
 
     @OneToMany(mappedBy = "edge", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -59,19 +57,19 @@ public class Edge {
     @Transient
     private double weight;
 
-    public void setData(int type){
+    public void setData(RouteType type){
         setEdgeType(type);
 
         switch (type){
-            case 0:
+            case cheap:
                 setWeight(getCost() + getDuration() / 3600 * 50);
                 break;
 
-            case 1:
+            case optimal:
                 setWeight(getCost() + getDuration() / 3600 * 400);
                 break;
 
-            case 2:
+            case comfort:
                 setWeight(getCost() + getDuration() / 3600 * 1500);
                 break;
 
@@ -96,11 +94,11 @@ public class Edge {
         this.weight = weight;
     }
 
-    public int getEdgeType() {
+    public RouteType getEdgeType() {
         return edgeType;
     }
 
-    public void setEdgeType(int edgeType) {
+    public void setEdgeType(RouteType edgeType) {
         this.edgeType = edgeType;
     }
 
@@ -200,7 +198,7 @@ public class Edge {
         this.currency = currency;
     }
 
-    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, Date startDate, Date endDate, String currency, int edgeType)
+    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, Date startDate, Date endDate, String currency, RouteType edgeType)
     {
         this.creationDate = creationDate;
         this.startPoint = startPoint;

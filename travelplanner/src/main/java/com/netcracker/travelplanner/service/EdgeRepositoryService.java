@@ -25,15 +25,4 @@ public class EdgeRepositoryService {
     }
 
     public void addEdge(Edge edge){edgeRepository.save(edge);}
-
-    public List<Edge> getDiffTypesEdges(Edge edge){
-        List<Edge> edges = new ArrayList<>();
-
-        for (int i = 0; i < 3; i++){
-            edge.setData(i);
-            edges.add(edge);
-        }
-
-        return edges;
-    }
 }

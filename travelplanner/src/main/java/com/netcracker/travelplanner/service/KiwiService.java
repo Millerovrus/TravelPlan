@@ -1,6 +1,7 @@
 package com.netcracker.travelplanner.service;
 
 import com.google.gson.Gson;
+import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.entities.kiwi.KiwiFlights;
 import com.netcracker.travelplanner.entities.Edge;
 import java.io.IOException;
@@ -73,14 +74,14 @@ public class KiwiService {
         kiwiFlights.getData().forEach(l -> listOfEdges.add(new Edge(dateNow
                 ,l.getCityFrom()
                 ,l.getCityTo()
-                ,"plane"
+                , "plane"
                 ,(double)l.getDuration().getTotal()
                 ,(double)l.getPrice()
                 ,l.getDistance()
                 ,Date.from(Instant.ofEpochSecond(l.getATime()))
                 ,Date.from(Instant.ofEpochSecond(l.getDTime()))
                 ,currency
-                ,0)));
+                , RouteType.cheap)));
 
         return listOfEdges;
     }
