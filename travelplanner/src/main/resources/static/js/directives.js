@@ -1,8 +1,8 @@
-import template from '../templates/menu.html';
 
-angular.module('myApp',[])
-    .directive('myMenu', function () {
+
+    var myApp2 = angular.module('myApp2',[]);
+    myApp2.directive('myNavbar', function () {
         return {
-            template: template
+            templateUrl: 'navbar-template.html'
         };
     });
