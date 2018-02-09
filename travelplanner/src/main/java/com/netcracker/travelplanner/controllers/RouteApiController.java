@@ -2,6 +2,8 @@ package com.netcracker.travelplanner.controllers;
 ;
 import com.netcracker.travelplanner.entities.Route;
 import com.netcracker.travelplanner.repository.RouteRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,11 +12,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/getRoutes")
 public class RouteApiController {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private RouteRepository routeRepository;
 
     @GetMapping
     public List<Route> getRoutes() {
+        logger.info("Запрос на получение общего списка маршрутов");
         return routeRepository.findAll();
     }
 

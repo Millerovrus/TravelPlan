@@ -2,6 +2,8 @@ package com.netcracker.travelplanner.controllers;
 
 import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.repository.EdgeRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,11 +12,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/getEdges")
 public class EdgeApiController {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private EdgeRepository edgeRepository;
 
     @GetMapping
     public List<Edge> getEdges() {
+        logger.info("Запрос на получение общего списка отрезков");
         return edgeRepository.findAll();
     }
 

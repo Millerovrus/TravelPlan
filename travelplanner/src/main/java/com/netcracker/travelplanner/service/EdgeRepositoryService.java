@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.netcracker.travelplanner.entities.Edge;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,6 +25,4 @@ public class EdgeRepositoryService {
     }
 
     public void addEdge(Edge edge){edgeRepository.save(edge);}
-
-
 }
