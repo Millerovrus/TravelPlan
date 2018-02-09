@@ -30,12 +30,15 @@
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.css" />
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
 
+    <!--angular-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="js/service-request.js"></script>
 </head>
 
 <body>
 
     <!-- angular -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>-->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
@@ -77,9 +80,9 @@
     </div> -->
 
 
-    <div ng-app="myApp2">
+    <!--<div ng-app="myApp2">
         <my-navbar></my-navbar>
-    </div>
+    </div>-->
 
 
     <script src="js/input-parameters.js"></script>
@@ -152,29 +155,31 @@
                             </div>
                         </div>
                     </form>
-                    <div  ng-app="myApp" ng-controller="myParameterController">
+
+                    <div ng-app="MyApp" ng-controller="myParameterController">
                         <h2> test json angular example</h2>
                         <table class="table table-striped">
                             <tr>
                                 <th>Id</th>
-                                <th>Code</th>
-                                <th>Type</th>
-                                <th>Name</th>
+                                <th>startPoint</th>
+                                <th>destinationPoint</th>
+                                <th>cost</th>
+                                <th>transportType</th>
                             </tr>
-                            <tr ng-repeat="data in myData">
-                                <td>{{data.id}}</td>
-                                <td>{{data.code}}</td>
-                                <td>{{data.type}}</td>
-                                <td>{{data.name}}</td>
+                            <tr ng-repeat="record in records">
+                                <td>{{record.id}}</td>
+                                <td>{{record.startPoint}}</td>
+                                <td>{{record.destinationPoint}}</td>
+                                <td>{{record.cost}}</td>
+                                <td>{{record.transportType}}</td>
                             </tr>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
-
-
 
 </body>
 </html>

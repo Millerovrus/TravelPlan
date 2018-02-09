@@ -23,30 +23,30 @@ public class RouteApiController {
         return routeRepository.findAll();
     }
 
-    @RequestMapping(value = "/byid", method = RequestMethod.GET)
-    public Route getRouteById(@RequestParam(value = "id", required = true) Integer id) {
+    @RequestMapping(value = "/byid/", method = RequestMethod.GET)
+    public Route getRouteById(@RequestParam(value = "id", required = true) int id) {
         return routeRepository.findOne(id);
     }
 
-    @RequestMapping(value = "/bytwopoints", method = RequestMethod.GET)
+    @RequestMapping(value = "/bytwopoints/", method = RequestMethod.GET)
     public List<Route> getRoutesByTwoPoints(@RequestParam(value = "start", required = true) String s,
                                             @RequestParam(value = "destination", required = true) String d){
         return routeRepository.findByStartPointIsAndDestinationPointIs(s, d);
     }
 
-    @RequestMapping(value = "/bypoint", method = RequestMethod.GET)
+    @RequestMapping(value = "/bypoint/", method = RequestMethod.GET)
     public List<Route> getRoutesByPoint(@RequestParam(value = "start", required = false) String s,
                                         @RequestParam(value = "destination", required = false) String d){
         return routeRepository.findByStartPointIsOrDestinationPointIs(s, d);
     }
 
-    @RequestMapping(value = "/bytype", method = RequestMethod.GET)
+    @RequestMapping(value = "/bytype/", method = RequestMethod.GET)
     public List<Route> getRoutesByType(@RequestParam(value = "type", required = true) RouteType i){
         return routeRepository.findByRouteTypeIs(i);
     }
 
-    @RequestMapping(value = "/byuser", method = RequestMethod.GET)
-    public List<Route> getRoutesByUser(@RequestParam(value = "user", required = true) Integer i){
+    @RequestMapping(value = "/byuser/", method = RequestMethod.GET)
+    public List<Route> getRoutesByUser(@RequestParam(value = "user", required = true) int i){
         return routeRepository.findByUserId(i);
     }
 }
