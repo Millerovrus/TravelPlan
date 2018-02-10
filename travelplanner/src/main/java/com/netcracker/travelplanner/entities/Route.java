@@ -36,9 +36,53 @@ public class Route implements Serializable {
     @Column(name="route_type", nullable = false)
     private RouteType routeType;
 
+    @Transient
+    private double weight;
+
+    @Column(nullable = false)
+    private double cost;
+
+    @Column(nullable = false)
+    private double duration;
+
+    @Column(nullable = false)
+    private double distance;
+
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<RouteEdge> routeEdges;
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public double getDuration() {
+        return duration;
+    }
+
+    public void setDuration(double duration) {
+        this.duration = duration;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
 
     public List<RouteEdge> getRouteEdges() {
         return routeEdges;
@@ -103,7 +147,19 @@ public class Route implements Serializable {
         this.routeType = routeType;
         routeEdges = new LinkedList<>();
     }
+
     private Route(){}
+
+    public Route(Date creationDate, String startPoint, String destinationPoint, RouteType routeType, double cost, double duration, double distance) {
+        this.creationDate = creationDate;
+        this.startPoint = startPoint;
+        this.destinationPoint = destinationPoint;
+        this.routeType = routeType;
+        this.cost = cost;
+        this.duration = duration;
+        this.distance = distance;
+        routeEdges = new LinkedList<>();
+    }
 
     @Override
     public boolean equals(Object o) {
