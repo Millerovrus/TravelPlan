@@ -1,3 +1,445 @@
 [INFO ] 2018-02-09 10:25:48.554 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 5180 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
 [INFO ] 2018-02-09 10:25:48.627 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
 [INFO ] 2018-02-09 10:26:11.408 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 24.754 seconds (JVM running for 41.982)
+[INFO ] 2018-02-10 14:51:28.735 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8580 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 14:51:28.813 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 14:51:47.268 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 19.86 seconds (JVM running for 41.439)
+[INFO ] 2018-02-10 14:52:57.433 [http-nio-8888-exec-10] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 15:14:01.394 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12352 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 15:14:01.410 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 15:14:38.301 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 38.229 seconds (JVM running for 56.411)
+[INFO ] 2018-02-10 15:15:03.376 [http-nio-8888-exec-2] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 15:15:42.240 [http-nio-8888-exec-5] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 15:20:09.608 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 13472 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 15:20:09.614 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 15:20:30.292 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 22.616 seconds (JVM running for 47.133)
+[INFO ] 2018-02-10 15:21:42.947 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 3148 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 15:21:42.947 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 15:21:52.969 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 10.537 seconds (JVM running for 12.794)
+[INFO ] 2018-02-10 15:23:42.974 [http-nio-8888-exec-4] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 15:27:43.472 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8024 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 15:27:43.487 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 15:27:53.201 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 10.383 seconds (JVM running for 32.227)
+[INFO ] 2018-02-10 15:28:40.872 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 9316 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 15:28:40.904 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 15:28:49.762 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 9.549 seconds (JVM running for 11.127)
+[INFO ] 2018-02-10 15:30:28.325 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 13492 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 15:30:28.325 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 15:30:35.714 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.572 seconds (JVM running for 19.737)
+[INFO ] 2018-02-10 15:31:39.753 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 9208 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 15:31:39.753 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 15:31:47.489 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.253 seconds (JVM running for 9.762)
+[INFO ] 2018-02-10 15:34:45.960 [http-nio-8888-exec-6] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 15:49:30.356 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 11556 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 15:49:30.361 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 15:49:42.388 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 12.538 seconds (JVM running for 16.001)
+[INFO ] 2018-02-10 15:49:55.181 [http-nio-8888-exec-1] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 15:52:24.322 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 6540 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 15:52:24.331 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 15:52:51.926 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 28.836 seconds (JVM running for 37.825)
+[INFO ] 2018-02-10 15:55:04.391 [http-nio-8888-exec-7] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 15:58:12.892 [http-nio-8888-exec-10] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:00:17.751 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 4068 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:00:17.758 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:00:25.097 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.719 seconds (JVM running for 9.775)
+[INFO ] 2018-02-10 16:00:38.791 [http-nio-8888-exec-4] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:05:20.958 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 4960 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:05:20.967 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:05:33.822 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 13.649 seconds (JVM running for 15.184)
+[INFO ] 2018-02-10 16:06:03.536 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8164 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:06:03.543 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:06:10.831 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.788 seconds (JVM running for 9.928)
+[INFO ] 2018-02-10 16:06:35.837 [http-nio-8888-exec-8] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:19:59.014 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 14168 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:19:59.022 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:20:16.284 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 10612 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:20:16.292 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:20:23.240 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.715 seconds (JVM running for 9.328)
+[INFO ] 2018-02-10 16:22:32.694 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8324 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:22:32.702 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:22:40.048 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.836 seconds (JVM running for 9.766)
+[INFO ] 2018-02-10 16:23:04.924 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 13556 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:23:04.945 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:23:11.528 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.242 seconds (JVM running for 9.163)
+[INFO ] 2018-02-10 16:24:07.063 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 2364 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:24:07.071 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:24:13.957 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.567 seconds (JVM running for 9.183)
+[INFO ] 2018-02-10 16:26:32.930 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 1948 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:26:32.937 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:26:39.583 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.324 seconds (JVM running for 8.984)
+[INFO ] 2018-02-10 16:30:24.871 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 9508 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:30:24.880 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:30:31.919 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.843 seconds (JVM running for 9.744)
+[INFO ] 2018-02-10 16:30:49.320 [http-nio-8888-exec-6] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:31:55.344 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 3704 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:31:55.448 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:32:02.413 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.955 seconds (JVM running for 9.72)
+[INFO ] 2018-02-10 16:32:05.653 [http-nio-8888-exec-1] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:35:49.198 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 13264 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:35:49.204 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:35:55.804 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.182 seconds (JVM running for 8.893)
+[INFO ] 2018-02-10 16:36:09.866 [http-nio-8888-exec-7] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:36:40.243 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 396 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:36:40.250 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:36:46.562 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.033 seconds (JVM running for 8.715)
+[INFO ] 2018-02-10 16:37:03.196 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 6520 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:37:03.204 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:37:09.997 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.609 seconds (JVM running for 9.296)
+[INFO ] 2018-02-10 16:37:28.700 [http-nio-8888-exec-6] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:38:03.808 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12820 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:38:03.817 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:38:10.636 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.471 seconds (JVM running for 8.956)
+[INFO ] 2018-02-10 16:38:31.965 [http-nio-8888-exec-4] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:42:22.371 [http-nio-8888-exec-1] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:46:06.615 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 13744 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:46:06.621 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:46:13.754 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.579 seconds (JVM running for 9.29)
+[INFO ] 2018-02-10 16:46:19.366 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 3368 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:46:19.374 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:46:25.929 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.181 seconds (JVM running for 8.873)
+[INFO ] 2018-02-10 16:46:41.638 [http-nio-8888-exec-1] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:46:44.644 [http-nio-8888-exec-3] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:46:49.991 [http-nio-8888-exec-2] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:46:53.653 [http-nio-8888-exec-10] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:51:19.443 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 296 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:51:19.448 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:51:27.098 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.148 seconds (JVM running for 9.715)
+[INFO ] 2018-02-10 16:52:55.950 [http-nio-8888-exec-1] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:52:56.858 [http-nio-8888-exec-3] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:52:57.596 [http-nio-8888-exec-5] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:53:00.142 [http-nio-8888-exec-6] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:54:16.202 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 13800 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:54:16.207 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:54:23.054 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.22 seconds (JVM running for 9.163)
+[INFO ] 2018-02-10 16:56:19.143 [http-nio-8888-exec-5] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:57:04.123 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 13780 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:57:04.132 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:57:10.855 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.39 seconds (JVM running for 8.9)
+[INFO ] 2018-02-10 16:57:42.892 [http-nio-8888-exec-10] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:57:53.903 [http-nio-8888-exec-6] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:57:56.199 [http-nio-8888-exec-1] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:57:56.454 [http-nio-8888-exec-7] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:57:56.815 [http-nio-8888-exec-8] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:58:22.378 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 11508 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 16:58:22.391 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 16:58:29.141 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.492 seconds (JVM running for 8.969)
+[INFO ] 2018-02-10 16:58:34.312 [http-nio-8888-exec-1] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:58:35.119 [http-nio-8888-exec-3] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 16:58:38.467 [http-nio-8888-exec-2] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 17:01:54.638 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12160 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 17:01:54.654 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 17:02:01.175 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.436 seconds (JVM running for 9.028)
+[INFO ] 2018-02-10 17:03:43.900 [http-nio-8888-exec-10] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 17:03:46.970 [http-nio-8888-exec-10] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 17:04:07.046 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8856 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 17:04:07.052 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 17:04:14.456 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.81 seconds (JVM running for 9.941)
+[INFO ] 2018-02-10 17:05:12.581 [http-nio-8888-exec-5] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 17:05:27.227 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 6136 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 17:05:27.276 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 17:05:34.266 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.058 seconds (JVM running for 9.63)
+[INFO ] 2018-02-10 17:05:35.639 [http-nio-8888-exec-8] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 18:53:14.922 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12792 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 18:53:14.946 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 18:53:35.606 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 21.653 seconds (JVM running for 32.948)
+[INFO ] 2018-02-10 18:53:45.339 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 7400 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 18:53:45.355 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 18:54:01.067 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 17.392 seconds (JVM running for 20.97)
+[INFO ] 2018-02-10 18:54:08.562 [http-nio-8888-exec-5] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 18:54:57.176 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 5532 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 18:54:57.188 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 18:55:12.201 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 16.562 seconds (JVM running for 37.787)
+[INFO ] 2018-02-10 18:55:36.430 [http-nio-8888-exec-1] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:15:26.781 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 11844 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 19:15:26.789 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 19:15:40.806 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 14.573 seconds (JVM running for 16.153)
+[INFO ] 2018-02-10 19:15:58.328 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8712 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 19:15:58.340 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 19:16:04.714 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.694 seconds (JVM running for 11.629)
+[INFO ] 2018-02-10 19:17:21.480 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12764 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 19:17:21.488 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 19:17:28.105 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.341 seconds (JVM running for 9.259)
+[INFO ] 2018-02-10 19:17:42.638 [http-nio-8888-exec-7] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:20:08.657 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 7756 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 19:20:08.665 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 19:20:14.831 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 6.91 seconds (JVM running for 8.524)
+[INFO ] 2018-02-10 19:20:25.771 [http-nio-8888-exec-8] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:27:18.719 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12196 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 19:27:18.727 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 19:27:30.412 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 12.373 seconds (JVM running for 14.013)
+[INFO ] 2018-02-10 19:27:59.375 [http-nio-8888-exec-7] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:28:02.352 [http-nio-8888-exec-9] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:28:03.768 [http-nio-8888-exec-5] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:28:04.773 [http-nio-8888-exec-4] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:28:06.033 [http-nio-8888-exec-3] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:28:06.517 [http-nio-8888-exec-10] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:28:06.857 [http-nio-8888-exec-2] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:28:07.061 [http-nio-8888-exec-1] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:28:07.253 [http-nio-8888-exec-6] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:28:08.853 [http-nio-8888-exec-8] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:28:08.901 [http-nio-8888-exec-7] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:28:09.157 [http-nio-8888-exec-9] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:28:09.205 [http-nio-8888-exec-5] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:28:09.437 [http-nio-8888-exec-4] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:28:09.633 [http-nio-8888-exec-3] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:29:25.938 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8300 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 19:29:25.950 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 19:29:37.639 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 12.885 seconds (JVM running for 17.623)
+[INFO ] 2018-02-10 19:30:18.084 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 532 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 19:30:18.120 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 19:30:28.448 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 12.296 seconds (JVM running for 16.662)
+[INFO ] 2018-02-10 19:30:58.658 [http-nio-8888-exec-7] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:31:15.545 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8992 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 19:31:15.549 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 19:31:32.170 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 17.233 seconds (JVM running for 18.827)
+[INFO ] 2018-02-10 19:31:41.591 [http-nio-8888-exec-7] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 19:52:59.971 [http-nio-8888-exec-1] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 20:02:50.638 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 2916 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:02:50.658 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:03:08.561 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 19.955 seconds (JVM running for 24.35)
+[INFO ] 2018-02-10 20:06:19.700 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 216 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:06:19.700 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:06:35.080 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 17.722 seconds (JVM running for 41.55)
+[INFO ] 2018-02-10 20:07:21.964 [http-nio-8888-exec-1] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 20:11:12.615 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 6088 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:11:12.631 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:11:26.419 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 15.296 seconds (JVM running for 19.384)
+[INFO ] 2018-02-10 20:12:57.290 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12452 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:12:57.352 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:13:11.539 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 15.956 seconds (JVM running for 19.644)
+[INFO ] 2018-02-10 20:14:08.522 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 9260 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:14:08.553 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:14:23.601 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 18.048 seconds (JVM running for 21.623)
+[INFO ] 2018-02-10 20:15:27.146 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 11692 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:15:27.162 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:15:42.064 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 16.789 seconds (JVM running for 20.593)
+[INFO ] 2018-02-10 20:16:57.710 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 11260 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:16:57.710 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:17:03.815 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 6.731 seconds (JVM running for 8.218)
+[INFO ] 2018-02-10 20:17:19.117 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12124 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:17:19.133 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:17:25.351 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 6.959 seconds (JVM running for 8.667)
+[INFO ] 2018-02-10 20:18:08.915 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 11944 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:18:08.946 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:18:15.286 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.055 seconds (JVM running for 8.711)
+[INFO ] 2018-02-10 20:19:45.952 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 13940 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:19:45.960 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:19:52.717 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.503 seconds (JVM running for 9.975)
+[INFO ] 2018-02-10 20:21:36.383 [http-nio-8888-exec-4] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 20:23:23.044 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 6000 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:23:23.044 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:23:29.153 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 6.8 seconds (JVM running for 8.352)
+[INFO ] 2018-02-10 20:25:44.520 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 5544 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:25:44.536 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:25:59.200 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 16.29 seconds (JVM running for 19.717)
+[INFO ] 2018-02-10 20:28:15.483 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12468 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:28:15.499 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:28:25.837 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 10.979 seconds (JVM running for 12.65)
+[INFO ] 2018-02-10 20:31:48.223 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12840 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:31:48.223 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:31:54.429 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 6.872 seconds (JVM running for 8.336)
+[INFO ] 2018-02-10 20:33:49.585 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12912 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:33:49.600 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:34:04.830 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 16.79 seconds (JVM running for 20.301)
+[INFO ] 2018-02-10 20:36:21.974 [http-nio-8888-exec-8] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 20:37:46.593 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 3556 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:37:46.605 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:37:55.004 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 9.836 seconds (JVM running for 15.661)
+[INFO ] 2018-02-10 20:38:55.003 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 936 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:38:55.003 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:39:00.828 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 6.387 seconds (JVM running for 10.08)
+[INFO ] 2018-02-10 20:39:09.992 [http-nio-8888-exec-1] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 20:42:10.703 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 1240 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:42:10.734 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:42:25.529 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 16.51 seconds (JVM running for 19.945)
+[INFO ] 2018-02-10 20:44:03.348 [http-nio-8888-exec-6] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 20:45:22.547 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8736 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:45:22.567 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:45:38.712 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 18.903 seconds (JVM running for 22.556)
+[INFO ] 2018-02-10 20:48:34.495 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12204 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:48:34.573 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:48:48.912 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 16.262 seconds (JVM running for 20.192)
+[INFO ] 2018-02-10 20:48:53.917 [http-nio-8888-exec-3] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 20:49:28.853 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 3636 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:49:28.869 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:49:44.318 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 17.145 seconds (JVM running for 21.642)
+[INFO ] 2018-02-10 20:49:59.728 [http-nio-8888-exec-9] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 20:53:13.946 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 4400 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:53:13.989 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:53:28.269 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 16.14 seconds (JVM running for 20.024)
+[INFO ] 2018-02-10 20:54:17.642 [http-nio-8888-exec-6] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 20:55:24.578 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 9084 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:55:24.595 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:55:44.124 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 22.019 seconds (JVM running for 26.734)
+[INFO ] 2018-02-10 20:57:05.522 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 6924 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:57:05.538 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:57:20.830 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 16.947 seconds (JVM running for 20.476)
+[INFO ] 2018-02-10 20:58:02.383 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 9692 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 20:58:02.398 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 20:58:17.684 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 17.014 seconds (JVM running for 20.456)
+[INFO ] 2018-02-10 20:58:32.133 [http-nio-8888-exec-5] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 21:00:49.538 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12328 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:00:49.555 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:01:09.429 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 22.011 seconds (JVM running for 28.12)
+[INFO ] 2018-02-10 21:13:53.722 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 10092 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:13:53.728 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:14:01.832 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.529 seconds (JVM running for 9.75)
+[INFO ] 2018-02-10 21:14:13.724 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 11836 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:14:13.730 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:14:19.871 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 6.847 seconds (JVM running for 8.507)
+[INFO ] 2018-02-10 21:17:21.000 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8584 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:17:21.007 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:17:29.486 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 9.002 seconds (JVM running for 11.083)
+[INFO ] 2018-02-10 21:18:14.627 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 13044 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:18:14.638 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:18:21.478 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.642 seconds (JVM running for 9.278)
+[INFO ] 2018-02-10 21:20:22.198 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12920 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:20:22.217 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:20:29.582 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.447 seconds (JVM running for 10.382)
+[INFO ] 2018-02-10 21:37:53.299 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 732 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:37:53.317 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:38:06.499 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 14.148 seconds (JVM running for 31.143)
+[INFO ] 2018-02-10 21:41:26.901 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 7396 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:41:26.908 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:41:40.148 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 13.935 seconds (JVM running for 21.134)
+[INFO ] 2018-02-10 21:41:53.664 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12692 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:41:53.675 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:41:59.811 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 6.823 seconds (JVM running for 8.411)
+[INFO ] 2018-02-10 21:42:54.710 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 1444 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:42:54.719 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:43:03.069 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 9.071 seconds (JVM running for 11.135)
+[INFO ] 2018-02-10 21:44:51.476 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 32 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:44:51.483 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:44:58.151 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.415 seconds (JVM running for 9.403)
+[INFO ] 2018-02-10 21:46:58.928 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 11616 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:46:58.935 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:47:05.412 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.13 seconds (JVM running for 8.798)
+[INFO ] 2018-02-10 21:48:14.163 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8776 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:48:14.170 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:48:21.484 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.808 seconds (JVM running for 9.507)
+[INFO ] 2018-02-10 21:51:02.097 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 632 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:51:02.104 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:51:08.155 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 6.81 seconds (JVM running for 8.838)
+[INFO ] 2018-02-10 21:52:12.281 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8284 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:52:12.289 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:52:19.177 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.67 seconds (JVM running for 9.412)
+[INFO ] 2018-02-10 21:52:36.003 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12968 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:52:36.019 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:52:43.902 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.686 seconds (JVM running for 10.534)
+[INFO ] 2018-02-10 21:58:50.465 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 13276 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 21:58:50.476 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 21:58:58.684 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 9.048 seconds (JVM running for 10.773)
+[INFO ] 2018-02-10 22:07:17.131 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 13660 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:07:17.138 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:07:24.792 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.22 seconds (JVM running for 9.63)
+[INFO ] 2018-02-10 22:08:08.475 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 6872 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:08:08.482 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:08:15.732 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.06 seconds (JVM running for 10.073)
+[INFO ] 2018-02-10 22:16:28.438 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 11324 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:16:28.460 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:16:35.893 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.152 seconds (JVM running for 9.977)
+[INFO ] 2018-02-10 22:19:50.749 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 5348 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:19:50.755 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:19:58.651 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.325 seconds (JVM running for 10.278)
+[INFO ] 2018-02-10 22:23:56.467 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 2264 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:23:56.475 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:24:03.392 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.622 seconds (JVM running for 9.32)
+[INFO ] 2018-02-10 22:26:34.660 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12360 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:26:34.667 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:26:42.212 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.267 seconds (JVM running for 9.986)
+[INFO ] 2018-02-10 22:27:52.731 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 2956 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:27:52.738 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:27:59.729 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.651 seconds (JVM running for 9.262)
+[INFO ] 2018-02-10 22:29:05.550 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 10692 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:29:05.556 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:29:13.198 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.353 seconds (JVM running for 10.474)
+[INFO ] 2018-02-10 22:31:57.272 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 10540 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:31:57.279 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:32:07.946 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 11.26 seconds (JVM running for 13.429)
+[INFO ] 2018-02-10 22:34:08.807 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 4844 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:34:08.814 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:34:14.888 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 6.702 seconds (JVM running for 8.762)
+[INFO ] 2018-02-10 22:35:00.024 [http-nio-8888-exec-9] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-10 22:45:30.312 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 7264 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:45:30.318 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:45:43.309 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 13.612 seconds (JVM running for 21.829)
+[INFO ] 2018-02-10 22:46:22.451 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12040 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:46:22.457 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:46:32.927 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 11.062 seconds (JVM running for 12.741)
+[INFO ] 2018-02-10 22:47:34.920 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 6008 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:47:34.926 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:47:41.914 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.443 seconds (JVM running for 9.193)
+[INFO ] 2018-02-10 22:48:24.407 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 2148 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:48:24.415 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:48:30.670 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.075 seconds (JVM running for 8.809)
+[INFO ] 2018-02-10 22:58:36.852 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 2916 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 22:58:36.868 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 22:58:53.338 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 18.242 seconds (JVM running for 22.439)
+[INFO ] 2018-02-10 23:05:45.108 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8884 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-10 23:05:45.124 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-10 23:05:59.139 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 15.657 seconds (JVM running for 20.198)
+[INFO ] 2018-02-11 09:20:34.385 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 7512 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 09:20:34.521 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 09:20:55.327 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 10404 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 09:20:55.335 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 09:21:08.274 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 13.763 seconds (JVM running for 15.871)
+[INFO ] 2018-02-11 09:34:00.076 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 14240 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 09:34:00.092 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 09:34:11.873 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 14.025 seconds (JVM running for 18.082)
+[INFO ] 2018-02-11 09:35:35.857 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8164 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 09:35:35.877 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 09:35:46.278 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 12.061 seconds (JVM running for 18.137)
+[INFO ] 2018-02-11 09:38:57.499 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 12156 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 09:38:57.515 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 09:39:11.874 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 16.547 seconds (JVM running for 21.136)
+[INFO ] 2018-02-11 09:45:58.352 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 8040 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 09:45:58.376 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 09:46:19.994 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 22.842 seconds (JVM running for 34.044)
+[INFO ] 2018-02-11 09:56:16.255 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 10372 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 09:56:16.279 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 09:56:34.285 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 19.154 seconds (JVM running for 26.177)
+[INFO ] 2018-02-11 09:58:16.788 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 10620 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 09:58:16.864 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 09:58:33.487 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 18.158 seconds (JVM running for 21.771)
+[INFO ] 2018-02-11 09:59:12.085 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 10928 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 09:59:12.093 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 09:59:20.338 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.801 seconds (JVM running for 10.592)
+[INFO ] 2018-02-11 10:03:59.209 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 10468 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 10:03:59.225 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 10:04:16.227 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 18.762 seconds (JVM running for 23.499)
+[INFO ] 2018-02-11 10:07:24.932 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 10652 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 10:07:24.960 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 10:07:40.519 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 17.414 seconds (JVM running for 21.832)
+[INFO ] 2018-02-11 10:11:40.382 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 11312 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 10:11:40.398 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 10:11:57.992 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 20.406 seconds (JVM running for 25.113)
+[INFO ] 2018-02-11 10:36:29.584 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 6816 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 10:36:29.600 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 10:36:41.505 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 14.017 seconds (JVM running for 17.789)
+[INFO ] 2018-02-11 10:38:42.253 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 1220 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 10:38:42.277 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 10:39:00.247 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 19.398 seconds (JVM running for 22.833)
+[INFO ] 2018-02-11 10:41:11.659 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 10992 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 10:41:11.687 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 10:41:30.282 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 20.403 seconds (JVM running for 24.521)
+[INFO ] 2018-02-11 10:44:45.338 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 11400 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 10:44:45.346 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 10:44:51.764 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 7.134 seconds (JVM running for 9.856)
+[INFO ] 2018-02-11 10:46:30.016 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 7000 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 10:46:30.032 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 10:46:42.516 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 14.956 seconds (JVM running for 19.219)
+[INFO ] 2018-02-11 10:47:57.403 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 13640 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 10:47:57.418 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 10:48:17.832 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 21.818 seconds (JVM running for 26.114)
+[INFO ] 2018-02-11 10:53:28.092 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 11604 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 10:53:28.108 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 10:53:37.355 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 12.361 seconds (JVM running for 18.104)
+[INFO ] 2018-02-11 10:55:02.053 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 5948 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 10:55:02.068 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 10:55:16.142 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 15.477 seconds (JVM running for 19.396)
+[INFO ] 2018-02-11 10:56:49.295 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 13920 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 10:56:49.311 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 10:57:03.567 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 15.97 seconds (JVM running for 19.679)
+[INFO ] 2018-02-11 10:58:01.356 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 7756 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-11 10:58:01.371 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-11 10:58:16.231 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 16.57 seconds (JVM running for 20.284)
