@@ -1,81 +1,85 @@
+﻿CREATE SEQUENCE edge_id_seq;
 
-CREATE SEQUENCE IF NOT EXISTS edge_id_seq;
+CREATE SEQUENCE hibernate_sequence;
 
-CREATE TABLE IF NOT EXISTS EDGES (
-                ID INTEGER NOT NULL DEFAULT nextval('edge_id_seq'),
-                CREATION_DATE TIMESTAMP NOT NULL,
-                START_POINT VARCHAR(50) NOT NULL,
-                DESTINATION_POINT VARCHAR(50) NOT NULL,
-                TRANSPORT_TYPE VARCHAR(20) NOT NULL,
-                DURATION NUMERIC NOT NULL,
-                COST NUMERIC NOT NULL,
-				CURRENCY VARCHAR(10),
-                DISTANCE NUMERIC,
-                START_DATE TIMESTAMP NOT NULL,
-                END_DATE TIMESTAMP NOT NULL,
-                CONSTRAINT edges_pk PRIMARY KEY (ID)
+CREATE SEQUENCE route_id_seq;
+
+CREATE SEQUENCE user_id_seq;
+
+CREATE TABLE edges
+(
+  id                INTEGER          NOT NULL
+    CONSTRAINT edges_pkey
+    PRIMARY KEY,  
+  creation_date     TIMESTAMP        NOT NULL,  
+  start_point       VARCHAR(255)     NOT NULL,
+  destination_point VARCHAR(255)     NOT NULL,
+  distance          DOUBLE PRECISION,
+  duration          DOUBLE PRECISION NOT NULL,
+  start_date        TIMESTAMP        NOT NULL,
+  end_date          TIMESTAMP        NOT NULL,  
+  cost              DOUBLE PRECISION,
+  currency          VARCHAR(255),  
+  transport_type    VARCHAR(255) NOT NULL,
+  edge_type         SMALLINT
 );
 
-
-ALTER SEQUENCE edge_id_seq OWNED BY EDGES.ID;
-
-CREATE SEQUENCE IF NOT EXISTS user_id_seq;
-
-CREATE TABLE IF NOT EXISTS USERS (
-                ID INTEGER NOT NULL DEFAULT nextval('user_id_seq'),
-                EMAIL VARCHAR(255) NOT NULL UNIQUE,
-                LAST_NAME VARCHAR(50) NOT NULL,
-                FIRST_NAME VARCHAR(50) NOT NULL,
-                BIRTH_DATE DATE,
-                IS_ADMIN BOOLEAN NOT NULL,
-                REGISTRATION_DATE TIMESTAMP NOT NULL,
-                PASSWORD VARCHAR(255) NOT NULL,
-                CONSTRAINT users_pk PRIMARY KEY (ID)
+CREATE TABLE users
+(
+  id                INTEGER      NOT NULL
+    CONSTRAINT users_pkey
+    PRIMARY KEY,
+  first_name        VARCHAR(50)  NOT NULL,
+  last_name         VARCHAR(50)  NOT NULL,
+  email             VARCHAR(255) UNIQUE,
+  birth_date        DATE,
+  password          VARCHAR(255) NOT NULL,
+  registration_date TIMESTAMP    NOT NULL,
+  is_admin          BOOLEAN      NOT NULL
+);
+CREATE TABLE routes
+(
+  id                INTEGER      NOT NULL
+    CONSTRAINT routes_pkey
+    PRIMARY KEY,
+  creation_date     TIMESTAMP    NOT NULL,
+  start_point       VARCHAR(255) NOT NULL,
+  destination_point VARCHAR(255) NOT NULL,
+  route_type        SMALLINT      NOT NULL,
+  cost              DOUBLE PRECISION NOT NULL,
+  duration          DOUBLE PRECISION NOT NULL,
+  distance          DOUBLE PRECISION NOT NULL,
+  user_id           INTEGER
+    CONSTRAINT fktn5l1ci7sxbp52akvblqjg4jm
+    REFERENCES users
 );
 
-
-ALTER SEQUENCE user_id_seq OWNED BY USERS.ID;
-
-CREATE SEQUENCE IF NOT EXISTS route_id_seq;
-
-CREATE TABLE IF NOT EXISTS ROUTES (
-                ID INTEGER NOT NULL DEFAULT nextval('route_id_seq'),
-                USER_ID INTEGER NOT NULL,
-                CREATION_DATE TIMESTAMP NOT NULL,
-                START_POINT POINT NOT NULL,
-                DESTINATION_POINT POINT NOT NULL,
-                ROUTE_TYPE SMALLINT NOT NULL,
-                CONSTRAINT routes_pk PRIMARY KEY (ID)
+CREATE TABLE route_edges
+( 
+  route_id   INTEGER NOT NULL
+    CONSTRAINT fko41lp6h2i31x6jdo8e2xd532w
+    REFERENCES routes,
+  edge_id    INTEGER NOT NULL
+    CONSTRAINT fk11iyryyg8f3f7h1b74sp51cvf
+    REFERENCES edges,
+  edge_order INTEGER NOT NULL,
+  CONSTRAINT route_edges_pkey
+  PRIMARY KEY (route_id, edge_id)
 );
 
-
-ALTER SEQUENCE route_id_seq OWNED BY ROUTES.ID;
-
-CREATE TABLE IF NOT EXISTS ROUTE_EDGES (
-                ROUTE_ID INTEGER NOT NULL,
-                EDGE_ID INTEGER NOT NULL,
-                EDGE_ORDER SMALLINT NOT NULL,
-                CONSTRAINT route_edges_pk PRIMARY KEY (ROUTE_ID, EDGE_ID)
+CREATE TABLE airports
+(
+  id           VARCHAR(255) NOT NULL
+    CONSTRAINT airports_pkey
+    PRIMARY KEY,
+  code         VARCHAR(255),
+  type         VARCHAR(255),
+  name         VARCHAR(255),
+  latitude     DOUBLE PRECISION,
+  longitude    DOUBLE PRECISION,
+  city_name    VARCHAR(255),
+  city_code    VARCHAR(255),
+  country_name VARCHAR(255),
+  country_code VARCHAR(255),  
+  timezone     VARCHAR(255)
 );
-
-
-ALTER TABLE ROUTE_EDGES ADD CONSTRAINT edges_route_edges_fk
-FOREIGN KEY (EDGE_ID)
-REFERENCES EDGES (ID)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE ROUTES ADD CONSTRAINT users_routes_fk
-FOREIGN KEY (USER_ID)
-REFERENCES USERS (ID)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE ROUTE_EDGES ADD CONSTRAINT routes_route_edges_fk
-FOREIGN KEY (ROUTE_ID)
-REFERENCES ROUTES (ID)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;

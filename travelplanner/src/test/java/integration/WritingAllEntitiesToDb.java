@@ -56,8 +56,8 @@ public class WritingAllEntitiesToDb {
 
         /*создаем список маршрутов*/
         List<Route> routeList = new ArrayList<>();
-        routeList.add(new Route(date,"воронеж","берлин", RouteType.cheap));
-        routeList.add(new Route(date,"берлин","воронеж", RouteType.comfort));
+        routeList.add(new Route(date,"воронеж","берлин", RouteType.cheap, 100.0, 200.0, 1500.0));
+        routeList.add(new Route(date,"берлин","воронеж", RouteType.comfort, 250.0, 300.0, 400.0));
 
         /*добавляем ребра к маршруту*/
         RouteEdge routeEdge = new RouteEdge(123);
