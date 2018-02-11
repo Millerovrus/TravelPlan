@@ -1,4 +1,4 @@
-package com.netcracker.travelplanner.entities.algorithms;
+package com.netcracker.travelplanner.algorithms;
 
 import com.netcracker.travelplanner.entities.Edge;
 
@@ -11,23 +11,23 @@ import java.util.List;
  */
 public class Algorithm {
     //двумерный список найденных путей (список ребер)
-    private List<List<Edge>> ways = new ArrayList<>();
+    private List<List<Edge>> foundRoutes = new ArrayList<>();
     //флаг на удаление пути
     private List<Boolean> needDelete = new ArrayList<>();
     // Список ребер с суммарным минимальным весом, т.е. искомый маршрут
-    private List<Edge> route = new LinkedList<>();
+    private List<Edge> minimalRoute = new LinkedList<>();
 
     /**
-     * Метод запускает поиск маршрута и возвращает найденный маргрут
+     * Метод запускает поиск маршрута и возвращает найденный маршрут
      *
      * @param edges - список ребер
      * @param startPoint - начальная точка
      * @param destinationPoint - конечная точка
-     * @return route - найденный маршрут
+     * @return minimalRoute - найденный маршрут
      */
-    public List<Edge> getRoute(List<Edge> edges, String startPoint, String destinationPoint) {
+    public List<Edge> getMinimalRoute(List<Edge> edges, String startPoint, String destinationPoint) {
         startSearch(edges, startPoint, destinationPoint);
-        return route;
+        return minimalRoute;
     }
 
     private void startSearch(List<Edge> edges, String startPoint, String destinationPoint) {
@@ -39,38 +39,43 @@ public class Algorithm {
             if (startPoint.equals(edge.getStartPoint())) {
                 List<Edge> tempWay = new LinkedList<>();
                 tempWay.add(edge);
-                ways.add(tempWay);
+                foundRoutes.add(tempWay);
                 needDelete.add(false);
             }
         }
+
+        int expectedSize = 1;
         while (!stopSearch) {
-            int size = ways.size();
+            int size = foundRoutes.size();
             //пробегаемся по edge и добавляем к уже найденным ребрам те, у которых startPoint соответствует найденным ранее destinationPoint
             for (int i = 0; i < size; i++) {
                 for (Edge edge : edges) {
-                    if (ways.get(i).get(ways.get(i).size() - 1).getDestinationPoint().equals(edge.getStartPoint())) {
+                    if (foundRoutes.get(i).get(foundRoutes.get(i).size() - 1).getDestinationPoint().equals(edge.getStartPoint())) {
                         List<Edge> tempWay = new LinkedList<>();
-                        tempWay.addAll(ways.get(i));
+                        tempWay.addAll(foundRoutes.get(i));
                         tempWay.add(edge);
-                        ways.add(tempWay);
+                        foundRoutes.add(tempWay);
                         needDelete.add(false);
                         needDelete.set(i, true);
                     }
                 }
             }
-            //удаляем те пути, которые нашли продолжение
+            expectedSize++;
+            //удаляем те пути, которые нашли продолжения и уже продолжены и те,
+            //которые не нашли продолжения и их destinationPoint != заданному destinationPoint (они никогда не приведут к финишу)
             for (int i = 0; i < size; i++) {
-                if (needDelete.get(i)) {
-                    ways.remove(i);
+                if (needDelete.get(i) || (!foundRoutes.get(i).get(foundRoutes.get(i).size()-1).getDestinationPoint().equals(destinationPoint) && foundRoutes.get(i).size() != expectedSize)) {
+                    foundRoutes.remove(i);
                     needDelete.remove(i);
                     i--;
                     size--;
                 }
             }
+
             // если все пути имеют точку прибытия = destinationPoint - останавливаем программу
             stopSearch = true;
-            for (List<Edge> way : ways) {
-                if (!way.get(way.size()-1).getDestinationPoint().equals(destinationPoint)){
+            for (List<Edge> foundRoute : foundRoutes) {
+                if (!foundRoute.get(foundRoute.size()-1).getDestinationPoint().equals(destinationPoint)){
                     stopSearch = false;
                     break;
                 }
@@ -78,18 +83,18 @@ public class Algorithm {
         }
         // ищем путь с минимальным весом
         double minWeight = Double.POSITIVE_INFINITY;
-        for (List<Edge> way : ways) {
+        for (List<Edge> foundRoute : foundRoutes) {
             int weight = 0;
-            for (Edge e : way) {
-                weight += e.getWeight();
+            for (Edge routeEdge : foundRoute) {
+                weight += routeEdge.getWeight();
             }
             if (weight < minWeight){
-                route = way;
+                minimalRoute = foundRoute;
                 minWeight = weight;
             }
             // если у путей одинаковый вес - выбираем тот, у которого меньше ребер
-            if (weight == minWeight && route.size() > way.size()){
-                route = way;
+            if (weight == minWeight && minimalRoute.size() > foundRoute.size()){
+                minimalRoute = foundRoute;
             }
         }
     }
