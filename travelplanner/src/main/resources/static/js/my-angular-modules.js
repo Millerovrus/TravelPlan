@@ -28,12 +28,3 @@ angular.module('controllerModule')
                 });
         }
     });
-    /*.controller("myParameterController", function ($scope, $http) {
-        $http.get('http://localhost:8888/api/getEdges')
-            .success(function(data){
-            $scope.records = data
-        })
-        .error(function (data) {
-
-        })
-    });*/

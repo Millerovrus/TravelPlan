@@ -17,5 +17,6 @@ public class EdgeTestController {
     @RequestMapping(value = "/get-edges/", method = RequestMethod.GET)
     public List<Edge> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to){
         return edgeRepository.findByStartPointIsAndDestinationPointIs(from, to);
+
     }
 }
