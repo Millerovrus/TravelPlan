@@ -105,4 +105,26 @@ public class WritingAllEntitiesToDb {
 //        userRepository.delete(u);
 
     }
+
+    @Test
+    public void testAddDbEdges() throws ParseException {
+        Date date = new Date();
+        List<Edge> edgeList = new ArrayList<>();
+        edgeRepository.deleteAll();
+        edgeList.add(new Edge(date,"москва","воронеж", "plane",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
+        edgeList.add(new Edge(date,"воронеж","белгород","plane", 10.00,1000.00,100.0,date,date,"Eur", RouteType.cheap));
+        edgeList.add(new Edge(date,"москва","берлин","plane",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
+        edgeList.add(new Edge(date,"белгород","москва","plane",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
+        edgeList.add(new Edge(date,"харьков","белгород","train",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
+        edgeList.add(new Edge(date,"берлин","москва","bus",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
+
+        edgeList.add(new Edge(date,"voronezh","moscow","bus",12.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
+        edgeList.add(new Edge(date,"voronezh","moscow","plane",2.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
+        edgeList.add(new Edge(date,"voronezh","moscow","train",11.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
+        edgeList.add(new Edge(date,"voronezh","moscow","bus",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
+
+
+        edgeRepository.save(edgeList);
+    }
+
 }

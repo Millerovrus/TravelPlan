@@ -17,48 +17,38 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
     <!-- my css -->
     <link href="css/main.css" rel="stylesheet">
     <link href="css/parameterMenu.css" rel="stylesheet">
-
-    <!-- datetimepicker-->
-    <link rel="stylesheet" href="css/bootstrap-datetimepicker.css" />
-    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
+    <!-- my scripts -->
+    <script src="js/form.js"></script>
+    <script src="js/input-parameters.js"></script>
 
     <!--angular-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script src="js/service-request.js"></script>
+    <script src="js/my-angular-modules.js"></script>
+
+    <!-- bootstrap select -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+
+    <!-- bootstrap datetimepicker -->
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.css" />
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
+    <script src="js/moment-with-locales.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap"
+            async defer></script>
+    <script src="js/google-map.js"></script>
 </head>
 
 <body>
-
-    <!-- angular -->
-   <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>-->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script> -->
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-select.min.js"></script>
-    <!-- datetimepicker -->
-    <script src="js/moment-with-locales.min.js"></script>
-    <script src="js/bootstrap-datetimepicker.min.js"></script>
-    <!-- my scripts -->
-    <script src="js/form.js"></script>
-    <script src="js/directives.js"></script>
-    <script src="js/data.json"></script>
-    <script src="js/service-request.js"></script>
-    <!-- map -->
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap"
-              async defer></script>
-      <script src="js/google-map.js"></script>
-
-
-
-   <!-- <div class="navbar navbar-inverse navbar-fixed-top">
+    <!--
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -77,108 +67,105 @@
                 </ul>
             </div>
         </div>
-    </div> -->
+    </div>
+    -->
 
+    <div ng-app="myApp">
 
-    <!--<div ng-app="myApp2">
         <my-navbar></my-navbar>
-    </div>-->
 
-
-    <script src="js/input-parameters.js"></script>
-    <div  class="scrollbar" id="container1">
-        <img src="img/travel-top.jpg" class="background-main-pic"/>
-        <div class="container-fluid">
-            <div class="container scrollbar">
-                <div class="formBox">
-                    <form id="inputForm" autocomplete="off">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h1>Travel parameters</h1>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="inputBox ">
-                                    <input type="text" name="" id="inputFrom" required class="input" placeholder="From">
+        <div ng-controller="myParameterController">
+            <div  class="scrollbar" id="container1">
+                <img src="img/travel-top.jpg" class="background-main-pic"/>
+                <div class="container-fluid">
+                    <div class="container scrollbar">
+                        <div class="formBox">
+                            <form id="inputForm" autocomplete="off">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h1>Travel parameters</h1>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="inputBox ">
+                                            <input type="text" name="" id="inputFrom" required class="input" placeholder="From">
+                                        </div>
+                                    </div>
 
-                            <div class="col-sm-6">
-                                <div class="inputBox">
-                                    <input type="text" name="" id="inputTo" required class="input" placeholder="To">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="inputBox">
-                                    <div class="input">
-                                        <div class="form-group">
-                                            <div class="input-group date" id='datetimepicker1'>
-                                                <input type="text" id="inputDate" class="date-input-style" placeholder="Select departure date" />
-                                                <span class="input-group-addon datepickerbutton">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                            </div>
+                                    <div class="col-sm-6">
+                                        <div class="inputBox">
+                                            <input type="text" name="" id="inputTo" required class="input" placeholder="To">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="inputBox">
-                                    <div class="input">
-                                        <select class="selectpicker bootstrap-select" id="inputType" required aria-invalid="false" title="Select travel type" data-max-options="1" data-width="100%">
-                                            <option>Cheap</option>
-                                            <option>Optimal</option>
-                                            <option>Comfort</option>
-                                        </select>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="inputBox">
+                                            <div class="input">
+                                                <div class="form-group">
+                                                    <div class="input-group date" id='datetimepicker1'>
+                                                        <input type="text" id="inputDate" class="date-input-style" placeholder="Select departure date" />
+                                                        <span class="input-group-addon datepickerbutton">
+                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="col-sm-6">
+                                        <div class="inputBox">
+                                            <div class="input">
+                                                <select class="selectpicker bootstrap-select" id="inputType" required aria-invalid="false" title="Select travel type" data-max-options="1" data-width="100%">
+                                                    <option>Cheap</option>
+                                                    <option>Optimal</option>
+                                                    <option>Comfort</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input type="submit" name="" ng-click="sendRequestParameters()" required class="button" value="Find route">
+                                        <div ng-show="loaded">
+                                            <table class="table table-striped">
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>startPoint</th>
+                                                    <th>destinationPoint</th>
+                                                    <th>cost</th>
+                                                    <th>transportType</th>
+                                                </tr>
+                                                <tr ng-repeat="record in records">
+                                                    <td>{{record.id}}</td>
+                                                    <td>{{record.startPoint}}</td>
+                                                    <td>{{record.destinationPoint}}</td>
+                                                    <td>{{record.cost}}</td>
+                                                    <td>{{record.transportType}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <input type="submit" name="" onclick="inputData()" required class="button" value="Find route">
-                            </div>
-                        </div>
-                        <div id="outputData">
-                        </div>
-                    </form>
-                    <form>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="container-map" id="map">
-                                    <!--  <iframe width="100%" height="450" frameborder="0" style="border:0; align-items: center; margin-top: 10px"
-                                              src="https://www.google.com/maps/embed/v1/directions?origin=moscow&destination=voronezh&key=AIzaSyBH9sOW2H-SXtrbKLUX8G1ZZWtH3JSrrJ0" allowfullscreen></iframe> -->
+                            </form>
+                            <form>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="container-map" id="map">
+                                            <!--  <iframe width="100%" height="450" frameborder="0" style="border:0; align-items: center; margin-top: 10px"
+                                                      src="https://www.google.com/maps/embed/v1/directions?origin=moscow&destination=voronezh&key=AIzaSyBH9sOW2H-SXtrbKLUX8G1ZZWtH3JSrrJ0" allowfullscreen></iframe> -->
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
-                    </form>
-
-                    <div ng-app="MyApp" ng-controller="myParameterController">
-                        <h2> test json angular example</h2>
-                        <table class="table table-striped">
-                            <tr>
-                                <th>Id</th>
-                                <th>startPoint</th>
-                                <th>destinationPoint</th>
-                                <th>cost</th>
-                                <th>transportType</th>
-                            </tr>
-                            <tr ng-repeat="record in records">
-                                <td>{{record.id}}</td>
-                                <td>{{record.startPoint}}</td>
-                                <td>{{record.destinationPoint}}</td>
-                                <td>{{record.cost}}</td>
-                                <td>{{record.transportType}}</td>
-                            </tr>
-                        </table>
                     </div>
-
                 </div>
             </div>
         </div>
+
     </div>
 
 </body>
