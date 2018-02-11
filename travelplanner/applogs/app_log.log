@@ -1,0 +1,3 @@
+[INFO ] 2018-02-09 10:25:48.554 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 5180 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
+[INFO ] 2018-02-09 10:25:48.627 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-09 10:26:11.408 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 24.754 seconds (JVM running for 41.982)
