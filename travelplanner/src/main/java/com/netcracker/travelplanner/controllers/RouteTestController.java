@@ -20,7 +20,7 @@ public class RouteTestController {
     @Autowired
     private RouteRepository routeRepository;
 
-    @RequestMapping(value = "/get-routes/", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-routes/date/", method = RequestMethod.GET)
     public List<Route> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to, @RequestParam("date") String date){
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -33,5 +33,10 @@ public class RouteTestController {
 
         return routeRepository.findByStartPointIsAndDestinationPointIsAndCreationDateIs(from, to, parsedDate);
 
+    }
+
+    @RequestMapping(value = "/get-routes/", method = RequestMethod.GET)
+    public List<Route> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to){
+        return routeRepository.findByStartPointIsAndDestinationPointIs(from, to);
     }
 }

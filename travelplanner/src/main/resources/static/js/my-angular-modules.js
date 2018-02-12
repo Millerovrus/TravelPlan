@@ -17,7 +17,7 @@ angular.module('controllerModule')
                  params: {
                      from: angular.element($('#inputFrom')).val(),
                      to: angular.element($('#inputTo')).val(),
-                     date: angular.element($('#inputDate')).val()
+                    // date: angular.element($('#inputDate')).val()
                 }
             }).then(
                 function success(response) {
