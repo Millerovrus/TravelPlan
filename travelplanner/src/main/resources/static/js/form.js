@@ -86,6 +86,6 @@ $(function () {
     $('#datetimepicker1').datetimepicker({
         locale: 'en',
         stepping: 10,
-        format: 'DD.MM.YYYY'
+        format: 'YYYY-MM-DD'
     });
 });
