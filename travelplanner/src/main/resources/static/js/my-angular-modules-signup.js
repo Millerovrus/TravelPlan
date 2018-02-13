@@ -17,6 +17,8 @@ app.controller('controllerSignUp', function signUpUser($scope, $http) {
         }).then(
             function success(response) {
                 console.log(response.data);
+                alert("Вы зарегистрированы!");
+                location.href="/signIn";
                 /*Очистка формы от введённых значений*/
                 angular.element($('#inputFirstName')).val('');
                 angular.element($('#inputLastName')).val('');
@@ -26,6 +28,6 @@ app.controller('controllerSignUp', function signUpUser($scope, $http) {
             },
             function error(response, status) {
                 console.error('Not send, Error!!!', status, response);
-            });
+            })
     }
 });
