@@ -13,10 +13,11 @@ angular.module('controllerModule')
         $scope.sendRequestParameters=function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8888/api/rest/get-edges/',
+                url: 'http://localhost:8888/api/rest/get-routes/',
                  params: {
-                    from: angular.element($('#inputFrom')).val(),
-                    to: angular.element($('#inputTo')).val()
+                     from: angular.element($('#inputFrom')).val(),
+                     to: angular.element($('#inputTo')).val(),
+                    // date: angular.element($('#inputDate')).val()
                 }
             }).then(
                 function success(response) {
