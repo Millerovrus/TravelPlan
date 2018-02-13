@@ -4,6 +4,7 @@ import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.Route;
 import com.netcracker.travelplanner.repository.EdgeRepository;
 import com.netcracker.travelplanner.repository.RouteRepository;
+import com.netcracker.travelplanner.service.RouteRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ import java.util.List;
 public class RouteTestController {
 
     @Autowired
-    private RouteRepository routeRepository;
+    private RouteRepositoryService routeRepositoryService;
 
     @RequestMapping(value = "/get-routes/date/", method = RequestMethod.GET)
     public List<Route> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to, @RequestParam("date") String date){
@@ -31,12 +32,12 @@ public class RouteTestController {
             e.printStackTrace();
         }
 
-        return routeRepository.findByStartPointIsAndDestinationPointIsAndCreationDateIs(from, to, parsedDate);
+        return routeRepositoryService.findByStartPointAndDestinationPointAndCreationDate(from, to, parsedDate);
 
     }
 
     @RequestMapping(value = "/get-routes/", method = RequestMethod.GET)
     public List<Route> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to){
-        return routeRepository.findByStartPointIsAndDestinationPointIs(from, to);
+        return routeRepositoryService.findByStartPointAndDestinationPoint(from, to);
     }
 }

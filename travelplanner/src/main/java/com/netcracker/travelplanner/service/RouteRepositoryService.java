@@ -6,6 +6,7 @@ import com.netcracker.travelplanner.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -77,6 +78,16 @@ public class RouteRepositoryService {
      */
     public Route findById(int id){
         return routeRepository.findOne(id);
+    }
+
+    /**
+     * @param s - start point
+     * @param d - destination point
+     * @param date
+     * @return list of routes by start AND destination point AND date
+     */
+    public List<Route> findByStartPointAndDestinationPointAndCreationDate(String s, String d, Date date){
+        return routeRepository.findByStartPointIsAndDestinationPointIsAndCreationDateIs(s, d, date);
     }
 
     /**
