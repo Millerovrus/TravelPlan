@@ -3,82 +3,106 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Create account</title>
-
-    <!-- Bootstrap -->
+    <!-- Bootstrap, fonts -->
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
+    <link href="css/bootstrap-select.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
-
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!-- my css -->
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/parameterMenu.css" rel="stylesheet">
+
+    <!-- my scripts -->
+    <script src="js/form.js"></script>
+    <script src="js/input-parameters.js"></script>
+
+    <!--angular-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="js/my-angular-modules-signup.js"></script>
+
+    <!-- bootstrap select -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+
+    <!-- bootstrap datetimepicker -->
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.css" />
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
+    <script src="js/moment-with-locales.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+
 </head>
 
 <body>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/form.js"></script>
 
-<!-- menu -->
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><i class="fa fa-ravelry" aria-hidden="true"></i>Travel planner</a>
-        </div>
-        <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/signIn">Sign in</a></li>
-                <li class="active"><a href="/signUp">Sign up</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+    <div ng-app="appSignUp">
 
-<!-- background image-->
-<div class="imageMain">
-    <div class="container">
-        <div class="row centered">
-            <div class="header">
-                <h1>Create your account</h1>
+        <!-- menu -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><i class="fa fa-ravelry" aria-hidden="true"></i>Travel planner</a>
+                </div>
+                <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/signIn">Sign in</a></li>
+                        <li class="active"><a href="/signUp">Sign up</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
+        <!-- background image-->
+        <div class="imageMain">
+            <div class="container">
+                <div class="row centered">
+                    <div class="header">
+                        <h1>Create your account</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="container">
-    <div class="card card-container">
-        <p id="profile-name" class="profile-name-card"></p>
-        <form class="form-signup">
-            <span id="reauth-email" class="reauth-email"></span>
-            <input type="text" id="inputFirstName" class="form-control" placeholder="First name" required autofocus>
-            <input type="text" id="inputLastName" class="form-control" placeholder="Last name" required autofocus>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-                <input type="text" id="inputBirthDate" class="form-control" placeholder="Birth date" required autofocus>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign up</button>
-        </form><!-- /form -->
-    </div><!-- /card-container -->
-</div><!-- /container -->
+        <div ng-controller="controllerSignUp">
+            <div class="container">
+                <div class="card card-container">
+                    <p id="profile-name" class="profile-name-card"></p>
+                    <form class="form-signup">
+                        <span id="reauth-email" class="reauth-email"></span>
+                        <!--<a class="clear" ng-click="input = null">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>-->
+                        <input type="text" id="inputFirstName" class="form-control" placeholder="First name" required autofocus>
+                        <input type="text" id="inputLastName" class="form-control" placeholder="Last name" required autofocus>
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+                        <input type="text" id="inputBirthDate" class="form-control" placeholder="Birth date" required autofocus>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
+                                ng-click="sendUserData()">Sign up</button>
+                    </form><!-- /form -->
+                </div><!-- /card-container -->
+            </div><!-- /container -->
+        </div>
 
-<!-- bottom -->
-<div class="container">
+        <!--&lt;!&ndash; bottom &ndash;&gt;
+        <div class="container">
             <div class="row-sign-up">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="row contact row-first">
@@ -99,8 +123,7 @@
                     </div>
                 </div>
             </div>
-</div>
-
-
+        </div>-->
+    </div>
 </body>
 </html>
