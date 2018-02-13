@@ -2,7 +2,7 @@ package com.netcracker.travelplanner.controllers;
 ;
 import com.netcracker.travelplanner.entities.Route;
 import com.netcracker.travelplanner.entities.RouteType;
-import com.netcracker.travelplanner.repository.RouteRepository;
+import com.netcracker.travelplanner.service.RouteRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,42 +11,72 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/getRoutes")
+@RequestMapping("/api/routes")
 public class RouteApiController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
-    private RouteRepository routeRepository;
+    private RouteRepositoryService routeRepositoryService;
 
-    @GetMapping
+    /**
+     * @return list of all routes
+     */
+    @RequestMapping(value = "/findall", method = RequestMethod.GET)
     public List<Route> getRoutes() {
         logger.info("Запрос на получение общего списка маршрутов");
-        return routeRepository.findAll();
+        return routeRepositoryService.findAll();
     }
 
-    @RequestMapping(value = "/byid/", method = RequestMethod.GET)
+    /**
+     * @param id
+     * @return route by id
+     */
+    @RequestMapping(value = "/findbyid", method = RequestMethod.GET)
     public Route getRouteById(@RequestParam(value = "id", required = true) int id) {
-        return routeRepository.findOne(id);
+        logger.info("Запрос на получение маршрута с id = " + id);
+        return routeRepositoryService.findById(id);
     }
 
-    @RequestMapping(value = "/bytwopoints/", method = RequestMethod.GET)
+    /**
+     * @param s - start point
+     * @param d - destination point
+     * @return list of routes by start AND destination point
+     */
+    @RequestMapping(value = "/findbytwopoints", method = RequestMethod.GET)
     public List<Route> getRoutesByTwoPoints(@RequestParam(value = "start", required = true) String s,
                                             @RequestParam(value = "destination", required = true) String d){
-        return routeRepository.findByStartPointIsAndDestinationPointIs(s, d);
+        logger.info("Запрос на получение маршрутов с начальной точкой: " + s + " и конечной точкой: " + d);
+        return routeRepositoryService.findByStartPointAndDestinationPoint(s, d);
     }
 
-    @RequestMapping(value = "/bypoint/", method = RequestMethod.GET)
+    /**
+     * @param s - start point
+     * @param d - destination point
+     * @return list of routes by start OR destination point
+     */
+    @RequestMapping(value = "/findbypoint", method = RequestMethod.GET)
     public List<Route> getRoutesByPoint(@RequestParam(value = "start", required = false) String s,
                                         @RequestParam(value = "destination", required = false) String d){
-        return routeRepository.findByStartPointIsOrDestinationPointIs(s, d);
+        logger.info("Запрос на получение маршрутов с начальной точкой: " + s + " или конечной точкой: " + d);
+        return routeRepositoryService.findByStartPointOrDestinationPoint(s, d);
     }
 
-    @RequestMapping(value = "/bytype/", method = RequestMethod.GET)
-    public List<Route> getRoutesByType(@RequestParam(value = "type", required = true) RouteType i){
-        return routeRepository.findByRouteTypeIs(i);
+    /**
+     * @param type - type of route
+     * @return list of routes by type
+     */
+    @RequestMapping(value = "/findbytype", method = RequestMethod.GET)
+    public List<Route> getRoutesByType(@RequestParam(value = "type", required = true) RouteType type){
+        logger.info("Запрос на получение маршрутов с типом маршрута: " + type);
+        return routeRepositoryService.findByRouteType(type);
     }
 
-    @RequestMapping(value = "/byuser/", method = RequestMethod.GET)
-    public List<Route> getRoutesByUser(@RequestParam(value = "user", required = true) int i){
-        return routeRepository.findByUserId(i);
+    /**
+     * @param id - user id
+     * @return list of routes by user_id
+     */
+    @RequestMapping(value = "/findbyuserid", method = RequestMethod.GET)
+    public List<Route> getRoutesByUser(@RequestParam(value = "user", required = true) int id){
+        logger.info("Запрос на получение маршрутов пользователя с id = " + id);
+        return routeRepositoryService.findByUserId(id);
     }
 }

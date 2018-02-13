@@ -5,6 +5,7 @@ import com.netcracker.travelplanner.entities.*;
 import com.netcracker.travelplanner.repository.*;
 import com.netcracker.travelplanner.service.EdgeRepositoryService;
 import com.netcracker.travelplanner.service.RouteRepositoryService;
+import com.netcracker.travelplanner.service.UserRepositoryService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,13 +25,13 @@ import java.util.List;
 public class WritingAllEntitiesToDb {
 
     @Autowired
-    EdgeRepository edgeRepository;
+    EdgeRepositoryService edgeRepositoryService;
 
     @Autowired
-    RouteRepository routeRepository;
+    RouteRepositoryService routeRepositoryService;
 
     @Autowired
-    UserRepository userRepository;
+    UserRepositoryService userRepositoryService;
 
     @Test
     public void testDb() throws ParseException {
@@ -89,13 +90,13 @@ public class WritingAllEntitiesToDb {
 
 
         /*сохраняем всё в таблицы бд*/
-        edgeRepository.save(edgeList);
+        edgeRepositoryService.save(edgeList);
 
-        userRepository.save(u);
+        userRepositoryService.save(u);
 
-        userRepository.save(u1);
+        userRepositoryService.save(u1);
 
-        routeRepository.save(routeList);
+        routeRepositoryService.save(routeList);
 
 //        Assert.assertArrayEquals(edgeRepository.findAll().toArray(), edgeList.toArray());
 //        Assert.assertArrayEquals(routeRepository.findAll().toArray(), routeList.toArray());
@@ -110,7 +111,7 @@ public class WritingAllEntitiesToDb {
     public void testAddDbEdges() throws ParseException {
         Date date = new Date();
         List<Edge> edgeList = new ArrayList<>();
-        edgeRepository.deleteAll();
+        edgeRepositoryService.deleteAll();
         edgeList.add(new Edge(date,"москва","воронеж", "plane",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
         edgeList.add(new Edge(date,"воронеж","белгород","plane", 10.00,1000.00,100.0,date,date,"Eur", RouteType.cheap));
         edgeList.add(new Edge(date,"москва","берлин","plane",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
@@ -125,7 +126,7 @@ public class WritingAllEntitiesToDb {
         edgeList.add(new Edge(date,"voronezh","moscow","bus",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
 
 
-        edgeRepository.save(edgeList);
+        edgeRepositoryService.save(edgeList);
     }
 
 }

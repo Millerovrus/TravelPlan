@@ -36,7 +36,7 @@ public class KiwiIntegrationTest {
 
         edges.forEach(l -> System.out.println(l.toString()));
 
-        edgeRepositoryService.addAll(edges);
+        edgeRepositoryService.save(edges);
     }
 
 }

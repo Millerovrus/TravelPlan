@@ -1,35 +1,77 @@
 package com.netcracker.travelplanner.controllers;
 
 import com.netcracker.travelplanner.entities.User;
-import com.netcracker.travelplanner.repository.UserRepository;
+import com.netcracker.travelplanner.service.UserRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/getUsers")
+@RequestMapping("/api/users")
 public class UserApiController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    Date date = new Date();
     @Autowired
-    private UserRepository userRepository;
+    private UserRepositoryService userRepositoryService;
 
-    @GetMapping
+    /**
+     * @return common list of users
+     */
+    @RequestMapping(value = "/findall", method = RequestMethod.GET)
     public List<User> getUsers() {
         logger.info("Запрос на получение общего списка пользователей");
-        return userRepository.findAll();
+        return userRepositoryService.findAll();
     }
 
-    @RequestMapping(value = "/byid/", method = RequestMethod.GET)
+    /**
+     * @param id
+     * @return user by id
+     */
+    @RequestMapping(value = "/findbyid", method = RequestMethod.GET)
     public User getUserById(@RequestParam(value = "id", required = true) int id) {
-        return userRepository.findOne(id);
+        logger.info("Запрос на получение пользователя с id = " + id);
+        return userRepositoryService.findById(id);
     }
 
-    @RequestMapping(value = "/byname/", method = RequestMethod.GET)
+    /**
+     * @param lastName
+     * @param firstName
+     * @return user by lastname OR firstname
+     */
+    @RequestMapping(value = "/findbyname", method = RequestMethod.GET)
     public List<User> getUsersByLastNameIs(@RequestParam(value = "lastname", required = false) String lastName,
                                            @RequestParam(value = "firstname", required = false) String firstName) {
-        return userRepository.findAllByLastNameIsOrFirstNameIs(lastName, firstName);
+        logger.info("Запрос на получение пользователя по фамилии: " + lastName + " или имени: " + firstName);
+        return userRepositoryService.findByLastNameOrFirstName(lastName, firstName);
+    }
+
+    /**
+     * Save new user in database
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param birthDate
+     * @param password
+     */
+    @RequestMapping(value = "/adduser", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public void addUser(@RequestParam(value = "firstname", required = true) String firstName,
+                        @RequestParam(value = "lastname", required = true) String lastName,
+                        @RequestParam(value = "email", required = true) String email,
+                        @RequestParam(value = "birthdate", required = true) Date birthDate,
+                        @RequestParam(value = "password", required = true) String password){
+        logger.info("Процесс регистрации нового пользователя...");
+        try {
+            userRepositoryService.save(new User(email, firstName, lastName, birthDate, false, date, password));
+        } catch (Exception ex) {
+            logger.error("Процесс прерван с ошибкой!");
+            ex.printStackTrace();
+        }
+        logger.info("Регистрация прошла успешно!");
     }
 }

@@ -35,6 +35,6 @@ public class YandexIntegrationTest {
 
         System.out.println(edgeList.size());
 
-        edgeRepositoryService.addAll(edgeList);
+        edgeRepositoryService.save(edgeList);
     }
 }
