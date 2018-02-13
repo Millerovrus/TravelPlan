@@ -21,6 +21,12 @@ public class RouteTestController {
     @Autowired
     private RouteRepositoryService routeRepositoryService;
 
+    /**
+     * @param from
+     * @param to
+     * @param date
+     * @return list of routes by params
+     */
     @RequestMapping(value = "/get-routes/date/", method = RequestMethod.GET)
     public List<Route> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to, @RequestParam("date") String date){
 
@@ -36,6 +42,11 @@ public class RouteTestController {
 
     }
 
+    /**
+     * @param from
+     * @param to
+     * @return list of route by from and to params
+     */
     @RequestMapping(value = "/get-routes/", method = RequestMethod.GET)
     public List<Route> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to){
         return routeRepositoryService.findByStartPointAndDestinationPoint(from, to);

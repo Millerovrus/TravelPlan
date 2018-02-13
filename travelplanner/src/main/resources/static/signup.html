@@ -20,12 +20,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 
     <!-- my css -->
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/parameterMenu.css" rel="stylesheet">
+    <link href="css/my-styles.css" rel="stylesheet">
 
     <!-- my scripts -->
-    <script src="js/form.js"></script>
-    <script src="js/input-parameters.js"></script>
+    <script src="js/my-styles.js"></script>
 
     <!--angular-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
@@ -49,7 +47,7 @@
 
         <!-- menu -->
         <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
@@ -60,17 +58,34 @@
                 </div>
                 <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/signIn">Sign in</a></li>
-                        <li class="active"><a href="/signUp">Sign up</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
+        <div>
+            <img src="img/imgMain.jpg"  id="sign-pic" class="background-sign-pic">
+            <div class="container" >
+                <div class="col-md-12" >
+                    <div id="logbox"  >
+                        <form id="signup" method="post" action="/signup" >
+                            <h1>Create an Account</h1>
+                            <input id="inputFirstName" type="text" placeholder="First name" class="input pass" required/>
+                            <input id="inputLastName" type="text" placeholder="Last name" class="input pass" required/>
+                            <input id="inputBirthDate" type="text" placeholder="Date of birth" class="input pass" required/>
+                            <input id="inputEmail" type="email" placeholder="Email address" class="input pass" required/>
+                            <input id="inputPassword" type="password" placeholder="Choose a password" required class="input pass"/>
+                            <input name="user[password2]" type="password" placeholder="Confirm password" required class="input pass"/>
+                            <input type="submit" value="Sign up" ng-click="sendUserData()" class="inputButton"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- background image-->
-        <div class="imageMain">
+      <!--  <div class="imageMain">
             <div class="container">
                 <div class="row centered">
                     <div class="header">
@@ -89,17 +104,17 @@
                         <!--<a class="clear" ng-click="input = null">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>-->
-                        <input type="text" id="inputFirstName" class="form-control" placeholder="First name" required autofocus>
+                       <!-- <input type="text" id="inputFirstName" class="form-control" placeholder="First name" required autofocus>
                         <input type="text" id="inputLastName" class="form-control" placeholder="Last name" required autofocus>
                         <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
                         <input type="text" id="inputBirthDate" class="form-control" placeholder="Birth date" required autofocus>
                         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                         <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
                                 ng-click="sendUserData()">Sign up</button>
-                    </form><!-- /form -->
-                </div><!-- /card-container -->
-            </div><!-- /container -->
-        </div>
+                    </form>
+                </div>
+            </div>
+        </div>-->
 
         <!--&lt;!&ndash; bottom &ndash;&gt;
         <div class="container">

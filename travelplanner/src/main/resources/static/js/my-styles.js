@@ -65,21 +65,6 @@ function supportsHTML5Storage() {
     }
 }
 
-/**
- * Test data. This data will be safe by the web app
- * in the first successful login of a auth user.
- * To Test the scripts, delete the localstorage data
- * and comment this call.
- *
- * @returns {boolean}
- */
-/* ??????????? */
-function testLocalStorageData() {
-    if(!supportsHTML5Storage()) { return false; }
-    localStorage.setItem("PROFILE_IMG_SRC", "//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" );
-    localStorage.setItem("PROFILE_NAME", "César Izquierdo Tello");
-    localStorage.setItem("PROFILE_REAUTH_EMAIL", "oneaccount@gmail.com");
-}
 
 /* datetimepicker */
 $(function () {

@@ -20,10 +20,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 
     <!-- my css -->
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/parameterMenu.css" rel="stylesheet">
+    <link href="css/my-styles.css" rel="stylesheet">
+    <link href="css/sign-in-style.css" rel="stylesheet">
     <!-- my scripts -->
-    <script src="js/form.js"></script>
+    <script src="js/my-styles.js"></script>
 
     <!--angular-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
@@ -46,32 +46,10 @@
 </head>
 
 <body>
-    <!--
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/"><i class="fa fa-ravelry" aria-hidden="true"></i>Travel planner</a>
-            </div>
-            <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/signIn">Sign in</a></li>
-                    <li><a href="/signUp">Sign up</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    -->
 
     <div ng-app="myApp">
 
-        <my-navbar></my-navbar>
+        <my-navbar></my-navbar> <!--  нужен ли теперь тег-->
 
         <div ng-controller="myParameterController">
             <div  class="scrollbar" id="container1">
@@ -82,7 +60,7 @@
                             <form id="inputForm" autocomplete="off">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h1>Travel parameters</h1>
+                                        <h1>Start traveling right now</h1>
                                     </div>
                                 </div>
                                 <div class="row">

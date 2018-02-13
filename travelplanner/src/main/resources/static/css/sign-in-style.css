@@ -1,0 +1,59 @@
+body{
+    background: transparent;
+    padding: 0px;
+}
+
+.form-group .form-control:focus{
+    border-color:#ff7878;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px #ff7878;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px #ff7878;
+}
+
+#login-dp{
+    min-width: 250px;
+    padding: 18px 18px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dp .help-block{
+    font-size:14px
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+
+@media(max-width:768px){
+    #login-dp{
+        background-color: rgba(255,255,255,.8);
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: rgba(255,255,255,.8);
+        border-top:0 none;
+    }
+}
+
+#dropdown-sign-menu{
+    margin-bottom: 4px;
+}
+
+.btn-sign{
+    background-color: #ff7878;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    width: 100%;
+    height: 30px;
+}
+
+.btn-sign:hover{
+    background-color: #7b7b7b;
+}
