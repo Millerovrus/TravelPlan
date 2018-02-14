@@ -64,20 +64,23 @@
             </div>
         </div>
 
-        <div>
+        <div ng-controller="controllerSignUp">
             <img src="img/imgMain.jpg"  id="sign-pic" class="background-sign-pic">
-            <div class="container" >
-                <div class="col-md-12" >
-                    <div id="logbox"  >
-                        <form id="signup" method="post" action="/signup" >
+            <div class="container">
+                <div class="col-md-12">
+                    <div id="logbox">
+                        <!--<form id="signUp" method="post" action="/signUp" >-->
+                        <form id="signUp" action="/signUp" >
                             <h1>Create an Account</h1>
                             <input id="inputFirstName" type="text" placeholder="First name" class="input pass" required/>
                             <input id="inputLastName" type="text" placeholder="Last name" class="input pass" required/>
                             <input id="inputBirthDate" type="text" placeholder="Date of birth" class="input pass" required/>
                             <input id="inputEmail" type="email" placeholder="Email address" class="input pass" required/>
                             <input id="inputPassword" type="password" placeholder="Choose a password" required class="input pass"/>
-                            <input name="user[password2]" type="password" placeholder="Confirm password" required class="input pass"/>
+                            <input name="user[password2]" type="password" placeholder="Confirm password(Это не заполнять!!!)" required class="input pass"/>
                             <input type="submit" value="Sign up" ng-click="sendUserData()" class="inputButton"/>
+                            <!--<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
+                                    ng-click="sendUserData()">Sign up</button>-->
                         </form>
                     </div>
                 </div>
