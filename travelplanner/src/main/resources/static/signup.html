@@ -77,7 +77,17 @@
                             <input id="inputBirthDate" type="text" placeholder="Date of birth" class="input pass" required/>
                             <input id="inputEmail" type="email" placeholder="Email address" class="input pass" required/>
                             <input id="inputPassword" type="password" placeholder="Choose a password" required class="input pass"/>
-                            <input name="user[password2]" type="password" placeholder="Confirm password(Это не заполнять!!!)" required class="input pass"/>
+                            <div class="input">
+                                <div class="form-group">
+                                    <div class="input-group date" id='datetimepicker1'>
+                                        <input type="text" id="inputDate" class="date-input-style" placeholder="Select departure date" />
+                                        <span class="input-group-addon datepickerbutton">
+                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                           <!-- <input id="confirmPassword" type="password" placeholder="Confirm password(Это не заполнять!!!)" required class="input pass"/> -->
                             <input type="submit" value="Sign up" ng-click="sendUserData()" class="inputButton"/>
                             <!--<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
                                     ng-click="sendUserData()">Sign up</button>-->

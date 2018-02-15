@@ -16,7 +16,6 @@ app.controller('controllerSignUp', function signUpUser($scope, $http) {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(
             function success(response) {
-                console.log(response.data);
                 alert("Вы зарегистрированы!");
                 location.href="/";
                 /*Очистка формы от введённых значений*/
@@ -25,6 +24,7 @@ app.controller('controllerSignUp', function signUpUser($scope, $http) {
                 angular.element($('#inputBirthDate')).val('');
                 angular.element($('#inputEmail')).val('');
                 angular.element($('#inputPassword')).val('');
+                console.log(response.data);
             },
             function error(response, status) {
                 console.error('Not send, Error!!!', status, response);

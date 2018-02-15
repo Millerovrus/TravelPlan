@@ -57,7 +57,7 @@ public class WritingAllEntitiesToDb {
 
         /*создаем список маршрутов*/
         List<Route> routeList = new ArrayList<>();
-        Date newDate = new Date(2018,02,15);
+        Date newDate = new Date("2018-02-15");
         routeList.add(new Route(newDate,"воронеж","берлин", RouteType.cheap, 100.0, 200.0, 1500.0));
         routeList.add(new Route(newDate,"берлин","воронеж", RouteType.comfort, 250.0, 300.0, 400.0));
         routeList.add(new Route(newDate,"moscow","praga", RouteType.cheap, 100.0, 200.0, 1500.0));
