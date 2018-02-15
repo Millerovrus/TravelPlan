@@ -16,7 +16,7 @@ angular.module('controllerModule')
                 url: 'http://localhost:8888/api/rest/get-routes/',
                  params: {
                      from: angular.element($('#inputFrom')).val(),
-                     to: angular.element($('#inputTo')).val(),
+                     to: angular.element($('#inputTo')).val()
                     // date: angular.element($('#inputDate')).val()
                 }
             }).then(

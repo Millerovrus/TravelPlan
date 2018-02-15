@@ -57,8 +57,18 @@ public class WritingAllEntitiesToDb {
 
         /*создаем список маршрутов*/
         List<Route> routeList = new ArrayList<>();
-        routeList.add(new Route(date,"воронеж","берлин", RouteType.cheap, 100.0, 200.0, 1500.0));
-        routeList.add(new Route(date,"берлин","воронеж", RouteType.comfort, 250.0, 300.0, 400.0));
+        Date newDate = new Date(2018,02,15);
+        routeList.add(new Route(newDate,"воронеж","берлин", RouteType.cheap, 100.0, 200.0, 1500.0));
+        routeList.add(new Route(newDate,"берлин","воронеж", RouteType.comfort, 250.0, 300.0, 400.0));
+        routeList.add(new Route(newDate,"moscow","praga", RouteType.cheap, 100.0, 200.0, 1500.0));
+        routeList.add(new Route(newDate,"moscow","praga", RouteType.optimal, 255.0, 300.0, 400.0));
+        routeList.add(new Route(newDate,"moscow","berlin", RouteType.cheap, 100.0, 200.0, 1500.0));
+        routeList.add(new Route(newDate,"moscow","berlin", RouteType.comfort, 250.0, 300.0, 400.0));
+
+
+
+
+
 
         /*добавляем ребра к маршруту*/
         RouteEdge routeEdge = new RouteEdge(123);
@@ -125,8 +135,9 @@ public class WritingAllEntitiesToDb {
         edgeList.add(new Edge(date,"voronezh","moscow","train",11.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
         edgeList.add(new Edge(date,"voronezh","moscow","bus",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
 
-
         edgeRepositoryService.save(edgeList);
     }
+
+
 
 }
