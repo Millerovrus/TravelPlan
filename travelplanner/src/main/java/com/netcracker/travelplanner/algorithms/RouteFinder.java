@@ -4,11 +4,13 @@ import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.Route;
 import com.netcracker.travelplanner.entities.RouteEdge;
 import com.netcracker.travelplanner.entities.RouteType;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class RouteFinder {
     private List<Route> routes;
 
@@ -55,9 +57,11 @@ public class RouteFinder {
             route.getRouteEdges().add(routeEdge);
 
             route.setWeight(route.getWeight() + edge.getWeight());
-            route.setDistance(route.getDistance() + edge.getDistance());
+            if (edge.getDistance() != null){
+                route.setDistance(route.getDistance() + edge.getDistance());
+            }
             route.setDuration(route.getDuration() + edge.getDuration());
-            route.setCost(route.getWeight() + edge.getCost());
+            route.setCost(route.getCost() + edge.getCost());
         }
 
         routes.add(route);
