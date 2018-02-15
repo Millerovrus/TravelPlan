@@ -13,10 +13,6 @@ import java.util.List;
 
 @Service
 public class Algorithm {
-    //двумерный список найденных путей (список ребер)
-    private List<List<Edge>> foundRoutes = new ArrayList<>();
-    //флаг на удаление пути
-    private List<Boolean> needDelete = new ArrayList<>();
     // Список ребер с суммарным минимальным весом, т.е. искомый маршрут
     private List<Edge> minimalRoute = new LinkedList<>();
 
@@ -34,6 +30,10 @@ public class Algorithm {
     }
 
     private void startSearch(List<Edge> edges, String startPoint, String destinationPoint) {
+        //двумерный список найденных путей (список ребер)
+        List<List<Edge>> foundRoutes = new ArrayList<>();
+        //флаг на удаление пути
+        List<Boolean> needDelete = new ArrayList<>();
         // флаг остановки поиска - когда все пути дошли до destinationPoint
         boolean stopSearch = false;
 

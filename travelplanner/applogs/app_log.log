@@ -13,3 +13,50 @@
 [INFO ] 2018-02-12 01:06:39.378 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 10500 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
 [INFO ] 2018-02-12 01:06:39.383 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
 [INFO ] 2018-02-12 01:06:44.990 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 5.938 seconds (JVM running for 7.031)
+[INFO ] 2018-02-15 20:48:42.210 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 8684 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-15 20:48:42.210 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 20:48:46.356 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 4.547 seconds (JVM running for 5.404)
+[INFO ] 2018-02-15 21:16:37.482 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 7396 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-15 21:16:37.485 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 21:16:41.686 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 4.568 seconds (JVM running for 5.482)
+[INFO ] 2018-02-15 21:53:14.112 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 3464 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-15 21:53:14.127 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 21:53:19.382 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 5.756 seconds (JVM running for 6.697)
+[INFO ] 2018-02-15 22:12:40.963 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 11064 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-15 22:12:40.966 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 22:12:44.843 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 4.207 seconds (JVM running for 5.052)
+[INFO ] 2018-02-15 22:16:01.831 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 14268 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-15 22:16:01.831 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 22:16:06.028 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 4.535 seconds (JVM running for 5.428)
+[INFO ] 2018-02-15 22:17:55.472 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 6388 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-15 22:17:55.472 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 22:17:59.876 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 4.741 seconds (JVM running for 5.604)
+[INFO ] 2018-02-16 00:03:30.878 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 9288 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-16 00:03:30.884 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-16 00:03:35.346 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 4.896 seconds (JVM running for 6.073)
+[INFO ] 2018-02-16 00:12:28.154 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 11008 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-16 00:12:28.159 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-16 00:12:32.932 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 5.218 seconds (JVM running for 6.377)
+[INFO ] 2018-02-16 00:27:34.644 [http-nio-8888-exec-10] UserApiController - Процесс регистрации нового пользователя...
+[INFO ] 2018-02-16 00:27:34.731 [http-nio-8888-exec-10] UserApiController - Регистрация прошла успешно!
+[INFO ] 2018-02-16 00:40:02.190 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 660 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-16 00:40:02.193 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-16 00:40:06.907 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 5.06 seconds (JVM running for 5.867)
+[INFO ] 2018-02-16 00:49:19.303 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 12744 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-16 00:49:19.310 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-16 00:49:23.784 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 4.834 seconds (JVM running for 5.615)
+[INFO ] 2018-02-16 00:52:15.875 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 8112 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-16 00:52:15.880 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-16 00:52:20.205 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 4.664 seconds (JVM running for 5.53)
+[INFO ] 2018-02-16 00:53:56.392 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 13568 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-16 00:53:56.397 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-16 00:54:01.075 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 5.004 seconds (JVM running for 5.813)
+[INFO ] 2018-02-16 00:55:04.871 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 12340 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-16 00:55:04.881 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-16 00:55:09.289 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 4.755 seconds (JVM running for 5.678)
+[INFO ] 2018-02-16 00:59:00.621 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 2888 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-16 00:59:00.621 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-16 00:59:04.774 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 4.476 seconds (JVM running for 5.332)
+[INFO ] 2018-02-16 01:02:31.314 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on DESKTOP-MCB9L9B with PID 10524 (C:\Users\user\IdeaProjects\TravelPlan\travelplanner\target\classes started by user in C:\Users\user\IdeaProjects\TravelPlan\travelplanner)
+[INFO ] 2018-02-16 01:02:31.324 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-16 01:02:35.628 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 4.662 seconds (JVM running for 5.605)
