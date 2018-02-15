@@ -1,6 +1,7 @@
 package com.netcracker.travelplanner.algorithms;
 
 import com.netcracker.travelplanner.entities.Edge;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -9,6 +10,8 @@ import java.util.List;
 /**
  * Алгоритм нахождения минимального пути между двумя точками полным перебором
  */
+
+@Service
 public class Algorithm {
     //двумерный список найденных путей (список ребер)
     private List<List<Edge>> foundRoutes = new ArrayList<>();

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.entities.yandex.YandexRasp;
 import com.netcracker.travelplanner.entities.Edge;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,13 +16,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class YandexService {
-
-    private String apiKey;
-
-    public YandexService(String apiKey) {
-        this.apiKey = apiKey;
-    }
 
     private YandexRasp getYandexRaspFromUrl(String urlQueryString){
 
@@ -56,17 +52,19 @@ public class YandexService {
                                          ,LocalDate date)
     {
 
+        if(from.equals(to)){return null;}
         Date dateNow = new Date();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         StringBuilder builder = new StringBuilder();
         String url = builder.append("https://api.rasp.yandex.net/v3.0/search/?apikey=")
-                            .append(this.apiKey)
+                            .append("64d2c4dc-e05a-4574-b51a-bdc03b2bc8a3")
                             .append("&format=json&from=")
                             .append(from)
                             .append("&to=")
                             .append(to)
                             .append("&lang=ru_RU&date=")
                             .append(date.format(formatter))
+                            .append("&system=iata")
                             .toString();
 
         YandexRasp yandexRasp = getYandexRaspFromUrl(url);
@@ -80,8 +78,8 @@ public class YandexService {
                     .stream()
                     .filter(l -> l.getTicketsInfo().getPlaces().size()!=0)
                     .forEach(l -> edgeList.add(new Edge(dateNow
-                                                        ,startPoint
-                                                        ,endPoint
+                                                        ,from
+                                                        ,to
                                                         ,l.getThread().getTransportType()
                                                         ,l.getDuration()
                                                         ,(double)l.getTicketsInfo().getPlaces().get(0).getPrice().getWhole()

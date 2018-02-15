@@ -25,7 +25,7 @@ public class YandexIntegrationTest {
     public void edgesSavingTest(){
 
 
-        YandexService yandexService = new YandexService("64d2c4dc-e05a-4574-b51a-bdc03b2bc8a3");
+        YandexService yandexService = new YandexService();
 
         List<Edge> edgeList = yandexService.getEdgesFromYandex("c193"
                 ,"c213"

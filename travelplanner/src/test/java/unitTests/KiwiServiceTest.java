@@ -15,10 +15,10 @@ public class KiwiServiceTest {
 
         KiwiService kiwiService = new KiwiService();
 
-        List<Edge> edges = kiwiService.getEdgesFlights("moscow"
-                ,"voronezh"
-                , LocalDate.of(2018,02,01)
-                , LocalDate.of(2018,02,03));
+        List<Edge> edges = kiwiService.getEdgesFlights("MOW"
+                ,"VOZ"
+                , LocalDate.of(2018,2,26)
+                , LocalDate.of(2018,2,26));
 
         edges.forEach(l -> System.out.println(l.toString()));
 

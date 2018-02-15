@@ -3,6 +3,8 @@ package com.netcracker.travelplanner.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jdk.nashorn.internal.objects.annotations.Getter;
 import jdk.nashorn.internal.objects.annotations.Setter;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -54,4 +56,28 @@ public class RouteEdge implements Serializable{
         this.edgeOrder = order;
     }
     private RouteEdge(){}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RouteEdge routeEdge = (RouteEdge) o;
+
+        return new EqualsBuilder()
+                .append(edgeOrder, routeEdge.edgeOrder)
+                .append(route, routeEdge.route)
+                .append(edge, routeEdge.edge)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(route)
+                .append(edge)
+                .append(edgeOrder)
+                .toHashCode();
+    }
 }

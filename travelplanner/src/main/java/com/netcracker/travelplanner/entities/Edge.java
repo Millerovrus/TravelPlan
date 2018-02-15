@@ -1,7 +1,9 @@
 package com.netcracker.travelplanner.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import java.util.*;
@@ -9,7 +11,7 @@ import java.util.*;
 
 @Entity
 @Table(name="edges")
-public class Edge {
+public class Edge implements Cloneable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "edges_seq")
@@ -62,15 +64,23 @@ public class Edge {
 
         switch (type){
             case cheap:
-                setWeight(getCost() + getDuration() / 3600 * 50);
+                setWeight(1.0, 50.0);
                 break;
 
             case optimal:
-                setWeight(getCost() + getDuration() / 3600 * 400);
+                setWeight(1.0, 400.0);
                 break;
 
             case comfort:
-                setWeight(getCost() + getDuration() / 3600 * 1500);
+                setWeight(1.0, 1500.0);
+                break;
+
+            case cheapest:
+                setWeight(1.0, 0.0);
+                break;
+
+            case fastest:
+                setWeight(0.0, 1.0);
                 break;
 
             default:
@@ -78,20 +88,12 @@ public class Edge {
         }
     }
 
-    public Set<RouteEdge> getRouteEdges() {
-        return routeEdges;
-    }
-
-    public void setRouteEdges(Set<RouteEdge> routeEdges) {
-        this.routeEdges = routeEdges;
-    }
-
     public double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
+    public void setWeight(double c1, double c2) {
+        this.weight = c1 * cost + c2 * (duration / 3600);
     }
 
     public RouteType getEdgeType() {
@@ -100,14 +102,6 @@ public class Edge {
 
     public void setEdgeType(RouteType edgeType) {
         this.edgeType = edgeType;
-    }
-
-    public Set<RouteEdge> getEdges() {
-            return routeEdges;
-    }
-
-    public void setEdges(Set<RouteEdge> edges) {
-        this.routeEdges = routeEdges;
     }
 
     public Integer getId() {
@@ -198,6 +192,14 @@ public class Edge {
         this.currency = currency;
     }
 
+    public Set<RouteEdge> getRouteEdges() {
+        return routeEdges;
+    }
+
+    public void setRouteEdges(Set<RouteEdge> routeEdges) {
+        this.routeEdges = routeEdges;
+    }
+
     public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, Date startDate, Date endDate, String currency, RouteType edgeType)
     {
         this.creationDate = creationDate;
@@ -217,19 +219,22 @@ public class Edge {
 
     @Override
     public String toString() {
-        return "Edge{" +
-                "id=" + id +
-                ", creationDate=" + creationDate +
-                ", startPoint='" + startPoint + '\'' +
-                ", destinationPoint='" + destinationPoint + '\'' +
-                ", transportType=" + transportType +
-                ", duration=" + duration +
-                ", cost=" + cost +
-                ", distance=" + distance +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", currency='" + currency + '\'' +
-                '}';
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("creationDate", creationDate)
+                .append("startPoint", startPoint)
+                .append("destinationPoint", destinationPoint)
+                .append("transportType", transportType)
+                .append("duration", duration)
+                .append("cost", cost)
+                .append("distance", distance)
+                .append("startDate", startDate)
+                .append("endDate", endDate)
+                .append("currency", currency)
+                .append("edgeType", edgeType)
+                .append("routeEdges", routeEdges)
+                .append("weight", weight)
+                .toString();
     }
 
     @Override
@@ -245,5 +250,11 @@ public class Edge {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
