@@ -4,6 +4,10 @@ import com.google.gson.Gson;
 import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.entities.kiwi.KiwiFlights;
 import com.netcracker.travelplanner.entities.Edge;
+import com.netcracker.travelplanner.entities.newKiwi.KiwiStations;
+import com.netcracker.travelplanner.entities.newKiwi.MyAirport;
+import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -15,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+@Service
 public class KiwiService {
 
     private KiwiFlights getKiwiFlightsFromUrl(String urlQueryString) {
@@ -72,8 +76,8 @@ public class KiwiService {
         List<Edge> listOfEdges = new ArrayList<>();
 
         kiwiFlights.getData().forEach(l -> listOfEdges.add(new Edge(dateNow
-                ,l.getCityFrom()
-                ,l.getCityTo()
+                ,flyFrom
+                ,flyTo
                 , "plane"
                 ,(double)l.getDuration().getTotal()
                 ,(double)l.getPrice()
@@ -81,9 +85,67 @@ public class KiwiService {
                 ,Date.from(Instant.ofEpochSecond(l.getATime()))
                 ,Date.from(Instant.ofEpochSecond(l.getDTime()))
                 ,currency
-                , RouteType.cheap)));
+                ,RouteType.cheap)));
 
         return listOfEdges;
+    }
+
+    public List<MyAirport> getAirportsByRadius(int radius
+                                            ,double latitude
+                                            ,double longitude){
+        String query = "https://api.skypicker.com/locations/?type=radius&" +
+                "lat=" +
+                latitude +
+                "&lon=" +
+                longitude +
+                "&radius=" +
+                radius +
+                "&location_types=airport" +
+                "&sort=rank";
+
+        List<MyAirport> myAirportList = new ArrayList<>();
+
+        try {
+            URL url = new URL(query);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoOutput(true);
+            connection.setInstanceFollowRedirects(false);
+            connection.setRequestMethod("GET");
+            connection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0)");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("charset", "utf-8");
+            connection.connect();
+
+            InputStreamReader reader = new InputStreamReader(connection.getInputStream());
+
+            Gson gson = new Gson();
+
+            KiwiStations kiwiStations = gson.fromJson(reader, KiwiStations.class);
+
+            kiwiStations.getLocations()
+                    .stream()
+                    .filter(loc->loc.getType().equals("airport"))
+                    .forEach(location -> myAirportList.add(new MyAirport(
+                            location.getId()
+                            ,location.getCode()
+                            ,location.getName()
+                            ,location.getTimezone()
+                            ,location.getType()
+                            ,location.getLocation().getLat()
+                            ,location.getLocation().getLon()
+                            ,location.getCity().getCountry().getName()
+                            ,location.getCity().getCountry().getCode()
+                            ,location.getCity().getName()
+                            ,location.getCity().getCode())));
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+
+        return myAirportList;
+
     }
 
 }

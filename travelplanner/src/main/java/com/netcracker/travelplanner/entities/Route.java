@@ -3,6 +3,7 @@ package com.netcracker.travelplanner.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -176,14 +177,18 @@ public class Route implements Serializable {
 
     @Override
     public String toString() {
-        return "Route{" +
-                "id=" + id +
-                ", user=" + user +
-                ", creationDate=" + creationDate +
-                ", startPoint='" + startPoint + '\'' +
-                ", destinationPoint='" + destinationPoint + '\'' +
-                ", routeType=" + routeType +
-                ", routeEdges=" + routeEdges +
-                '}';
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("user", user)
+                .append("creationDate", creationDate)
+                .append("startPoint", startPoint)
+                .append("destinationPoint", destinationPoint)
+                .append("routeType", routeType)
+                .append("weight", weight)
+                .append("cost", cost)
+                .append("duration", duration)
+                .append("distance", distance)
+                .append("routeEdges", routeEdges)
+                .toString();
     }
 }

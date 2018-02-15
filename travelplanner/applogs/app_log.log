@@ -443,3 +443,52 @@
 [INFO ] 2018-02-11 10:58:01.356 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on dns with PID 7756 (C:\Users\mp\Desktop\TravelPlan\travelplanner\target\classes started by mp in C:\Users\mp\Desktop\TravelPlan\travelplanner)
 [INFO ] 2018-02-11 10:58:01.371 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
 [INFO ] 2018-02-11 10:58:16.231 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 16.57 seconds (JVM running for 20.284)
+[INFO ] 2018-02-13 14:23:42.413 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 8956 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-13 14:23:42.426 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-13 14:43:52.696 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 5708 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-13 14:43:52.712 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-13 14:44:01.401 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 9.579 seconds (JVM running for 11.863)
+[INFO ] 2018-02-13 14:44:19.514 [http-nio-8888-exec-2] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-13 14:44:57.254 [http-nio-8888-exec-6] EdgeApiController - Запрос на получение общего списка отрезков
+[INFO ] 2018-02-13 14:45:09.702 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 7124 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-13 14:45:09.702 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-13 14:45:22.367 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 13.476 seconds (JVM running for 15.86)
+[INFO ] 2018-02-13 14:55:43.208 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 2596 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-13 14:55:43.242 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-13 14:55:51.520 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 9.089 seconds (JVM running for 11.168)
+[INFO ] 2018-02-14 00:06:45.394 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 6140 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-14 00:06:45.403 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-14 00:06:53.217 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.602 seconds (JVM running for 10.549)
+[INFO ] 2018-02-15 13:08:04.284 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 4276 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-15 13:08:04.299 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 13:08:12.848 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 9.282 seconds (JVM running for 11.753)
+[INFO ] 2018-02-15 13:10:02.437 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 1236 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-15 13:10:02.452 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 13:10:11.398 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 9.924 seconds (JVM running for 12.76)
+[INFO ] 2018-02-15 13:15:07.089 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 6088 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-15 13:15:07.104 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 13:15:14.593 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.425 seconds (JVM running for 10.188)
+[INFO ] 2018-02-15 13:22:04.464 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 2996 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-15 13:22:04.464 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 13:22:11.860 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.191 seconds (JVM running for 10.112)
+[INFO ] 2018-02-15 13:25:49.493 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 4748 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-15 13:25:49.509 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 13:25:57.328 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.864 seconds (JVM running for 10.867)
+[INFO ] 2018-02-15 13:26:43.211 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 4252 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-15 13:26:43.211 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 13:26:50.575 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.883 seconds (JVM running for 11.01)
+[INFO ] 2018-02-15 13:38:47.880 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 4152 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-15 13:38:47.896 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 13:38:55.378 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.262 seconds (JVM running for 10.068)
+[INFO ] 2018-02-15 13:39:50.165 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 2508 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-15 13:39:50.165 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 13:39:57.575 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.18 seconds (JVM running for 10.037)
+[INFO ] 2018-02-15 14:03:09.170 [http-nio-8888-exec-4] RouteApiController - Запрос на получение общего списка маршрутов
+[INFO ] 2018-02-15 14:03:31.480 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 6328 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-15 14:03:31.495 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 14:03:38.673 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.067 seconds (JVM running for 9.965)
+[INFO ] 2018-02-15 14:03:49.452 [http-nio-8888-exec-1] RouteApiController - Запрос на получение общего списка маршрутов
+[INFO ] 2018-02-15 14:04:44.154 [restartedMain] TravelPlannerApplication - Starting TravelPlannerApplication on PRIMARY with PID 5580 (C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner\target\classes started by HOME in C:\Users\HOME\Desktop\netcracker\Project\Planner\travelplanner)
+[INFO ] 2018-02-15 14:04:44.170 [restartedMain] TravelPlannerApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2018-02-15 14:04:51.612 [restartedMain] TravelPlannerApplication - Started TravelPlannerApplication in 8.238 seconds (JVM running for 10.06)
+[INFO ] 2018-02-15 14:05:01.152 [http-nio-8888-exec-1] RouteApiController - Запрос на получение общего списка маршрутов
