@@ -148,7 +148,7 @@ public class Route implements Serializable {
         routeEdges = new LinkedList<>();
     }
 
-    private Route(){}
+    public Route(){}
 
     public Route(Date creationDate, String startPoint, String destinationPoint, RouteType routeType, double cost, double duration, double distance) {
         this.creationDate = creationDate;

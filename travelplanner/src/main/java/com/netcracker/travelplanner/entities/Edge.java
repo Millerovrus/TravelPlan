@@ -62,15 +62,23 @@ public class Edge {
 
         switch (type){
             case cheap:
-                setWeight(getCost() + getDuration() / 3600 * 50);
+                setWeight(1.0, 50.0);
                 break;
 
             case optimal:
-                setWeight(getCost() + getDuration() / 3600 * 400);
+                setWeight(1.0, 400.0);
                 break;
 
             case comfort:
-                setWeight(getCost() + getDuration() / 3600 * 1500);
+                setWeight(1.0, 1500.0);
+                break;
+
+            case cheapest:
+                setWeight(1.0, 0.0);
+                break;
+
+            case fastest:
+                setWeight(0.0, 1.0);
                 break;
 
             default:
@@ -90,8 +98,8 @@ public class Edge {
         return weight;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
+    public void setWeight(double c1, double c2) {
+        this.weight = c1 * cost + c2 * (duration / 3600);
     }
 
     public RouteType getEdgeType() {
