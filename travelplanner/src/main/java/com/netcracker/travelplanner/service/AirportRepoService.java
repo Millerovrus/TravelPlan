@@ -15,11 +15,11 @@ public class AirportRepoService {
     private AirportsRepo airportsRepo;
 
     public MyAirport getMyAirport(String city){
-        return airportsRepo.findByNameAndAndCityName(city);
+        return airportsRepo.myFind(city);
     }
 
     public String getIataCode(String city){
-        MyAirport airport = airportsRepo.findByNameAndAndCityName(city);
+        MyAirport airport = airportsRepo.myFind(city);
         return airport != null ? airport.getCode() : "-1";
     }
 
