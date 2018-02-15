@@ -10,12 +10,10 @@ import java.util.Date;
 import java.util.List;
 
 public class RouteFinder {
-    Algorithm algorithm;
-    List<Route> routes;
+    private List<Route> routes;
 
     public List<Route> findRoutes(List<Edge> edges, String startPoint, String destinationPoint){
         routes = new ArrayList<>();
-        algorithm = new Algorithm();
 
         for (RouteType routeType:
              RouteType.values()) {
@@ -44,6 +42,7 @@ public class RouteFinder {
         }
 
         //вызов алгоритма
+        Algorithm algorithm = new Algorithm();
         List<Edge> result = algorithm.getMinimalRoute(edges, startPoint, destinationPoint);
 
         int order = 1;

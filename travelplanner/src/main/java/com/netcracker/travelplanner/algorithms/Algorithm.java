@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Алгоритм нахождения минимального пути между двумя точками полным перебором
  */
-public class Algorithm {
+class Algorithm {
     //двумерный список найденных путей (список ребер)
     private List<List<Edge>> foundRoutes = new ArrayList<>();
     //флаг на удаление пути
