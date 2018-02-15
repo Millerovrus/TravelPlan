@@ -50,7 +50,6 @@ public class Route implements Serializable {
     private double distance;
 
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<RouteEdge> routeEdges;
 
     public double getCost() {
