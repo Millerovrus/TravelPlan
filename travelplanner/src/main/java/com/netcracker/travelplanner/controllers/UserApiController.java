@@ -62,8 +62,8 @@ public class UserApiController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public void addUser(@RequestParam(value = "firstname", required = true) String firstName,
                         @RequestParam(value = "lastname", required = true) String lastName,
-                        @RequestParam(value = "email", required = true) String email,
                         @RequestParam(value = "birthdate", required = true) Date birthDate,
+                        @RequestParam(value = "email", required = true) String email,
                         @RequestParam(value = "password", required = true) String password){
         logger.info("Процесс регистрации нового пользователя...");
         try {
