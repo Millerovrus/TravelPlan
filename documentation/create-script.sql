@@ -22,6 +22,8 @@ CREATE TABLE edges
   currency          VARCHAR(255),  
   transport_type    VARCHAR(255) NOT NULL,
   edge_type         SMALLINT
+  start_point_iata_code VARCHAR(3),
+  end_point_iata_code VARCHAR(3)
 );
 
 CREATE TABLE users
