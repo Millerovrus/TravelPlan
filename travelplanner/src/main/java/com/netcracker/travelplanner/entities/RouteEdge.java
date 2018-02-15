@@ -55,6 +55,7 @@ public class RouteEdge implements Serializable{
     public RouteEdge(int order){
         this.edgeOrder = order;
     }
+
     private RouteEdge(){}
 
     @Override
