@@ -22,7 +22,6 @@ public class RouteEdge implements Serializable{
     @Id
     @ManyToOne
     @JoinColumn(name = "edge_id")
-    @JsonBackReference
     private Edge edge;
 
     @Column(name = "edge_order", nullable = false)
