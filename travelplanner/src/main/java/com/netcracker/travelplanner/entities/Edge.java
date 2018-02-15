@@ -53,7 +53,7 @@ public class Edge implements Cloneable {
     private RouteType edgeType;
 
     @OneToMany(mappedBy = "edge", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonIgnore
     private Set<RouteEdge> routeEdges;
 
     @Transient
