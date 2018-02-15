@@ -138,6 +138,14 @@ public class WritingAllEntitiesToDb {
         edgeRepositoryService.save(edgeList);
     }
 
+    @Test
+    public void t(){
+
+        Route route = new Route(new Date(),"vor","msk",RouteType.cheap);
+
+        routeRepositoryService.save(route);
+    }
+
 
 
 }

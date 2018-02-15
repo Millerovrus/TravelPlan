@@ -40,13 +40,13 @@ public class Route implements Serializable {
     @Transient
     private double weight;
 
-    @Column(nullable = false)
+    @Column(name = "cost", nullable = false)
     private double cost;
 
-    @Column(nullable = false)
+    @Column(name = "duration", nullable = false)
     private double duration;
 
-    @Column(nullable = false)
+    @Column(name = "distance")
     private double distance;
 
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -150,8 +150,9 @@ public class Route implements Serializable {
     }
 
     public Route(){
-        routeEdges = new ArrayList<>();
+        routeEdges = new LinkedList<>();
     }
+
 
     public Route(Date creationDate, String startPoint, String destinationPoint, RouteType routeType, double cost, double duration, double distance) {
         this.creationDate = creationDate;
