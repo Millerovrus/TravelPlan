@@ -53,29 +53,38 @@ public class RouteTestController {
     @RequestMapping(value = "/get-routes/", method = RequestMethod.GET)
     public List<Route> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to){
 
-        System.out.println("go!");
-        List<Route> result = new ArrayList<>();
-
-        List<Edge> list = convertPointsToListEdges.findAll(from,to);
-
-        List<Edge> list1 = RoutesFinalService.separator(list, RouteType.cheap);
-
-        LinkedList<Edge> edges1 =(LinkedList<Edge>) algorithm.getMinimalRoute(list1,"VOZ","BER");
-
-        Route route1 = new Route(new Date(),from,to,RouteType.cheap);
-
-        for (Edge anEdges1 : edges1) {
-
-            RouteEdge routeEdge = new RouteEdge(123);
-            routeEdge.setRoute(route1);
-            routeEdge.setEdge(anEdges1);
-            route1.getRouteEdges().add(routeEdge);
-            route1.setCost(+anEdges1.getCost());
-        }
-
-        result.add(route1);
-
-        return result;
-//        return routeRepositoryService.findByStartPointAndDestinationPoint(from, to);
+//        System.out.println("go!");
+//        List<Edge> list = convertPointsToListEdges.findAll(from,to);
+//
+//        List<Edge> edgeList = new ArrayList<>();
+//
+//        List<Route> routeList = new ArrayList<>();
+//
+//        for (int i = 0; i < RouteType.values().length ; i++) {
+//
+//            List<Edge> tempEdgeList = (RoutesFinalService.separator(list,RouteType.values()[i]));
+//
+//            List<Edge> edges = algorithm.getMinimalRoute(tempEdgeList,"VOZ","BER");
+//
+//            edgeList.addAll(edges);
+//
+//            Route route = new Route(new Date(),from,to,RouteType.values()[i]);
+//
+//            int order = 1;
+//            for (Edge Edges : edges) {
+//
+//                RouteEdge routeEdge = new RouteEdge(order++);
+//                routeEdge.setRoute(route);
+//                routeEdge.setEdge(Edges);
+//                route.getRouteEdges().add(routeEdge);
+//                route.setCost(+Edges.getCost());
+//                route.setDuration(+Edges.getDuration());
+//            }
+//
+//            routeList.add(route);
+//        }
+//
+//        return routeList;
+        return routeRepositoryService.findByStartPointAndDestinationPoint(from, to);
     }
 }

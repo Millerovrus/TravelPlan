@@ -18,7 +18,9 @@ public class KiwiServiceTest {
         List<Edge> edges = kiwiService.getEdgesFlights("MOW"
                 ,"VOZ"
                 , LocalDate.of(2018,2,26)
-                , LocalDate.of(2018,2,26));
+                , LocalDate.of(2018,2,26)
+                ,""
+                ,"" );
 
         edges.forEach(l -> System.out.println(l.toString()));
 

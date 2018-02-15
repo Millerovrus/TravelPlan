@@ -47,10 +47,11 @@ public class YandexService {
         return yandexRasp;
     }
 
-    public List<Edge> getEdgesFromYandex( String from
-                                         ,String to
-                                         ,LocalDate date)
+    public List<Edge> getEdgesFromYandex(String from
+            , String to
+            , LocalDate date, String codeFrom, String codeTo)
     {
+
 
         if(from.equals(to)){return null;}
         Date dateNow = new Date();
@@ -59,18 +60,15 @@ public class YandexService {
         String url = builder.append("https://api.rasp.yandex.net/v3.0/search/?apikey=")
                             .append("64d2c4dc-e05a-4574-b51a-bdc03b2bc8a3")
                             .append("&format=json&from=")
-                            .append(from)
+                            .append(codeFrom)
                             .append("&to=")
-                            .append(to)
+                            .append(codeTo)
                             .append("&lang=ru_RU&date=")
                             .append(date.format(formatter))
                             .append("&system=iata")
                             .toString();
 
         YandexRasp yandexRasp = getYandexRaspFromUrl(url);
-
-        String startPoint = yandexRasp.getSearch().getFrom().getTitle();
-        String endPoint = yandexRasp.getSearch().getTo().getTitle();
 
         List<Edge> edgeList = new ArrayList<>();
 
@@ -87,7 +85,8 @@ public class YandexService {
                                                         ,java.sql.Date.valueOf(LocalDate.parse(l.getDeparture(),DateTimeFormatter.ISO_OFFSET_DATE_TIME))
                                                         ,java.sql.Date.valueOf(LocalDate.parse(l.getArrival(),DateTimeFormatter.ISO_OFFSET_DATE_TIME))
                                                         ,"RUB"
-                                                        , RouteType.cheap)));
+                                                        , codeFrom
+                                                        , codeTo)));
 
 
 

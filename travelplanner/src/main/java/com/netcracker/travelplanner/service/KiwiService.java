@@ -50,19 +50,21 @@ public class KiwiService {
         return kiwiFlights;
     }
 
-    public List<Edge> getEdgesFlights(String flyFrom
-                                      ,String flyTo
-                                      ,LocalDate dateFrom
-                                      ,LocalDate dateTo){
+    public List<Edge> getEdgesFlights(String from
+            , String to
+            , LocalDate dateFrom
+            , LocalDate dateTo
+            , String codeFrom
+            , String codeTo){
 
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         StringBuilder builder = new StringBuilder();
         String url =
         builder.append("https://api.skypicker.com/flights?flyFrom=")
-                .append(flyFrom)
+                .append(codeFrom)
                 .append("&to=")
-                .append(flyTo)
+                .append(codeTo)
                 .append("&dateFrom=")
                 .append(dateFrom.format(formatter))
                 .append("&dateTo=")
@@ -76,8 +78,8 @@ public class KiwiService {
         List<Edge> listOfEdges = new ArrayList<>();
 
         kiwiFlights.getData().forEach(l -> listOfEdges.add(new Edge(dateNow
-                ,flyFrom
-                ,flyTo
+                ,from
+                ,to
                 , "plane"
                 ,(double)l.getDuration().getTotal()
                 ,(double)l.getPrice()
@@ -85,7 +87,8 @@ public class KiwiService {
                 ,Date.from(Instant.ofEpochSecond(l.getATime()))
                 ,Date.from(Instant.ofEpochSecond(l.getDTime()))
                 ,currency
-                ,RouteType.cheap)));
+                ,codeFrom
+                ,codeTo)));
 
         return listOfEdges;
     }

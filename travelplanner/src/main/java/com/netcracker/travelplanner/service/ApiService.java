@@ -32,20 +32,24 @@ public class ApiService implements IntegrationAPIService {
      * @param to название города назначения
      * @return список ребер отфильтрованных по типу ребра cheap, optimal, comfort
      */
-    public List<Edge> getEdgesFromTo(String from, String to) {
+    public List<Edge> getEdgesFromTo(String from, String to, LocalDate localDate) {
 
         List<Edge> edgeList = new ArrayList<>();
         List<Edge> result = new ArrayList<>();
         String codeFrom = cityToIataCode(from);
         String codeTo = cityToIataCode(to);
-        edgeList.addAll(yandexService.getEdgesFromYandex(codeFrom
-                ,codeTo
-                ,LocalDate.of(2018,3,10)));
+        edgeList.addAll(yandexService.getEdgesFromYandex(from
+                ,to
+                ,localDate
+                ,codeFrom
+                ,codeTo));
 
-        edgeList.addAll(kiwiService.getEdgesFlights(codeFrom
-                ,codeTo
-                ,LocalDate.of(2018,3,10)
-                ,LocalDate.of(2018,3,10)));
+        edgeList.addAll(kiwiService.getEdgesFlights(from
+                ,to
+                ,localDate
+                ,localDate
+                ,codeFrom
+                ,codeTo ));
 
         if (!edgeList.isEmpty()) {
             result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
@@ -63,7 +67,7 @@ public class ApiService implements IntegrationAPIService {
      * @param type тип ребра
      * @return Edge минимальный по установленному типу
      */
-    public Edge filterEdgeByTypes(List<Edge> edgeList, RouteType type){
+    private Edge filterEdgeByTypes(List<Edge> edgeList, RouteType type){
 
         Edge edge = null;
         edgeList.forEach(l->l.setEdgeType(type));

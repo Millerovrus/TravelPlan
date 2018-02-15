@@ -2,6 +2,7 @@ package com.netcracker.travelplanner.service;
 
 import com.netcracker.travelplanner.entities.Edge;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IntegrationAPIService {
@@ -12,7 +13,7 @@ public interface IntegrationAPIService {
      * @param to название города назначения
      * @return вернет 3 ребра: дешевый, быстрый, оптимальный
      */
-    List<Edge> getEdgesFromTo(String from, String to);
+    List<Edge> getEdgesFromTo(String from, String to, LocalDate localDate);
 
     /**
      * метод для получения списка городов вблизи заданного города

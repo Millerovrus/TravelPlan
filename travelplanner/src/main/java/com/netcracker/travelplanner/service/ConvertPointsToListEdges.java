@@ -4,6 +4,7 @@ import com.netcracker.travelplanner.entities.Edge;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,8 @@ public class ConvertPointsToListEdges {
      * @param to название города назначения
      * @return возврат списка рёбер
      */
-    public List<Edge> findAllEdges(String from, String to) {
+    @Deprecated
+    public List<Edge> findAllEdges(String from, String to, LocalDate localDate) {
         List<String> stringListFrom = new ArrayList<>();
         List<String> stringListTo = new ArrayList<>();
         List<Edge> edges = new ArrayList<>();
@@ -32,20 +34,20 @@ public class ConvertPointsToListEdges {
 
         for (int i = 1; i < stringListFrom.size(); i++) {
 
-            edges.addAll(integrationAPIService.getEdgesFromTo(from, stringListFrom.get(i)));
+            edges.addAll(integrationAPIService.getEdgesFromTo(from, stringListFrom.get(i), localDate));
         }
         for (String pointFrom : stringListFrom) {
             for (String pointTo : stringListTo) {
-                edges.addAll(integrationAPIService.getEdgesFromTo(pointFrom, pointTo));
+                edges.addAll(integrationAPIService.getEdgesFromTo(pointFrom, pointTo, localDate));
             }
         }
         for (int i = 1; i < stringListTo.size(); i++) {
-            edges.addAll(integrationAPIService.getEdgesFromTo(stringListTo.get(i), stringListTo.get(0)));
+            edges.addAll(integrationAPIService.getEdgesFromTo(stringListTo.get(i), stringListTo.get(0), localDate));
         }
         return edges;
     }
 
-    public List<Edge> findAll(String from, String to){
+    public List<Edge> findAll(String from, String to, LocalDate localDate){
         List<String> citiesFrom = new ArrayList<>();
 
         citiesFrom.addAll(integrationAPIService.getClosesCities(from));
@@ -56,21 +58,21 @@ public class ConvertPointsToListEdges {
 
         List<Edge> resultList = new ArrayList<>();
 
-        List<Edge> list11 = integrationAPIService.getEdgesFromTo(from,to);
+        List<Edge> list11 = integrationAPIService.getEdgesFromTo(from, to, localDate);
         if(!list11.isEmpty()){
             resultList.addAll(list11);
         }
 
 
         for (String aCitiesFrom : citiesFrom) {
-            List<Edge> list = integrationAPIService.getEdgesFromTo(from, aCitiesFrom);
+            List<Edge> list = integrationAPIService.getEdgesFromTo(from, aCitiesFrom, localDate);
             if (!list.isEmpty()) {
                 resultList.addAll(list);
             }
         }
 
         for (String aCitiesTo : citiesTo) {
-            List<Edge> list = integrationAPIService.getEdgesFromTo(aCitiesTo, to);
+            List<Edge> list = integrationAPIService.getEdgesFromTo(aCitiesTo, to, localDate);
             if (!list.isEmpty()) {
                 resultList.addAll(list);
             }
@@ -79,12 +81,12 @@ public class ConvertPointsToListEdges {
         for (String aCitiesFrom : citiesFrom) {
             List<Edge> list1 = new ArrayList<>();
             for (String aCitiesTo : citiesTo) {
-                List<Edge> list = integrationAPIService.getEdgesFromTo(aCitiesFrom, aCitiesTo);
+                List<Edge> list = integrationAPIService.getEdgesFromTo(aCitiesFrom, aCitiesTo, localDate);
                 if (!list.isEmpty()) {
                     list1.addAll(list);
                 }
             }
-            List<Edge> list = integrationAPIService.getEdgesFromTo(aCitiesFrom,to);
+            List<Edge> list = integrationAPIService.getEdgesFromTo(aCitiesFrom, to, localDate);
             if (!list.isEmpty()){
                 resultList.addAll(list);
             }
@@ -92,13 +94,11 @@ public class ConvertPointsToListEdges {
         }
 
         for (String aCitiesTo: citiesTo){
-            List<Edge> list = integrationAPIService.getEdgesFromTo(from, aCitiesTo);
+            List<Edge> list = integrationAPIService.getEdgesFromTo(from, aCitiesTo, localDate);
             if (!list.isEmpty()){
                 resultList.addAll(list);
             }
         }
-
-
 
         return resultList;
     }

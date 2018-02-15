@@ -4,7 +4,6 @@ import com.netcracker.travelplanner.entities.RouteType;
 import org.junit.Test;
 import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.service.YandexService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,7 +18,9 @@ public class YandexServiceTest {
 
         List<Edge> edgeList = yandexService.getEdgesFromYandex("VOZ"
         ,"LPK"
-        ,LocalDate.of(2018,2,15));
+        ,LocalDate.of(2018,2,15)
+                ,""
+                ,"" );
 
         edgeList.forEach(l -> System.out.println(l.toString()));
 

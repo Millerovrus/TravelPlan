@@ -34,8 +34,10 @@ public class Edge implements Cloneable {
     @Column(nullable = false)
     private Double duration;
 
+    @Column(name = "cost")
     private Double cost;
 
+    @Column(name = "distance")
     private Double distance;
 
     @Column(name = "start_date", nullable = false)
@@ -46,7 +48,14 @@ public class Edge implements Cloneable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
 
+    @Column(name = "currency")
     private String currency;
+
+    @Column(name = "start_point_iata_code")
+    private String startIataCode;
+
+    @Column(name = "end_point_iata_code")
+    private String endIataCode;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "edge_type")
@@ -86,6 +95,26 @@ public class Edge implements Cloneable {
             default:
                 break;
         }
+    }
+
+    public String getStartIataCode() {
+        return startIataCode;
+    }
+
+    public void setStartIataCode(String startIataCode) {
+        this.startIataCode = startIataCode;
+    }
+
+    public String getEndIataCode() {
+        return endIataCode;
+    }
+
+    public void setEndIataCode(String endIataCode) {
+        this.endIataCode = endIataCode;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
     public double getWeight() {
@@ -215,6 +244,22 @@ public class Edge implements Cloneable {
         this.edgeType = edgeType;
         routeEdges = new HashSet<>();
     }
+
+    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, Date startDate, Date endDate, String currency, String startIataCode, String endIataCode) {
+        this.creationDate = creationDate;
+        this.startPoint = startPoint;
+        this.destinationPoint = destinationPoint;
+        this.transportType = transportType;
+        this.duration = duration;
+        this.cost = cost;
+        this.distance = distance;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.currency = currency;
+        this.startIataCode = startIataCode;
+        this.endIataCode = endIataCode;
+    }
+
     private Edge(){}
 
     @Override

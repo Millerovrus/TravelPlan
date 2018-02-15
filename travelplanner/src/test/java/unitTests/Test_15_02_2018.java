@@ -23,6 +23,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -51,6 +52,9 @@ public class Test_15_02_2018 {
   @Autowired
   private RouteFinder routeFinder;
 
+  @Autowired
+  private RoutesFinalService routesFinalService;
+
 
   @Test
     public void getClosesCities(){
@@ -68,7 +72,7 @@ public class Test_15_02_2018 {
   @Test
     public void getEdgesFromApi(){
 
-        List<Edge> list = apiService.getEdgesFromTo("Voronezh","Riga");
+        List<Edge> list = apiService.getEdgesFromTo("Voronezh","Riga",LocalDate.of(2018,3,1));
 
         if(list!=null) {
             list.forEach(l -> System.out.println(l.getStartPoint() + "    "
@@ -84,7 +88,7 @@ public class Test_15_02_2018 {
     @Test
     public void gogogogog(){
 
-        List<Edge> list = convertPointsToListEdges.findAll("Voronezh","Berlin");
+        List<Edge> list = convertPointsToListEdges.findAll("Voronezh","Berlin",LocalDate.of(2018,3,1));
 
 
         List<Route> list1 = routeFinder.findRoutes(list,"VOZ","BER");
@@ -104,47 +108,65 @@ public class Test_15_02_2018 {
 
     @Test
     public void testAddEdgesRoutes_15_02_2018(){
-
-        String from = "Voronezh";
-        String to = "Berlin";
-
-        List<Edge> list = convertPointsToListEdges.findAll(from,to);
-
-        List<Edge> edgeList = new ArrayList<>();
-
-        List<Route> routeList = new ArrayList<>();
-
-        for (int i = 0; i < RouteType.values().length ; i++) {
-
-          List<Edge> tempEdgeList = (RoutesFinalService.separator(list,RouteType.values()[i]));
-
-          List<Edge> edges = algorithm.getMinimalRoute(tempEdgeList,"VOZ","BER");
-
-          edgeList.addAll(edges);
-
-            Route route = new Route(new Date(),from,to,RouteType.values()[i]);
-
-            int order = 1;
-            for (Edge Edges : edges) {
-
-                RouteEdge routeEdge = new RouteEdge(order++);
-                routeEdge.setRoute(route);
-                routeEdge.setEdge(Edges);
-                route.getRouteEdges().add(routeEdge);
-                route.setCost(+Edges.getCost());
-                route.setDuration(+Edges.getDuration());
-            }
-
-            routeList.add(route);
-        }
-
-        if(!edgeList.isEmpty()&&!routeList.isEmpty()) {
-            edgeRepository.save(edgeList);
-            routeRepository.save(routeList);
-        }
-        else System.out.println("empties lists");
-
+//
+//        String from = "Voronezh";
+//        String to = "Berlin";
+//        LocalDate localDate = LocalDate.of(2018,3,1);
+//
+//        List<Edge> list = convertPointsToListEdges.findAll(from,to,localDate);
+//
+//        List<Edge> edgeList = new ArrayList<>();
+//
+//        List<Route> routeList = new ArrayList<>();
+//
+//        for (int i = 0; i < RouteType.values().length ; i++) {
+//
+//          List<Edge> tempEdgeList = (RoutesFinalService.separator(list,RouteType.values()[i]));
+//
+//          List<Edge> edges = algorithm.getMinimalRoute(tempEdgeList,"VOZ","BER");
+//
+//          edgeList.addAll(edges);
+//
+//            Route route = new Route(new Date(),from,to,RouteType.values()[i]);
+//
+//            int order = 1;
+//            for (Edge Edges : edges) {
+//
+//                RouteEdge routeEdge = new RouteEdge(order++);
+//                routeEdge.setRoute(route);
+//                routeEdge.setEdge(Edges);
+//                route.getRouteEdges().add(routeEdge);
+//                route.setCost(+Edges.getCost());
+//                route.setDuration(+Edges.getDuration());
+//            }
+//
+//            routeList.add(route);
+//        }
+//
+//        if(!edgeList.isEmpty()&&!routeList.isEmpty()) {
+//            edgeRepository.save(edgeList);
+//            routeRepository.save(routeList);
+//        }
+//        else System.out.println("empties lists");
+//
 
     }
+    @Test
+    public void g(){
+
+        List<Route> list = routesFinalService.findTheBestRoutes("Voronezh","Riga",LocalDate.of(2018,3,1));
+
+        list.forEach(System.out::println);
+
+        List<Edge> edgeList = new ArrayList<>();
+        list.forEach(route -> route.getRouteEdges().forEach(routeEdge -> edgeList.add(routeEdge.getEdge())));
+
+        edgeList.forEach(System.out::println);
+
+        edgeRepository.save(edgeList);
+        routeRepository.save(list);
+    }
+
+
 
 }
