@@ -29,7 +29,7 @@ public class YandexIntegrationTest {
 
         List<Edge> edgeList = yandexService.getEdgesFromYandex("c193"
                 ,"c213"
-                ,LocalDate.of(2018,02,10));
+                ,LocalDate.of(2018,02,13));
 
         edgeList.forEach(l -> System.out.println(l.toString()));
 
