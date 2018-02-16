@@ -63,8 +63,8 @@ public class RoutesFinalService {
                 routeEdge.setRoute(route);
                 routeEdge.setEdge(edge);
                 route.getRouteEdges().add(routeEdge);
-                route.setCost(+edge.getCost());
-                route.setDuration(+edge.getDuration());
+                route.setCost(route.getCost()+edge.getCost());
+                route.setDuration(route.getDuration()+edge.getDuration());
             }
 
             routeList.add(route);

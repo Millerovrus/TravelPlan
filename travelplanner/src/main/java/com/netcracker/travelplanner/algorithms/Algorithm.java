@@ -1,6 +1,8 @@
 package com.netcracker.travelplanner.algorithms;
 
 import com.netcracker.travelplanner.entities.Edge;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.List;
 public class Algorithm {
     // Список ребер с суммарным минимальным весом, т.е. искомый маршрут
     private List<Edge> minimalRoute = new LinkedList<>();
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * Метод запускает поиск маршрута и возвращает найденный маршрут
@@ -25,6 +28,7 @@ public class Algorithm {
      * @return minimalRoute - найденный маршрут
      */
     public List<Edge> getMinimalRoute(List<Edge> edges, String startPoint, String destinationPoint) {
+        logger.info("Запуск алгоритма поиска " + edges.get(0).getEdgeType() + " маршрута");
         startSearch(edges, startPoint, destinationPoint);
         return minimalRoute;
     }
