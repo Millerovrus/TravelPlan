@@ -27,7 +27,7 @@ public class RoutesFinalService {
     private  List<Edge> separator(List<Edge> edges, RouteType type){
 
         List<Edge> edgeList = new ArrayList<>();
-        edges.stream().filter(l->l.getEdgeType()== type).forEach(l -> {
+        edges.stream().filter(l->l.getEdgeType().equals(type)).forEach(l -> {
             try {
                 edgeList.add((Edge) l.clone());
             } catch (CloneNotSupportedException e) {
@@ -48,7 +48,7 @@ public class RoutesFinalService {
 
         for (int i = 0; i < RouteType.values().length ; i++) {
 
-            List<Edge> tempEdgeList = (separator(list,RouteType.values()[i]));
+            List<Edge> tempEdgeList = separator(list,RouteType.values()[i]);
 
             List<Edge> edges = algorithm.getMinimalRoute(tempEdgeList,from,to);
 
@@ -57,14 +57,14 @@ public class RoutesFinalService {
             Route route = new Route(new Date(),from,to,RouteType.values()[i]);
 
             int order = 1;
-            for (Edge Edges : edges) {
+            for (Edge edge : edges) {
 
                 RouteEdge routeEdge = new RouteEdge(order++);
                 routeEdge.setRoute(route);
-                routeEdge.setEdge(Edges);
+                routeEdge.setEdge(edge);
                 route.getRouteEdges().add(routeEdge);
-                route.setCost(+Edges.getCost());
-                route.setDuration(+Edges.getDuration());
+                route.setCost(+edge.getCost());
+                route.setDuration(+edge.getDuration());
             }
 
             routeList.add(route);
