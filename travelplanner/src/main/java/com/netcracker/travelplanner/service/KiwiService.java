@@ -6,6 +6,8 @@ import com.netcracker.travelplanner.entities.kiwi.KiwiFlights;
 import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.newKiwi.KiwiStations;
 import com.netcracker.travelplanner.entities.newKiwi.MyAirport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -21,7 +23,7 @@ import java.util.List;
 
 @Service
 public class KiwiService {
-
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private KiwiFlights getKiwiFlightsFromUrl(String urlQueryString) {
 
         KiwiFlights kiwiFlights = null;

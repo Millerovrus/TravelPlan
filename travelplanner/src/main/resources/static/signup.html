@@ -74,23 +74,34 @@
                             <h1>Create an Account</h1>
                             <input id="inputFirstName" type="text" placeholder="First name" class="input pass" required/>
                             <input id="inputLastName" type="text" placeholder="Last name" class="input pass" required/>
-                            <input id="inputBirthDate" type="text" placeholder="Date of birth" class="input pass" required/>
+                           <!-- <input id="inputBirthDate" type="text" placeholder="Date of birth" class="input pass" required/>-->
+                            <!--<div class="input pass">-->
+                                <div class="input-group date" id='datetimepicker1'>
+                                    <input id="inputBirthDate" type="text"  class="input pass" placeholder="Date of birth" required/>
+                                    <span class="input-group-addon datepickerbutton">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            <!--</div>-->
                             <input id="inputEmail" type="email" placeholder="Email address" class="input pass" required/>
+
                             <input id="inputPassword" type="password" placeholder="Choose a password" required class="input pass"/>
-                            <div class="input">
-                               <!-- <div class="form-group">
-                                    <div class="input-group date" id='datetimepicker1'>
-                                        <input type="text" id="inputDate" class="date-input-style" placeholder="Select departure date" />
-                                        <span class="input-group-addon datepickerbutton">
-                                                                <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                    </div>
-                                </div>-->
-                            </div>
-                           <!-- <input id="confirmPassword" type="password" placeholder="Confirm password(Это не заполнять!!!)" required class="input pass"/> -->
+                            <input id="confirmPassword" type="password" placeholder="Confirm password" required class="input pass"/>
                             <input type="submit" value="Sign up" ng-click="sendUserData()" class="inputButton"/>
-                            <!--<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
-                                    ng-click="sendUserData()">Sign up</button>-->
+                            <!--<script>
+                                window.onload = function () {
+                                    document.getElementById("inputPassword").onchange = validatePassword;
+                                    document.getElementById("confirmPassword").onchange = validatePassword;
+                                }
+                                function  validatePassword() {
+                                    var pass2=document.getElementById("confirmPassword").value;
+                                    var pass1=document.getElementById("inputPassword").value;
+                                    if(pass1!=pass2)
+                                        document.getElementById("inputPassword").setCustomValidity("Password don't match");
+                                    else
+                                        document.getElementById("inputPassword").setCustomValidity('');
+                                }
+                            </script>-->
                         </form>
                     </div>
                 </div>

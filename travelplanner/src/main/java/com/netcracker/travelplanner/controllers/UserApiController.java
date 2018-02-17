@@ -62,16 +62,17 @@ public class UserApiController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public void addUser(@RequestParam(value = "firstname", required = true) String firstName,
                         @RequestParam(value = "lastname", required = true) String lastName,
-                        @RequestParam(value = "birthdate", required = true) Date birthDate,
+                        @RequestParam(value = "birthdate", required = true) String birthDate,
                         @RequestParam(value = "email", required = true) String email,
                         @RequestParam(value = "password", required = true) String password){
         logger.info("Процесс регистрации нового пользователя...");
+        Date date = java.sql.Date.valueOf(birthDate);
         try {
-            userRepositoryService.save(new User(email, firstName, lastName, birthDate, false, date, password));
+            userRepositoryService.save(new User(email, firstName, lastName, date, false, date, password));
+            logger.info("Регистрация прошла успешно!");
         } catch (Exception ex) {
-            logger.error("Процесс прерван с ошибкой!");
+            logger.error("Процесс регистрации прерван с ошибкой: ", ex);
             ex.printStackTrace();
         }
-        logger.info("Регистрация прошла успешно!");
     }
 }
