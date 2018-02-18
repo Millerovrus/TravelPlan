@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,7 +46,8 @@
     <script src="js/google-map.js"></script>
 </head>
 
-<body>
+<body ng-controller="appController">
+<!--<div class="alert alert-info" ng-show="loading">Loading</div>-->
     <!--
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -70,7 +71,9 @@
     </div>
     -->
 
-    <div ng-app="myApp">
+
+
+    <div >
 
         <my-navbar></my-navbar>
 
@@ -126,30 +129,117 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
-
                                         <input type="submit" name="" ng-click="sendRequestParameters()" required class="button" value="Find route">
+                                        <div ng-show="loading" class="preloader"></div>
                                         <div ng-show="loaded">
-                                            <table class="table table-striped">
-                                                <tr>
-                                                    <!--<th>Id</th>-->
-                                                    <th>startPoint</th>
-                                                    <th>destinationPoint</th>
-                                                    <th>cost</th>
-                                                    <!--<th>transportType</th>-->
-                                                </tr>
-                                                <tr ng-repeat="record in records">
-                                                    <!--<td>{{record.id}}</td>-->
-                                                    <td>{{record.startPoint}}</td>
-                                                    <td>{{record.destinationPoint}}</td>
-                                                    <td>{{record.cost}}</td>
-                                                    <!--<td>{{record.transportType}}</td>-->
-                                                </tr>
-                                            </table>
+                                            <section class="bs-pricing-four roomy-50 bg-white fix">
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <div class="bs bs-pricing">
+                                                                <div class="cotent">
+                                                                    <h3 class="category">Cheap</h3>
+                                                                    <div ng-repeat="record in records" ng-show="record.routeType=='cheap'">
+                                                                        <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                        <p class="bs-caption"><b>Duration:</b> {{record.duration/3600}} (H)</p>
+                                                                      <!--  <p class="bs-caption"><b>Distance:</b> {{record.distance}} (KM)</p> -->
+                                                                        <div ng-repeat="items in record.routeEdges">
+                                                                                <ul>
+                                                                                    <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
+                                                                                    <li><b>Cost:</b> {{items.edge.cost}} (RUB)</li>
+                                                                                    <li><b>Type of transport:</b> {{items.edge.transportType}}</li>
+                                                                                </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="bs bs-pricing">
+                                                                <div class="cotent">
+                                                                    <h3 class="category">Optimal</h3>
+                                                                    <div ng-repeat="record in records" ng-show="record.routeType=='optimal'">
+                                                                        <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                        <p class="bs-caption"><b>Duration:</b> {{record.duration/3600}} (H)</p>
+                                                                      <!--  <p class="bs-caption"><b>Distance:</b> {{record.distance}} (KM)</p> -->
+                                                                        <div ng-repeat="items in record.routeEdges">
+                                                                            <ul>
+                                                                                <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
+                                                                                <li><b>Cost:</b> {{items.edge.cost}} (RUB)</li>
+                                                                                <li><b>Type of transport:</b> {{items.edge.transportType}}</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="bs bs-pricing">
+                                                                <div class="cotent">
+                                                                    <h3 class="category">Comfort</h3>
+                                                                    <div ng-repeat="record in records" ng-show="record.routeType=='comfort'">
+                                                                        <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                        <p class="bs-caption"><b>Duration:</b> {{record.duration/3600}} (H)</p>
+                                                                     <!--   <p class="bs-caption"><b>Distance:</b> {{record.distance}} (KM)</p> -->
+                                                                        <div ng-repeat="items in record.routeEdges">
+                                                                            <ul>
+                                                                                <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
+                                                                                <li><b>Cost:</b> {{items.edge.cost}} (RUB)</li>
+                                                                                <li><b>Type of transport:</b> {{items.edge.transportType}}</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" id="small-centered">
+                                                        <div class="col-sm-6">
+                                                            <div class="bs bs-pricing">
+                                                                <div class="cotent">
+                                                                    <h3 class="category">Cheapest</h3>
+                                                                    <div ng-repeat="record in records" ng-show="record.routeType=='cheapest'">
+                                                                        <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                        <p class="bs-caption"><b>Duration:</b> {{record.duration/3600}} (H)</p>
+                                                                       <!-- <p class="bs-caption"><b>Distance:</b> {{record.distance}} (KM)</p> -->
+                                                                        <div ng-repeat="items in record.routeEdges">
+                                                                            <ul>
+                                                                                <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
+                                                                                <li><b>Cost:</b> {{items.edge.cost}} (RUB)</li>
+                                                                                <li><b>Type of transport:</b> {{items.edge.transportType}}</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="bs bs-pricing">
+                                                                <div class="cotent">
+                                                                    <h3 class="category">Fastest</h3>
+                                                                    <div ng-repeat="record in records" ng-show="record.routeType=='fastest'">
+                                                                        <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                        <p class="bs-caption"><b>Duration:</b> {{record.duration/3600}} (H)</p>
+                                                                      <!--  <p class="bs-caption"><b>Distance:</b> {{record.distance}} (KM)</p> -->
+                                                                        <div ng-repeat="items in record.routeEdges">
+                                                                            <ul>
+                                                                                <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
+                                                                                <li><b>Cost:</b> {{items.edge.cost}} (RUB)</li>
+                                                                                <li><b>Type of transport:</b> {{items.edge.transportType}}</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
                                         </div>
-
                                     </div>
                                 </div>
                             </form>
+
                             <form>
                                 <div class="row">
                                     <div class="col-sm-12">

@@ -421,7 +421,6 @@ textarea{
     font-size: 20px;
 }
 
-.table{margin-top: 30px;}
 
 /* sign up */
 .background-sign-pic{
@@ -502,3 +501,74 @@ textarea{
 .inputButton:focus {
     outline: none;
 }
+
+/* for routes */
+
+.roomy-50{
+    padding:10px 0px;
+}
+
+.bs-pricing-four {
+    font-size: 15px;
+    font-family: Lato;
+}
+.bs-pricing {
+    background:#fff;
+}
+
+.bs-pricing-four .bs {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    color: #444;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+#small-centered {
+    width: 70%;
+    margin-left: 15%;
+}
+
+.bs-pricing-four .bs-pricing {
+    text-align: center;
+    position: relative;
+}
+
+
+.bs-pricing-four .bs-pricing .bs-caption {
+    margin-top: 5px;
+}
+
+.bs-pricing-four .bs-pricing .content {
+    padding: 5px;
+    margin-bottom: 0px;
+    z-index: 2;
+    position: relative;
+}
+
+.bs-pricing-four .bs-pricing ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px auto;
+
+}
+
+.bs-pricing-four .bs-pricing ul li {
+    text-align: center;
+    padding: 12px 0;
+}
+.bs-pricing-four .bs-pricing ul:not(.nav-pills) li{
+    border-bottom: 1px solid rgba(153, 153, 153, 0.3);
+}
+
+/* preloader */
+
+.preloader {
+    padding: 50px;
+    background: url('../img/preloader2.gif') no-repeat 50% 50% transparent;
+}
+
+
+
