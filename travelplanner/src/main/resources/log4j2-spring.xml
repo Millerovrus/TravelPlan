@@ -31,7 +31,7 @@
             <AppenderRef ref="SpringBoot-File-Appender"/>
             <AppenderRef ref="Console-Appender"/>
         </Logger>
-        <Logger name="com.netcracker.travelplanner" level="info" additivity="false">
+        <Logger name="com.netcracker.travelplanner" level="debug" additivity="false">
             <AppenderRef ref="App-File-Appender"/>
             <AppenderRef ref="Console-Appender"/>
         </Logger>

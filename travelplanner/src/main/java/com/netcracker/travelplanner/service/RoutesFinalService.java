@@ -5,6 +5,8 @@ import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.Route;
 import com.netcracker.travelplanner.entities.RouteEdge;
 import com.netcracker.travelplanner.entities.RouteType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class RoutesFinalService {
-
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private ConvertPointsToListEdges convertPointsToListEdges;
 
@@ -40,6 +42,7 @@ public class RoutesFinalService {
 
     public List<Route> findTheBestRoutes(String from, String to, LocalDate localDate){
 
+        logger.debug("Запуск поиска лучших маршрутов между from: " + from + " и to: " + to);
         List<Edge> list = convertPointsToListEdges.findAll(from,to,localDate);
 
         List<Edge> edgeList = new ArrayList<>();

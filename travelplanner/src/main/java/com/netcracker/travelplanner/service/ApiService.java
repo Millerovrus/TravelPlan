@@ -3,6 +3,8 @@ package com.netcracker.travelplanner.service;
 import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.entities.newKiwi.MyAirport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import java.util.function.Predicate;
 
 @Service
 public class ApiService implements IntegrationAPIService {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private AirportRepoService airportRepoService;
@@ -33,23 +36,27 @@ public class ApiService implements IntegrationAPIService {
      * @return список ребер отфильтрованных по типу ребра cheap, optimal, comfort
      */
     public List<Edge> getEdgesFromTo(String from, String to, LocalDate localDate) {
-
+        logger.debug("Начало запросов к api для получения Edge, from: " + from + " to:" + to);
         List<Edge> edgeList = new ArrayList<>();
         List<Edge> result = new ArrayList<>();
         String codeFrom = cityToIataCode(from);
         String codeTo = cityToIataCode(to);
+
+        logger.debug("Запрос к yandex...");
         edgeList.addAll(yandexService.getEdgesFromYandex(from
                 ,to
                 ,localDate
                 ,codeFrom
                 ,codeTo));
 
+        logger.debug("Запрос к kiwi...");
         edgeList.addAll(kiwiService.getEdgesFlights(from
                 ,to
                 ,localDate
                 ,localDate
                 ,codeFrom
                 ,codeTo ));
+
 
         if (!edgeList.isEmpty()) {
             result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
@@ -69,12 +76,15 @@ public class ApiService implements IntegrationAPIService {
      */
     private Edge filterEdgeByTypes(List<Edge> edgeList, RouteType type){
 
+        logger.debug("Установка типа ребра и фильтрация по типу: " + type.toString());
         Edge edge = null;
         edgeList.forEach(l->l.setEdgeType(type));
         edgeList.forEach(l->l.setData(type));
         try {
             edge = (Edge) edgeList.stream().min(Comparator.comparingDouble(Edge::getWeight)).get().clone();
+            logger.debug("OK!");
         } catch (CloneNotSupportedException e) {
+            logger.error("Error in filterEdgeByTypes!");
             e.printStackTrace();
         }
 
@@ -88,6 +98,7 @@ public class ApiService implements IntegrationAPIService {
      */
     public List<String> getClosesCities(String city) {
 
+        logger.debug("Получение ближайших городов с аэропортами для города: " + city);
         List<String> codes = new ArrayList<>();
 
         MyAirport airport = airportRepoService.getMyAirport(city);

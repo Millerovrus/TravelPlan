@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.entities.yandex.YandexRasp;
 import com.netcracker.travelplanner.entities.Edge;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -18,7 +20,7 @@ import java.util.List;
 
 @Service
 public class YandexService {
-
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private YandexRasp getYandexRaspFromUrl(String urlQueryString){
 
         YandexRasp yandexRasp = null;
@@ -47,11 +49,11 @@ public class YandexService {
         return yandexRasp;
     }
 
-    public List<Edge> getEdgesFromYandex(String from
-            , String to
-            , LocalDate date, String codeFrom, String codeTo)
-    {
-
+    public List<Edge> getEdgesFromYandex(String from,
+                                         String to,
+                                         LocalDate date,
+                                         String codeFrom,
+                                         String codeTo){
 
         if(from.equals(to)){return null;}
         Date dateNow = new Date();

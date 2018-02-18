@@ -28,7 +28,7 @@ public class Algorithm {
      * @return minimalRoute - найденный маршрут
      */
     public List<Edge> getMinimalRoute(List<Edge> edges, String startPoint, String destinationPoint) {
-        logger.info("Запуск алгоритма поиска " + edges.get(0).getEdgeType() + " маршрута");
+        logger.debug("Запуск алгоритма поиска " + edges.get(0).getEdgeType() + " маршрута");
         startSearch(edges, startPoint, destinationPoint);
         return minimalRoute;
     }

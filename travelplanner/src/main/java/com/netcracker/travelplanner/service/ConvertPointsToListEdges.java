@@ -1,6 +1,8 @@
 package com.netcracker.travelplanner.service;
 
 import com.netcracker.travelplanner.entities.Edge;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,7 @@ import java.util.List;
 
 @Service
 public class ConvertPointsToListEdges {
-
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private IntegrationAPIService integrationAPIService;
 
@@ -50,6 +52,7 @@ public class ConvertPointsToListEdges {
     public List<Edge> findAll(String from, String to, LocalDate localDate){
         List<String> citiesFrom = new ArrayList<>();
 
+        logger.debug("Получение ближайших городов с аэропортами в округе города " + from + " и города " + to);
         citiesFrom.addAll(integrationAPIService.getClosesCities(from));
 
         List<String> citiesTo = new ArrayList<>();

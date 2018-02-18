@@ -14,20 +14,20 @@ app.controller('controllerSignUp', function signUpUser($scope, $http) {
             }),
             /*заголовок передаваемого объекта*/
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        }).then(
+        })
+        .then(
             function success(response) {
-                alert("Вы зарегистрированы!");
-                location.href="/";
+                console.log(response.data);
                 /*Очистка формы от введённых значений*/
                 angular.element($('#inputFirstName')).val('');
                 angular.element($('#inputLastName')).val('');
                 angular.element($('#inputBirthDate')).val('');
                 angular.element($('#inputEmail')).val('');
                 angular.element($('#inputPassword')).val('');
-                console.log(response.data);
             },
             function error(response, status) {
-                console.error('Not send, Error!!!', status, response);
-            })
+                console.error('User has not been added, error!', status, response);
+            }
+        )
     }
 });
