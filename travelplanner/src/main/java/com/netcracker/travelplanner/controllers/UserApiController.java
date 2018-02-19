@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserApiController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    Date date = new Date();
+    Date date;
     @Autowired
     private UserRepositoryService userRepositoryService;
 
@@ -68,7 +68,7 @@ public class UserApiController {
         logger.info("Процесс регистрации нового пользователя...");
         Date date = java.sql.Date.valueOf(birthDate);
         try {
-            userRepositoryService.save(new User(email, firstName, lastName, date, false, date, password));
+            userRepositoryService.save(new User(email, firstName, lastName, date, false, new Date(), password));
             logger.info("Регистрация прошла успешно!");
         } catch (Exception ex) {
             logger.error("Процесс регистрации прерван с ошибкой: ", ex);
