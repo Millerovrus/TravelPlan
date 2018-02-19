@@ -141,8 +141,7 @@
                                                                     <h3 class="category">Cheap</h3>
                                                                     <div ng-repeat="record in records" ng-show="record.routeType=='cheap'">
                                                                         <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                        <p class="bs-caption"><b>Duration:</b> {{record.duration/3600}} (H)</p>
-                                                                      <!--  <p class="bs-caption"><b>Distance:</b> {{record.distance}} (KM)</p> -->
+                                                                        <p class="bs-caption"><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
                                                                         <div ng-repeat="items in record.routeEdges">
                                                                                 <ul>
                                                                                     <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
@@ -160,8 +159,7 @@
                                                                     <h3 class="category">Optimal</h3>
                                                                     <div ng-repeat="record in records" ng-show="record.routeType=='optimal'">
                                                                         <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                        <p class="bs-caption"><b>Duration:</b> {{record.duration/3600}} (H)</p>
-                                                                      <!--  <p class="bs-caption"><b>Distance:</b> {{record.distance}} (KM)</p> -->
+                                                                        <p class="bs-caption"><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
                                                                         <div ng-repeat="items in record.routeEdges">
                                                                             <ul>
                                                                                 <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
@@ -179,8 +177,7 @@
                                                                     <h3 class="category">Comfort</h3>
                                                                     <div ng-repeat="record in records" ng-show="record.routeType=='comfort'">
                                                                         <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                        <p class="bs-caption"><b>Duration:</b> {{record.duration/3600}} (H)</p>
-                                                                     <!--   <p class="bs-caption"><b>Distance:</b> {{record.distance}} (KM)</p> -->
+                                                                        <p class="bs-caption"><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
                                                                         <div ng-repeat="items in record.routeEdges">
                                                                             <ul>
                                                                                 <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
@@ -200,8 +197,7 @@
                                                                     <h3 class="category">Cheapest</h3>
                                                                     <div ng-repeat="record in records" ng-show="record.routeType=='cheapest'">
                                                                         <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                        <p class="bs-caption"><b>Duration:</b> {{record.duration/3600}} (H)</p>
-                                                                       <!-- <p class="bs-caption"><b>Distance:</b> {{record.distance}} (KM)</p> -->
+                                                                        <p class="bs-caption"><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
                                                                         <div ng-repeat="items in record.routeEdges">
                                                                             <ul>
                                                                                 <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
@@ -219,8 +215,7 @@
                                                                     <h3 class="category">Fastest</h3>
                                                                     <div ng-repeat="record in records" ng-show="record.routeType=='fastest'">
                                                                         <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                        <p class="bs-caption"><b>Duration:</b> {{record.duration/3600}} (H)</p>
-                                                                      <!--  <p class="bs-caption"><b>Distance:</b> {{record.distance}} (KM)</p> -->
+                                                                        <p class="bs-caption"><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}} </p>
                                                                         <div ng-repeat="items in record.routeEdges">
                                                                             <ul>
                                                                                 <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
