@@ -85,11 +85,11 @@ public class Edge implements Cloneable {
                 break;
 
             case cheapest:
-                setWeight(1.0, 0.000001);
+                setWeight(1.0, 0.0000001);
                 break;
 
             case fastest:
-                setWeight(0.000001, 1.0);
+                setWeight(0.0000001, 10.0);
                 break;
 
             default:
@@ -121,7 +121,7 @@ public class Edge implements Cloneable {
         return weight;
     }
 
-    public void setWeight(double c1, double c2) {
+    private void setWeight(double c1, double c2) {
         this.weight = c1 * cost + c2 * (duration / 3600);
     }
 
