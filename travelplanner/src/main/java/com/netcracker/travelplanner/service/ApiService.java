@@ -43,19 +43,23 @@ public class ApiService implements IntegrationAPIService {
         String codeTo = cityToIataCode(to);
 
         logger.debug("Запрос к yandex...");
-        edgeList.addAll(yandexService.getEdgesFromYandex(from
+        List<Edge> list1 = yandexService.getEdgesFromYandex(from
                 ,to
                 ,localDate
                 ,codeFrom
-                ,codeTo));
+                ,codeTo);
+        if( list1!=null && !list1.isEmpty()){edgeList.addAll(list1);}
 
         logger.debug("Запрос к kiwi...");
-        edgeList.addAll(kiwiService.getEdgesFlights(from
+        List<Edge> list2 = kiwiService.getEdgesFlights(from
                 ,to
                 ,localDate
                 ,localDate
                 ,codeFrom
-                ,codeTo ));
+                ,codeTo );
+
+        if( list2!=null && !list2.isEmpty()){edgeList.addAll(list2);}
+
 
 
         if (!edgeList.isEmpty()) {
