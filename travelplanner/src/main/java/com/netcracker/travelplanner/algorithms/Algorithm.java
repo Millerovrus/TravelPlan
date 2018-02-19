@@ -30,6 +30,7 @@ public class Algorithm {
     public List<Edge> getMinimalRoute(List<Edge> edges, String startPoint, String destinationPoint) {
         logger.debug("Запуск алгоритма поиска " + edges.get(0).getEdgeType() + " маршрута");
         startSearch(edges, startPoint, destinationPoint);
+        logger.debug("Найденный маршрут: " + minimalRoute.toString());
         return minimalRoute;
     }
 
@@ -91,17 +92,18 @@ public class Algorithm {
         // ищем путь с минимальным весом
         double minWeight = Double.POSITIVE_INFINITY;
         for (List<Edge> foundRoute : foundRoutes) {
-            int weight = 0;
+            double weight = 0;
             for (Edge routeEdge : foundRoute) {
                 weight += routeEdge.getWeight();
             }
             if (weight < minWeight){
                 minimalRoute = foundRoute;
                 minWeight = weight;
-            }
-            // если у путей одинаковый вес - выбираем тот, у которого меньше ребер
-            if (weight == minWeight && minimalRoute.size() > foundRoute.size()){
-                minimalRoute = foundRoute;
+            } else {
+                // если у путей одинаковый вес - выбираем тот, у которого меньше ребер
+                if (weight == minWeight && minimalRoute.size() > foundRoute.size()){
+                    minimalRoute = foundRoute;
+                }
             }
         }
     }
