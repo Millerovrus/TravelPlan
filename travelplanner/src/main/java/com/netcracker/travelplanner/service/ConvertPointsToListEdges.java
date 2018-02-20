@@ -5,16 +5,39 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class ConvertPointsToListEdges {
+    private List<Edge> resultList;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    ExecutorService executorService;
     @Autowired
     private IntegrationAPIService integrationAPIService;
+
+    class ApiRunnable implements Runnable{
+        String from, to;
+        LocalDate date;
+
+        ApiRunnable(String from, String to, LocalDate date) {
+            this.from = from;
+            this.to = to;
+            this.date = date;
+        }
+
+        @Override
+        public void run() {
+            List<Edge> list = integrationAPIService.getEdgesFromTo(from, to, date);
+            if (!list.isEmpty()) {
+                resultList.addAll(list);
+            }
+        }
+    }
 
     /**
      * Метод возвращает список всех рёбер, между всеми городами(аэропортами),
@@ -50,57 +73,48 @@ public class ConvertPointsToListEdges {
     }
 
     public List<Edge> findAll(String from, String to, LocalDate localDate){
-        List<String> citiesFrom = new ArrayList<>();
+        List<String> citiesFrom = new ArrayList<>(), citiesTo = new ArrayList<>();
+        resultList = new ArrayList<>();
+        executorService = Executors.newCachedThreadPool();
 
         logger.debug("Получение ближайших городов с аэропортами в округе города " + from + " и города " + to);
         citiesFrom.addAll(integrationAPIService.getClosesCities(from));
-
-        List<String> citiesTo = new ArrayList<>();
-
         citiesTo.addAll(integrationAPIService.getClosesCities(to));
-
-        List<Edge> resultList = new ArrayList<>();
 
         List<Edge> list11 = integrationAPIService.getEdgesFromTo(from, to, localDate);
         if(!list11.isEmpty()){
             resultList.addAll(list11);
         }
 
-
         for (String aCitiesFrom : citiesFrom) {
-            List<Edge> list = integrationAPIService.getEdgesFromTo(from, aCitiesFrom, localDate);
-            if (!list.isEmpty()) {
-                resultList.addAll(list);
-            }
+            Runnable runnable = new ApiRunnable(from, aCitiesFrom, localDate);
+            executorService.execute(runnable);
         }
 
         for (String aCitiesTo : citiesTo) {
-            List<Edge> list = integrationAPIService.getEdgesFromTo(aCitiesTo, to, localDate);
-            if (!list.isEmpty()) {
-                resultList.addAll(list);
-            }
+            Runnable runnable = new ApiRunnable(aCitiesTo, to, localDate);
+            executorService.execute(runnable);
         }
 
         for (String aCitiesFrom : citiesFrom) {
-            List<Edge> list1 = new ArrayList<>();
             for (String aCitiesTo : citiesTo) {
-                List<Edge> list = integrationAPIService.getEdgesFromTo(aCitiesFrom, aCitiesTo, localDate);
-                if (!list.isEmpty()) {
-                    list1.addAll(list);
-                }
+                Runnable runnable = new ApiRunnable(aCitiesFrom, aCitiesTo, localDate);
+                executorService.execute(runnable);
             }
-            List<Edge> list = integrationAPIService.getEdgesFromTo(aCitiesFrom, to, localDate);
-            if (!list.isEmpty()){
-                resultList.addAll(list);
-            }
-            resultList.addAll(list1);
+            Runnable runnable = new ApiRunnable(aCitiesFrom, to, localDate);
+            executorService.execute(runnable);
         }
 
         for (String aCitiesTo: citiesTo){
-            List<Edge> list = integrationAPIService.getEdgesFromTo(from, aCitiesTo, localDate);
-            if (!list.isEmpty()){
-                resultList.addAll(list);
-            }
+            Runnable runnable = new ApiRunnable(from, aCitiesTo, localDate);
+            executorService.execute(runnable);
+        }
+
+        executorService.shutdown();
+        try {
+            boolean finished = executorService.awaitTermination(100, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
         return resultList;
