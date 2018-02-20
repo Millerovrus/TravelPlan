@@ -1,15 +1,10 @@
 package com.netcracker.travelplanner.algorithms;
 
-import com.netcracker.travelplanner.entities.Edge;
-import com.netcracker.travelplanner.entities.Route;
-import com.netcracker.travelplanner.entities.RouteEdge;
-import com.netcracker.travelplanner.entities.RouteType;
+import com.netcracker.travelplanner.entities.*;
 import org.springframework.stereotype.Service;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
+@Deprecated
 @Service
 public class RouteFinder {
     private List<Route> routes;
@@ -51,10 +46,8 @@ public class RouteFinder {
 
         for (Edge edge :
                 result) {
-            RouteEdge routeEdge = new RouteEdge(order++);
-            routeEdge.setEdge(edge);
-            routeEdge.setRoute(route);
-            route.getRouteEdges().add(routeEdge);
+            edge.setRoute(route);
+            route.getEdges().add(edge);
 
             route.setWeight(route.getWeight() + edge.getWeight());
             if (edge.getDistance() != null){

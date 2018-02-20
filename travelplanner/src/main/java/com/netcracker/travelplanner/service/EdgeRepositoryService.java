@@ -13,19 +13,18 @@ import java.util.List;
 
 @Service
 public class EdgeRepositoryService {
-
     @Autowired
     private EdgeRepository edgeRepository;
 
     /**
      * save edge in database
-     * @param edge
+     * @param edge - edge to be saved
      */
     public void save(Edge edge){edgeRepository.save(edge);}
 
     /**
      * save list of edges in database
-     * @param list
+     * @param list - list of edges to be saved
      */
     public void save(List<Edge> list){
         edgeRepository.save(list);
@@ -57,7 +56,7 @@ public class EdgeRepositoryService {
     }
 
     /**
-     * @param d
+     * @param d - distance of edges
      * @return list of edges by distance
      */
     public List<Edge> findByDistance(double d){
@@ -65,7 +64,7 @@ public class EdgeRepositoryService {
     }
 
     /**
-     * @param d
+     * @param d - duration of edges
      * @return list of edges by duration
      */
     public List<Edge> findByDuration(double d){
@@ -73,15 +72,15 @@ public class EdgeRepositoryService {
     }
 
     /**
-     * @param d
+     * @param c - cost of edges
      * @return list of edges by cost
      */
-    public List<Edge> findByCost(double d){
-        return edgeRepository.findByCost(d);
+    public List<Edge> findByCost(double c){
+        return edgeRepository.findByCost(c);
     }
 
     /**
-     * @param type
+     * @param type - transport type of edges
      * @return list of edges by transport type
      */
     public List<Edge> findByTransportType(String type){
@@ -89,7 +88,7 @@ public class EdgeRepositoryService {
     }
 
     /**
-     * @param type
+     * @param type - route type of edges
      * @return list of edges by type
      */
     public List<Edge> findByEdgeType(RouteType type){

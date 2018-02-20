@@ -29,7 +29,6 @@ public class RouteApiController {
         return routeRepositoryService.findAll();
     }
 
-
     /**
      * @param id
      * @return route by id

@@ -51,7 +51,7 @@ public class EdgeApiController {
     }
 
     /**
-     * @param d
+     * @param d - distance of edges
      * @return list of edges by distance
      */
     @RequestMapping(value = "/findbydistance", method = RequestMethod.GET)
@@ -61,7 +61,7 @@ public class EdgeApiController {
     }
 
     /**
-     * @param d
+     * @param d - duration of edges
      * @return list of edges by duration
      */
     @RequestMapping(value = "/findbyduration", method = RequestMethod.GET)
@@ -71,17 +71,17 @@ public class EdgeApiController {
     }
 
     /**
-     * @param d
+     * @param c - cost of edges
      * @return list of edges by cost
      */
     @RequestMapping(value = "/findbycost", method = RequestMethod.GET)
-    public List<Edge> getEdgesByCost(@RequestParam(value = "cost", required = true) double d) {
-        logger.info("Запрос на получение cписка отрезков с cost = " + d);
-        return edgeRepositoryService.findByCost(d);
+    public List<Edge> getEdgesByCost(@RequestParam(value = "cost", required = true) double c) {
+        logger.info("Запрос на получение cписка отрезков с cost = " + c);
+        return edgeRepositoryService.findByCost(c);
     }
 
     /**
-     * @param s
+     * @param s - type of transport of edges
      * @return list of edges by transport type
      */
     @RequestMapping(value = "/findbytransporttype", method = RequestMethod.GET)
@@ -91,7 +91,7 @@ public class EdgeApiController {
     }
 
     /**
-     * @param type
+     * @param type - type of edges
      * @return list of edges by type
      */
     @RequestMapping(value = "/findbyedgetype", method = RequestMethod.GET)
