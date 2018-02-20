@@ -31,6 +31,7 @@ public class ConvertPointsToListEdges {
             List<Edge> list = integrationAPIService.getEdgesFromTo(from, to, date);
             if (!list.isEmpty()) {
                 resultList.addAll(list);
+                logger.debug("Получено ребро " + from + " - " + to);
             }
         }
     }
@@ -40,70 +41,51 @@ public class ConvertPointsToListEdges {
      * находязимися вблизи(по радиусу) города отправления и города назначения(включая эти города)
      * @param from название города отправления
      * @param to название города назначения
+     * @param localDate дата
      * @return возврат списка рёбер
      */
-    @Deprecated
-    public List<Edge> findAllEdges(String from, String to, LocalDate localDate) {
-        List<String> stringListFrom = new ArrayList<>();
-        List<String> stringListTo = new ArrayList<>();
-        List<Edge> edges = new ArrayList<>();
-
-        stringListFrom.add(from);
-        stringListFrom.addAll(integrationAPIService.getClosesCities(from));
-        stringListTo.add(to);
-        stringListTo.addAll(integrationAPIService.getClosesCities(to));
-
-        for (int i = 1; i < stringListFrom.size(); i++) {
-
-            edges.addAll(integrationAPIService.getEdgesFromTo(from, stringListFrom.get(i), localDate));
-        }
-        for (String pointFrom : stringListFrom) {
-            for (String pointTo : stringListTo) {
-                edges.addAll(integrationAPIService.getEdgesFromTo(pointFrom, pointTo, localDate));
-            }
-        }
-        for (int i = 1; i < stringListTo.size(); i++) {
-            edges.addAll(integrationAPIService.getEdgesFromTo(stringListTo.get(i), stringListTo.get(0), localDate));
-        }
-        return edges;
-    }
-
     List<Edge> findAll(String from, String to, LocalDate localDate){
-        List<String> citiesFrom = new ArrayList<>(), citiesTo = new ArrayList<>();
         resultList = new ArrayList<>();
         ExecutorService executorService = Executors.newCachedThreadPool();
 
         logger.debug("Получение ближайших городов с аэропортами в округе города " + from + " и города " + to);
-        citiesFrom.addAll(integrationAPIService.getClosesCities(from));
-        citiesTo.addAll(integrationAPIService.getClosesCities(to));
-
-        List<Edge> list11 = integrationAPIService.getEdgesFromTo(from, to, localDate);
-        if(!list11.isEmpty()){
-            resultList.addAll(list11);
-        }
-
-        for (String aCitiesFrom : citiesFrom) {
-            Runnable runnable = new ApiRunnable(from, aCitiesFrom, localDate);
-            executorService.execute(runnable);
-        }
-
-        for (String aCitiesTo : citiesTo) {
-            Runnable runnable = new ApiRunnable(aCitiesTo, to, localDate);
-            executorService.execute(runnable);
-        }
-
-        for (String aCitiesFrom : citiesFrom) {
-            for (String aCitiesTo : citiesTo) {
-                Runnable runnable = new ApiRunnable(aCitiesFrom, aCitiesTo, localDate);
-                executorService.execute(runnable);
+        //получаем аэропорты вокруг from
+        List<String> citiesFrom = integrationAPIService.getClosesCities(from);
+        //получаем аэропорты вокруг to
+        List<String> citiesTo = integrationAPIService.getClosesCities(to);
+        //удаляем лишние аэропорты
+        citiesFrom.remove(to);
+        citiesTo.remove(from);
+        //удаляем повторения аэропортов в списках
+        for (String cityFrom : citiesFrom) {
+            for (String cityTo : citiesTo) {
+                if (cityFrom.equals(cityTo)) {
+                    citiesTo.remove(cityTo);
+                    break;
+                }
             }
-            Runnable runnable = new ApiRunnable(aCitiesFrom, to, localDate);
-            executorService.execute(runnable);
         }
+        logger.debug("Аэропорты вокруг " + from + ": " + citiesFrom.toString());
+        logger.debug("Аэропорты вокруг " + to + ": " + citiesTo.toString());
 
-        for (String aCitiesTo: citiesTo){
-            Runnable runnable = new ApiRunnable(from, aCitiesTo, localDate);
-            executorService.execute(runnable);
+        Runnable runnable = new ApiRunnable(from, to, localDate);
+        executorService.execute(runnable);
+
+        for (String cityFrom : citiesFrom) {
+            Runnable runnable1 = new ApiRunnable(from, cityFrom, localDate);
+            executorService.execute(runnable1);
+            Runnable runnable2 = new ApiRunnable(cityFrom, to, localDate);
+            executorService.execute(runnable2);
+            for (String cityTo : citiesTo) {
+                Runnable runnable3 = new ApiRunnable(cityFrom, cityTo, localDate);
+                executorService.execute(runnable3);
+            }
+        }
+        for (String cityTo : citiesTo) {
+            Runnable runnable1 = new ApiRunnable(cityTo, to, localDate);
+            executorService.execute(runnable1);
+            Runnable runnable2 = new ApiRunnable(from, cityTo, localDate);
+            executorService.execute(runnable2);
         }
 
         executorService.shutdown();

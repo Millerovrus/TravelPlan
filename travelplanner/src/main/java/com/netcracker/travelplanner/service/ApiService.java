@@ -41,7 +41,7 @@ public class ApiService implements IntegrationAPIService {
         String codeFrom = cityToIataCode(from);
         String codeTo = cityToIataCode(to);
 
-        logger.debug("Запрос к yandex...");
+//        logger.debug("Запрос к yandex...");
         List<Edge> list1 = yandexService.getEdgesFromYandex(from
                 ,to
                 ,localDate
@@ -49,7 +49,7 @@ public class ApiService implements IntegrationAPIService {
                 ,codeTo);
         if( list1!=null && !list1.isEmpty()){edgeList.addAll(list1);}
 
-        logger.debug("Запрос к kiwi...");
+//        logger.debug("Запрос к kiwi...");
         List<Edge> list2 = kiwiService.getEdgesFlights(from
                 ,to
                 ,localDate
@@ -77,15 +77,15 @@ public class ApiService implements IntegrationAPIService {
      */
     private Edge filterEdgeByTypes(List<Edge> edgeList, RouteType type){
 
-        logger.debug("Установка типа ребра и фильтрация по типу: " + type.toString());
+//        logger.debug("Установка типа ребра и фильтрация по типу: " + type.toString());
         Edge edge = null;
         edgeList.forEach(l->l.setEdgeType(type));
         edgeList.forEach(l->l.setData(type));
         try {
             edge = (Edge) edgeList.stream().min(Comparator.comparingDouble(Edge::getWeight)).get().clone();
-            logger.debug("OK!");
+//            logger.debug("OK!");
         } catch (CloneNotSupportedException e) {
-            logger.error("Error in filterEdgeByTypes!");
+            logger.error("Error!", e);
             e.printStackTrace();
         }
 
