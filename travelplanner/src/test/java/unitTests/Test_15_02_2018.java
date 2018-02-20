@@ -151,7 +151,7 @@ public class Test_15_02_2018 {
     @Test
     public void g(){
 
-        List<Route> list = routesFinalService.findTheBestRoutes("Voronezh","Lipetsk",LocalDate.of(2018,2,23));
+        List<Route> list = routesFinalService.findTheBestRoutes("Voronezh","Moscow",LocalDate.of(2018,2,23));
 
         list.forEach(System.out::println);
 
@@ -162,19 +162,6 @@ public class Test_15_02_2018 {
 
         edgeRepository.save(edgeList);
         routeRepository.save(list);
-    }
-
-
-    @Test
-    public void testg(){
-        List<String> str = new ArrayList<>();
-        if (str.isEmpty()){
-            System.out.println("kek");
-        }
-        if (str==null){
-            System.out.println("shmek");
-        }
-        System.out.println(str.toString());
     }
 
 
