@@ -6,17 +6,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.*;
+import java.util.concurrent.*;
 
 @Service
 public class ConvertPointsToListEdges {
     private List<Edge> resultList;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    ExecutorService executorService;
     @Autowired
     private IntegrationAPIService integrationAPIService;
 
@@ -44,53 +40,75 @@ public class ConvertPointsToListEdges {
      * находязимися вблизи(по радиусу) города отправления и города назначения(включая эти города)
      * @param from название города отправления
      * @param to название города назначения
-     * @param localDate дата
      * @return возврат списка рёбер
      */
-    public List<Edge> findAll(String from, String to, LocalDate localDate){
-        resultList = new ArrayList<>();
-        executorService = Executors.newCachedThreadPool();
+    @Deprecated
+    public List<Edge> findAllEdges(String from, String to, LocalDate localDate) {
+        List<String> stringListFrom = new ArrayList<>();
+        List<String> stringListTo = new ArrayList<>();
+        List<Edge> edges = new ArrayList<>();
 
-        logger.debug("Получение ближайших городов с аэропортами в округе города " + from + " и города " + to);
-        //получаем аэропорты вокруг from
-        List<String> citiesFrom = integrationAPIService.getClosesCities(from);
-        //получаем аэропорты вокруг to
-        List<String> citiesTo = integrationAPIService.getClosesCities(to);
-        //удаляем лишние значения
-        citiesFrom.remove(to);
-        citiesTo.remove(from);
-        for (String cityFrom : citiesFrom) {
-            for (String cityTo : citiesTo) {
-                if (cityFrom.equals(cityTo)){
-                    citiesTo.remove(cityTo);
-                    break;
-                }
+        stringListFrom.add(from);
+        stringListFrom.addAll(integrationAPIService.getClosesCities(from));
+        stringListTo.add(to);
+        stringListTo.addAll(integrationAPIService.getClosesCities(to));
+
+        for (int i = 1; i < stringListFrom.size(); i++) {
+
+            edges.addAll(integrationAPIService.getEdgesFromTo(from, stringListFrom.get(i), localDate));
+        }
+        for (String pointFrom : stringListFrom) {
+            for (String pointTo : stringListTo) {
+                edges.addAll(integrationAPIService.getEdgesFromTo(pointFrom, pointTo, localDate));
             }
         }
-        logger.debug("Аэропорты вокруг " + from + " " + citiesFrom.toString());
-        logger.debug("Аэропорты вокруг " + to + " " + citiesTo.toString());
+        for (int i = 1; i < stringListTo.size(); i++) {
+            edges.addAll(integrationAPIService.getEdgesFromTo(stringListTo.get(i), stringListTo.get(0), localDate));
+        }
+        return edges;
+    }
 
-        Runnable runnable = new ApiRunnable(from, to, localDate);
-        executorService.execute(runnable);
+    List<Edge> findAll(String from, String to, LocalDate localDate){
+        List<String> citiesFrom = new ArrayList<>(), citiesTo = new ArrayList<>();
+        resultList = new ArrayList<>();
+        ExecutorService executorService = Executors.newCachedThreadPool();
 
-        for (String cityFrom : citiesFrom) {
-            runnable = new ApiRunnable(from, cityFrom, localDate);
+        logger.debug("Получение ближайших городов с аэропортами в округе города " + from + " и города " + to);
+        citiesFrom.addAll(integrationAPIService.getClosesCities(from));
+        citiesTo.addAll(integrationAPIService.getClosesCities(to));
+
+        List<Edge> list11 = integrationAPIService.getEdgesFromTo(from, to, localDate);
+        if(!list11.isEmpty()){
+            resultList.addAll(list11);
+        }
+
+        for (String aCitiesFrom : citiesFrom) {
+            Runnable runnable = new ApiRunnable(from, aCitiesFrom, localDate);
             executorService.execute(runnable);
-            runnable = new ApiRunnable(cityFrom, to, localDate);
+        }
+
+        for (String aCitiesTo : citiesTo) {
+            Runnable runnable = new ApiRunnable(aCitiesTo, to, localDate);
             executorService.execute(runnable);
-            for (String cityTo : citiesTo) {
-                runnable = new ApiRunnable(from, cityTo, localDate);
-                executorService.execute(runnable);
-                runnable = new ApiRunnable(cityFrom, cityTo, localDate);
-                executorService.execute(runnable);
-                runnable = new ApiRunnable(cityTo, to, localDate);
+        }
+
+        for (String aCitiesFrom : citiesFrom) {
+            for (String aCitiesTo : citiesTo) {
+                Runnable runnable = new ApiRunnable(aCitiesFrom, aCitiesTo, localDate);
                 executorService.execute(runnable);
             }
+            Runnable runnable = new ApiRunnable(aCitiesFrom, to, localDate);
+            executorService.execute(runnable);
+        }
+
+        for (String aCitiesTo: citiesTo){
+            Runnable runnable = new ApiRunnable(from, aCitiesTo, localDate);
+            executorService.execute(runnable);
         }
 
         executorService.shutdown();
         try {
-            boolean finished = executorService.awaitTermination(100, TimeUnit.SECONDS);
+            executorService.awaitTermination(30, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -98,4 +116,3 @@ public class ConvertPointsToListEdges {
         return resultList;
     }
 }
-

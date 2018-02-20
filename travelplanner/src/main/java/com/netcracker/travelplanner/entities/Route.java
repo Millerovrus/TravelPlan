@@ -50,7 +50,7 @@ public class Route implements Serializable {
     private double distance;
 
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RouteEdge> routeEdges;
+    private List<Edge> edges;
 
     public double getCost() {
         return cost;
@@ -84,12 +84,12 @@ public class Route implements Serializable {
         this.weight = weight;
     }
 
-    public List<RouteEdge> getRouteEdges() {
-        return routeEdges;
+    public List<Edge> getEdges() {
+        return edges;
     }
 
-    public void setRouteEdges(List<RouteEdge> routeEdges) {
-        this.routeEdges = routeEdges;
+    public void setEdges(List<Edge> edges) {
+        this.edges = edges;
     }
 
     public Integer getId() {
@@ -145,11 +145,11 @@ public class Route implements Serializable {
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;
         this.routeType = routeType;
-        routeEdges = new LinkedList<>();
+        edges = new LinkedList<>();
     }
 
     public Route(){
-        routeEdges = new LinkedList<>();
+        edges = new LinkedList<>();
     }
 
 
@@ -161,7 +161,7 @@ public class Route implements Serializable {
         this.cost = cost;
         this.duration = duration;
         this.distance = distance;
-        routeEdges = new LinkedList<>();
+        edges = new LinkedList<>();
     }
 
     @Override
@@ -190,7 +190,7 @@ public class Route implements Serializable {
                 .append("cost", cost)
                 .append("duration", duration)
                 .append("distance", distance)
-                .append("routeEdges", routeEdges)
+                .append("edges", edges.toString())
                 .toString();
     }
 }

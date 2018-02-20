@@ -1,31 +1,18 @@
 package unitTests;
 
-
 import com.netcracker.travelplanner.TravelPlannerApplication;
-import com.netcracker.travelplanner.algorithms.Algorithm;
-import com.netcracker.travelplanner.algorithms.RouteFinder;
-import com.netcracker.travelplanner.entities.Edge;
-import com.netcracker.travelplanner.entities.Route;
-import com.netcracker.travelplanner.entities.RouteEdge;
-import com.netcracker.travelplanner.entities.RouteType;
-import com.netcracker.travelplanner.repository.EdgeRepository;
-import com.netcracker.travelplanner.repository.RouteRepository;
+import com.netcracker.travelplanner.algorithms.*;
+import com.netcracker.travelplanner.entities.*;
+import com.netcracker.travelplanner.repository.*;
 import com.netcracker.travelplanner.service.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = TravelPlannerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -83,27 +70,6 @@ public class Test_15_02_2018 {
 
 
     @Test
-    public void gogogogog(){
-
-        List<Edge> list = convertPointsToListEdges.findAll("Voronezh","Berlin",LocalDate.of(2018,3,1));
-
-
-        List<Route> list1 = routeFinder.findRoutes(list,"VOZ","BER");
-
-        list1.forEach(l-> System.out.println(l.toString()));
-
-        for (Route aList1 : list1) {
-            List<Edge> edgeList = new ArrayList<>();
-            aList1.getRouteEdges().forEach(l -> edgeList.add(l.getEdge()));
-            edgeRepository.save(edgeList);
-        }
-
-        routeRepository.save(list1);
-
-
-    }
-
-    @Test
     public void testAddEdgesRoutes_15_02_2018(){
 //
 //        String from = "Voronezh";
@@ -156,7 +122,7 @@ public class Test_15_02_2018 {
         list.forEach(System.out::println);
 
         List<Edge> edgeList = new ArrayList<>();
-        list.forEach(route -> route.getRouteEdges().forEach(routeEdge -> edgeList.add(routeEdge.getEdge())));
+        list.forEach(route -> edgeList.addAll(route.getEdges()));
 
         edgeList.forEach(System.out::println);
 

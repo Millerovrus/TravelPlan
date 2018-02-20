@@ -20,5 +20,4 @@ public class MainWebController {
     public String signIn(){
         return "signin.html";
     }
-
 }

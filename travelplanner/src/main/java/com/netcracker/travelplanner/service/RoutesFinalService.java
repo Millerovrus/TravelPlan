@@ -1,19 +1,13 @@
 package com.netcracker.travelplanner.service;
 
 import com.netcracker.travelplanner.algorithms.Algorithm;
-import com.netcracker.travelplanner.entities.Edge;
-import com.netcracker.travelplanner.entities.Route;
-import com.netcracker.travelplanner.entities.RouteEdge;
-import com.netcracker.travelplanner.entities.RouteType;
+import com.netcracker.travelplanner.entities.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class RoutesFinalService {
@@ -76,10 +70,8 @@ public class RoutesFinalService {
                 Route route = new Route(new Date(), from, to, RouteType.values()[i]);
                 int order = 1;
                 for (Edge edge : edges) {
-                    RouteEdge routeEdge = new RouteEdge(order++);
-                    routeEdge.setRoute(route);
-                    routeEdge.setEdge(edge);
-                    route.getRouteEdges().add(routeEdge);
+                    edge.setRoute(route);
+                    route.getEdges().add(edge);
                     route.setCost(route.getCost() + edge.getCost());
                     route.setDuration(route.getDuration() + edge.getDuration());
                 }

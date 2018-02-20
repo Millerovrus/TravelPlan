@@ -61,12 +61,32 @@ public class Edge implements Cloneable {
     @Column(name = "edge_type")
     private RouteType edgeType;
 
-    @OneToMany(mappedBy = "edge", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column(name = "edge_order", nullable = false)
+    private Short edgeOrder;
+
+    @ManyToOne
+    @JoinColumn(name = "route_id")
     @JsonIgnore
-    private Set<RouteEdge> routeEdges;
+    private Route route;
 
     @Transient
     private double weight;
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public void setRoute(Route route) {
+        this.route = route;
+    }
+
+    public Short getEdgeOrder() {
+        return edgeOrder;
+    }
+
+    public void setEdgeOrder(Short edgeOrder) {
+        this.edgeOrder = edgeOrder;
+    }
 
     public void setData(RouteType type){
         setEdgeType(type);
@@ -221,14 +241,6 @@ public class Edge implements Cloneable {
         this.currency = currency;
     }
 
-    public Set<RouteEdge> getRouteEdges() {
-        return routeEdges;
-    }
-
-    public void setRouteEdges(Set<RouteEdge> routeEdges) {
-        this.routeEdges = routeEdges;
-    }
-
     public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, Date startDate, Date endDate, String currency, RouteType edgeType)
     {
         this.creationDate = creationDate;
@@ -242,7 +254,6 @@ public class Edge implements Cloneable {
         this.endDate = endDate;
         this.currency = currency;
         this.edgeType = edgeType;
-        routeEdges = new HashSet<>();
     }
 
     public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, Date startDate, Date endDate, String currency, String startIataCode, String endIataCode) {
@@ -277,8 +288,8 @@ public class Edge implements Cloneable {
                 .append("endDate", endDate)
                 .append("currency", currency)
                 .append("edgeType", edgeType)
-                .append("routeEdges", routeEdges)
                 .append("weight", weight)
+                .append("route", route)
                 .toString();
     }
 
