@@ -59,8 +59,6 @@ public class ApiService implements IntegrationAPIService {
 
         if( list2!=null && !list2.isEmpty()){edgeList.addAll(list2);}
 
-
-
         if (!edgeList.isEmpty()) {
             result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
             result.add(filterEdgeByTypes(edgeList, RouteType.optimal));
