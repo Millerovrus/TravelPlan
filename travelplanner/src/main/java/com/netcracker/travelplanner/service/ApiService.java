@@ -28,7 +28,6 @@ public class ApiService implements IntegrationAPIService {
     @Autowired
     private YandexService yandexService;
 
-
     /**
      * выполняет запросы в api для получения Edge
      * @param from название города отправления
@@ -36,7 +35,7 @@ public class ApiService implements IntegrationAPIService {
      * @return список ребер отфильтрованных по типу ребра cheap, optimal, comfort
      */
     public List<Edge> getEdgesFromTo(String from, String to, LocalDate localDate) {
-        logger.debug("Начало запросов к api для получения Edge, from: " + from + " to:" + to);
+        logger.debug("Начало запросов к api для получения Edge, from: " + from + " to: " + to);
         List<Edge> edgeList = new ArrayList<>();
         List<Edge> result = new ArrayList<>();
         String codeFrom = cityToIataCode(from);

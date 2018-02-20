@@ -13,9 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class RoutesFinalService {
@@ -43,6 +41,7 @@ public class RoutesFinalService {
     public List<Route> findTheBestRoutes(String from, String to, LocalDate localDate){
 
         logger.debug("Запуск поиска лучших маршрутов между from: " + from + " и to: " + to);
+
         List<Edge> list = convertPointsToListEdges.findAll(from,to,localDate);
 
         List<Edge> edgeList = new ArrayList<>();
@@ -51,29 +50,42 @@ public class RoutesFinalService {
 
         for (int i = 0; i < RouteType.values().length ; i++) {
 
+            boolean needSave = true;
+
             List<Edge> tempEdgeList = separator(list,RouteType.values()[i]);
 
             List<Edge> edges = algorithm.getMinimalRoute(tempEdgeList,from,to);
 
-            edgeList.addAll(edges);
-
-            Route route = new Route(new Date(),from,to,RouteType.values()[i]);
-
-            int order = 1;
-            for (Edge edge : edges) {
-
-                RouteEdge routeEdge = new RouteEdge(order++);
-                routeEdge.setRoute(route);
-                routeEdge.setEdge(edge);
-                route.getRouteEdges().add(routeEdge);
-                route.setCost(route.getCost()+edge.getCost());
-                route.setDuration(route.getDuration()+edge.getDuration());
+            if (!routeList.isEmpty()){
+                double duration = 0.0;
+                double cost = 0.0;
+                for (Edge edge : edges) {
+                    cost += edge.getCost();
+                    duration += edge.getDuration();
+                }
+                for (Route route : routeList) {
+                    if (route.getCost() == cost && route.getDuration() == duration){
+                        needSave = false;
+                        logger.debug("Найденный маршрут повторяется и не будет сохранен.");
+                    }
+                }
             }
 
-            routeList.add(route);
+            if (needSave) {
+                edgeList.addAll(edges);
+                Route route = new Route(new Date(), from, to, RouteType.values()[i]);
+                int order = 1;
+                for (Edge edge : edges) {
+                    RouteEdge routeEdge = new RouteEdge(order++);
+                    routeEdge.setRoute(route);
+                    routeEdge.setEdge(edge);
+                    route.getRouteEdges().add(routeEdge);
+                    route.setCost(route.getCost() + edge.getCost());
+                    route.setDuration(route.getDuration() + edge.getDuration());
+                }
+                routeList.add(route);
+            }
         }
-
         return routeList;
     }
-
 }

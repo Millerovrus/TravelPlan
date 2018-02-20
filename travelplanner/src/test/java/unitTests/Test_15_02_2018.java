@@ -10,10 +10,7 @@ import com.netcracker.travelplanner.entities.RouteEdge;
 import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.repository.EdgeRepository;
 import com.netcracker.travelplanner.repository.RouteRepository;
-import com.netcracker.travelplanner.service.ApiService;
-import com.netcracker.travelplanner.service.ConvertPointsToListEdges;
-import com.netcracker.travelplanner.service.RouteRepositoryService;
-import com.netcracker.travelplanner.service.RoutesFinalService;
+import com.netcracker.travelplanner.service.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,7 +151,7 @@ public class Test_15_02_2018 {
     @Test
     public void g(){
 
-        List<Route> list = routesFinalService.findTheBestRoutes("Voronezh","Riga",LocalDate.of(2018,3,1));
+        List<Route> list = routesFinalService.findTheBestRoutes("Voronezh","Lipetsk",LocalDate.of(2018,2,23));
 
         list.forEach(System.out::println);
 
@@ -167,6 +164,18 @@ public class Test_15_02_2018 {
         routeRepository.save(list);
     }
 
+
+    @Test
+    public void testg(){
+        List<String> str = new ArrayList<>();
+        if (str.isEmpty()){
+            System.out.println("kek");
+        }
+        if (str==null){
+            System.out.println("shmek");
+        }
+        System.out.println(str.toString());
+    }
 
 
 }
