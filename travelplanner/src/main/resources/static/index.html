@@ -41,12 +41,18 @@
     <script src="js/bootstrap-datetimepicker.min.js"></script>
 
     <!-- map -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap"
-            async defer></script>
+
+
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap"-->
+    <!--async defer></script>-->
     <script src="js/google-map.js"></script>
+    <script src="js/autoComplite.js"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&language=en&libraries=places"></script>-->
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap&language=en&libraries=places"></script>
 </head>
 
-<body ng-controller="appController">
+<body ng-controller="appController" onload="initAutocompleteFields()">
 <!--<div class="alert alert-info" ng-show="loading">Loading</div>-->
     <!--
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -71,8 +77,6 @@
     </div>
     -->
 
-
-
     <div >
 
         <my-navbar></my-navbar>
@@ -84,23 +88,27 @@
                     <div class="container scrollbar">
                         <div class="formBox">
                             <form id="inputForm" autocomplete="off">
+
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h1>Start your journey right now</h1>
                                     </div>
                                 </div>
+
                                 <div class="row">
+
                                     <div class="col-sm-4">
                                         <div class="inputBox ">
-                                            <input type="text" name="" id="inputFrom" required class="input" placeholder="From">
+                                            <input type="text" name="" id="inputFrom" required class="input" placeholder="From" onfocus="geolocate()">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <div class="inputBox">
-                                            <input type="text" name="" id="inputTo" required class="input" placeholder="To">
+                                            <input type="text" name="" id="inputTo" required class="input" placeholder="To" onfocus="geolocate()">
                                         </div>
                                     </div>
+
                                     <div class="col-sm-4">
                                         <div class="inputBox">
                                             <div class="input">
@@ -115,6 +123,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <!--<div class="col-sm-6">
                                         <div class="inputBox">
                                             <div class="input">
@@ -127,6 +136,33 @@
                                         </div>
                                     </div>-->
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="inputBox ">
+                                            <input type="text" class="input" id="latit_longit_from">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="inputBox ">
+                                            <input type="text" class="input" id="latit_longit_to">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="inputBox ">
+                                            <input type="text" class="input" id="inputFromHidden">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="inputBox ">
+                                            <input type="text" class="input" id="inputToHidden">
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <input type="submit" name="" ng-click="sendRequestParameters()" required class="button" value="Find route">
@@ -231,6 +267,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </form>
 
                             <form>

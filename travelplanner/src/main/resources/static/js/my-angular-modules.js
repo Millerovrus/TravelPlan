@@ -17,8 +17,8 @@ angular.module('controllerModule')
                 method: 'GET',
                 url: 'api/rest/get-routes/date/',
                  params: {
-                     from: angular.element($('#inputFrom')).val(),
-                     to: angular.element($('#inputTo')).val(),
+                     from: angular.element($('#inputFromHidden')).val(),
+                     to: angular.element($('#inputToHidden')).val(),
                      date: angular.element($('#inputDate')).val()
                 }
             }).then(
@@ -29,7 +29,7 @@ angular.module('controllerModule')
                 },
                 function error(response, status) {
                     console.error('Repos error', status, response);
-                    $scope.$emit('UNLOAD')
+                    $scope.$emit('UNLOAD');
                     alert("Something goes wrong :(");
                 });
         }

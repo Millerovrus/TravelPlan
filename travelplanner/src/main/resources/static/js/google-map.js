@@ -1,88 +1,73 @@
+var coordinates = [
+        {name: 'Voronezh', lat: 51.675, lng: 39.208},
+        {name: 'Rostov', lat: 47.235, lng: 39.701},
+        {name: 'Tbilisi', lat: 41.715, lng: 44.827}
+];
+
 function initMap() {
-    // Styles a map in night mode.
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 40.674, lng: -73.945},
-        zoom: 8,
+        center: getCenter(coordinates),
+        zoom: 5,
         gestureHandling: 'cooperative',
-        styles: [
-            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-            {
-                featureType: 'administrative.locality',
-                elementType: 'labels.text.fill',
-                stylers: [{color: '#d59563'}]
-            },
-            {
-                featureType: 'poi',
-                elementType: 'labels.text.fill',
-                stylers: [{color: '#d59563'}]
-            },
-            {
-                featureType: 'poi.park',
-                elementType: 'geometry',
-                stylers: [{color: '#263c3f'}]
-            },
-            {
-                featureType: 'poi.park',
-                elementType: 'labels.text.fill',
-                stylers: [{color: '#6b9a76'}]
-            },
-            {
-                featureType: 'road',
-                elementType: 'geometry',
-                stylers: [{color: '#38414e'}]
-            },
-            {
-                featureType: 'road',
-                elementType: 'geometry.stroke',
-                stylers: [{color: '#212a37'}]
-            },
-            {
-                featureType: 'road',
-                elementType: 'labels.text.fill',
-                stylers: [{color: '#9ca5b3'}]
-            },
-            {
-                featureType: 'road.highway',
-                elementType: 'geometry',
-                stylers: [{color: '#746855'}]
-            },
-            {
-                featureType: 'road.highway',
-                elementType: 'geometry.stroke',
-                stylers: [{color: '#1f2835'}]
-            },
-            {
-                featureType: 'road.highway',
-                elementType: 'labels.text.fill',
-                stylers: [{color: '#f3d19c'}]
-            },
-            {
-                featureType: 'transit',
-                elementType: 'geometry',
-                stylers: [{color: '#2f3948'}]
-            },
-            {
-                featureType: 'transit.station',
-                elementType: 'labels.text.fill',
-                stylers: [{color: '#d59563'}]
-            },
-            {
-                featureType: 'water',
-                elementType: 'geometry',
-                stylers: [{color: '#17263c'}]
-            },
-            {
-                featureType: 'water',
-                elementType: 'labels.text.fill',
-                stylers: [{color: '#515c6d'}]
-            },
-            {
-                featureType: 'water',
-                elementType: 'labels.text.stroke',
-                stylers: [{color: '#17263c'}]
-            }
-        ]
+        minZoom: 3
     });
+
+    // задаем стрелку
+    var lineSymbol = {
+        path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+        scale: 5,
+        strokeColor: '#676780'
+    };
+
+    // создаем путь
+    var line = new google.maps.Polyline({
+        path: coordinates,
+        icons: [{
+            icon: lineSymbol,
+            offset: '100%'
+        }],
+        strokeColor: '#ff0000',
+        map: map
+    });
+
+    setMarkers(map, coordinates);
+    animateArrow(line);
 }
+
+//анимируем символ
+function animateArrow(line) {
+    var count = 0;
+    window.setInterval(function() {
+        count = (count + 1) % 200;
+
+        var icons = line.get('icons');
+        icons[0].offset = (count / 2) + '%';
+        line.set('icons', icons);
+    }, 50);
+}
+
+//высчитываем центр карты
+function getCenter(coordinates) {
+    var center = {lat: 0.0, lng : 0.0};
+    for (var i = 0; i < coordinates.length; i++){
+        center.lat += coordinates[i].lat;
+        center.lng += coordinates[i].lng;
+    }
+    center.lat /= coordinates.length;
+    center.lng /= coordinates.length;
+    return center;
+}
+
+//ставим маркеры
+function setMarkers(map, coordinates) {
+    for (var i = 0; i < coordinates.length; i++) {
+        var marker = new google.maps.Marker({
+            position: coordinates[i],
+            title: coordinates[i].name,
+            label: coordinates[i].name.charAt(0),
+            opacity: 0.75,
+            map: map
+        });
+    }
+}
+
