@@ -34,6 +34,7 @@ angular.module('controllerModule')
                 });
         }
 
+
        /* $scope.formatNumber = function(i) {
             return Math.round(i/3600);
         }*/
@@ -48,6 +49,8 @@ angular.module('controllerModule')
     .controller('appController', function ($scope) {
         $scope.$on('LOAD', function () { $scope.loading = true });
         $scope.$on('UNLOAD', function () { $scope.loading = false });
+
+
 
     });
 

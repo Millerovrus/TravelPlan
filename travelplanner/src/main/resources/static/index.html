@@ -142,11 +142,11 @@
                                                                     <div ng-repeat="record in records" ng-show="record.routeType=='cheap'">
                                                                         <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
                                                                         <p class="bs-caption"><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
-                                                                        <div ng-repeat="items in record.routeEdges">
+                                                                        <div ng-repeat="item in record.edges">
                                                                                 <ul>
-                                                                                    <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
-                                                                                    <li><b>Cost:</b> {{items.edge.cost}} (RUB)</li>
-                                                                                    <li><b>Type of transport:</b> {{items.edge.transportType}}</li>
+                                                                                    <li><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</li>
+                                                                                    <li><b>Cost:</b> {{item.cost}} (RUB)</li>
+                                                                                    <li><b>Type of transport:</b> {{item.transportType}}</li>
                                                                                 </ul>
                                                                         </div>
                                                                     </div>
@@ -198,13 +198,11 @@
                                                                     <div ng-repeat="record in records" ng-show="record.routeType=='cheapest'">
                                                                         <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
                                                                         <p class="bs-caption"><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
-                                                                        <div ng-repeat="items in record.routeEdges">
                                                                             <ul>
-                                                                                <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
-                                                                                <li><b>Cost:</b> {{items.edge.cost}} (RUB)</li>
-                                                                                <li><b>Type of transport:</b> {{items.edge.transportType}}</li>
+                                                                                <li><b>Transit route {{record.edge.edgeOrder}}</b>: {{record.edge.startPoint}} - {{record.edge.destinationPoint}}</li>
+                                                                                <li><b>Cost:</b> {{record.edge.cost}} (RUB)</li>
+                                                                                <li><b>Type of transport:</b> {{record.edge.transportType}}</li>
                                                                             </ul>
-                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>

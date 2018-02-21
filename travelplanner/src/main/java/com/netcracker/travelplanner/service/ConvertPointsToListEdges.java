@@ -29,9 +29,11 @@ public class ConvertPointsToListEdges {
         @Override
         public void run() {
             List<Edge> list = integrationAPIService.getEdgesFromTo(from, to, date);
-            if (!list.isEmpty()) {
-                resultList.addAll(list);
-                logger.debug("Получено ребро " + from + " - " + to);
+            synchronized (resultList) {
+                if (!list.isEmpty()) {
+                    resultList.addAll(list);
+                    logger.debug("Получено ребро " + from + " - " + to);
+                }
             }
         }
     }
@@ -45,7 +47,7 @@ public class ConvertPointsToListEdges {
      * @return возврат списка рёбер
      */
     List<Edge> findAll(String from, String to, LocalDate localDate){
-        resultList = new ArrayList<>();
+        resultList = Collections.synchronizedList(new ArrayList<>());
         ExecutorService executorService = Executors.newCachedThreadPool();
 
         logger.debug("Получение ближайших городов с аэропортами в округе города " + from + " и города " + to);
@@ -68,27 +70,38 @@ public class ConvertPointsToListEdges {
         logger.debug("Аэропорты вокруг " + from + ": " + citiesFrom.toString());
         logger.debug("Аэропорты вокруг " + to + ": " + citiesTo.toString());
 
+        //List<Runnable> threads = new ArrayList<>();
+
         Runnable runnable = new ApiRunnable(from, to, localDate);
         executorService.execute(runnable);
 
         for (String cityFrom : citiesFrom) {
             Runnable runnable1 = new ApiRunnable(from, cityFrom, localDate);
             executorService.execute(runnable1);
+           // threads.add(runnable1);
+
             Runnable runnable2 = new ApiRunnable(cityFrom, to, localDate);
             executorService.execute(runnable2);
+            //threads.add(runnable2);
+
             for (String cityTo : citiesTo) {
                 Runnable runnable3 = new ApiRunnable(cityFrom, cityTo, localDate);
                 executorService.execute(runnable3);
+                //threads.add(runnable3);
             }
         }
+
         for (String cityTo : citiesTo) {
             Runnable runnable1 = new ApiRunnable(cityTo, to, localDate);
             executorService.execute(runnable1);
+            //threads.add(runnable1);
             Runnable runnable2 = new ApiRunnable(from, cityTo, localDate);
             executorService.execute(runnable2);
+            //threads.add(runnable2);
         }
 
         executorService.shutdown();
+
         try {
             executorService.awaitTermination(30, TimeUnit.SECONDS);
         } catch (InterruptedException e) {

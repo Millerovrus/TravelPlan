@@ -68,8 +68,9 @@ public class RoutesFinalService {
             if (needSave) {
                 edgeList.addAll(edges);
                 Route route = new Route(new Date(), from, to, RouteType.values()[i]);
-                int order = 1;
+                Short order = 1;
                 for (Edge edge : edges) {
+                    edge.setEdgeOrder(order++);
                     edge.setRoute(route);
                     route.getEdges().add(edge);
                     route.setCost(route.getCost() + edge.getCost());
