@@ -11,7 +11,7 @@ angular.module('controllerModule')
     .controller('myParameterController', function requestFunc($scope, $http) {
 
         $scope.sendRequestParameters=function () {
-            $scope.$emit('LOAD')
+            $scope.$emit('LOAD');
             $scope.loaded=false;
             $http({
                 method: 'GET',
@@ -25,19 +25,15 @@ angular.module('controllerModule')
                 function success(response) {
                     $scope.records = response.data;
                     $scope.loaded=true;
-                    $scope.$emit('UNLOAD')
+                    $scope.$emit('UNLOAD');
                 },
                 function error(response, status) {
                     console.error('Repos error', status, response);
                     $scope.$emit('UNLOAD');
                     alert("Something goes wrong :(");
                 });
-        }
+        };
 
-
-       /* $scope.formatNumber = function(i) {
-            return Math.round(i/3600);
-        }*/
     })
     .filter('secondsToTime', [function() {
         return function(seconds) {
@@ -46,11 +42,14 @@ angular.module('controllerModule')
             return ('00'+hours).slice(-2) +' hours ' + ('00'+mins).slice(-2)+' minutes';
         };
     }])
+    .filter('outputJson', [function () {
+        return function (records) {
+            var routes = records.length;
+            return 'json length is '+routes;
+        };
+    }])
     .controller('appController', function ($scope) {
         $scope.$on('LOAD', function () { $scope.loading = true });
         $scope.$on('UNLOAD', function () { $scope.loading = false });
-
-
-
     });
 

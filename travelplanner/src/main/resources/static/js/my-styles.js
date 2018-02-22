@@ -66,11 +66,20 @@ function supportsHTML5Storage() {
 }
 
 
+
 /* datetimepicker */
 $(function () {
     $('#datetimepicker1').datetimepicker({
         locale: 'en',
         stepping: 10,
         format: 'YYYY-MM-DD'
+    });
+});
+
+/*collapse*/
+$(function(){
+    $('.card-head > span').click(function(){
+        $(this).parent().parent().toggleClass('collapsed');
+        $(this).parent().parent().find('.card-body').slideToggle();
     });
 });

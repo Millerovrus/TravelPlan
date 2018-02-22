@@ -47,6 +47,7 @@
     <!--async defer></script>-->
     <script src="js/google-map.js"></script>
     <script src="js/autoComplite.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.9/angular-sanitize.min.js"></script>
     <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&language=en&libraries=places"></script>-->
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap&language=en&libraries=places"></script>
@@ -77,11 +78,11 @@
     </div>
     -->
 
-    <div >
+    <div>
 
         <my-navbar></my-navbar>
 
-        <div ng-controller="myParameterController">
+       <!-- <div ng-controller="myParameterController"> -->
             <div  class="scrollbar" id="container1">
                 <img src="img/travel-top.jpg" class="background-main-pic"/>
                 <div class="container-fluid">
@@ -163,7 +164,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row" ng-controller="myParameterController">
                                     <div class="col-sm-12">
                                         <input type="submit" name="" ng-click="sendRequestParameters()" required class="button" value="Find route">
                                         <div ng-show="loading" class="preloader"></div>
@@ -189,81 +190,50 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="bs bs-pricing">
-                                                                <div class="cotent">
-                                                                    <h3 class="category">Optimal</h3>
-                                                                    <div ng-repeat="record in records" ng-show="record.routeType=='optimal'">
-                                                                        <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                        <p class="bs-caption"><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
-                                                                        <div ng-repeat="items in record.routeEdges">
-                                                                            <ul>
-                                                                                <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
-                                                                                <li><b>Cost:</b> {{items.edge.cost}} (RUB)</li>
-                                                                                <li><b>Type of transport:</b> {{items.edge.transportType}}</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="bs bs-pricing">
-                                                                <div class="cotent">
-                                                                    <h3 class="category">Comfort</h3>
-                                                                    <div ng-repeat="record in records" ng-show="record.routeType=='comfort'">
-                                                                        <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                        <p class="bs-caption"><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
-                                                                        <div ng-repeat="items in record.routeEdges">
-                                                                            <ul>
-                                                                                <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
-                                                                                <li><b>Cost:</b> {{items.edge.cost}} (RUB)</li>
-                                                                                <li><b>Type of transport:</b> {{items.edge.transportType}}</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row" id="small-centered">
-                                                        <div class="col-sm-6">
-                                                            <div class="bs bs-pricing">
-                                                                <div class="cotent">
-                                                                    <h3 class="category">Cheapest</h3>
-                                                                    <div ng-repeat="record in records" ng-show="record.routeType=='cheapest'">
-                                                                        <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                        <p class="bs-caption"><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
-                                                                            <ul>
-                                                                                <li><b>Transit route {{record.edge.edgeOrder}}</b>: {{record.edge.startPoint}} - {{record.edge.destinationPoint}}</li>
-                                                                                <li><b>Cost:</b> {{record.edge.cost}} (RUB)</li>
-                                                                                <li><b>Type of transport:</b> {{record.edge.transportType}}</li>
-                                                                            </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="bs bs-pricing">
-                                                                <div class="cotent">
-                                                                    <h3 class="category">Fastest</h3>
-                                                                    <div ng-repeat="record in records" ng-show="record.routeType=='fastest'">
-                                                                        <p class="bs-caption"><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                        <p class="bs-caption"><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}} </p>
-                                                                        <div ng-repeat="items in record.routeEdges">
-                                                                            <ul>
-                                                                                <li><b>Transit route {{items.edgeOrder}}</b>: {{items.edge.startPoint}} - {{items.edge.destinationPoint}}</li>
-                                                                                <li><b>Cost:</b> {{items.edge.cost}} (RUB)</li>
-                                                                                <li><b>Type of transport:</b> {{items.edge.transportType}}</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                        <div class="row">
+                                                            <p>{{ records | outputJson}}</p>
+                                                            <p>Количество маршрутов: <span ng-bind="records.length"></span></p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </section>
+                                           <!-- <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm-12"><h2>Card Blocks</h2></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="card-blocks">
+                                                            <div class="card-item panel">
+                                                                <div class="card-head panel-heading">Voronezh <i class="fas fa-bus"></i> Rostov-on-Don <i class="fas fa-plane"></i> Tbilisi</div>
+                                                                <div class="card-body panel-body">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-4">
+                                                                            <div ng-repeat="record in records" ng-show="record.routeType=='cheap'">
+                                                                                <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                                <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
+                                                                                <div ng-repeat="item in record.edges">
+                                                                                    <ul>
+                                                                                        <li><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</li>
+                                                                                        <li><b>Cost:</b> {{item.cost}} (RUB)</li>
+                                                                                        <li><b>Type of transport:</b> {{item.transportType}}</li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-8">
+                                                                            <div class="container-map" id="map2"></div>
+                                                                            <p> map </p>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -284,7 +254,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+       <!-- </div> -->
 
     </div>
 
