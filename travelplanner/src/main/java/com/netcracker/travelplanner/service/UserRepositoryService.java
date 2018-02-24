@@ -5,13 +5,15 @@ import com.netcracker.travelplanner.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
-public class UserRepositoryService {
+public class UserRepositoryService{
     @Autowired
     private UserRepository userRepository;
+
+    /*@Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;*/
 
     /**
      * Save user in database
@@ -58,5 +60,13 @@ public class UserRepositoryService {
      */
     public void deleteAll() {
         userRepository.deleteAll();
+    }
+
+    /**
+     * @param email
+     * @return user by email
+     */
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

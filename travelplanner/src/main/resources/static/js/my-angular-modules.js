@@ -4,7 +4,7 @@ angular.module('controllerModule',[]);
 angular.module('myApp',['controllerModule'])
     .directive('myNavbar', function () {
         return {
-            templateUrl: 'navbar-template.html'
+            templateUrl: '/navbar/navbar-template.html'
         };
     });
 angular.module('controllerModule')

@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
     List<User> findAllByLastNameIsOrFirstNameIs(String lastName, String firstName);
+    User findByEmail(String email);
 }
