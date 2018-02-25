@@ -1,12 +1,12 @@
 package com.netcracker.travelplanner.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.*;
-import java.util.*;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Objects;
 
 
 @Entity
@@ -41,12 +41,12 @@ public class Edge implements Cloneable {
     private Double distance;
 
     @Column(name = "start_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startDate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime startDate;
 
     @Column(name = "end_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date endDate;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime endDate;
 
     @Column(name = "currency")
     private String currency;
@@ -61,8 +61,21 @@ public class Edge implements Cloneable {
     @Column(name = "edge_type")
     private RouteType edgeType;
 
-    @Column(name = "edge_order", nullable = false)
+    @Column(name = "edge_order")
     private Short edgeOrder;
+
+    @Column(name = "latitude_from")
+    private double latitudeFrom;
+
+    @Column(name = "longitude_from")
+    private double longitudeFrom;
+
+    @Column(name = "latitude_to")
+    private double latitudeTo;
+
+    @Column(name = "longitude_to")
+    private double longitudeTo;
+
 
     @ManyToOne
     @JoinColumn(name = "route_id")
@@ -217,19 +230,19 @@ public class Edge implements Cloneable {
         this.distance = distance;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
@@ -241,7 +254,40 @@ public class Edge implements Cloneable {
         this.currency = currency;
     }
 
-    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, Date startDate, Date endDate, String currency, RouteType edgeType)
+    public double getLatitudeFrom() {
+        return latitudeFrom;
+    }
+
+    public void setLatitudeFrom(double latitudeFrom) {
+        this.latitudeFrom = latitudeFrom;
+    }
+
+    public double getLongitudeFrom() {
+        return longitudeFrom;
+    }
+
+    public void setLongitudeFrom(double longitudeFrom) {
+        this.longitudeFrom = longitudeFrom;
+    }
+
+    public double getLatitudeTo() {
+        return latitudeTo;
+    }
+
+    public void setLatitudeTo(double latitudeTo) {
+        this.latitudeTo = latitudeTo;
+    }
+
+    public double getLongitudeTo() {
+        return longitudeTo;
+    }
+
+    public void setLongitudeTo(double longitudeTo) {
+        this.longitudeTo = longitudeTo;
+    }
+
+
+    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, RouteType edgeType)
     {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
@@ -256,7 +302,7 @@ public class Edge implements Cloneable {
         this.edgeType = edgeType;
     }
 
-    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, Date startDate, Date endDate, String currency, String startIataCode, String endIataCode) {
+    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode) {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;
@@ -269,6 +315,25 @@ public class Edge implements Cloneable {
         this.currency = currency;
         this.startIataCode = startIataCode;
         this.endIataCode = endIataCode;
+    }
+
+    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode, double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo) {
+        this.creationDate = creationDate;
+        this.startPoint = startPoint;
+        this.destinationPoint = destinationPoint;
+        this.transportType = transportType;
+        this.duration = duration;
+        this.cost = cost;
+        this.distance = distance;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.currency = currency;
+        this.startIataCode = startIataCode;
+        this.endIataCode = endIataCode;
+        this.latitudeFrom = latitudeFrom;
+        this.longitudeFrom = longitudeFrom;
+        this.latitudeTo = latitudeTo;
+        this.longitudeTo = longitudeTo;
     }
 
     private Edge(){}

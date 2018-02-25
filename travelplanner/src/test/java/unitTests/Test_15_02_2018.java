@@ -33,8 +33,8 @@ public class Test_15_02_2018 {
   @Autowired
   private Algorithm algorithm;
 
-  @Autowired
-  private RouteFinder routeFinder;
+ /* @Autowired
+  private RouteFinder routeFinder;*/
 
   @Autowired
   private RoutesFinalService routesFinalService;

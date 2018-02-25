@@ -2,14 +2,17 @@ package com.netcracker.travelplanner.service;
 
 import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.RouteType;
-import com.netcracker.travelplanner.entities.newKiwi.MyAirport;
+import com.netcracker.travelplanner.entities.newKiwi.MyPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -102,18 +105,18 @@ public class ApiService implements IntegrationAPIService {
         logger.debug("Получение ближайших городов с аэропортами для города: " + city);
         List<String> codes = new ArrayList<>();
 
-        MyAirport airport = airportRepoService.getMyAirport(city);
+        MyPoint airport = airportRepoService.getMyAirport(city);
         if(airport != null){
             double latitude = airport.getLat();
             double longitude = airport.getLon();
 
-            List<MyAirport> myAirportList =
+            List<MyPoint> myPointList =
             kiwiService.getAirportsByRadius(500,latitude,longitude);
-            if(myAirportList!=null){
-               myAirportList
+            if(myPointList !=null){
+               myPointList
                        .stream()
                        .filter(a -> !a.getCityName().equals(city))
-                       .filter(distinctByKey(MyAirport::getCityCode))
+                       .filter(distinctByKey(MyPoint::getCityCode))
                        .limit(5)
                        .forEach(l -> codes.add(l.getCityName()));
             }
@@ -132,7 +135,7 @@ public class ApiService implements IntegrationAPIService {
 
 
     /**
-     * функция для стрима, оставляет уникальные элементы сравнивая по полю
+     * функция для стрима, убирает дублирования элементов, сравнивая по полю
      * @param keyExtractor
      * @param <T>
      * @return
@@ -141,6 +144,5 @@ public class ApiService implements IntegrationAPIService {
         Set<Object> seen = ConcurrentHashMap.newKeySet();
         return t -> seen.add(keyExtractor.apply(t));
     }
-
 
 }

@@ -1,9 +1,8 @@
 package com.netcracker.travelplanner.service;
 
 import com.google.gson.Gson;
-import com.netcracker.travelplanner.entities.RouteType;
-import com.netcracker.travelplanner.entities.yandex.YandexRasp;
 import com.netcracker.travelplanner.entities.Edge;
+import com.netcracker.travelplanner.entities.yandex.YandexRasp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -84,8 +84,8 @@ public class YandexService {
                                                         ,l.getDuration()
                                                         ,(double)l.getTicketsInfo().getPlaces().get(0).getPrice().getWhole()
                                                         ,null
-                                                        ,java.sql.Date.valueOf(LocalDate.parse(l.getDeparture(),DateTimeFormatter.ISO_OFFSET_DATE_TIME))
-                                                        ,java.sql.Date.valueOf(LocalDate.parse(l.getArrival(),DateTimeFormatter.ISO_OFFSET_DATE_TIME))
+                                                        , LocalDateTime.parse(l.getDeparture(),DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+                                                        , LocalDateTime.parse(l.getArrival(),DateTimeFormatter.ISO_OFFSET_DATE_TIME)
                                                         ,"RUB"
                                                         , codeFrom
                                                         , codeTo)));
