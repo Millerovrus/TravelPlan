@@ -34,7 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/fonts/**","/navbar/**","/api/**").permitAll();
 
         // If no login, it will redirect to /login page.
-        http.formLogin()/*.loginPage("/signIn")*/.permitAll().and().logout().permitAll();
+        http.formLogin()/*.loginPage("/signIn")*/.loginProcessingUrl("/singIn").usernameParameter("email")
+                .passwordParameter("password").successForwardUrl("/users").failureForwardUrl("/signUp").permitAll()
+                .and().logout().logoutSuccessUrl("/signIn").permitAll()
+                .and().csrf().disable();
 
         //For ADMINS and USERS only
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/users").hasAnyRole("ADMIN", "USER");
