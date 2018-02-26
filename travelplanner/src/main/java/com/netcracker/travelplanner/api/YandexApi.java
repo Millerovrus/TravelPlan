@@ -5,8 +5,10 @@ import java.util.List;
 
 public class YandexApi implements ApiInterface{
 
-    public YandexApi(){
-        InitializatorApi initializator = InitializatorApi.getInstance();
+    InitializatorApi initializatorApi;
+
+    public YandexApi(InitializatorApi initializatorApi){
+       this.initializatorApi = initializatorApi;
     }
 
     public List<Edge> findEdgesFromTo() {

@@ -5,8 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 public class PreparingDataService {
 
-
-
     private InitializatorApi initializatorApi = InitializatorApi.getInstance();
 
     public InitializatorApi prepareData(String from

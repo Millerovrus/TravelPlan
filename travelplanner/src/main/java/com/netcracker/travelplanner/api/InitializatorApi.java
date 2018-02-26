@@ -26,9 +26,16 @@ public class InitializatorApi {
     private List<MyPoint> citiesTo;
     private WebDriver webDriver;
 
-    private static InitializatorApi ourInstance = new InitializatorApi();
+    private static volatile InitializatorApi ourInstance = null;
 
     public static InitializatorApi getInstance() {
+        if(ourInstance==null){
+            synchronized (InitializatorApi.class){
+                if(ourInstance==null){
+                    ourInstance = new InitializatorApi();
+                }
+            }
+        }
         return ourInstance;
     }
 

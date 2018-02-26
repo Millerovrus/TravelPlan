@@ -19,15 +19,12 @@ public class YandexParser implements ApiInterface {
     private InitializatorApi initializatorApi;
 
     public List<Edge> findEdgesFromTo() {
-
-
         String url = "https://rasp.yandex.ru/search/?fromId=" +
                 initializatorApi.getYandexCodeFrom() +
                 "&toId=" +
                 initializatorApi.getYandexCodeTo() +
                 "&transportType=all&when=" +
                 initializatorApi.getDeparture().format(DateTimeFormatter.ISO_LOCAL_DATE);
-
 
         List<Edge> edgeList = new ArrayList<>();
 
@@ -38,8 +35,6 @@ public class YandexParser implements ApiInterface {
         String sourceHtml = initializatorApi.getWebDriver().getPageSource();
 
         Document doc = Jsoup.parse(sourceHtml);
-
-
 
         Elements el = doc.getElementsByClass("SearchSegment");
 
@@ -174,6 +169,5 @@ public class YandexParser implements ApiInterface {
 
     public YandexParser(InitializatorApi initializatorApi) {
         this.initializatorApi = initializatorApi;
-
     }
 }

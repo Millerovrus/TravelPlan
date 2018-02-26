@@ -1,5 +1,4 @@
 
-
 angular.module('controllerModule',[]);
 angular.module('myApp',['controllerModule'])
     .directive('myNavbar', function () {

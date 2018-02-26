@@ -4,9 +4,10 @@ import com.netcracker.travelplanner.entities.Edge;
 import java.util.List;
 
 public class KiwiApi implements ApiInterface {
+    private InitializatorApi initializatorApi;
 
-    public KiwiApi(){
-        InitializatorApi initializator = InitializatorApi.getInstance();
+    public KiwiApi(InitializatorApi initializatorApi){
+        this.initializatorApi = initializatorApi;
     }
 
     public List<Edge> findEdgesFromTo(){
