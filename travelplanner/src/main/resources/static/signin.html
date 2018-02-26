@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-    <!--<meta name="_csrf" content="${_csrf.token}" />
-    &lt;!&ndash; default header name is X-CSRF-TOKEN &ndash;&gt;
-    <meta name="_csrf_header" content="${_csrf.headerName}" />-->
-
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Create account</title>
+    <title>Sign in to account</title>
     <!-- Bootstrap, fonts -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-select.css" rel="stylesheet">
@@ -32,7 +35,6 @@
 
     <!--angular-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script src="js/my-angular-modules-signin.js"></script>
 
     <!-- bootstrap select -->
     <script src="js/bootstrap.min.js"></script>
@@ -43,14 +45,8 @@
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
     <script src="js/moment-with-locales.min.js"></script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
-
 </head>
-
 <body>
-
-<div ng-app="appSignIn">
-
-    <!-- menu -->
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -63,7 +59,7 @@
             </div>
             <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                    <li><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
                     <li class="active"><a href="/signIn">Sign in</a></li>
                     <li><a href="/signUp">Sign up</a></li>
                     <li><a href="#">About us</a></li>
@@ -72,31 +68,21 @@
             </div>
         </div>
     </div>
-    <div ng-controller="controllerSignIn">
-        <img src="img/imgMain.jpg"  id="sign-pic" class="background-sign-pic">
-        <div class="container">
-                <!-- login form-->
-                <div class="container">
-                    <div class="col-md-12">
-                        <div id="logbox">
-                           <!-- <div class="alert alert-success" role="alert">You've been logged out successfully</div>
-                            <div class="alert alert-danger" role="alert">Invalid Username or Password</div>-->
-                            <form id="signIn" name="signIn" action="/signIn" method="post">
-                                <input type="email" class="input pass" id="email" placeholder="Email" name="email">
-                                <input type="password" class="input pass" id="password" placeholder="Password" name="password">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Remember me
-                                    </label>
-                                </div>
-                                <input type="submit" value="Sign in" class="inputButton"/>
-                                <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
-                            </form><!-- /form -->
-                        </div>
-                    </div>
-                </div><!-- /container -->
+    <img src="img/imgMain.jpg"  id="sign-pic" class="background-sign-pic">
+    <div class="container">
+        <div class="col-md-12">
+            <div id="logbox">
+                <div class="alert alert-success" role="alert">You've been logged out successfully.</div>
+                <div class="alert alert-danger" role="alert">Invalid E-mail or Password!</div>
+                <form method="post">
+                        <input type="text" class="input pass" id="username" placeholder="Username"
+                               name="username">
+                        <input type="password" class="input pass" id="password" placeholder="Password"
+                               name="password">
+                    <button type="submit" class="inputButton">Log in</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>

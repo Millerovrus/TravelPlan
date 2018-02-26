@@ -58,7 +58,11 @@
                 </div>
                 <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                        <li><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                        <li><a href="/signIn">Sign in</a></li>
+                        <li class="active"><a href="/signUp">Sign up</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -70,7 +74,7 @@
                 <div class="col-md-12">
                     <div id="logbox">
                         <!--<form id="signUp" method="post" action="/signUp" >-->
-                        <form id="signUp" action="/signUp" >
+                        <form id="signUp" action="/signUp">
                             <h1>Create an Account</h1>
                             <input id="inputFirstName" type="text" placeholder="First name" class="input pass" required/>
                             <input id="inputLastName" type="text" placeholder="Last name" class="input pass" required/>

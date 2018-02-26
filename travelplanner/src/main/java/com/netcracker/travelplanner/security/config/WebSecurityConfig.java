@@ -31,11 +31,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //For GUESTS users
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/", "/signUp","/js/**","/css/**","/img/**",
-                        "/fonts/**","/navbar/**","/api/**").permitAll();
+                        "/fonts/**","/navbar/**","/api/**").permitAll()
+        .and().authorizeRequests().antMatchers(HttpMethod.POST, "/api/users/adduser").permitAll();
 
         // If no login, it will redirect to /login page.
-        http.formLogin()/*.loginPage("/signIn")*/.loginProcessingUrl("/singIn").usernameParameter("email")
-                .passwordParameter("password").successForwardUrl("/users").failureForwardUrl("/signUp").permitAll()
+        http.formLogin().loginPage("/signIn")/*.loginProcessingUrl("/j_spring_security_check")*/
+                .defaultSuccessUrl("/users").permitAll()
                 .and().logout().logoutSuccessUrl("/signIn").permitAll()
                 .and().csrf().disable();
 
@@ -54,8 +55,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .withUser("user").password("123").roles("USER")
                     .and()
                     .withUser("admin").password("321").roles("ADMIN");*/
-        auth.userDetailsService(userDetailsServiceImpl);
-                //.userDetailsService(userDetailsServiceImpl).passwordEncoder(new BCryptPasswordEncoder());
+
+         /*аутентификация без зашифрованного пароля*/
+        //auth.userDetailsService(userDetailsServiceImpl);
+
+        /*аутентификация с зашифрованным паролем*/
+        auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(new BCryptPasswordEncoder());
 
     }
 }

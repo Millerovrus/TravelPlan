@@ -1,9 +1,9 @@
 var app = angular.module('appSignIn',[]);
-app.controller('controllerSignIn', function signUpUser($scope, $http) {
+app.controller('controllerSignIn', function signInUser($scope, $http) {
     $scope.sendUserData = function () {
         $http({
-            method: "get",
-            url: "/singIn",
+            method: "POST",
+            url: "/signIn",
             /*$.param преобразование данных в строку с кодировкой URL*/
             data: $.param({
                 email: angular.element($('#email')).val(),

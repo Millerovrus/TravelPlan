@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -18,6 +19,9 @@ public class UserApiController {
     Date date;
     @Autowired
     private UserRepositoryService userRepositoryService;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
      * @return common list of users
@@ -68,7 +72,10 @@ public class UserApiController {
         logger.info("Процесс регистрации нового пользователя...");
         Date date = java.sql.Date.valueOf(birthDate);
         try {
-            userRepositoryService.save(new User(email, firstName, lastName, date, false, new Date(), password));
+            User user = new User(email, firstName, lastName, date, false, new Date(), password);
+            //Шифрование пароля
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+            userRepositoryService.save(user);
             logger.info("Регистрация прошла успешно!");
         } catch (Exception ex) {
             logger.error("Процесс регистрации прерван с ошибкой: ", ex);
