@@ -114,21 +114,21 @@ public class Test_15_02_2018 {
 //
 
     }
-    @Test
-    public void g(){
-
-        List<Route> list = routesFinalService.findTheBestRoutes("Voronezh","Moscow",LocalDate.of(2018,2,23));
-
-        list.forEach(System.out::println);
-
-        List<Edge> edgeList = new ArrayList<>();
-        list.forEach(route -> edgeList.addAll(route.getEdges()));
-
-        edgeList.forEach(System.out::println);
-
-        edgeRepository.save(edgeList);
-        routeRepository.save(list);
-    }
+//    @Test
+//    public void g(){
+//
+//        List<Route> list = routesFinalService.findTheBestRoutes("Voronezh","Moscow",LocalDate.of(2018,2,23));
+//
+//        list.forEach(System.out::println);
+//
+//        List<Edge> edgeList = new ArrayList<>();
+//        list.forEach(route -> edgeList.addAll(route.getEdges()));
+//
+//        edgeList.forEach(System.out::println);
+//
+//        edgeRepository.save(edgeList);
+//        routeRepository.save(list);
+//    }
 
 
 }

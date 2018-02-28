@@ -9,7 +9,7 @@ public class EdgeServiceTest {
 
         EdgeService
                 .getCities("VOZ", 51.6754, 39.2088)
-                .forEach(myPoint -> System.out.println(myPoint.getCityCode()));
+                .forEach(myPoint -> System.out.println(myPoint.getName()));
     }
 
     @Test

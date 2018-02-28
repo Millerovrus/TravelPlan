@@ -21,7 +21,7 @@ public class RouteTestController {
     private RoutesFinalService routesFinalService;
 
     @RequestMapping(value = "/get-routes/date/", method = RequestMethod.GET)
-    public List<Route> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to, @RequestParam("date") String date){
+    public List<Route> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to,@RequestParam("longLatFrom") String longLatFrom, @RequestParam("longLatTo") String longLatTo, @RequestParam("date") String date){
 
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //        Date parsedDate = null;
@@ -33,9 +33,9 @@ public class RouteTestController {
 //        return routeRepositoryService.findByStartPointAndDestinationPointAndCreationDate(from, to, parsedDate);
 
         System.out.println("start finding");
-        LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+//        LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
 
-        return routesFinalService.findTheBestRoutes(from,to,localDate);
+        return routesFinalService.findTheBestRoutes(from, to, longLatFrom, longLatTo, date);
     }
 
     @RequestMapping(value = "/get-routes/", method = RequestMethod.GET)

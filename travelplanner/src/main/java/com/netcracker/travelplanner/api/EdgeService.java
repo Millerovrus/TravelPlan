@@ -104,7 +104,7 @@ public class EdgeService {
         return reader;
     }
 
-    public static List<MyPoint> getCities(String iataCode, double latitude, double longitude){
+    public static List<Point> getCities(String iataCode, double latitude, double longitude){
 
         String url = "https://api.skypicker.com/locations/?type=radius&" +
                 "lat=" +
@@ -137,12 +137,18 @@ public class EdgeService {
                         ,location.getCity().getName()
                         ,location.getCity().getCode())));
 
-        return myPointList
+        List<MyPoint> list =  myPointList
                 .stream()
                 .filter(a -> !a.getCityCode().equals(iataCode))
                 .filter(distinctByKey(MyPoint::getCityCode))
                 .limit(5)
                 .collect(Collectors.toList());
+
+        List<Point> points = new ArrayList<>();
+
+        list.forEach(myPoint -> points.add(new Point(myPoint.getName(), myPoint.getLat(), myPoint.getLon(),myPoint.getCode(),getYandexCode(myPoint.getLat(),myPoint.getLon()))));
+
+        return points;
 
     }
 

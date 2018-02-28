@@ -3,6 +3,7 @@ package com.netcracker.travelplanner.api;
 import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.service.YandexService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,15 +12,17 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class ApiServiceManager implements ApiServiceInterface {
-    @Autowired
-    private YandexService yandexService;
+
+
+public class ApiServiceManager {
+
+
 
     private InitializatorApi initializatorApi;
 
-    private KiwiApi kiwiApi = new KiwiApi(initializatorApi);
-    private YandexParser yandexParser = new YandexParser(initializatorApi);
-    private YandexApi yandexApi = new YandexApi(initializatorApi);
+    private KiwiApi kiwiApi = new KiwiApi();
+    private YandexParser yandexParser = new YandexParser(WebParser.getDriver());
+    private YandexApi yandexApi = new YandexApi();
 
     private List<Edge> listEdge;
 
@@ -27,9 +30,6 @@ public class ApiServiceManager implements ApiServiceInterface {
         this.initializatorApi = initializatorApi;
     }
 
-    public List<Thread> getTaskList() {
-        return null;
-    }
 
     /*  если false то вызываем яндекс апи и яндекс расписания метод fromTo в 2 отдельных потока;
         если true то создаем потоки:
@@ -40,43 +40,48 @@ public class ApiServiceManager implements ApiServiceInterface {
 
     public List<Edge> foundEdges(){
         listEdge = Collections.synchronizedList(new ArrayList<>());
-        ExecutorService executorService = Executors.newFixedThreadPool(7);
+        ExecutorService executorService = Executors.newCachedThreadPool();
 
         if(initializatorApi.isGlobalRoute()){
 
-            /*Runnable task1 = () -> {
-                List<Edge> list = yandexApi.findEdgesOneToAll();
+            Runnable task1 = () -> {
+                List<Edge> list = yandexApi.findEdgesOneToAll(initializatorApi.getFrom(), initializatorApi.getCitiesFrom(), initializatorApi.getDeparture());
                 synchronized (listEdge){
                     if (!list.isEmpty()) {
                         listEdge.addAll(list);
                     }
                 }
-            }; */
+            };
 
            synchronized (listEdge) {
                // task 1
                executorService.execute(() -> {
-                   List<Edge> list = yandexApi.findEdgesOneToAll();
+                   List<Edge> list = yandexApi.findEdgesOneToAll(initializatorApi.getFrom(), initializatorApi.getCitiesFrom(), initializatorApi.getDeparture());
                    if (!list.isEmpty()) { listEdge.addAll(list); }
                });
                // task 2
                executorService.execute(() -> {
-                   List<Edge> list = yandexApi.findEdgesAllToOne();
+                   List<Edge> list = yandexApi.findEdgesAllToOne(initializatorApi.getCitiesTo(), initializatorApi.getTo(), initializatorApi.getDeparture());
                    if (!list.isEmpty()) { listEdge.addAll(list); }
                });
                // task 3
-               executorService.execute(()->{
-                   List<Edge> list = yandexParser.findEdgesOneToAll();
+            /*   executorService.execute(()->{
+                   List<Edge> list = yandexParser.findEdgesOneToAll(initializatorApi.getFrom(), initializatorApi.getCitiesFrom(), initializatorApi.getDeparture());
                    if(!list.isEmpty()){ listEdge.addAll(list);}
                });
                // task 4
                executorService.execute(()->{
-                   List<Edge> list = yandexParser.findEdgesAllToOne();
+                   List<Edge> list = yandexParser.findEdgesAllToOne(initializatorApi.getCitiesTo(), initializatorApi.getTo(), initializatorApi.getDeparture());
                    if(!list.isEmpty()){ listEdge.addAll(list);}
-               });
+               });*/
                // task 5
                executorService.execute(()->{
-                   List<Edge> list = kiwiApi.findEdgesAllToAll();
+                   List<Edge> list = kiwiApi.findEdgesAllToAll(initializatorApi.getCitiesFrom(),initializatorApi.getCitiesTo(),initializatorApi.getDeparture());
+                   if(!list.isEmpty()) { listEdge.addAll(list); }
+               });
+
+               executorService.execute(()-> {
+                   List<Edge> list = yandexParser.findEdgesFromTo(initializatorApi.getFrom(),initializatorApi.getTo(),initializatorApi.getDeparture());
                    if(!list.isEmpty()) { listEdge.addAll(list); }
                });
            }
@@ -85,17 +90,7 @@ public class ApiServiceManager implements ApiServiceInterface {
             synchronized (listEdge){
                 // task 1
                 executorService.execute(()->{
-                    List<Edge> list = yandexApi.findEdgesFromTo();
-                    if(!list.isEmpty()) { listEdge.addAll(list); }
-                });
-                // task 2
-                executorService.execute(()->{ // нужно добавить правильный метод
-                    List<Edge> list = yandexService.getEdgesFromYandex(
-                            initializatorApi.getFrom(),
-                            initializatorApi.getTo(),
-                            initializatorApi.getDeparture(),
-                            initializatorApi.getYandexCodeFrom(),
-                            initializatorApi.getYandexCodeTo());
+                    List<Edge> list = yandexApi.findEdgesFromTo(initializatorApi.getFrom(),initializatorApi.getTo(),initializatorApi.getDeparture());
                     if(!list.isEmpty()) { listEdge.addAll(list); }
                 });
             }
@@ -112,7 +107,5 @@ public class ApiServiceManager implements ApiServiceInterface {
         return listEdge;
     }
 
-    public List<Edge> runTasks(List<Thread> tasks){
-        return null;
-    }
+
 }

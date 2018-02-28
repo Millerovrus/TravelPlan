@@ -1,6 +1,9 @@
 package com.netcracker.travelplanner.service;
 
 import com.netcracker.travelplanner.algorithms.Algorithm;
+import com.netcracker.travelplanner.api.ApiServiceManager;
+import com.netcracker.travelplanner.api.InitializatorApi;
+import com.netcracker.travelplanner.api.PreparingDataService;
 import com.netcracker.travelplanner.entities.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +21,9 @@ public class RoutesFinalService {
     @Autowired
     private Algorithm algorithm;
 
+
+    private ApiServiceManager apiServiceManager;
+
     private  List<Edge> separator(List<Edge> edges, RouteType type){
 
         List<Edge> edgeList = new ArrayList<>();
@@ -32,11 +38,19 @@ public class RoutesFinalService {
         return edgeList;
     }
 
-    public List<Route> findTheBestRoutes(String from, String to, LocalDate localDate){
+    public List<Route> findTheBestRoutes(String from, String to, String latit, String longit, String date){
 
         logger.debug("Запуск поиска лучших маршрутов между from: " + from + " и to: " + to);
 
-        List<Edge> list = convertPointsToListEdges.findAll(from,to,localDate);
+//        List<Edge> list = convertPointsToListEdges.findAll(from,to,localDate);
+
+        PreparingDataService preparingDataService = new PreparingDataService();
+
+        InitializatorApi initializatorApi = preparingDataService.prepareData(from, to, latit, longit, date);
+
+        apiServiceManager = new ApiServiceManager(initializatorApi);
+
+        List<Edge> list = apiServiceManager.foundEdges();
 
         List<Edge> edgeList = new ArrayList<>();
 

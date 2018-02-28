@@ -56,6 +56,7 @@ public class YandexService {
                                          String codeTo){
 
         if(from.equals(to)){return null;}
+
         Date dateNow = new Date();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         StringBuilder builder = new StringBuilder();

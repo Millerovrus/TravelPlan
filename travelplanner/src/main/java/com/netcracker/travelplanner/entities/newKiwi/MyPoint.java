@@ -45,6 +45,30 @@ public class MyPoint {
     @Column(name = "city_code")
     private String cityCode;
 
+    //здесь добавить коды яндекса
+    private String yandexCodeTo;
+
+    private String yandexCodeFrom;
+
+
+
+
+    public String getYandexCodeFrom() {
+        return yandexCodeFrom;
+    }
+
+    public void setYandexCodeFrom(String yandexCodeFrom) {
+        this.yandexCodeFrom = yandexCodeFrom;
+    }
+
+    public String getYandexCodeTo() {
+        return yandexCodeTo;
+    }
+
+    public void setYandexCodeTo(String yandexCodeTo) {
+        this.yandexCodeTo = yandexCodeTo;
+    }
+
     public String getId() {
         return id;
     }

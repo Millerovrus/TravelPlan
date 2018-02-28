@@ -1,38 +1,57 @@
 package com.netcracker.travelplanner.api;
 
 import com.netcracker.travelplanner.entities.Edge;
+import com.netcracker.travelplanner.entities.RouteType;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriverService;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
 
 public class YandexParser implements ApiInterface {
 
-    private InitializatorApi initializatorApi;
+    private WebDriver webDriver;
 
-    public List<Edge> findEdgesFromTo() {
-        String url = "https://rasp.yandex.ru/search/?fromId=" +
-                initializatorApi.getYandexCodeFrom() +
+    public YandexParser(WebDriver webDriver) {
+        this.webDriver = webDriver;
+    }
+
+    @Override
+    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date){
+
+
+            String url = "https://rasp.yandex.ru/search/?fromId=" +
+                from.getYandexCode() +
                 "&toId=" +
-                initializatorApi.getYandexCodeTo() +
+                to.getYandexCode() +
                 "&transportType=all&when=" +
-                initializatorApi.getDeparture().format(DateTimeFormatter.ISO_LOCAL_DATE);
+                date.format(DateTimeFormatter.ISO_LOCAL_DATE);
 
+
+        List<Edge> result = new ArrayList<>();
         List<Edge> edgeList = new ArrayList<>();
 
-        initializatorApi.getWebDriver().get(url);
-        initializatorApi.getWebDriver().navigate().refresh();
-        WebParser.waitForLoad(initializatorApi.getWebDriver());
+        webDriver.get(url);
+        webDriver.navigate().refresh();
+        WebParser.waitForLoad(webDriver);
 
-        String sourceHtml = initializatorApi.getWebDriver().getPageSource();
+        String sourceHtml = webDriver.getPageSource();
 
         Document doc = Jsoup.parse(sourceHtml);
 
@@ -41,8 +60,8 @@ public class YandexParser implements ApiInterface {
         el.stream()
                 .filter(element -> !element.getElementsByClass("SegmentPrices").first().text().equals(""))
                 .forEach(element -> edgeList.add(new Edge(new Date()
-                        , initializatorApi.getFrom()
-                        , initializatorApi.getTo()
+                        , from.getName()
+                        , to.getName()
                         , convertTypes(element.getElementsByClass("TransportIcon").first().attr("aria-label"))
                         , (double) splStr(element.getElementsByClass("SearchSegment__duration").first().text())
                         , splCost(element.getElementsByClass("Price").first().text())
@@ -50,33 +69,36 @@ public class YandexParser implements ApiInterface {
                         , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text()))
                         , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text()))
                         , "RUB"
-                        , initializatorApi.getIataCodeFrom()
-                        , initializatorApi.getIataCodeTo()
-                        , initializatorApi.getLatitudeFrom()
-                        , initializatorApi.getLongitudeFrom()
-                        , initializatorApi.getLatitudeTo()
-                        , initializatorApi.getLongitudeTo())));
+                        , from.getIataCode()
+                        , to.getIataCode()
+                        , from.getLatitude()
+                        , from.getLongitude()
+                        , to.getLatitude()
+                        , to.getLongitude())));
 
-        return edgeList;
+        if (!edgeList.isEmpty()) {
+            result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
+            result.add(filterEdgeByTypes(edgeList, RouteType.optimal));
+            result.add(filterEdgeByTypes(edgeList, RouteType.comfort));
+            result.add(filterEdgeByTypes(edgeList, RouteType.fastest));
+            result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
+        }
+        return result;
+
     }
 
-    public List<Edge> findEdgesOneToAll() {
-
-       List<String> codesOfCities = new ArrayList<>();
-
-       List<Edge> edgeList = new ArrayList<>();
-
-       initializatorApi.getCitiesTo().forEach(myPoint -> codesOfCities.add(EdgeService.getYandexCode(myPoint.getLat(),myPoint.getLon())));
-
-
-       return edgeList;
-    }
-
-    public List<Edge> findEdgesAllToOne() {
+    @Override
+    public List<Edge> findEdgesAllToOne(List<Point> pointListFrom, Point to, LocalDate date) {
         return null;
     }
 
-    public List<Edge> findEdgesAllToAll() {
+    @Override
+    public List<Edge> findEdgesOneToAll(Point from, List<Point> pointListTo, LocalDate date) {
+        return null;
+    }
+
+    @Override
+    public List<Edge> findEdgesAllToAll(List<Point> pointListFrom, List<Point> pointListTo, LocalDate date) {
         return null;
     }
 
@@ -167,7 +189,19 @@ public class YandexParser implements ApiInterface {
 
     }
 
-    public YandexParser(InitializatorApi initializatorApi) {
-        this.initializatorApi = initializatorApi;
+    private Edge filterEdgeByTypes(List<Edge> edgeList, RouteType type){
+
+        Edge edge = null;
+        edgeList.forEach(l->l.setEdgeType(type));
+        edgeList.forEach(l->l.setData(type));
+        try {
+            edge = (Edge) edgeList.stream().min(Comparator.comparingDouble(Edge::getWeight)).get().clone();
+        } catch (CloneNotSupportedException e) {
+
+            e.printStackTrace();
+        }
+
+        return edge;
     }
+
 }

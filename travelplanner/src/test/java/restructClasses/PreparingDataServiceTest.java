@@ -18,6 +18,14 @@ public class PreparingDataServiceTest {
 
         System.out.println(initializatorApi.toString());
 
+        System.out.println("_________________________");
+
+        initializatorApi.getCitiesFrom().forEach(point -> System.out.println(point.toString()));
+
+        System.out.println("_________________________");
+
+        initializatorApi.getCitiesTo().forEach(point -> System.out.println(point.toString()));
+
     }
 
 }
