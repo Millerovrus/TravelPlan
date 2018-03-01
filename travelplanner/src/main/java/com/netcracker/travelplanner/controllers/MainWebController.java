@@ -13,7 +13,8 @@ public class MainWebController {
         return "index.html";
     }
 
-    @GetMapping("/signUp")
+    //WITHOUT SPRINGSECURITY! DON'T DELETE!
+/*    @GetMapping("/signUp")
     public String signUp(){
         return "signup.html";
     }
@@ -25,7 +26,7 @@ public class MainWebController {
         model.addAttribute("error", error != null);
         model.addAttribute("logout", logout != null);
         return "signin.html";
-    }
+    }*/
 
     @GetMapping("/admins")
     public String admin(){

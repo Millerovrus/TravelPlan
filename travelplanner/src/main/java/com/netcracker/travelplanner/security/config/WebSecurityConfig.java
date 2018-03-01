@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/", "/signUp","/js/**","/css/**","/img/**",
                         "/fonts/**","/navbar/**","/api/**").permitAll()
-        .and().authorizeRequests().antMatchers(HttpMethod.POST, "/api/users/adduser").permitAll();
+        .and().authorizeRequests().antMatchers(HttpMethod.POST, "/api/users/adduser", "/signUp").permitAll();
 
         // If no login, it will redirect to /login page.
         http.formLogin().loginPage("/signIn")/*.loginProcessingUrl("/j_spring_security_check")*/

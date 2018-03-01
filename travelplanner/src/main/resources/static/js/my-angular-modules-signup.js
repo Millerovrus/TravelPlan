@@ -3,7 +3,8 @@ app.controller('controllerSignUp', function signUpUser($scope, $http) {
     $scope.sendUserData = function () {
         $http({
             method: "POST",
-            url: "/api/users/adduser",
+            /*url: "/api/users/adduser",*/
+            url: "/signUp",
             /*$.param преобразование данных в строку с кодировкой URL*/
             data: $.param({
                 firstname: angular.element($('#inputFirstName')).val(),
