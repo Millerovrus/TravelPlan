@@ -84,20 +84,21 @@
 
        <!-- <div ng-controller="myParameterController"> -->
             <div  class="scrollbar" id="container1">
-                <img src="img/travel-top.jpg" class="background-main-pic"/>
+                <!--<img src="img/travel-top.jpg" class="background-main-pic"/>-->
+
+                <div class="background-main-pic">
+                    <div class="row">
+                        <div id="travel-header-row" class="col-sm-12">
+                            <h1>Start your journey right now</h1>
+                        </div>
+                    </div>
+                </div>
                 <div class="container-fluid">
                     <div class="container scrollbar">
                         <div class="formBox">
                             <form id="inputForm" autocomplete="off">
 
                                 <div class="row">
-                                    <div id="travel-header-row" class="col-sm-12">
-                                        <h1>Start your journey right now</h1>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-
                                     <div class="col-sm-4">
                                         <div class="inputBox ">
                                             <input type="text" name="" id="inputFrom" required class="input" placeholder="From" onfocus="geolocate()">
