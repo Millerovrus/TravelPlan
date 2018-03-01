@@ -49,15 +49,6 @@ public class ApiServiceManager {
 
         if(initializatorApi.isGlobalRoute()){
 
-            Runnable task1 = () -> {
-                List<Edge> list = yandexApi.findEdgesOneToAll(initializatorApi.getFrom(), initializatorApi.getCitiesFrom(), initializatorApi.getDeparture());
-                synchronized (listEdge){
-                    if (!list.isEmpty()) {
-                        listEdge.addAll(list);
-                    }
-                }
-            };
-
            synchronized (listEdge) {
                // task 1
                executorService.execute(() -> {
