@@ -48,7 +48,8 @@ public class YandexParserTest {
         WebDriver driver = WebParser.getDriver();
 
 
-        YandexParser yandexParser = new YandexParser(driver);
+        YandexParser yandexParser = new YandexParser();
+        yandexParser.setWebDriver(WebParser.getDriver());
         List<Edge> list = yandexParser.findEdgesFromTo(initializatorApi.getFrom(),initializatorApi.getTo(),initializatorApi.getDeparture());
         list.forEach(edge -> System.out.println(edge.toString()));
 

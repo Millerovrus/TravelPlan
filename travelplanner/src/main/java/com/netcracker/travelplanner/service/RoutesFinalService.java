@@ -1,10 +1,9 @@
 package com.netcracker.travelplanner.service;
 
 import com.netcracker.travelplanner.algorithms.Algorithm;
-import com.netcracker.travelplanner.api.ApiServiceManager;
-import com.netcracker.travelplanner.api.InitializatorApi;
-import com.netcracker.travelplanner.api.PreparingDataService;
+import com.netcracker.travelplanner.api.*;
 import com.netcracker.travelplanner.entities.*;
+import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,8 @@ public class RoutesFinalService {
 
     @Autowired
     private Algorithm algorithm;
+
+    private WebDriver driver = WebParser.getDriver();
 
 
     private ApiServiceManager apiServiceManager;
@@ -49,6 +50,8 @@ public class RoutesFinalService {
         InitializatorApi initializatorApi = preparingDataService.prepareData(from, to, latit, longit, date);
 
         apiServiceManager = new ApiServiceManager(initializatorApi);
+
+        apiServiceManager.setDriver(driver);
 
         List<Edge> list = apiServiceManager.foundEdges();
 

@@ -26,10 +26,17 @@ import java.util.List;
 
 public class YandexParser implements ApiInterface {
 
+    public WebDriver getWebDriver() {
+        return webDriver;
+    }
+
+    public void setWebDriver(WebDriver webDriver) {
+        this.webDriver = webDriver;
+    }
+
     private WebDriver webDriver;
 
-    public YandexParser(WebDriver webDriver) {
-        this.webDriver = webDriver;
+    public YandexParser(){
     }
 
     @Override
@@ -55,6 +62,7 @@ public class YandexParser implements ApiInterface {
 
         Document doc = Jsoup.parse(sourceHtml);
 
+//      Убрать NPE при пустой странице
         Elements el = doc.getElementsByClass("SearchSegment");
 
         el.stream()

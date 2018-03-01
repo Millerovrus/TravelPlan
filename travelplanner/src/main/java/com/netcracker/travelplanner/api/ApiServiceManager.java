@@ -2,6 +2,7 @@ package com.netcracker.travelplanner.api;
 
 import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.service.YandexService;
+import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +18,12 @@ import java.util.concurrent.TimeUnit;
 public class ApiServiceManager {
 
 
+    private WebDriver driver;
 
     private InitializatorApi initializatorApi;
 
     private KiwiApi kiwiApi = new KiwiApi();
-    private YandexParser yandexParser = new YandexParser(WebParser.getDriver());
+    private YandexParser yandexParser = new YandexParser();
     private YandexApi yandexApi = new YandexApi();
 
     private List<Edge> listEdge;
@@ -39,6 +41,9 @@ public class ApiServiceManager {
         5- fromAlltoAll из киви */
 
     public List<Edge> foundEdges(){
+
+        yandexParser.setWebDriver(driver);
+
         listEdge = Collections.synchronizedList(new ArrayList<>());
         ExecutorService executorService = Executors.newCachedThreadPool();
 
@@ -84,6 +89,18 @@ public class ApiServiceManager {
                    List<Edge> list = yandexParser.findEdgesFromTo(initializatorApi.getFrom(),initializatorApi.getTo(),initializatorApi.getDeparture());
                    if(!list.isEmpty()) { listEdge.addAll(list); }
                });
+
+               executorService.execute(()-> {
+                   List<Edge> list = yandexApi.findEdgesFromTo(initializatorApi.getFrom(),initializatorApi.getTo(),initializatorApi.getDeparture());
+                   if(!list.isEmpty()) { listEdge.addAll(list); }
+               });
+
+               executorService.execute(()-> {
+                   List<Edge> list = kiwiApi.findEdgesFromTo(initializatorApi.getFrom(),initializatorApi.getTo(),initializatorApi.getDeparture());
+                   if(!list.isEmpty()) { listEdge.addAll(list); }
+               });
+
+
            }
         }
         else {
@@ -105,6 +122,14 @@ public class ApiServiceManager {
         }
 
         return listEdge;
+    }
+
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(WebDriver driver) {
+        this.driver = driver;
     }
 
 
