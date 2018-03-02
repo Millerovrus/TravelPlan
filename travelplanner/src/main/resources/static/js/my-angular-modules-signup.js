@@ -25,6 +25,7 @@ app.controller('controllerSignUp', function signUpUser($scope, $http) {
                 angular.element($('#inputBirthDate')).val('');
                 angular.element($('#inputEmail')).val('');
                 angular.element($('#inputPassword')).val('');
+                window.location = '/users';
             },
             function error(response, status) {
                 console.error('User has not been added, error!', status, response);

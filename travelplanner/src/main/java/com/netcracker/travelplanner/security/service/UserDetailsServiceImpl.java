@@ -27,12 +27,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private static final Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
     @Autowired
-    UserRepositoryService userRepositoryService;
+    UserService userService;
 
     @Override
     @Transactional(readOnly = true )
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepositoryService.findByEmail(email);
+        User user = userService.findUserByEmail(email);
         Set<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
 
         if (user.isAdmin()) {
