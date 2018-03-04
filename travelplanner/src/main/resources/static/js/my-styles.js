@@ -76,10 +76,28 @@ $(function () {
     });
 });
 
-/*collapse*/
-/*$(function(){
-    $('.card-head > span').click(function(){
-        $(this).parent().parent().toggleClass('collapsed');
-        $(this).parent().parent().find('.card-body').slideToggle();
+/* stop dropdown closing while choosing number of passengers*/
+$(function () {
+    $('.dropdown-menu').click(function(e) {
+        e.stopPropagation();
     });
-});*/
+});
+
+/* spinner + -*/
+$(function () {
+    $("input[name='demo_vertical']").TouchSpin({
+        min: 1,
+        max: 10,
+        step: 1,
+        verticalupclass: 'fas fa-plus'
+        /* verticalbuttons: true,
+        verticalupclass: 'fa fa-caret-up',
+        verticaldownclass: 'fa fa-caret-down'*/
+    });
+});
+
+
+
+
+
+

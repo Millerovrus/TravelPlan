@@ -19,7 +19,8 @@ angular.module('controllerModule')
                  params: {
                      from: angular.element($('#inputFromHidden')).val(),
                      to: angular.element($('#inputToHidden')).val(),
-                     date: angular.element($('#inputDate')).val()
+                     date: angular.element($('#inputDate')).val(),
+                    /* passengers: angular.element($('#demo2')).val()*/
                 }
             }).then(
                 function success(response) {

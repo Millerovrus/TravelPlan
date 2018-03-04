@@ -14,11 +14,11 @@ select.selectpicker {
   width: 220px \0;
   /*IE9 and below*/
 }
-.bootstrap-select > .dropdown-toggle {
-  width: 100%;
-  padding-right: 25px;
-  z-index: 1;
-}
+  .bootstrap-select > .dropdown-toggle {
+    width: 100%;
+    padding-right: 25px;
+    z-index: 1;
+  }
 /* !!!!!!!!!!!!!!!!!!!!!!!!!! */
 .bootstrap-select.btn-group .dropdown-menu li a:hover,
 .bootstrap-select.btn-group .dropdown-menu li a:focus{
@@ -85,6 +85,7 @@ select.selectpicker {
   padding: 0 !important;
   opacity: 0 !important;
   border: none;
+  outline: none !important;
 }
 .bootstrap-select > select.mobile-device {
   top: 0;
@@ -118,6 +119,7 @@ select.selectpicker {
   margin-bottom: 0;
   padding: 0;
   border: none;
+  outline: none !important;
 }
 .bootstrap-select.form-control:not([class*="col-"]) {
   width: 100%;
