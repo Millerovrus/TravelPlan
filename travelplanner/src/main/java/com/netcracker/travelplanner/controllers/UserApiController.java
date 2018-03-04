@@ -61,8 +61,9 @@ public class UserApiController {
      * @param email
      * @param birthDate
      * @param password
+     * WITHOUT SPRINGSECURITY! DON'T DELETE!
      */
-    @RequestMapping(value = "/adduser", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/adduser", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
     public void addUser(@RequestParam(value = "firstname", required = true) String firstName,
                         @RequestParam(value = "lastname", required = true) String lastName,
@@ -81,5 +82,5 @@ public class UserApiController {
             logger.error("Процесс регистрации прерван с ошибкой: ", ex);
             ex.printStackTrace();
         }
-    }
+    }*/
 }
