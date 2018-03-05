@@ -17,7 +17,7 @@ import java.util.List;
 public class Algorithm {
     // Список ребер с суммарным минимальным весом, т.е. искомый маршрут
     private List<Edge> minimalRoute = new LinkedList<>();
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(Algorithm.class);
 
     /**
      * Метод запускает поиск маршрута и возвращает найденный маршрут
@@ -28,9 +28,9 @@ public class Algorithm {
      * @return minimalRoute - найденный маршрут
      */
     public List<Edge> getMinimalRoute(List<Edge> edges, String startPoint, String destinationPoint) {
-        logger.debug("Запуск алгоритма поиска " + edges.get(0).getEdgeType() + " маршрута");
+        logger.debug("Запуск алгоритма поиска {} маршрута", edges.get(0).getEdgeType());
         startSearch(edges, startPoint, destinationPoint);
-        logger.debug("Найденный маршрут: " + minimalRoute.toString());
+        logger.debug("Найденный маршрут: {}", minimalRoute.toString());
         return minimalRoute;
     }
 

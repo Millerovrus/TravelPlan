@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/edges")
 public class EdgeApiController {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(EdgeApiController.class);
     @Autowired
     private EdgeRepositoryService edgeRepositoryService;
 
@@ -34,7 +34,7 @@ public class EdgeApiController {
     @RequestMapping(value = "/findbytwopoints", method = RequestMethod.GET)
     public List<Edge> getEdgesByTwoPoints(@RequestParam(value = "start", required = true) String s,
                                             @RequestParam(value = "destination", required = true) String d){
-        logger.info("Запрос на получение cписка отрезков с начальной точкой: " + s + " и конечной: " + d);
+        logger.info("Запрос на получение cписка отрезков с начальной точкой: {} и конечной: {}", s, d);
         return edgeRepositoryService.findByStartPointAndDestinationPoint(s, d);
     }
 
@@ -46,7 +46,7 @@ public class EdgeApiController {
     @RequestMapping(value = "/findbypoint", method = RequestMethod.GET)
     public List<Edge> getEdgesByPoint(@RequestParam(value = "start", required = false) String s,
                                         @RequestParam(value = "destination", required = false) String d){
-        logger.info("Запрос на получение cписка отрезков с начальной точкой: " + s + " или конечной: " + d);
+        logger.info("Запрос на получение cписка отрезков с начальной точкой: {} или конечной: {}", s, d);
         return edgeRepositoryService.findByStartPointOrDestinationPoint(s, d);
     }
 
@@ -56,7 +56,7 @@ public class EdgeApiController {
      */
     @RequestMapping(value = "/findbydistance", method = RequestMethod.GET)
     public List<Edge> getEdgesByDistance(@RequestParam(value = "distance", required = true) double d) {
-        logger.info("Запрос на получение cписка отрезков с distance = " + d);
+        logger.info("Запрос на получение cписка отрезков с distance = {}", d);
         return edgeRepositoryService.findByDistance(d);
     }
 
@@ -66,7 +66,7 @@ public class EdgeApiController {
      */
     @RequestMapping(value = "/findbyduration", method = RequestMethod.GET)
     public List<Edge> getEdgesByDuration(@RequestParam(value = "duration", required = true) double d) {
-        logger.info("Запрос на получение cписка отрезков с duration = " + d);
+        logger.info("Запрос на получение cписка отрезков с duration = {}", d);
         return edgeRepositoryService.findByDuration(d);
     }
 
@@ -76,7 +76,7 @@ public class EdgeApiController {
      */
     @RequestMapping(value = "/findbycost", method = RequestMethod.GET)
     public List<Edge> getEdgesByCost(@RequestParam(value = "cost", required = true) double c) {
-        logger.info("Запрос на получение cписка отрезков с cost = " + c);
+        logger.info("Запрос на получение cписка отрезков с cost = {}", c);
         return edgeRepositoryService.findByCost(c);
     }
 
@@ -86,7 +86,7 @@ public class EdgeApiController {
      */
     @RequestMapping(value = "/findbytransporttype", method = RequestMethod.GET)
     public List<Edge> getEdgesByTransportType(@RequestParam(value = "transporttype", required = true) String s) {
-        logger.info("Запрос на получение cписка отрезков с transporttype = " + s);
+        logger.info("Запрос на получение cписка отрезков с transporttype = {}", s);
         return edgeRepositoryService.findByTransportType(s);
     }
 
@@ -96,7 +96,7 @@ public class EdgeApiController {
      */
     @RequestMapping(value = "/findbyedgetype", method = RequestMethod.GET)
     public List<Edge> getEdgesByEdgeType(@RequestParam(value = "edgetype", required = true) RouteType type) {
-        logger.info("Запрос на получение cписка отрезков с edgetype = " + type);
+        logger.info("Запрос на получение cписка отрезков с edgetype = {}", type);
         return edgeRepositoryService.findByEdgeType(type);
     }
 }

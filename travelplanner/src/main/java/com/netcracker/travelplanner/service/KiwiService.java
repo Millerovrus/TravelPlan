@@ -23,7 +23,7 @@ import java.util.List;
 
 @Service
 public class KiwiService {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(KiwiService.class);
     private KiwiFlights getKiwiFlightsFromUrl(String urlQueryString) {
 
         KiwiFlights kiwiFlights = null;

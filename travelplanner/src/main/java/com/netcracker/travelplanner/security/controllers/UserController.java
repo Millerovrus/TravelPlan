@@ -47,7 +47,7 @@ public class UserController {
             userService.save(user);
             logger.info("Регистрация прошла успешно!");
         } catch (Exception ex) {
-            logger.error("Процесс регистрации прерван с ошибкой: ", ex);
+            logger.error("Процесс регистрации прерван с ошибкой: {}", ex);
             ex.printStackTrace();
         }
         securityService.autologin(email, password);

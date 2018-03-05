@@ -13,14 +13,13 @@ import java.util.List;
 /**
  * Алгоритм нахождения минимального пути между двумя точками полным перебором
  */
-
 @Service
 public class Algorithm2 {
     private List<List<Edge>> bestFoundRoutes = new LinkedList<>();
     private List<List<Edge>> allFoundRoutes = new ArrayList<>();
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(Algorithm2.class);
 
-    public List<List<Edge>> getBestFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint) {\
+    public List<List<Edge>> getBestFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint) {
         startSearch(edges, startPoint, destinationPoint);
         searchBestRoutes();
         return bestFoundRoutes;

@@ -12,7 +12,7 @@ import java.util.concurrent.*;
 @Service
 public class ConvertPointsToListEdges {
     private List<Edge> resultList;
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(ConvertPointsToListEdges.class);
     @Autowired
     private IntegrationAPIService integrationAPIService;
 
@@ -32,7 +32,7 @@ public class ConvertPointsToListEdges {
             synchronized (resultList) {
                 if (!list.isEmpty()) {
                     resultList.addAll(list);
-                    logger.debug("Получено ребро " + from + " - " + to);
+                    logger.debug("Получено ребро {} - {}", from, to);
                 }
             }
         }
@@ -50,7 +50,7 @@ public class ConvertPointsToListEdges {
         resultList = Collections.synchronizedList(new ArrayList<>());
         ExecutorService executorService = Executors.newCachedThreadPool();
 
-        logger.debug("Получение ближайших городов с аэропортами в округе города " + from + " и города " + to);
+        logger.debug("Получение ближайших городов с аэропортами в округе города {} и города {}", from, to);
         //получаем аэропорты вокруг from
         List<String> citiesFrom = integrationAPIService.getClosesCities(from);
         //получаем аэропорты вокруг to
@@ -67,8 +67,8 @@ public class ConvertPointsToListEdges {
                 }
             }
         }
-        logger.debug("Аэропорты вокруг " + from + ": " + citiesFrom.toString());
-        logger.debug("Аэропорты вокруг " + to + ": " + citiesTo.toString());
+        logger.debug("Аэропорты вокруг {}: {}", from, citiesFrom.toString());
+        logger.debug("Аэропорты вокруг {}: {}", to, citiesTo.toString());
 
         //List<Runnable> threads = new ArrayList<>();
 

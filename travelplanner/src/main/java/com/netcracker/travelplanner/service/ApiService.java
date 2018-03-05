@@ -17,7 +17,7 @@ import java.util.function.Predicate;
 
 @Service
 public class ApiService implements IntegrationAPIService {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static Logger logger = LoggerFactory.getLogger(ApiService.class);
 
     @Autowired
     private AirportRepoService airportRepoService;
@@ -35,7 +35,7 @@ public class ApiService implements IntegrationAPIService {
      * @return список ребер отфильтрованных по типу ребра cheap, optimal, comfort
      */
     public List<Edge> getEdgesFromTo(String from, String to, LocalDate localDate) {
-        logger.debug("Начало запросов к api для получения Edge, from: " + from + " to: " + to);
+        logger.debug("Начало запросов к api для получения Edge, from: {} to: {}",from, to);
         List<Edge> edgeList = new ArrayList<>();
         List<Edge> result = new ArrayList<>();
         String codeFrom = cityToIataCode(from);
@@ -99,7 +99,7 @@ public class ApiService implements IntegrationAPIService {
      */
     public List<String> getClosesCities(String city) {
 
-        logger.debug("Получение ближайших городов с аэропортами для города: " + city);
+        logger.debug("Получение ближайших городов с аэропортами для города: {}", city);
         List<String> codes = new ArrayList<>();
 
         MyAirport airport = airportRepoService.getMyAirport(city);

@@ -20,7 +20,7 @@ import java.util.List;
 
 @Service
 public class YandexService {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(YandexService.class);
     private YandexRasp getYandexRaspFromUrl(String urlQueryString){
 
         YandexRasp yandexRasp = null;

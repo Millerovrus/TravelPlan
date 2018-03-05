@@ -11,7 +11,7 @@ import java.util.*;
 
 @Service
 public class RoutesFinalService {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(RoutesFinalService.class);
     @Autowired
     private ConvertPointsToListEdges convertPointsToListEdges;
 
@@ -34,7 +34,7 @@ public class RoutesFinalService {
 
     public List<Route> findTheBestRoutes(String from, String to, LocalDate localDate){
 
-        logger.debug("Запуск поиска лучших маршрутов между from: " + from + " и to: " + to);
+        logger.debug("Запуск поиска лучших маршрутов между from: {} to: {}", from, to);
 
         List<Edge> list = convertPointsToListEdges.findAll(from,to,localDate);
 

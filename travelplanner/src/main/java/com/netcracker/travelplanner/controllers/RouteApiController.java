@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/routes")
 public class RouteApiController {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static Logger logger = LoggerFactory.getLogger(RouteApiController.class);
     @Autowired
     private RouteRepositoryService routeRepositoryService;
 
@@ -35,7 +35,7 @@ public class RouteApiController {
      */
     @RequestMapping(value = "/findbyid", method = RequestMethod.GET)
     public Route getRouteById(@RequestParam(value = "id", required = true) int id) {
-        logger.info("Запрос на получение маршрута с id = " + id);
+        logger.info("Запрос на получение маршрута с id = {}", id);
         return routeRepositoryService.findById(id);
     }
 
@@ -47,7 +47,7 @@ public class RouteApiController {
     @RequestMapping(value = "/findbytwopoints", method = RequestMethod.GET)
     public List<Route> getRoutesByTwoPoints(@RequestParam(value = "start", required = true) String s,
                                             @RequestParam(value = "destination", required = true) String d){
-        logger.info("Запрос на получение маршрутов с начальной точкой: " + s + " и конечной точкой: " + d);
+        logger.info("Запрос на получение маршрутов с начальной точкой: {} и конечной точкой: {}", s, d);
         return routeRepositoryService.findByStartPointAndDestinationPoint(s, d);
     }
 
@@ -59,7 +59,7 @@ public class RouteApiController {
     @RequestMapping(value = "/findbypoint", method = RequestMethod.GET)
     public List<Route> getRoutesByPoint(@RequestParam(value = "start", required = false) String s,
                                         @RequestParam(value = "destination", required = false) String d){
-        logger.info("Запрос на получение маршрутов с начальной точкой: " + s + " или конечной точкой: " + d);
+        logger.info("Запрос на получение маршрутов с начальной точкой: {} или конечной точкой: {}", s, d);
         return routeRepositoryService.findByStartPointOrDestinationPoint(s, d);
     }
 
@@ -69,7 +69,7 @@ public class RouteApiController {
      */
     @RequestMapping(value = "/findbytype", method = RequestMethod.GET)
     public List<Route> getRoutesByType(@RequestParam(value = "type", required = true) RouteType type){
-        logger.info("Запрос на получение маршрутов с типом маршрута: " + type);
+        logger.info("Запрос на получение маршрутов с типом маршрута: {}", type);
         return routeRepositoryService.findByRouteType(type);
     }
 
@@ -79,7 +79,7 @@ public class RouteApiController {
      */
     @RequestMapping(value = "/findbyuserid", method = RequestMethod.GET)
     public List<Route> getRoutesByUser(@RequestParam(value = "user", required = true) int id){
-        logger.info("Запрос на получение маршрутов пользователя с id = " + id);
+        logger.info("Запрос на получение маршрутов пользователя с id = {}", id);
         return routeRepositoryService.findByUserId(id);
     }
 }

@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+/**
+ * User service fro SpringSecurity
+ * Implements of {@link UserService} interface
+ */
 @Service
 public class UserServiceImpl implements UserService {
 

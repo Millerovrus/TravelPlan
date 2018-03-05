@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 public class UserApiController {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(UserApiController.class);
     Date date;
     @Autowired
     private UserRepositoryService userRepositoryService;
@@ -38,7 +38,7 @@ public class UserApiController {
      */
     @RequestMapping(value = "/findbyid", method = RequestMethod.GET)
     public User getUserById(@RequestParam(value = "id", required = true) int id) {
-        logger.info("Запрос на получение пользователя с id = " + id);
+        logger.info("Запрос на получение пользователя с id = {}", id);
         return userRepositoryService.findById(id);
     }
 
@@ -50,7 +50,7 @@ public class UserApiController {
     @RequestMapping(value = "/findbyname", method = RequestMethod.GET)
     public List<User> getUsersByLastNameIs(@RequestParam(value = "lastname", required = false) String lastName,
                                            @RequestParam(value = "firstname", required = false) String firstName) {
-        logger.info("Запрос на получение пользователя по фамилии: " + lastName + " или имени: " + firstName);
+        logger.info("Запрос на получение пользователя по фамилии: {} или имени: {}", lastName, firstName);
         return userRepositoryService.findByLastNameOrFirstName(lastName, firstName);
     }
 
