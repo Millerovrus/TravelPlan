@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.concurrent.*;
 
 @Singleton
-public class YandexExecutor implements ExecutorManager{
+public class YandexParserExecutor implements ExecutorManager{
 
-    private ExecutorService executorService = Executors.newFixedThreadPool(2);
+    private ExecutorService executorService = Executors.newFixedThreadPool(3);
 
     @Override
     public List<Future<List<Edge>>> execute(List<Callable<List<Edge>>> taskList) {
@@ -29,5 +29,4 @@ public class YandexExecutor implements ExecutorManager{
 
         return futures;
     }
-
 }

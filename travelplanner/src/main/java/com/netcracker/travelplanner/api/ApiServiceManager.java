@@ -38,7 +38,7 @@ public class ApiServiceManager {
         List<Callable<List<Edge>>> callables = new ArrayList<>();
 
         /* прямой рейс */
-        callables.add( () -> yandexApi.findEdgesFromTo(initializatorApi.getFrom(), initializatorApi.getTo(), initializatorApi.getDeparture()) );
+        callables.add( () -> apiInterface.findEdgesFromTo(initializatorApi.getFrom(), initializatorApi.getTo(), initializatorApi.getDeparture()) );
 
 
         /* рейсы рядом с точкой отправдения */
@@ -56,13 +56,15 @@ public class ApiServiceManager {
         /* перебор между всеми точками */
         for(Point pointFrom: initializatorApi.getCitiesFrom()){
             for(Point poinTo: initializatorApi.getCitiesTo()){
-               // Callable<List<Edge>> listCallable = () -> apiInterface.findEdgesFromTo(poi);
+                Callable<List<Edge>> listCallable = () -> apiInterface.findEdgesFromTo(pointFrom, poinTo, initializatorApi.getDeparture());
+                callables.add(listCallable);
             }
         }
 
-
         return callables;
     }
+
+
     /*  если false то вызываем яндекс апи и яндекс расписания метод fromTo в 2 отдельных потока;
         если true то создаем потоки:
         1- яндексапи fromOnetoAll

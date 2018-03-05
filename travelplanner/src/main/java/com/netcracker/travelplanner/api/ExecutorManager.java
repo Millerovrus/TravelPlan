@@ -8,6 +8,6 @@ import java.util.concurrent.Future;
 
 public interface ExecutorManager {
 
-    List<Edge> execute(List<Callable<List<Edge>>> taskList);
+    List<Future<List<Edge>>> execute(List<Callable<List<Edge>>> taskList);
 
 }
