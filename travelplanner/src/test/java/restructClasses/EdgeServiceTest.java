@@ -24,8 +24,8 @@ public class EdgeServiceTest {
         //лондон - берлин
         System.out.println(EdgeService.isGlobalRoute(51.5073,-0.1277,52.52007,13.404954));
 
-        //воронеж - липецк
-        System.out.println(EdgeService.isGlobalRoute(51.6754,39.2088,52.6122,39.598123));
+        //воронеж - москва
+        System.out.println(EdgeService.isGlobalRoute(51.6754,39.2088,55.755826,37.617299));
     }
 
     @Test

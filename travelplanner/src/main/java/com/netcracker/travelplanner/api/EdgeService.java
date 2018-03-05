@@ -111,7 +111,7 @@ public class EdgeService {
                 latitude +
                 "&lon=" +
                 longitude +
-                "&radius=400" +
+                "&radius=500" +
                 "&location_types=airport" +
                 "&sort=rank";
 

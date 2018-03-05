@@ -115,6 +115,8 @@ public class ApiServiceManager {
         return listEdge;
     }
 
+
+
     public WebDriver getDriver() {
         return driver;
     }
