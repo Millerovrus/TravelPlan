@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -26,13 +27,42 @@ public class ApiServiceManager {
     private YandexParser yandexParser = new YandexParser();
     private YandexApi yandexApi = new YandexApi();
 
+
     private List<Edge> listEdge;
 
     public ApiServiceManager(InitializatorApi initializatorApi){
         this.initializatorApi = initializatorApi;
     }
 
+    public List<Callable<List<Edge>>> getTasks(ApiInterface apiInterface){
+        List<Callable<List<Edge>>> callables = new ArrayList<>();
 
+        /* прямой рейс */
+        callables.add( () -> yandexApi.findEdgesFromTo(initializatorApi.getFrom(), initializatorApi.getTo(), initializatorApi.getDeparture()) );
+
+
+        /* рейсы рядом с точкой отправдения */
+        for (Point point : initializatorApi.getCitiesFrom()) {
+            Callable<List<Edge>> listCallable = () -> apiInterface.findEdgesFromTo(point, initializatorApi.getTo(), initializatorApi.getDeparture());
+            callables.add(listCallable);
+        }
+
+        /* рядом с точкой прибытия */
+        for (Point point : initializatorApi.getCitiesTo()) {
+            Callable<List<Edge>> listCallable = () -> apiInterface.findEdgesFromTo(initializatorApi.getFrom(), point, initializatorApi.getDeparture());
+            callables.add(listCallable);
+        }
+
+        /* перебор между всеми точками */
+        for(Point pointFrom: initializatorApi.getCitiesFrom()){
+            for(Point poinTo: initializatorApi.getCitiesTo()){
+               // Callable<List<Edge>> listCallable = () -> apiInterface.findEdgesFromTo(poi);
+            }
+        }
+
+
+        return callables;
+    }
     /*  если false то вызываем яндекс апи и яндекс расписания метод fromTo в 2 отдельных потока;
         если true то создаем потоки:
         1- яндексапи fromOnetoAll
