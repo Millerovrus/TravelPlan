@@ -2,6 +2,7 @@ package com.netcracker.travelplanner.api;
 
 import com.google.gson.annotations.Since;
 import com.netcracker.travelplanner.entities.Edge;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Singleton;
 import java.util.ArrayList;
@@ -9,7 +10,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.*;
 
-
+@Singleton
+@Service
 public class KiwiExecutor implements ExecutorManager{
 
     private ExecutorService executorService = Executors.newFixedThreadPool(2);
@@ -19,23 +21,31 @@ public class KiwiExecutor implements ExecutorManager{
 
         List<Edge> edgeList = new ArrayList<>();
 
-        List<Future<List<Edge>>> futures = Collections.synchronizedList(new ArrayList<>());
+        //List<Future<List<Edge>>> futures = Collections.synchronizedList(new ArrayList<>());
 
-        taskList.forEach(callable -> futures.add(executorService.submit(callable)));
-
-        executorService.shutdown();
-
+        //taskList.forEach(callable -> futures.add(executorService.submit(callable)));
+        List<Future<List<Edge>>> futures = null;
         try {
-            executorService.awaitTermination(20, TimeUnit.SECONDS);
+            futures = executorService.invokeAll(taskList, 1, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+       // executorService.shutdown();
+
+       /* try {
+            executorService.awaitTermination(20, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
 
 
 
         for (Future<List<Edge>> future : futures) {
             try {
-                edgeList.addAll(future.get());
+                if(future.get() != null ){
+                    edgeList.addAll(future.get());
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {

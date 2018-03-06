@@ -20,13 +20,15 @@ public class ApiFinalService {
 
     private WebDriver driver = WebParser.getDriver();
     private ApiServiceManager apiServiceManager;
-//    private ApiInterface apiInterface;
 
-    private YandexExecutor yandexExecutor = new YandexExecutor();
-    private YandexParserExecutor yandexParserExecutor = new YandexParserExecutor();
-    private KiwiExecutor kiwiExecutor = new KiwiExecutor();
 
-//    private TaskManager taskManager;
+    @Autowired
+    private YandexExecutor yandexExecutor;
+//    @Autowired
+//    private YandexParserExecutor yandexParserExecutor;
+    @Autowired
+    private KiwiExecutor kiwiExecutor;
+
 
 
     private  List<Edge> separator(List<Edge> edges, RouteType type){
@@ -77,8 +79,8 @@ public class ApiFinalService {
         edgeList.addAll(kiwiExecutor.execute(apiServiceManager.getTasks(kiwiApi))));
 
 
-        executorService.execute( () ->
-        edgeList.addAll(yandexParserExecutor.execute(apiServiceManager.getTasks(yandexParser))));
+//        executorService.execute( () ->
+//        edgeList.addAll(yandexParserExecutor.execute(apiServiceManager.getTasks(yandexParser))));
 
         executorService.shutdown();
 

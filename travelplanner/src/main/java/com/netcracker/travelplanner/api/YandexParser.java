@@ -94,6 +94,7 @@ public class YandexParser implements ApiInterface {
         }
 
         }
+
         return result;
 
     }

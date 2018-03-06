@@ -39,7 +39,7 @@ public class ApiServiceManager {
         List<Callable<List<Edge>>> callables = new ArrayList<>();
 
         /* прямой рейс */
-        callables.add( () -> apiInterface.findEdgesFromTo(initializatorApi.getFrom(), initializatorApi.getTo(), initializatorApi.getDeparture()) );
+        callables.add( () -> apiInterface.findEdgesFromTo(initializatorApi.getFrom(), initializatorApi.getTo(), initializatorApi.getDeparture()));
 
 
         if (initializatorApi.isGlobalRoute()) {
@@ -48,6 +48,7 @@ public class ApiServiceManager {
                 Callable<List<Edge>> listCallable = () -> apiInterface.findEdgesFromTo(initializatorApi.getFrom(), point, initializatorApi.getDeparture());
                 callables.add(listCallable);
 
+                /* из начальной точки в окружение конечной*/
                 Callable<List<Edge>> listCallable2 = () -> apiInterface.findEdgesFromTo(point, initializatorApi.getTo(), initializatorApi.getDeparture());
                 callables.add(listCallable2);
 
