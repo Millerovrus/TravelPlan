@@ -13,8 +13,9 @@ public class TaskManager implements TaskManagerInterface {
     private KiwiExecutor kiwiExecutor;
 
     @Override
-    public List<Future<List<Edge>>> executeTask(List<Callable<List<Edge>>> list) {
-        List<Future<List<Edge>>> resultList = new ArrayList<>();
+    public List<Edge> executeTask(List<Callable<List<Edge>>> list) {
+
+        List<Edge> resultList = new ArrayList<>();
 
         resultList.addAll(yandexExecutor.execute(list));
         resultList.addAll(yandexParserExecutor.execute(list));

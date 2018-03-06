@@ -54,8 +54,8 @@ public class KiwiApi implements ApiInterface {
                 ,(double)l.getDuration().getTotal()
                 ,(double)l.getPrice()
                 ,l.getDistance()
-                , LocalDateTime.ofEpochSecond(l.getATime(),0, ZoneOffset.UTC)
                 , LocalDateTime.ofEpochSecond(l.getDTime(),0, ZoneOffset.UTC)
+                , LocalDateTime.ofEpochSecond(l.getATime(),0, ZoneOffset.UTC)
                 ,currency
                 ,from.getIataCode()
                 ,to.getIataCode())));

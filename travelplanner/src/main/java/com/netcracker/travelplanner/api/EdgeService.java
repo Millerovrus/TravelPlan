@@ -58,7 +58,7 @@ public class EdgeService {
 
          int distance =  googleDistance.getRows().get(0).getElements().get(0).getDistance().getValue();
 
-         return distance >= 500000;
+         return distance >= 600000;
         }
 
         return false;
@@ -111,7 +111,7 @@ public class EdgeService {
                 latitude +
                 "&lon=" +
                 longitude +
-                "&radius=500" +
+                "&radius=600" +
                 "&location_types=airport" +
                 "&sort=rank";
 

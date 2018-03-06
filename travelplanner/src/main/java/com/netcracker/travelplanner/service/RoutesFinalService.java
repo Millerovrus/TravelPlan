@@ -20,7 +20,7 @@ public class RoutesFinalService {
     @Autowired
     private Algorithm algorithm;
 
-    private WebDriver driver = WebParser.getDriver();
+//    private WebDriver driver = WebParser.getDriver();
 
 
     private ApiServiceManager apiServiceManager;
@@ -39,6 +39,7 @@ public class RoutesFinalService {
         return edgeList;
     }
 
+/*
     public List<Route> findTheBestRoutes(String from, String to, String latit, String longit, String date){
 
         logger.debug("Запуск поиска лучших маршрутов между from: " + from + " и to: " + to);
@@ -98,4 +99,5 @@ public class RoutesFinalService {
         }
         return routeList;
     }
+*/
 }

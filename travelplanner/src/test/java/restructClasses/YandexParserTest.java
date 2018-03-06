@@ -43,7 +43,7 @@ public class YandexParserTest {
     public void tetet(){
         PreparingDataService preparingDataService = new PreparingDataService();
 
-        InitializatorApi initializatorApi = preparingDataService.prepareData("Voronezh", "Moscow", "(51.6754966, 39.20888230000003)","(55.755826, 37.617299900000035)","2018-03-07");
+        InitializatorApi initializatorApi = preparingDataService.prepareData("Voronezh", "Moscow", "(51.6754966, 39.20888230000003)","(55.755826, 37.617299900000035)","2018-03-19");
 
         WebDriver driver = WebParser.getDriver();
 

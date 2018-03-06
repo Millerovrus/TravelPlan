@@ -35,7 +35,8 @@ public class RouteTestController {
         System.out.println("start finding");
 //        LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
 
-        return routesFinalService.findTheBestRoutes(from, to, longLatFrom, longLatTo, date);
+//        return routesFinalService.findTheBestRoutes(from, to, longLatFrom, longLatTo, date);
+        return null;
     }
 
     @RequestMapping(value = "/get-routes/", method = RequestMethod.GET)

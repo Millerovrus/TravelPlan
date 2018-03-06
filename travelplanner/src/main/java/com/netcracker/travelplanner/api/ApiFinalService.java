@@ -3,32 +3,30 @@ package com.netcracker.travelplanner.api;
 import com.netcracker.travelplanner.algorithms.Algorithm;
 import com.netcracker.travelplanner.entities.*;
 import com.netcracker.travelplanner.service.ApiService;
+import javassist.bytecode.analysis.Executor;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.CriteriaBuilder;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import java.util.*;
+import java.util.concurrent.*;
 
 @Service
 public class ApiFinalService {
+
     @Autowired
     private Algorithm algorithm;
+
     private WebDriver driver = WebParser.getDriver();
     private ApiServiceManager apiServiceManager;
-    private ApiInterface apiInterface;
+//    private ApiInterface apiInterface;
 
     private YandexExecutor yandexExecutor = new YandexExecutor();
     private YandexParserExecutor yandexParserExecutor = new YandexParserExecutor();
     private KiwiExecutor kiwiExecutor = new KiwiExecutor();
 
-    private TaskManager taskManager;
+//    private TaskManager taskManager;
 
 
     private  List<Edge> separator(List<Edge> edges, RouteType type){
@@ -46,29 +44,33 @@ public class ApiFinalService {
     }
 
     public List<Route> findTheBestRoutes(String from, String to, String latLongFrom, String latLongTo, String date){
+
         PreparingDataService preparingDataService = new PreparingDataService();
-        taskManager = new TaskManager();
+
+//        taskManager = new TaskManager();
+
         InitializatorApi initializatorApi = preparingDataService.prepareData(from, to, latLongFrom, latLongTo, date );
+
         apiServiceManager = new ApiServiceManager(initializatorApi);
-        apiServiceManager.setDriver(driver);
-        List<Callable<List<Edge>>> list = apiServiceManager.getTasks(apiInterface);
 
-        taskManager.setKiwiExecutor(kiwiExecutor);
-        taskManager.setYandexExecutor(yandexExecutor);
-        taskManager.setYandexParserExecutor(yandexParserExecutor);
+//        taskManager.setKiwiExecutor(kiwiExecutor);
+//        taskManager.setYandexExecutor(yandexExecutor);
+//        taskManager.setYandexParserExecutor(yandexParserExecutor);
 
-        List<Future<List<Edge>>> futures = taskManager.executeTask(list);
-        List<Edge> edgeList = new ArrayList<>();
+//        List<Edge> edgeList = taskManager.executeTask(list);
 
-        for (Future<List<Edge>> future : futures) {
-            try {
-                edgeList.addAll(future.get());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
+        List<Edge> edgeList  = Collections.synchronizedList(new ArrayList<>());
+
+        YandexParser yandexParser = new YandexParser();
+        yandexParser.setWebDriver(driver);
+        KiwiApi kiwiApi = new KiwiApi();
+        YandexApi yandexApi = new YandexApi();
+
+        edgeList.addAll(yandexExecutor.execute(apiServiceManager.getTasks(yandexApi)));
+
+        edgeList.addAll(kiwiExecutor.execute(apiServiceManager.getTasks(kiwiApi)));
+
+        edgeList.addAll(yandexParserExecutor.execute(apiServiceManager.getTasks(yandexParser)));
 
         List<Route> routeList = new ArrayList<>();
 
@@ -109,6 +111,7 @@ public class ApiFinalService {
             }
         }
         return routeList;
+
 
     }
 

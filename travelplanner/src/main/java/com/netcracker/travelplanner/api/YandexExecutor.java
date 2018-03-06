@@ -8,13 +8,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.*;
 
-@Singleton
 public class YandexExecutor implements ExecutorManager{
 
-    private ExecutorService executorService = Executors.newFixedThreadPool(2);
+    private ExecutorService executorService = Executors.newFixedThreadPool(5);
 
     @Override
-    public List<Future<List<Edge>>> execute(List<Callable<List<Edge>>> taskList) {
+    public List<Edge> execute(List<Callable<List<Edge>>> taskList) {
+
+        List<Edge> edgeList = new ArrayList<>();
+
         List<Future<List<Edge>>> futures = Collections.synchronizedList(new ArrayList<>());
 
         taskList.forEach(callable -> futures.add(executorService.submit(callable)));
@@ -22,12 +24,24 @@ public class YandexExecutor implements ExecutorManager{
         executorService.shutdown();
 
         try {
-            executorService.awaitTermination(3, TimeUnit.SECONDS);
+            executorService.awaitTermination(5, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        return futures;
+
+
+        for (Future<List<Edge>> future : futures) {
+            try {
+                edgeList.addAll(future.get());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return edgeList;
     }
 
 }

@@ -3,6 +3,7 @@ package com.netcracker.travelplanner.api;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+
 public class PreparingDataService {
 
     private InitializatorApi initializatorApi = InitializatorApi.getInstance();
@@ -65,6 +66,14 @@ public class PreparingDataService {
             initializatorApi.setCitiesTo(EdgeService.getCities(iataCodeTo, latTo, lonTo));
 
 //здесь установить для каждого города из списка коды яндекса
+
+            for (Point point : initializatorApi.getCitiesFrom()){
+                point.setYandexCode(EdgeService.getYandexCode(point.getLatitude(),point.getLongitude()));
+            }
+            for (Point point : initializatorApi.getCitiesTo()){
+                point.setYandexCode(EdgeService.getYandexCode(point.getLatitude(),point.getLongitude()));
+            }
+
 
         }
         else {

@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
-public interface ExecutorManager {
+public interface TaskManagerInterface {
 
-    List<Edge>  execute(List<Callable<List<Edge>>> taskList);
-
+    List<Edge> executeTask(List<Callable<List<Edge>>> list);
 }
