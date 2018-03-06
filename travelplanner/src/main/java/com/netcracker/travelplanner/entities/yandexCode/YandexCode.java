@@ -1,5 +1,5 @@
 
-package com.netcracker.travelplanner.api.yandexCode;
+package com.netcracker.travelplanner.entities.yandexCode;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -1,16 +1,14 @@
 package com.netcracker.travelplanner.service;
 
 import com.netcracker.travelplanner.algorithms.Algorithm;
-import com.netcracker.travelplanner.api.*;
 import com.netcracker.travelplanner.entities.*;
-import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.time.LocalDate;
-import java.util.*;
 
+import java.util.*;
+@Deprecated
 @Service
 public class RoutesFinalService {
     private static final Logger logger = LoggerFactory.getLogger(RoutesFinalService.class);

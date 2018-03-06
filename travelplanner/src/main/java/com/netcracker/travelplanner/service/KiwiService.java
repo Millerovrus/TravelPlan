@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+@Deprecated
 @Service
 public class KiwiService {
     private static final Logger logger = LoggerFactory.getLogger(KiwiService.class);

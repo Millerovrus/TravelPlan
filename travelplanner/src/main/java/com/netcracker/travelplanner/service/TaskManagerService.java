@@ -1,19 +1,22 @@
-package com.netcracker.travelplanner.api;
+package com.netcracker.travelplanner.service;
 
 import com.netcracker.travelplanner.algorithms.Algorithm;
+import com.netcracker.travelplanner.api.KiwiApi;
+import com.netcracker.travelplanner.webParsers.WebParser;
+import com.netcracker.travelplanner.api.YandexApi;
+import com.netcracker.travelplanner.api.YandexParser;
 import com.netcracker.travelplanner.entities.*;
-import com.netcracker.travelplanner.service.ApiService;
-import javassist.bytecode.analysis.Executor;
+import com.netcracker.travelplanner.executors.KiwiExecutor;
+import com.netcracker.travelplanner.executors.YandexExecutor;
+import com.netcracker.travelplanner.executors.YandexParserExecutor;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
 import java.util.concurrent.*;
 
 @Service
-public class ApiFinalService {
+public class TaskManagerService {
 
     @Autowired
     private Algorithm algorithm;
@@ -51,17 +54,9 @@ public class ApiFinalService {
 
         PreparingDataService preparingDataService = new PreparingDataService();
 
-//        taskManager = new TaskManager();
-
         InitializatorApi initializatorApi = preparingDataService.prepareData(from, to, latLongFrom, latLongTo, date );
 
         apiServiceManager = new ApiServiceManager(initializatorApi);
-
-//        taskManager.setKiwiExecutor(kiwiExecutor);
-//        taskManager.setYandexExecutor(yandexExecutor);
-//        taskManager.setYandexParserExecutor(yandexParserExecutor);
-
-//        List<Edge> edgeList = taskManager.executeTask(list);
 
         List<Edge> edgeList  = Collections.synchronizedList(new ArrayList<>());
 

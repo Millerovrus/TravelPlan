@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-
+@Deprecated
 @Service
 public class ApiService implements IntegrationAPIService {
     private static Logger logger = LoggerFactory.getLogger(ApiService.class);

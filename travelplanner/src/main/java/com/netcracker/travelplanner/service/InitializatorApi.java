@@ -1,10 +1,7 @@
-package com.netcracker.travelplanner.api;
+package com.netcracker.travelplanner.service;
 
-import com.netcracker.travelplanner.entities.newKiwi.MyPoint;
+import com.netcracker.travelplanner.entities.Point;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.openqa.selenium.WebDriver;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -34,7 +31,6 @@ public class InitializatorApi {
 
     private InitializatorApi() {
     }
-
 
     public Point getFrom() {
         return from;

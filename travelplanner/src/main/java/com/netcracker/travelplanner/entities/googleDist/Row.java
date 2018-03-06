@@ -1,5 +1,5 @@
 
-package com.netcracker.travelplanner.api.googleDist;
+package com.netcracker.travelplanner.entities.googleDist;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

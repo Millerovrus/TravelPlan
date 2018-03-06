@@ -1,8 +1,9 @@
-package com.netcracker.travelplanner.api;
+package com.netcracker.travelplanner.service;
 
 import com.google.gson.Gson;
-import com.netcracker.travelplanner.api.googleDist.GoogleDistance;
-import com.netcracker.travelplanner.api.yandexCode.YandexCode;
+import com.netcracker.travelplanner.entities.Point;
+import com.netcracker.travelplanner.entities.googleDist.GoogleDistance;
+import com.netcracker.travelplanner.entities.yandexCode.YandexCode;
 import com.netcracker.travelplanner.entities.newKiwi.KiwiStations;
 import com.netcracker.travelplanner.entities.newKiwi.MyPoint;
 import java.io.IOException;

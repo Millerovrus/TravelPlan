@@ -4,7 +4,7 @@ import com.netcracker.travelplanner.entities.Edge;
 
 import java.time.LocalDate;
 import java.util.List;
-
+@Deprecated
 public interface IntegrationAPIService {
 
     /**

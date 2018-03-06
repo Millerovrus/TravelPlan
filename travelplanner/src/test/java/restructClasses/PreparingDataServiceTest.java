@@ -1,7 +1,7 @@
 package restructClasses;
 
-import com.netcracker.travelplanner.api.InitializatorApi;
-import com.netcracker.travelplanner.api.PreparingDataService;
+import com.netcracker.travelplanner.service.InitializatorApi;
+import com.netcracker.travelplanner.service.PreparingDataService;
 import org.junit.Test;
 
 public class PreparingDataServiceTest {

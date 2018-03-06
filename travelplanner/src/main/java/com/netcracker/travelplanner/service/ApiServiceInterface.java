@@ -1,4 +1,4 @@
-package com.netcracker.travelplanner.api;
+package com.netcracker.travelplanner.service;
 
 import com.netcracker.travelplanner.entities.Edge;
 

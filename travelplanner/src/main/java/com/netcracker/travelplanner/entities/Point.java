@@ -1,11 +1,7 @@
-package com.netcracker.travelplanner.api;
+package com.netcracker.travelplanner.entities;
 
-import com.netcracker.travelplanner.entities.newKiwi.MyPoint;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.openqa.selenium.WebDriver;
-
-import java.time.LocalDate;
-import java.util.List;
 
 public class Point {
 

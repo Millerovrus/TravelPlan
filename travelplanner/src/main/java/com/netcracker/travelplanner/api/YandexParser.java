@@ -1,19 +1,13 @@
 package com.netcracker.travelplanner.api;
 
 import com.netcracker.travelplanner.entities.Edge;
+import com.netcracker.travelplanner.entities.Point;
 import com.netcracker.travelplanner.entities.RouteType;
+import com.netcracker.travelplanner.webParsers.WebParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriverService;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -97,21 +91,6 @@ public class YandexParser implements ApiInterface {
 
         return result;
 
-    }
-
-    @Override
-    public List<Edge> findEdgesAllToOne(List<Point> pointListFrom, Point to, LocalDate date) {
-        return null;
-    }
-
-    @Override
-    public List<Edge> findEdgesOneToAll(Point from, List<Point> pointListTo, LocalDate date) {
-        return null;
-    }
-
-    @Override
-    public List<Edge> findEdgesAllToAll(List<Point> pointListFrom, List<Point> pointListTo, LocalDate date) {
-        return null;
     }
 
     private  String convertTypes(String type){

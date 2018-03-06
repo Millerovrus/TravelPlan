@@ -1,4 +1,4 @@
-package com.netcracker.travelplanner.api;
+package com.netcracker.travelplanner.webParsers;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
