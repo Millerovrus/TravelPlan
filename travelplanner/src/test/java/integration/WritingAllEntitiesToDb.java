@@ -33,20 +33,20 @@ public class WritingAllEntitiesToDb {
     @Autowired
     UserRepositoryService userRepositoryService;
 
-    @Test
+ /*   @Test
     public void testDb() throws ParseException {
 
 
         Date date = new Date();
 
-        /*создаем пользователей*/
+        *//*создаем пользователей*//*
         List<User> userList = new ArrayList<>();
         User u = new User("johnny@mail.com","John","Jonson",new Date(),false, date,"12345");
         User u1 = new User("johnGuu@mail.com","John","Gibson",new Date(),false, date,"12345");
         userList.add(u);
         userList.add(u1);
 
-        /*Создаем список рёбер*/
+        *//*Создаем список рёбер*//*
         List<Edge> edgeList = new ArrayList<>();
         edgeList.add(new Edge(date,"москва","воронеж", "plane",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
         edgeList.add(new Edge(date,"воронеж","белгород","plane", 10.00,1000.00,100.0,date,date,"Eur", RouteType.cheap));
@@ -55,7 +55,7 @@ public class WritingAllEntitiesToDb {
         edgeList.add(new Edge(date,"харьков","белгород","train",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
         edgeList.add(new Edge(date,"берлин","москва","bus",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
 
-        /*создаем список маршрутов*/
+        *//*создаем список маршрутов*//*
         List<Route> routeList = new ArrayList<>();
         Date newDate = new Date();
         routeList.add(new Route(newDate,"воронеж","берлин", RouteType.cheap, 100.0, 200.0, 1500.0));
@@ -70,7 +70,7 @@ public class WritingAllEntitiesToDb {
 
 
 
-        /*связываем ребра и маршрут*/
+        *//*связываем ребра и маршрут*//*
         edgeList.get(1).setRoute(routeList.get(0));
         edgeList.get(1).setEdgeOrder((short)123);
         routeList.get(0).getEdges().add(edgeList.get(1));
@@ -83,12 +83,12 @@ public class WritingAllEntitiesToDb {
         edgeList.get(2).setEdgeOrder((short)123);
         routeList.get(0).getEdges().add(edgeList.get(2));
 
-        /*добавляем пользователя к маршруту*/
+        *//*добавляем пользователя к маршруту*//*
         routeList.get(0).setUser(u);
-        /*связь пользователя и маршрутов*/
+        *//*связь пользователя и маршрутов*//*
         u.getRoutes().add(routeList.get(0));
 
-        /*сохраняем всё в таблицы бд*/
+        *//*сохраняем всё в таблицы бд*//*
         userRepositoryService.save(u);
         userRepositoryService.save(u1);
         routeRepositoryService.save(routeList);
@@ -113,14 +113,14 @@ public class WritingAllEntitiesToDb {
         edgeList.add(new Edge(date,"харьков","белгород","train",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
         edgeList.add(new Edge(date,"берлин","москва","bus",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
 
-        /* test for angular*/
+        *//* test for angular*//*
         edgeList.add(new Edge(date,"voronezh","moscow","bus",12.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
         edgeList.add(new Edge(date,"voronezh","moscow","plane",2.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
         edgeList.add(new Edge(date,"voronezh","moscow","train",11.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
         edgeList.add(new Edge(date,"voronezh","moscow","bus",10.00,1000.00,100.0,date,date,"Eur",RouteType.cheap));
 
         edgeRepositoryService.save(edgeList);
-    }
+    }*/
 
     @Test
     public void t(){

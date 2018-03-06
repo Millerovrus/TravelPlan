@@ -1,5 +1,4 @@
 
-
 angular.module('controllerModule',[]);
 angular.module('myApp',['controllerModule'])
     .directive('myNavbar', function () {
@@ -19,6 +18,8 @@ angular.module('controllerModule')
                  params: {
                      from: angular.element($('#inputFromHidden')).val(),
                      to: angular.element($('#inputToHidden')).val(),
+                     longLatFrom: angular.element($('#latit_longit_from')).val(),
+                     longLatTo: angular.element($('#latit_longit_to')).val(),
                      date: angular.element($('#inputDate')).val()
                 }
             }).then(

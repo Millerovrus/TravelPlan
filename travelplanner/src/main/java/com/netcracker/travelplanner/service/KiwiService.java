@@ -1,11 +1,10 @@
 package com.netcracker.travelplanner.service;
 
 import com.google.gson.Gson;
-import com.netcracker.travelplanner.entities.RouteType;
-import com.netcracker.travelplanner.entities.kiwi.KiwiFlights;
 import com.netcracker.travelplanner.entities.Edge;
+import com.netcracker.travelplanner.entities.kiwi.KiwiFlights;
 import com.netcracker.travelplanner.entities.newKiwi.KiwiStations;
-import com.netcracker.travelplanner.entities.newKiwi.MyAirport;
+import com.netcracker.travelplanner.entities.newKiwi.MyPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -14,8 +13,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -86,8 +86,8 @@ public class KiwiService {
                 ,(double)l.getDuration().getTotal()
                 ,(double)l.getPrice()
                 ,l.getDistance()
-                ,Date.from(Instant.ofEpochSecond(l.getATime()))
-                ,Date.from(Instant.ofEpochSecond(l.getDTime()))
+                , LocalDateTime.ofEpochSecond(l.getATime(),0, ZoneOffset.UTC)
+                , LocalDateTime.ofEpochSecond(l.getDTime(),0, ZoneOffset.UTC)
                 ,currency
                 ,codeFrom
                 ,codeTo)));
@@ -95,9 +95,9 @@ public class KiwiService {
         return listOfEdges;
     }
 
-    public List<MyAirport> getAirportsByRadius(int radius
-                                            ,double latitude
-                                            ,double longitude){
+    public List<MyPoint> getAirportsByRadius(int radius
+                                            , double latitude
+                                            , double longitude){
         String query = "https://api.skypicker.com/locations/?type=radius&" +
                 "lat=" +
                 latitude +
@@ -108,7 +108,7 @@ public class KiwiService {
                 "&location_types=airport" +
                 "&sort=rank";
 
-        List<MyAirport> myAirportList = new ArrayList<>();
+        List<MyPoint> myPointList = new ArrayList<>();
 
         try {
             URL url = new URL(query);
@@ -130,7 +130,7 @@ public class KiwiService {
             kiwiStations.getLocations()
                     .stream()
                     .filter(loc->loc.getType().equals("airport"))
-                    .forEach(location -> myAirportList.add(new MyAirport(
+                    .forEach(location -> myPointList.add(new MyPoint(
                             location.getId()
                             ,location.getCode()
                             ,location.getName()
@@ -149,7 +149,7 @@ public class KiwiService {
         }
 
 
-        return myAirportList;
+        return myPointList;
 
     }
 

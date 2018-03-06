@@ -1,136 +1,108 @@
 package com.netcracker.travelplanner.api;
 
+import com.netcracker.travelplanner.entities.newKiwi.MyPoint;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.openqa.selenium.WebDriver;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
+import java.util.List;
+
 
 public class InitializatorApi {
 
-    private static volatile InitializatorApi instance = null;
+    private Point from;
+    private Point to;
+    private LocalDate departure;
+    private LocalDate arrival;
+    private boolean isGlobalRoute;
+    private List<Point> citiesFrom;
+    private List<Point> citiesTo;
 
-    private static String from, to;
-    private static double latitudeFrom, latitudeTo, longitudeFrom, longitudeTo;
-    private static LocalDate departureRoute, arrivalRoute;
-    private static String iataCodeFrom, iataCodeTo;
-    private static String yandexCodeFrom, yandexCodeTo;
-    private static String closesCitiesFrom, closesCitiesTo;
-    private static boolean isGlobalRoute;
-    //private WebParser webParser;
+    private static volatile InitializatorApi ourInstance = null;
 
-    private InitializatorApi(String from,
-                             String to,
-                             double latitudeFrom,
-                             double latitudeTo,
-                             double longitudeFrom,
-                             double longitudeTo,
-                             LocalDate departureRoute,
-                             LocalDate arrivalRoute,
-                             String iataCodeFrom,
-                             String iataCodeTo,
-                             String yandexCodeFrom,
-                             String yandexCodeTo,
-                             String closesCitiesFrom,
-                             String closesCitiesTo,
-                             boolean isGlobalRoute){
-        setFrom(from);
-        setTo(to);
-        setLatitudeFrom(latitudeFrom);
-        setLatitudeTo(latitudeTo);
-        setLongitudeFrom(longitudeFrom);
-        setLongitudeTo(longitudeTo);
-        setDepartureRoute(departureRoute);
-        setArrivalRoute(arrivalRoute);
-        setIataCodeFrom(iataCodeFrom);
-        setIataCodeTo(iataCodeTo);
-        setYandexCodeFrom(yandexCodeFrom);
-        setYandexCodeTo(yandexCodeTo);
-        setClosesCitiesFrom(closesCitiesFrom);
-        setClosesCitiesTo(closesCitiesTo);
-        setGlobalRoute(isGlobalRoute);
-
-    }
-
-    public static InitializatorApi getInstance(){
-        if(instance==null){
+    public static InitializatorApi getInstance() {
+        if(ourInstance==null){
             synchronized (InitializatorApi.class){
-                if(instance==null){
-                    instance = new InitializatorApi(from,
-                                                    to,
-                                                    latitudeFrom,
-                                                    latitudeTo,
-                                                    longitudeFrom,
-                                                    longitudeTo,
-                                                    departureRoute,
-                                                    arrivalRoute,
-                                                    iataCodeFrom,
-                                                    iataCodeTo,
-                                                    yandexCodeFrom,
-                                                    yandexCodeTo,
-                                                    closesCitiesFrom,
-                                                    closesCitiesTo,
-                                                    isGlobalRoute);
+                if(ourInstance==null){
+                    ourInstance = new InitializatorApi();
                 }
             }
         }
-        return instance;
+        return ourInstance;
+    }
+
+    private InitializatorApi() {
     }
 
 
-    public void setFrom(String from) {
+    public Point getFrom() {
+        return from;
+    }
+
+    public void setFrom(Point from) {
         this.from = from;
     }
 
-    public void setTo(String to) {
+    public Point getTo() {
+        return to;
+    }
+
+    public void setTo(Point to) {
         this.to = to;
     }
 
-    public void setLatitudeFrom(double latitudeFrom) {
-        this.latitudeFrom = latitudeFrom;
+    public LocalDate getDeparture() {
+        return departure;
     }
 
-    public void setLatitudeTo(double latitudeTo) {
-        this.latitudeTo = latitudeTo;
+    public void setDeparture(LocalDate departure) {
+        this.departure = departure;
     }
 
-    public void setLongitudeFrom(double longitudeFrom) {
-        this.longitudeFrom = longitudeFrom;
+    public LocalDate getArrival() {
+        return arrival;
     }
 
-    public void setLongitudeTo(double longitudeTo) {
-        this.longitudeTo = longitudeTo;
+    public void setArrival(LocalDate arrival) {
+        this.arrival = arrival;
     }
 
-    public void setDepartureRoute(LocalDate departureRoute) {
-        this.departureRoute = departureRoute;
-    }
-
-    public void setArrivalRoute(LocalDate arrivalRoute) {
-        this.arrivalRoute = arrivalRoute;
-    }
-
-    public void setIataCodeFrom(String iataCodeFrom) {
-        this.iataCodeFrom = iataCodeFrom;
-    }
-
-    public void setIataCodeTo(String iataCodeTo) {
-        this.iataCodeTo = iataCodeTo;
-    }
-
-    public void setYandexCodeFrom(String yandexCodeFrom) {
-        this.yandexCodeFrom = yandexCodeFrom;
-    }
-
-    public void setYandexCodeTo(String yandexCodeTo) {
-        this.yandexCodeTo = yandexCodeTo;
-    }
-
-    public void setClosesCitiesFrom(String closesCitiesFrom) {
-        this.closesCitiesFrom = closesCitiesFrom;
-    }
-
-    public void setClosesCitiesTo(String closesCitiesTo) {
-        this.closesCitiesTo = closesCitiesTo;
+    public boolean isGlobalRoute() {
+        return isGlobalRoute;
     }
 
     public void setGlobalRoute(boolean globalRoute) {
         isGlobalRoute = globalRoute;
+    }
+
+    public List<Point> getCitiesFrom() {
+        return citiesFrom;
+    }
+
+    public void setCitiesFrom(List<Point> citiesFrom) {
+        this.citiesFrom = citiesFrom;
+    }
+
+    public List<Point> getCitiesTo() {
+        return citiesTo;
+    }
+
+    public void setCitiesTo(List<Point> citiesTo) {
+        this.citiesTo = citiesTo;
+    }
+
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("from", from)
+                .append("to", to)
+                .append("departure", departure)
+                .append("arrival", arrival)
+                .append("isGlobalRoute", isGlobalRoute)
+                .append("citiesFrom", citiesFrom)
+                .append("citiesTo", citiesTo)
+                .toString();
     }
 }
