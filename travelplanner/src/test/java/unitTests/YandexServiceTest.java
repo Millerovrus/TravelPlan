@@ -17,10 +17,10 @@ public class YandexServiceTest {
         YandexService yandexService = new YandexService();
 
         List<Edge> edgeList = yandexService.getEdgesFromYandex("VOZ"
-        ,"LPK"
-        ,LocalDate.of(2018,2,15)
-                ,""
-                ,"" );
+        ,"SPB"
+        ,LocalDate.of(2018,3,15)
+                ,"VOZ"
+                ,"MOW" );
 
         edgeList.forEach(l -> System.out.println(l.toString()));
 
