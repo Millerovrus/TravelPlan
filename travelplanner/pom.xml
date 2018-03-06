@@ -103,7 +103,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-      </dependency>
+        </dependency>
 
         <dependency>
             <groupId>org.jsoup</groupId>
@@ -144,6 +144,7 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
            <version>21.0</version>
+        </dependency>
 
     </dependencies>
 
