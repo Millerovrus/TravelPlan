@@ -12,7 +12,7 @@ import java.util.concurrent.*;
 
 public class KiwiExecutor implements ExecutorManager{
 
-    private ExecutorService executorService = Executors.newFixedThreadPool(5);
+    private ExecutorService executorService = Executors.newFixedThreadPool(2);
 
     @Override
     public List<Edge> execute(List<Callable<List<Edge>>> taskList) {
@@ -26,7 +26,7 @@ public class KiwiExecutor implements ExecutorManager{
         executorService.shutdown();
 
         try {
-            executorService.awaitTermination(3, TimeUnit.SECONDS);
+            executorService.awaitTermination(20, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

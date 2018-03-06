@@ -10,7 +10,7 @@ import java.util.concurrent.*;
 
 public class YandexParserExecutor implements ExecutorManager{
 
-    private ExecutorService executorService = Executors.newFixedThreadPool(5);
+    private ExecutorService executorService = Executors.newFixedThreadPool(2);
 
     @Override
     public List<Edge> execute(List<Callable<List<Edge>>> taskList) {
@@ -24,7 +24,7 @@ public class YandexParserExecutor implements ExecutorManager{
         executorService.shutdown();
 
         try {
-            executorService.awaitTermination(15, TimeUnit.SECONDS);
+            executorService.awaitTermination(20, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
