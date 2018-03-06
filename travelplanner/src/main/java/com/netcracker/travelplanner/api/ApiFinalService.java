@@ -45,6 +45,8 @@ public class ApiFinalService {
 
     public List<Route> findTheBestRoutes(String from, String to, String latLongFrom, String latLongTo, String date){
 
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
+
         PreparingDataService preparingDataService = new PreparingDataService();
 
 //        taskManager = new TaskManager();
@@ -66,11 +68,25 @@ public class ApiFinalService {
         KiwiApi kiwiApi = new KiwiApi();
         YandexApi yandexApi = new YandexApi();
 
-        edgeList.addAll(yandexExecutor.execute(apiServiceManager.getTasks(yandexApi)));
 
-        edgeList.addAll(kiwiExecutor.execute(apiServiceManager.getTasks(kiwiApi)));
+        executorService.execute( () ->
+        edgeList.addAll(yandexExecutor.execute(apiServiceManager.getTasks(yandexApi))));
 
-        edgeList.addAll(yandexParserExecutor.execute(apiServiceManager.getTasks(yandexParser)));
+
+        executorService.execute( () ->
+        edgeList.addAll(kiwiExecutor.execute(apiServiceManager.getTasks(kiwiApi))));
+
+
+        executorService.execute( () ->
+        edgeList.addAll(yandexParserExecutor.execute(apiServiceManager.getTasks(yandexParser))));
+
+        executorService.shutdown();
+
+        try {
+            executorService.awaitTermination(30, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         List<Route> routeList = new ArrayList<>();
 
