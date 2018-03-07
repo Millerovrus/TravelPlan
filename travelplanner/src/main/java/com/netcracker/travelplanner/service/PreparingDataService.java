@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 public class PreparingDataService {
 
-    private InitializatorApi initializatorApi = InitializatorApi.getInstance();
+    private InitializatorApi initializatorApi = new InitializatorApi();
 
     private Point pointFrom;
 
