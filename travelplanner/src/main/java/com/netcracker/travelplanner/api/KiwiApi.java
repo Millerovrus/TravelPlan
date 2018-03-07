@@ -48,15 +48,19 @@ public class KiwiApi implements ApiInterface {
         kiwiFlights.getData().forEach(l -> listOfEdges.add(new Edge(dateNow
                 ,from.getName()
                 ,to.getName()
-                , "plane"
+                ,"plane"
                 ,(double)l.getDuration().getTotal()
                 ,(double)l.getPrice()
                 ,l.getDistance()
-                , LocalDateTime.ofEpochSecond(l.getDTime(),0, ZoneOffset.UTC)
-                , LocalDateTime.ofEpochSecond(l.getATime(),0, ZoneOffset.UTC)
+                ,LocalDateTime.ofEpochSecond(l.getDTime(),0, ZoneOffset.UTC)
+                ,LocalDateTime.ofEpochSecond(l.getATime(),0, ZoneOffset.UTC)
                 ,currency
                 ,from.getIataCode()
-                ,to.getIataCode())));
+                ,to.getIataCode()
+                ,from.getLatitude()
+                ,from.getLongitude()
+                ,to.getLatitude()
+                ,to.getLongitude())));
 
         if (!listOfEdges.isEmpty()) {
             result.add(filterEdgeByTypes(listOfEdges, RouteType.cheap));

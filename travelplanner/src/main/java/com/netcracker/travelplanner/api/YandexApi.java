@@ -55,7 +55,11 @@ public class YandexApi implements ApiInterface {
                         , LocalDateTime.parse(l.getArrival(),DateTimeFormatter.ISO_OFFSET_DATE_TIME)
                         ,"RUB"
                         , from.getIataCode()
-                        , from.getIataCode())));
+                        , to.getIataCode()
+                        , from.getLatitude()
+                        , from.getLongitude()
+                        , to.getLatitude()
+                        , to.getLongitude())));
 
         if (!edgeList.isEmpty()) {
             result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
