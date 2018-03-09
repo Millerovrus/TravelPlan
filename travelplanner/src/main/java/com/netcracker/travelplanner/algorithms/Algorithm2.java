@@ -75,7 +75,7 @@ public class Algorithm2 {
             //пробегаемся по edge и добавляем к уже найденным ребрам те, у которых startPoint соответствует найденным ранее destinationPoint и они состыкаются по времени
             for (int i = 0; i < size; i++) {
                 for (Edge edge : edges) {
-                    if (allFoundRoutes.get(i).get(allFoundRoutes.get(i).size() - 1).getDestinationPoint().equals(edge.getStartPoint()) &&
+                    if (allFoundRoutes.get(i).get(allFoundRoutes.get(i).size() - 1).getEndIataCode().equals(edge.getStartIataCode()) &&
                             calculateEndDateTime(allFoundRoutes.get(i).get(allFoundRoutes.get(i).size() - 1)).isAfter(calculateStartDateTime(edge))) {
                         List<Edge> tempWay = new LinkedList<>();
                         tempWay.addAll(allFoundRoutes.get(i));

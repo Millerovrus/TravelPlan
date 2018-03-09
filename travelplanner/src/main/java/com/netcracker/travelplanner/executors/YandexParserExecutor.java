@@ -28,10 +28,9 @@ public class YandexParserExecutor implements ExecutorManager {
 
         for (Future<List<Edge>> future : futures) {
             try {
-                    if(future.get() != null ){
-                        edgeList.addAll(future.get());
-                    }
-
+                if(future.get() != null ){
+                    edgeList.addAll(future.get());
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {

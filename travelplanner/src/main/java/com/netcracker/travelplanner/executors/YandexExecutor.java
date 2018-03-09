@@ -31,7 +31,6 @@ public class YandexExecutor implements ExecutorManager {
                 if(future.get() != null ){
                     edgeList.addAll(future.get());
                 }
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {

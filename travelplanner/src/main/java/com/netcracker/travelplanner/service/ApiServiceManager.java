@@ -19,39 +19,48 @@ public class ApiServiceManager {
 
         List<Callable<List<Edge>>> callables = new ArrayList<>();
 
-        /* прямой рейс */
+        /* прямой рейс ТОЛЬКО на выбранный день*/
         callables.add( () -> apiInterface.findEdgesFromTo(initializatorApi.getFrom(), initializatorApi.getTo(), initializatorApi.getDeparture()));
 
         if (initializatorApi.isGlobalRoute()) {
-        /* рейсы рядом с точкой отправдения */
             for (Point point : initializatorApi.getCitiesFrom()) {
+                /* из начальной точки в окружение начальной точки ТОЛЬКО на выбранный день*/
                 Callable<List<Edge>> listCallable = () -> apiInterface.findEdgesFromTo(initializatorApi.getFrom(), point, initializatorApi.getDeparture());
                 callables.add(listCallable);
-
-                /* из начальной точки в окружение конечной*/
+                /* из окружения начальной точки в конечную точку на ВЫБРАННЫЙ день*/
                 Callable<List<Edge>> listCallable2 = () -> apiInterface.findEdgesFromTo(point, initializatorApi.getTo(), initializatorApi.getDeparture());
                 callables.add(listCallable2);
-
+                /* из окружения начальной точки в конечную точку на СЛЕДУЮЩИЙ день*/
+                Callable<List<Edge>> listCallable3 = () -> apiInterface.findEdgesFromTo(point, initializatorApi.getTo(), initializatorApi.getDeparture().plusDays(1));
+                callables.add(listCallable3);
             }
 
-        /* рядом с точкой прибытия */
             for (Point point : initializatorApi.getCitiesTo()) {
+                /* из окружения конечной точки в конечную точку на ВЫБРАННЫЙ ДЕНЬ*/
                 Callable<List<Edge>> listCallable = () -> apiInterface.findEdgesFromTo(point, initializatorApi.getTo(), initializatorApi.getDeparture());
                 callables.add(listCallable);
+                /* из окружения конечной точки в конечную точку на СЛЕДУЮЩИЙ ДЕНЬ*/
+                Callable<List<Edge>> listCallable2 = () -> apiInterface.findEdgesFromTo(point, initializatorApi.getTo(), initializatorApi.getDeparture().plusDays(1));
+                callables.add(listCallable2);
+                /* из окружения конечной точки в конечную точку на ТРЕТИЙ ДЕНЬ*/
+                Callable<List<Edge>> listCallable3 = () -> apiInterface.findEdgesFromTo(point, initializatorApi.getTo(), initializatorApi.getDeparture().plusDays(2));
+                callables.add(listCallable3);
+                /* из окружения конечной точки в конечную точку на ЧЕТВЕРТЫЙ ДЕНЬ*/
+                Callable<List<Edge>> listCallable4 = () -> apiInterface.findEdgesFromTo(point, initializatorApi.getTo(), initializatorApi.getDeparture().plusDays(3));
+                callables.add(listCallable4);
             }
 
-        /* перебор между всеми точками */
             for (Point pointFrom : initializatorApi.getCitiesFrom()) {
-
-                for (Point poinTo : initializatorApi.getCitiesTo()) {
-                    Callable<List<Edge>> listCallable = () -> apiInterface.findEdgesFromTo(pointFrom, poinTo, initializatorApi.getDeparture());
+                for (Point pointTo : initializatorApi.getCitiesTo()) {
+                    /* из окружения начальной точки в окружение конечной точки на ВЫБРАННЫЙ день*/
+                    Callable<List<Edge>> listCallable = () -> apiInterface.findEdgesFromTo(pointFrom, pointTo, initializatorApi.getDeparture());
                     callables.add(listCallable);
+                    /* из окружения начальной точки в окружение конечной точки на СЛЕДУЮЩИЙ день*/
+                    Callable<List<Edge>> listCallable2 = () -> apiInterface.findEdgesFromTo(pointFrom, pointTo, initializatorApi.getDeparture().plusDays(1));
+                    callables.add(listCallable2);
                 }
             }
-
         }
-
         return callables;
     }
-
 }
