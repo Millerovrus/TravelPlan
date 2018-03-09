@@ -44,25 +44,24 @@
 <body>
 
     <div ng-app="appSignUp">
-
         <!-- menu -->
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/"><i class="fa fa-ravelry" aria-hidden="true"></i>Travel planner</a>
                 </div>
-                <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
+                <div class="navbar-collapse collapse"  id="navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
                         <li><a href="/signIn">Sign in</a></li>
                         <li class="active"><a href="/signUp">Sign up</a></li>
                         <li><a href="#">About us</a></li>
                         <li><a href="#">Contact</a></li>
+                        <li><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
                     </ul>
                 </div>
             </div>
@@ -71,9 +70,8 @@
         <div ng-controller="controllerSignUp">
             <img src="img/imgMain.jpg"  id="sign-pic" class="background-sign-pic">
             <div class="container">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     <div id="logbox">
-                        <!--<form id="signUp" method="post" action="/signUp" >-->
                         <form id="signUp">
                             <h1>Create an Account</h1>
                             <input id="inputFirstName" type="text" placeholder="First name" class="input pass" required/>
@@ -88,85 +86,14 @@
                                 </div>
                             <!--</div>-->
                             <input id="inputEmail" type="email" placeholder="Email address" class="input pass" required/>
-
                             <input id="inputPassword" type="password" placeholder="Choose a password" required class="input pass"/>
                             <!--<input id="confirmPassword" type="password" placeholder="Confirm password" required class="input pass"/>-->
                             <input type="submit" value="Sign up" ng-click="sendUserData()" class="inputButton"/>
-                            <!--<script>
-                                window.onload = function () {
-                                    document.getElementById("inputPassword").onchange = validatePassword;
-                                    document.getElementById("confirmPassword").onchange = validatePassword;
-                                }
-                                function  validatePassword() {
-                                    var pass2=document.getElementById("confirmPassword").value;
-                                    var pass1=document.getElementById("inputPassword").value;
-                                    if(pass1!=pass2)
-                                        document.getElementById("inputPassword").setCustomValidity("Password don't match");
-                                    else
-                                        document.getElementById("inputPassword").setCustomValidity('');
-                                }
-                            </script>-->
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- background image-->
-      <!--  <div class="imageMain">
-            <div class="container">
-                <div class="row centered">
-                    <div class="header">
-                        <h1>Create your account</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div ng-controller="controllerSignUp">
-            <div class="container">
-                <div class="card card-container">
-                    <p id="profile-name" class="profile-name-card"></p>
-                    <form class="form-signup">
-                        <span id="reauth-email" class="reauth-email"></span>
-                        <!--<a class="clear" ng-click="input = null">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </a>-->
-                       <!-- <input type="text" id="inputFirstName" class="form-control" placeholder="First name" required autofocus>
-                        <input type="text" id="inputLastName" class="form-control" placeholder="Last name" required autofocus>
-                        <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-                        <input type="text" id="inputBirthDate" class="form-control" placeholder="Birth date" required autofocus>
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit"
-                                ng-click="sendUserData()">Sign up</button>
-                    </form>
-                </div>
-            </div>
-        </div>-->
-
-        <!--&lt;!&ndash; bottom &ndash;&gt;
-        <div class="container">
-            <div class="row-sign-up">
-                <div class="col-md-4 col-md-offset-4">
-                    <div class="row contact row-first">
-                        <div class="col-md-6">
-                            <a href="http://www.jquery2dotnet.com" class="skype"><i class="fa fa-skype"></i> hello_skype</a>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="http://www.jquery2dotnet.com" class="google"><i class="fa fa-google-plus"></i> hello@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="row contact">
-                        <div class="col-md-6">
-                            <a href="http://www.jquery2dotnet.com" class="linkedin"><i class="fa fa-linkedin"></i>linkedin_id</a>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="http://www.jquery2dotnet.com" class="twitter"><i class="fa fa-twitter"></i>twitter_id</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
     </div>
 </body>
 </html>
