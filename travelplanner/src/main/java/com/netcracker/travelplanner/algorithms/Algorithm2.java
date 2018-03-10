@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 @Service
 public class Algorithm2 {
-    private List<List<Edge>> bestFoundRoutes = new LinkedList<>();
+    private List<List<Edge>> bestFoundRoutes = new ArrayList<>();
     private List<List<Edge>> allFoundRoutes = new ArrayList<>();
     private static final Logger logger = LoggerFactory.getLogger(Algorithm2.class);
 
@@ -56,8 +57,6 @@ public class Algorithm2 {
     private void startSearch(List<Edge> edges, String startPoint, String destinationPoint) {
         //флаг на удаление пути
         List<Boolean> needDelete = new ArrayList<>();
-        // флаг остановки поиска - когда все пути дошли до destinationPoint
-        boolean stopSearch = false;
 
         // пробегаемся по edges, записываем все ребра, у которых startPoint == заданному startPoint
         for (Edge edge : edges) {
@@ -70,14 +69,14 @@ public class Algorithm2 {
         }
 
         int expectedSize = 1;
-        while (!stopSearch) {
+        while (expectedSize < 4) {
             int size = allFoundRoutes.size();
             //пробегаемся по edge и добавляем к уже найденным ребрам те, у которых startPoint соответствует найденным ранее destinationPoint и они состыкаются по времени
             for (int i = 0; i < size; i++) {
                 for (Edge edge : edges) {
-                    if (allFoundRoutes.get(i).get(allFoundRoutes.get(i).size() - 1).getEndIataCode().equals(edge.getStartIataCode()) &&
-                            calculateEndDateTime(allFoundRoutes.get(i).get(allFoundRoutes.get(i).size() - 1)).isAfter(calculateStartDateTime(edge))) {
-                        List<Edge> tempWay = new LinkedList<>();
+                    if (allFoundRoutes.get(i).get(allFoundRoutes.get(i).size() - 1).getDestinationPoint().equals(edge.getStartPoint()) &&
+                            calculateEndDateTime(allFoundRoutes.get(i).get(allFoundRoutes.get(i).size() - 1)).isBefore(calculateStartDateTime(edge))){
+                        List<Edge> tempWay = new ArrayList<>();
                         tempWay.addAll(allFoundRoutes.get(i));
                         tempWay.add(edge);
                         allFoundRoutes.add(tempWay);
@@ -99,14 +98,15 @@ public class Algorithm2 {
                 }
             }
 
-            // если все пути имеют точку прибытия = destinationPoint - останавливаем поиск
-            stopSearch = true;
-            for (List<Edge> foundRoute : allFoundRoutes) {
-                if (!foundRoute.get(foundRoute.size()-1).getDestinationPoint().equals(destinationPoint)){
-                    stopSearch = false;
-                    break;
-                }
-            }
+
+//            // если все пути имеют точку прибытия = destinationPoint - останавливаем поиск
+//            stopSearch = true;
+//            for (List<Edge> foundRoute : allFoundRoutes) {
+//                if (!foundRoute.get(foundRoute.size()-1).getDestinationPoint().equals(destinationPoint)){
+//                    stopSearch = false;
+//                    break;
+//                }
+//            }
         }
     }
 
@@ -119,11 +119,13 @@ public class Algorithm2 {
             bestFoundRoutes.add(null);
         }
         for (List<Edge> foundRoute : allFoundRoutes) {
-            double weight1 = 0.0, weight2 = 0.0, weight3 = 0.0;
+            double weight1 = ChronoUnit.SECONDS.between(foundRoute.get(0).getStartDate(), foundRoute.get(foundRoute.size() - 1).getEndDate()) / 72,
+                    weight2 = ChronoUnit.SECONDS.between(foundRoute.get(0).getStartDate(), foundRoute.get(foundRoute.size() - 1).getEndDate()) / 9,
+                    weight3 = ChronoUnit.SECONDS.between(foundRoute.get(0).getStartDate(), foundRoute.get(foundRoute.size() - 1).getEndDate()) / 2.4;
             for (Edge edge : foundRoute) {
-                weight1 += edge.getCost() + edge.getDuration() / 72;
-                weight2 += edge.getCost() + edge.getDuration() / 9;
-                weight3 += edge.getCost() + edge.getDuration() / 2.4;
+                weight1 += edge.getCost();
+                weight2 += edge.getCost();
+                weight3 += edge.getCost();
             }
             if (foundRoute.size() <= minSize){
                 if (weight1 < minWeight1ForMinSize) {
@@ -153,6 +155,5 @@ public class Algorithm2 {
                 minWeight3 = weight3;
             }
         }
-
     }
 }

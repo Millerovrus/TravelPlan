@@ -14,9 +14,8 @@ import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -91,6 +90,9 @@ public class TaskManagerService {
         }
 
 
+
+
+
 //        for (int i = 0; i < RouteType.values().length ; i++) {
 //
 //            boolean needSave = true;
@@ -130,32 +132,23 @@ public class TaskManagerService {
 
         List<Route> routeList = new ArrayList<>();
 
-        List<List<Edge>> listAllEdges = algorithm.getBestFoundRoutes(edgeList,initializatorApi.getFrom().getName(),initializatorApi.getTo().getName());
+        List<List<Edge>> listsAllEdges = algorithm.getBestFoundRoutes(edgeList,initializatorApi.getFrom().getName(),initializatorApi.getTo().getName());
 
         int idRouteForView  = 0;
 
-        for (List<Edge> lists : listAllEdges) {
-
-
-
-//                edgeList.addAll(lists);
-                Route route = new Route();
-//                route.setEdges(lists);
+        for (List<Edge> lists : listsAllEdges) {
+                Route route = new Route(new Date(), lists.get(0).getStartPoint(), lists.get(lists.size() - 1).getDestinationPoint(), ChronoUnit.SECONDS.between(lists.get(0).getStartDate(), lists.get(lists.size()-1).getEndDate()));
                 route.setIdRouteForView(idRouteForView);
                 idRouteForView++;
-                Short order = 1;
+                short order = 1;
                 for (Edge edge : lists) {
                     edge.setEdgeOrder(order++);
                     edge.setRoute(route);
                     route.getEdges().add(edge);
                     route.setCost(route.getCost() + edge.getCost());
-                    route.setDuration(route.getDuration() + edge.getDuration());
                 }
                 routeList.add(route);
-                }
-
-
+            }
         return routeList;
     }
-
 }
