@@ -21,7 +21,7 @@ public class Algorithm2 {
 
 
     public List<List<Edge>> getBestFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint) {
-        logger.info("start");
+        logger.info("start with " + edges.size() + " edges");
         startSearch(edges, startPoint, destinationPoint);
         logger.info("finish");
         return bestFoundRoutes;
@@ -59,8 +59,6 @@ public class Algorithm2 {
         //флаг на удаление пути
         List<Boolean> needDelete = new ArrayList<>();
         boolean stopSearch = false;
-
-        System.out.println(allFoundRoutes.size());
 
         // пробегаемся по edges, записываем все ребра, у которых startPoint == заданному startPoint
         for (Edge edge : edges) {
