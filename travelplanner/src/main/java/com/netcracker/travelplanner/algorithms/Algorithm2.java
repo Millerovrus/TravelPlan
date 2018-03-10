@@ -56,34 +56,34 @@ public class Algorithm2 {
 
     private void startSearch(List<Edge> edges, String startPoint, String destinationPoint) {
         List<List<Edge>> allFoundRoutes = new ArrayList<>();
-        //флаг на удаление пути
-        List<Boolean> needDelete = new ArrayList<>();
         boolean stopSearch = false;
 
+        int edgesSize = edges.size();
         // пробегаемся по edges, записываем все ребра, у которых startPoint == заданному startPoint
-        for (Edge edge : edges) {
-            if (startPoint.equals(edge.getStartPoint())) {
+        for (int i = 0; i < edgesSize; i++) {
+            if (startPoint.equals(edges.get(i).getStartPoint())) {
                 List<Edge> tempWay = new LinkedList<>();
-                tempWay.add(edge);
+                tempWay.add(edges.get(i));
                 allFoundRoutes.add(tempWay);
-                needDelete.add(false);
+                edges.remove(i);
+                edgesSize--;
+                i--;
             }
         }
 
         short expectedSize = 1;
-        while (!stopSearch && expectedSize < 4) {
+        while (!stopSearch || expectedSize < 4) {
             int size = allFoundRoutes.size();
-            //пробегаемся по edge и добавляем к уже найденным ребрам те, у которых startPoint соответствует найденным ранее destinationPoint и они состыкаются по времени
+            //пробегаемся по edge и добавляем к уже найденным ребрам те, у которых startPoint соответствует найденным ранее destinationPoint и они состыкуются по времени
             for (int i = 0; i < size; i++) {
                 for (Edge edge : edges) {
                     if (allFoundRoutes.get(i).get(allFoundRoutes.get(i).size() - 1).getDestinationPoint().equals(edge.getStartPoint()) &&
-                            calculateEndDateTime(allFoundRoutes.get(i).get(allFoundRoutes.get(i).size() - 1)).isBefore(calculateStartDateTime(edge))){
+                            calculateEndDateTime(allFoundRoutes.get(i).get(allFoundRoutes.get(i).size() - 1)).isBefore(calculateStartDateTime(edge)) &&
+                            (ChronoUnit.HOURS.between(allFoundRoutes.get(i).get(allFoundRoutes.get(i).size() - 1).getEndDate(), edge.getStartDate()) < 10)){
                         List<Edge> tempWay = new ArrayList<>();
                         tempWay.addAll(allFoundRoutes.get(i));
                         tempWay.add(edge);
                         allFoundRoutes.add(tempWay);
-                        needDelete.add(false);
-                        needDelete.set(i, true);
                     }
                 }
             }
@@ -91,16 +91,13 @@ public class Algorithm2 {
             //удаляем те пути, которые нашли продолжения и уже продолжены и те,
             //которые не нашли продолжения и их destinationPoint != заданному destinationPoint (они никогда не приведут к финишу)
             for (int i = 0; i < size; i++) {
-                if (needDelete.get(i) || (!allFoundRoutes.get(i).get(allFoundRoutes.get(i).size()-1).getDestinationPoint().equals(destinationPoint) &&
+                if ((!allFoundRoutes.get(i).get(allFoundRoutes.get(i).size()-1).getDestinationPoint().equals(destinationPoint) &&
                         allFoundRoutes.get(i).size() != expectedSize)) {
                     allFoundRoutes.remove(i);
-                    needDelete.remove(i);
                     i--;
                     size--;
                 }
             }
-
-
             // если все пути имеют точку прибытия = destinationPoint - останавливаем поиск
             stopSearch = true;
             for (List<Edge> foundRoute : allFoundRoutes) {

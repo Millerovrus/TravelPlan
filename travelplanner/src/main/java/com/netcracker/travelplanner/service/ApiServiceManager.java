@@ -42,9 +42,9 @@ public class ApiServiceManager {
                 /* из окружения конечной точки в конечную точку на СЛЕДУЮЩИЙ ДЕНЬ*/
                 Callable<List<Edge>> listCallable2 = () -> apiInterface.findEdgesFromTo(point, initializatorApi.getTo(), initializatorApi.getDeparture().plusDays(1));
                 callables.add(listCallable2);
-//                /* из окружения конечной точки в конечную точку на ТРЕТИЙ ДЕНЬ*/
-//                Callable<List<Edge>> listCallable3 = () -> apiInterface.findEdgesFromTo(point, initializatorApi.getTo(), initializatorApi.getDeparture().plusDays(2));
-//                callables.add(listCallable3);
+                /* из окружения конечной точки в конечную точку на ТРЕТИЙ ДЕНЬ*/
+                Callable<List<Edge>> listCallable3 = () -> apiInterface.findEdgesFromTo(point, initializatorApi.getTo(), initializatorApi.getDeparture().plusDays(2));
+                callables.add(listCallable3);
             }
 
             for (Point pointFrom : initializatorApi.getCitiesFrom()) {
