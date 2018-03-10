@@ -136,7 +136,7 @@ public class TaskManagerService {
 
         for (List<Edge> lists : listAllEdges) {
 
-            if (!routeList.isEmpty()) {
+
 
 //                edgeList.addAll(lists);
                 Route route = new Route();
@@ -153,7 +153,7 @@ public class TaskManagerService {
                 }
                 routeList.add(route);
                 }
-            }
+
 
         return routeList;
     }
