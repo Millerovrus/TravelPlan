@@ -59,7 +59,7 @@ public class YandexParser implements ApiInterface {
 //      Убрать NPE при пустой странице
         Elements el = doc.getElementsByClass("SearchSegment");
 
-        if( el.is("div.SegmentPrices")){
+//        if( el.is("div.SegmentPrices")){
         el.stream()
                 .filter(element -> !element.getElementsByClass("SegmentPrices").first().text().equals(""))
                 .forEach(element -> edgeList.add(new Edge(new Date()
@@ -87,7 +87,7 @@ public class YandexParser implements ApiInterface {
             result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
         }
 
-        }
+
 
         return result;
 

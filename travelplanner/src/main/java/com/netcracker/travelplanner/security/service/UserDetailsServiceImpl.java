@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.Optional;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -33,6 +34,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional(readOnly = true )
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userService.findUserByEmail(email);
+
+        if (user == null) {
+            throw new UsernameNotFoundException("Invalid email: " + email);
+        }
+
         Set<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
 
         if (user.isAdmin()) {
