@@ -593,3 +593,8 @@ input[type='checkbox'] + span{
 input[type='checkbox']:checked + span{
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAEbgAABG4B0KOyaAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFiSURBVDiNlZAxSyNRFIW/+3wTBBvRxsK12kLBWsmMSbkLu62dYB2xsBQE0UIQO5HdztY/4A/YJiEZxHpdsFOLNO52C0nmzbGKmMTI5JTn3e++c4+pWv0UQjgQzAv+U0zTTnqeCuHUhxAOQggXpVbrriAMQLdcXsH7fSeYnxQGKLVadzJbcBPEHpGk4ApPm7ksSc47cfz5re2L8iFJfgI1B3PAdt8fTbC6Whq2skrlWFAD0qjTqb19G1iQVatJb3b2vhfHa32vlyQ7SEfAb5/n37m9Hehs4ASTtoAlnPuVVSqbluczZvZD8Bhl2VfS9O9wuoEEU43GLmYXwAzStcyugH/K8y+k6dNoM8MdSPL1+h5mh0AEZMrzb6Vm88978MgJr2a9ftLb2Gib9BA1mzfj4LELAKJG4/IjsC8HTBcZHCNzTnrulssrk5LdOF42s7ZpfX0xeL8vswVJoejPZtb20tkLKyaJLiCC000AAAAASUVORK5CYII=) no-repeat center left;
 }
+
+/* чтобы чекбокс на странице входа был виден */
+#my-check{
+    opacity: 1;
+}
