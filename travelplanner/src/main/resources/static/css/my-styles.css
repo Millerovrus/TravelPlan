@@ -146,8 +146,7 @@ hr{
     width: 100%;
     height: 140px;
     margin-top: -10px;
-   /* background-image: url("../img/travel-top.jpg");*/
-    background-position: 50% 50%;
+    background-position: 60% 40%;
     background-size: cover;
     object-fit: cover;
     display: block;
@@ -519,3 +518,78 @@ textarea{
     text-align: center;
 }
 
+
+
+/* dropdown passengers*/
+.dropdown {
+    background: #fff;
+    border: none;
+    outline: none !important;
+    width: 100%;
+    color: #3c3c3c;
+    padding-top: 7px;
+}
+.dropdown a{
+    color: #3c3c3c;
+}
+
+.dropdown-menu>li>a {
+    color: #2b2b2b;
+}
+.dropdown ul.dropdown-menu {
+    border-radius:4px;
+    box-shadow:none;
+    margin-top:20px;
+    width: 100%;
+}
+.dropdown ul.dropdown-menu:before {
+    content: "";
+    border-bottom: 10px solid #fff;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    z-index: 10;
+}
+.dropdown ul.dropdown-menu:after {
+    content: "";
+    border-bottom: 12px solid #ccc;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    position: absolute;
+    top: -12px;
+    right: 14px;
+    z-index: 9;
+}
+
+.drop-passengers{
+    text-align: center;
+    font-family: Lato;
+    font-size: 16px;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-weight: 200;
+}
+
+#spin-adult, #spin-children, #spin-senior{
+    text-align: center;
+    padding-top: 2px;
+}
+
+/* check-box */
+input[type='checkbox'] {
+    /* Hide the checkbox input ui */
+    opacity: 0;
+}
+
+/* Apply custom images - size your images according to text and stuff */
+/* Take any custom image you want and encode it with http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/ or alike */
+input[type='checkbox'] + span{
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAEbgAABG4B0KOyaAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACLSURBVDiN7Y4hDoNAAAR3rxeCxyBaX15ADsG3SPhAU9tP3RP4AgZbQbLZKlQNtJbxM7t0398kjQYqA2/sowz2cpEeUdIo6VXkPO2UAQBrSg1iHIKB6qgMAEXOk8k6HLj9hW2FX+WNM3AGtkD5h88Q7GVNqTlqrl13JznTbXtVjIPJ2rb2LpOco/38ABW9OK5LzYh0AAAAAElFTkSuQmCC) no-repeat center left;
+    padding-left: 18px;
+    margin-left: -18px;
+}
+input[type='checkbox']:checked + span{
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAEbgAABG4B0KOyaAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFiSURBVDiNlZAxSyNRFIW/+3wTBBvRxsK12kLBWsmMSbkLu62dYB2xsBQE0UIQO5HdztY/4A/YJiEZxHpdsFOLNO52C0nmzbGKmMTI5JTn3e++c4+pWv0UQjgQzAv+U0zTTnqeCuHUhxAOQggXpVbrriAMQLdcXsH7fSeYnxQGKLVadzJbcBPEHpGk4ApPm7ksSc47cfz5re2L8iFJfgI1B3PAdt8fTbC6Whq2skrlWFAD0qjTqb19G1iQVatJb3b2vhfHa32vlyQ7SEfAb5/n37m9Hehs4ASTtoAlnPuVVSqbluczZvZD8Bhl2VfS9O9wuoEEU43GLmYXwAzStcyugH/K8y+k6dNoM8MdSPL1+h5mh0AEZMrzb6Vm88978MgJr2a9ftLb2Gib9BA1mzfj4LELAKJG4/IjsC8HTBcZHCNzTnrulssrk5LdOF42s7ZpfX0xeL8vswVJoejPZtb20tkLKyaJLiCC000AAAAASUVORK5CYII=) no-repeat center left;
+}
