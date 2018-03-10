@@ -20,11 +20,13 @@ public class YandexParserExecutor implements ExecutorManager {
         List<Edge> edgeList = new ArrayList<>();
 
         List<Future<List<Edge>>> futures = null;
+
         try {
             futures = executorService.invokeAll(taskList, 1, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
 
         for (Future<List<Edge>> future : futures) {
             try {
@@ -33,9 +35,12 @@ public class YandexParserExecutor implements ExecutorManager {
                     }
 
             } catch (InterruptedException e) {
+                System.out.println("Ошибочка!!!");
                 e.printStackTrace();
             } catch (ExecutionException e) {
+                System.out.println("Ошибочка!!!");
                 e.printStackTrace();
+
             }
         }
 

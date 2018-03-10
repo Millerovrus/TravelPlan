@@ -8,8 +8,6 @@ import java.time.format.DateTimeFormatter;
 
 public class PreparingDataService {
 
-    private InitializatorApi initializatorApi = new InitializatorApi();
-
     private Point pointFrom;
 
     private Point pointTo;
@@ -19,6 +17,8 @@ public class PreparingDataService {
             , String latLongFrom
             , String latLongTo
             , String date){
+
+        InitializatorApi initializatorApi = new InitializatorApi();
 
         pointFrom = new Point();
         pointTo = new Point();
@@ -57,13 +57,6 @@ public class PreparingDataService {
             initializatorApi.setCitiesFrom(EdgeService.getCities(iataCodeFrom, latFrom, lonFrom));
             initializatorApi.setCitiesTo(EdgeService.getCities(iataCodeTo, latTo, lonTo));
 
-            for (Point point : initializatorApi.getCitiesFrom()){
-                point.setYandexCode(EdgeService.getYandexCode(point.getLatitude(),point.getLongitude()));
-            }
-            for (Point point : initializatorApi.getCitiesTo()){
-                point.setYandexCode(EdgeService.getYandexCode(point.getLatitude(),point.getLongitude()));
-            }
-
         }
         else {
             initializatorApi.setGlobalRoute(false);
@@ -72,7 +65,7 @@ public class PreparingDataService {
         initializatorApi.setFrom(pointFrom);
         initializatorApi.setTo(pointTo);
 
-        return this.initializatorApi;
+        return initializatorApi;
     }
 
 }

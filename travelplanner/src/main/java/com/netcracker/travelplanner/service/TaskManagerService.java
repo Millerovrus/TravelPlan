@@ -27,8 +27,8 @@ public class TaskManagerService {
 
     @Autowired
     private YandexExecutor yandexExecutor;
-//    @Autowired
-//    private YandexParserExecutor yandexParserExecutor;
+    @Autowired
+    private YandexParserExecutor yandexParserExecutor;
     @Autowired
     private KiwiExecutor kiwiExecutor;
 
@@ -74,13 +74,13 @@ public class TaskManagerService {
         edgeList.addAll(kiwiExecutor.execute(apiServiceManager.getTasks(kiwiApi))));
 
 
-//        executorService.execute( () ->
-//        edgeList.addAll(yandexParserExecutor.execute(apiServiceManager.getTasks(yandexParser))));
+        executorService.execute( () ->
+        edgeList.addAll(yandexParserExecutor.execute(apiServiceManager.getTasks(yandexParser))));
 
         executorService.shutdown();
 
         try {
-            executorService.awaitTermination(30, TimeUnit.SECONDS);
+            executorService.awaitTermination(1, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

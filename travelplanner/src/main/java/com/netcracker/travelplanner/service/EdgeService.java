@@ -27,7 +27,7 @@ public class EdgeService {
                 latitude +
                 "&lon=" +
                 longitude +
-                "&radius=20&locale=en-US&location_types=city&limit=2&sort=rank";
+                "&radius=50&locale=en-US&location_types=city&limit=2&sort=rank";
 
         String iataCityCode = "no Iata Code";
 
@@ -59,7 +59,7 @@ public class EdgeService {
 
          int distance =  googleDistance.getRows().get(0).getElements().get(0).getDistance().getValue();
 
-         return distance >= 600000;
+         return distance >= 500000;
         }
 
         return false;
@@ -112,7 +112,7 @@ public class EdgeService {
                 latitude +
                 "&lon=" +
                 longitude +
-                "&radius=600" +
+                "&radius=500" +
                 "&location_types=airport" +
                 "&sort=rank";
 
@@ -147,7 +147,7 @@ public class EdgeService {
 
         List<Point> points = new ArrayList<>();
 
-        list.forEach(myPoint -> points.add(new Point(myPoint.getName(), myPoint.getLat(), myPoint.getLon(),myPoint.getCode(),getYandexCode(myPoint.getLat(),myPoint.getLon()))));
+        list.forEach(myPoint -> points.add(new Point(myPoint.getCityName(), myPoint.getLat(), myPoint.getLon(),myPoint.getCityCode(),getYandexCode(myPoint.getLat(),myPoint.getLon()))));
 
         return points;
 
