@@ -203,7 +203,8 @@ public class Route implements Serializable {
                 .append("cost", cost)
                 .append("duration", duration)
                 .append("distance", distance)
-                .append("edges", edges.toString())
+                .append("edges", edges)
+                .append("idRouteForView", idRouteForView)
                 .toString();
     }
 }

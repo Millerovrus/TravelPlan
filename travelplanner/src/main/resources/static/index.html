@@ -188,10 +188,10 @@
                                                             <div class="panel panel-default" ng-repeat="record in records">
                                                                 <div class="panel-heading">
                                                                     <h5 class="panel-title">
-                                                                        <a class="accordion-toggle" aria-expanded="false" data-toggle="collapse" data-parent="#accordion1" aria-controls={{record.routeType}} href=#{{record.routeType}}>{{record.startPoint}} - {{record.destinationPoint}}</a>
+                                                                        <a class="accordion-toggle" aria-expanded="false" data-toggle="collapse" data-parent="#accordion1" aria-controls={{record.idRouteForView}} href=#{{record.idRouteForView}}>{{record.startPoint}} - {{record.destinationPoint}}</a>
                                                                     </h5>
                                                                 </div>
-                                                                <div id={{record.routeType}} class="panel-collapse collapse in">
+                                                                <div id={{record.idRouteForView}} class="panel-collapse collapse in">
                                                                     <div class="panel-body">
                                                                         <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
                                                                         <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
