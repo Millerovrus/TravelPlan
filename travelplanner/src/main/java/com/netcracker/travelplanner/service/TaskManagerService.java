@@ -13,6 +13,10 @@ import com.netcracker.travelplanner.executors.YandexParserExecutor;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -85,9 +89,6 @@ public class TaskManagerService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
-
 
 
 //        for (int i = 0; i < RouteType.values().length ; i++) {

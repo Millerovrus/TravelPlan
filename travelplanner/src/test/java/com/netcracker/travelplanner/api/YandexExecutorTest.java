@@ -23,7 +23,7 @@ public class YandexExecutorTest {
     @Test
     public void execute() throws Exception {
 
-        List<Route> list = taskManagerService.findTheBestRoutes("Voronezh", "Berlin", "(51.6754966, 39.20888230000003)","(52.5174, 13.4068)","2018-03-22");
+        List<Route> list = taskManagerService.findTheBestRoutes("Voronezh", "Berlin", "(51.6754966, 39.20888230000003)","(52.5174, 13.4068)","2018-03-29");
 
         list.forEach(System.out::println);
 

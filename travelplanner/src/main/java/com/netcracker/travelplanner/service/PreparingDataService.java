@@ -57,13 +57,6 @@ public class PreparingDataService {
             initializatorApi.setCitiesFrom(EdgeService.getCities(iataCodeFrom, latFrom, lonFrom));
             initializatorApi.setCitiesTo(EdgeService.getCities(iataCodeTo, latTo, lonTo));
 
-            for (Point point : initializatorApi.getCitiesFrom()){
-                point.setYandexCode(EdgeService.getYandexCode(point.getLatitude(),point.getLongitude()));
-            }
-            for (Point point : initializatorApi.getCitiesTo()){
-                point.setYandexCode(EdgeService.getYandexCode(point.getLatitude(),point.getLongitude()));
-            }
-
         }
         else {
             initializatorApi.setGlobalRoute(false);
