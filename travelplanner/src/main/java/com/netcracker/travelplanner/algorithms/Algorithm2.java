@@ -17,13 +17,13 @@ import java.util.List;
 @Service
 public class Algorithm2 {
     private List<List<Edge>> bestFoundRoutes = new ArrayList<>();
-    private List<List<Edge>> allFoundRoutes = new ArrayList<>();
     private static final Logger logger = LoggerFactory.getLogger(Algorithm2.class);
 
 
     public List<List<Edge>> getBestFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint) {
+        logger.info("start");
         startSearch(edges, startPoint, destinationPoint);
-        searchBestRoutes();
+        logger.info("finish");
         return bestFoundRoutes;
     }
 
@@ -55,8 +55,12 @@ public class Algorithm2 {
     }
 
     private void startSearch(List<Edge> edges, String startPoint, String destinationPoint) {
+        List<List<Edge>> allFoundRoutes = new ArrayList<>();
         //флаг на удаление пути
         List<Boolean> needDelete = new ArrayList<>();
+        boolean stopSearch = false;
+
+        System.out.println(allFoundRoutes.size());
 
         // пробегаемся по edges, записываем все ребра, у которых startPoint == заданному startPoint
         for (Edge edge : edges) {
@@ -68,8 +72,8 @@ public class Algorithm2 {
             }
         }
 
-        int expectedSize = 1;
-        while (expectedSize < 4) {
+        short expectedSize = 1;
+        while (!stopSearch && expectedSize < 4) {
             int size = allFoundRoutes.size();
             //пробегаемся по edge и добавляем к уже найденным ребрам те, у которых startPoint соответствует найденным ранее destinationPoint и они состыкаются по времени
             for (int i = 0; i < size; i++) {
@@ -99,22 +103,24 @@ public class Algorithm2 {
             }
 
 
-//            // если все пути имеют точку прибытия = destinationPoint - останавливаем поиск
-//            stopSearch = true;
-//            for (List<Edge> foundRoute : allFoundRoutes) {
-//                if (!foundRoute.get(foundRoute.size()-1).getDestinationPoint().equals(destinationPoint)){
-//                    stopSearch = false;
-//                    break;
-//                }
-//            }
+            // если все пути имеют точку прибытия = destinationPoint - останавливаем поиск
+            stopSearch = true;
+            for (List<Edge> foundRoute : allFoundRoutes) {
+                if (!foundRoute.get(foundRoute.size()-1).getDestinationPoint().equals(destinationPoint)){
+                    stopSearch = false;
+                    break;
+                }
+            }
         }
+        searchBestRoutes(allFoundRoutes);
     }
 
     //фильтрация всех маршрутов
-    private void searchBestRoutes(){
+    private void searchBestRoutes(List<List<Edge>> allFoundRoutes){
         int minSize = Integer.MAX_VALUE;
         double minWeight1ForMinSize = Double.MAX_VALUE, minWeight2ForMinSize = Double.MAX_VALUE, minWeight3ForMinSize = Double.MAX_VALUE,
                 minWeight1 = Double.MAX_VALUE, minWeight2 = Double.MAX_VALUE, minWeight3 = Double.MAX_VALUE;
+        bestFoundRoutes.clear();
         for (int i = 0; i < 6; i++) {
             bestFoundRoutes.add(null);
         }
