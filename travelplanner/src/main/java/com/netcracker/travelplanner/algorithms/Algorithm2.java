@@ -10,6 +10,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Алгоритм нахождения минимального пути между двумя точками полным перебором с учетом времени
@@ -21,53 +22,24 @@ public class Algorithm2 {
 
 
     public List<List<Edge>> getBestFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint) {
+        System.out.println("Было ребер " + edges.size());
+        edges = edges.stream().distinct().collect(Collectors.toList());
         logger.info("start with " + edges.size() + " edges");
         startSearch(edges, startPoint, destinationPoint);
         logger.info("finish");
         return bestFoundRoutes;
     }
 
-    //прибавляем к endDate 30 минут для поезда и автобуса, 1 час для самолета. Чтобы высадится, забрать вещи...
-    //плюс 1 час на перемещение с места прибытия в место следуюшего отбытия
-    private LocalDateTime calculateEndDateTime(Edge edge){
-        switch(edge.getTransportType().toLowerCase()){
-            case "bus":
-            case "train":
-                return edge.getEndDate().plusHours(1).plusMinutes(30);
-            case "plane":
-                return edge.getEndDate().plusHours(2);
-            default:
-                return edge.getEndDate().plusHours(1);
-        }
-    }
-
-    //обычно в аэропорт приезжают за 2 часа до вылета, на автобус/поезд за 1 час, с запасом
-    private LocalDateTime calculateStartDateTime(Edge edge){
-        switch(edge.getTransportType().toLowerCase()){
-            case "bus":
-            case "train":
-                return edge.getStartDate().minusHours(1);
-            case "plane":
-                return edge.getStartDate().minusHours(2);
-            default:
-                return edge.getStartDate().minusHours(1);
-        }
-    }
-
     private void startSearch(List<Edge> edges, String startPoint, String destinationPoint) {
         List<List<Edge>> allFoundRoutes = new ArrayList<>();
         boolean stopSearch = false;
 
-        int edgesSize = edges.size();
         // пробегаемся по edges, записываем все ребра, у которых startPoint == заданному startPoint
-        for (int i = 0; i < edgesSize; i++) {
-            if (startPoint.equals(edges.get(i).getStartPoint())) {
+        for (Edge edge : edges) {
+            if (startPoint.equals(edge.getStartPoint())) {
                 List<Edge> tempWay = new LinkedList<>();
-                tempWay.add(edges.get(i));
+                tempWay.add(edge);
                 allFoundRoutes.add(tempWay);
-                edges.remove(i);
-                edgesSize--;
-                i--;
             }
         }
 
@@ -88,8 +60,8 @@ public class Algorithm2 {
                 }
             }
             expectedSize++;
-            //удаляем те пути, которые нашли продолжения и уже продолжены и те,
-            //которые не нашли продолжения и их destinationPoint != заданному destinationPoint (они никогда не приведут к финишу)
+            /*удаляем те пути, которые нашли продолжения и уже продолжены и те,
+            которые не нашли продолжения и их destinationPoint != заданному destinationPoint (они никогда не приведут к финишу)*/
             for (int i = 0; i < size; i++) {
                 if ((!allFoundRoutes.get(i).get(allFoundRoutes.get(i).size()-1).getDestinationPoint().equals(destinationPoint) &&
                         allFoundRoutes.get(i).size() != expectedSize)) {
@@ -155,6 +127,37 @@ public class Algorithm2 {
                 bestFoundRoutes.set(5, foundRoute);
                 minWeight3 = weight3;
             }
+        }
+        for (List<Edge> bestFoundRoute : bestFoundRoutes) {
+            System.out.println(bestFoundRoute.toString());
+        }
+        bestFoundRoutes = bestFoundRoutes.stream().distinct().collect(Collectors.toList());
+    }
+
+    //прибавляем к endDate 30 минут для поезда и автобуса, 1 час для самолета. Чтобы высадится, забрать вещи...
+    //плюс 1 час на перемещение с места прибытия в место следуюшего отбытия
+    private LocalDateTime calculateEndDateTime(Edge edge){
+        switch(edge.getTransportType().toLowerCase()){
+            case "bus":
+            case "train":
+                return edge.getEndDate().plusHours(1).plusMinutes(30);
+            case "plane":
+                return edge.getEndDate().plusHours(2);
+            default:
+                return edge.getEndDate().plusHours(1);
+        }
+    }
+
+    //обычно в аэропорт приезжают за 2 часа до вылета, на автобус/поезд за 1 час, с запасом
+    private LocalDateTime calculateStartDateTime(Edge edge){
+        switch(edge.getTransportType().toLowerCase()){
+            case "bus":
+            case "train":
+                return edge.getStartDate().minusHours(1);
+            case "plane":
+                return edge.getStartDate().minusHours(2);
+            default:
+                return edge.getStartDate().minusHours(1);
         }
     }
 }

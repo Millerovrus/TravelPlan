@@ -364,6 +364,22 @@ public class Edge implements Cloneable {
                 .toString();
     }
 
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        Edge edge = (Edge) o;
+//
+//        return id == edge.id;
+//    }
+//
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -371,14 +387,18 @@ public class Edge implements Cloneable {
 
         Edge edge = (Edge) o;
 
-        return id == edge.id;
+        if (startPoint != null ? !startPoint.equals(edge.startPoint) : edge.startPoint != null) return false;
+        if (destinationPoint != null ? !destinationPoint.equals(edge.destinationPoint) : edge.destinationPoint != null)
+            return false;
+        if (transportType != null ? !transportType.equals(edge.transportType) : edge.transportType != null)
+            return false;
+        if (duration != null ? !duration.equals(edge.duration) : edge.duration != null) return false;
+        if (cost != null ? !cost.equals(edge.cost) : edge.cost != null) return false;
+        if (distance != null ? !distance.equals(edge.distance) : edge.distance != null) return false;
+        if (startDate != null ? !startDate.equals(edge.startDate) : edge.startDate != null) return false;
+        if (endDate != null ? !endDate.equals(edge.endDate) : edge.endDate != null) return false;
+        return route != null ? route.equals(edge.route) : edge.route == null;
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
 
     @Override
     public Object clone() throws CloneNotSupportedException {

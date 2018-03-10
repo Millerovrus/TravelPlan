@@ -137,18 +137,21 @@ public class TaskManagerService {
         int idRouteForView  = 0;
 
         for (List<Edge> lists : listsAllEdges) {
-                Route route = new Route(new Date(), lists.get(0).getStartPoint(), lists.get(lists.size() - 1).getDestinationPoint(), ChronoUnit.SECONDS.between(lists.get(0).getStartDate(), lists.get(lists.size()-1).getEndDate()));
-                route.setIdRouteForView(idRouteForView);
-                idRouteForView++;
-                short order = 1;
-                for (Edge edge : lists) {
-                    edge.setEdgeOrder(order++);
-                    edge.setRoute(route);
-                    route.getEdges().add(edge);
-                    route.setCost(route.getCost() + edge.getCost());
-                }
-                routeList.add(route);
+            Route route = new Route(new Date(), lists.get(0).getStartPoint(), lists.get(lists.size() - 1).getDestinationPoint(), ChronoUnit.SECONDS.between(lists.get(0).getStartDate(), lists.get(lists.size()-1).getEndDate()));
+            route.setIdRouteForView(idRouteForView);
+            idRouteForView++;
+            short order = 1;
+            for (Edge edge : lists) {
+                edge.setEdgeOrder(order++);
+                edge.setRoute(route);
+                route.getEdges().add(edge);
+                route.setCost(route.getCost() + edge.getCost());
             }
+            routeList.add(route);
+        }
+        for (Route route : routeList) {
+            System.out.println(route.toString());
+        }
         return routeList;
     }
 }

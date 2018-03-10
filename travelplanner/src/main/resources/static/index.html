@@ -178,7 +178,7 @@
 
                                 <div class="row" ng-controller="myParameterController">
                                     <div class="col-sm-12">
-                                        <input type="submit" name="" ng-click="sendRequestParameters()" required class="button" value="Find route">
+                                        <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
                                         <div ng-show="loading" class="preloader"></div>
                                         <div ng-show="loaded">
                                             <div>

@@ -39,8 +39,12 @@ angular.module('controllerModule')
     })
     .filter('secondsToTime', [function() {
         return function(seconds) {
+            var days = Math.floor((seconds / 86400));
             var hours = Math.floor((seconds % 86400) / 3600);
             var mins = Math.floor(((seconds % 86400) % 3600) / 60);
+            if (days !== 0) {
+                return (days) +' days ' + ('00'+hours).slice(-2) +' hours ' + ('00'+mins).slice(-2)+' minutes';
+            }
             return ('00'+hours).slice(-2) +' hours ' + ('00'+mins).slice(-2)+' minutes';
         };
     }])
