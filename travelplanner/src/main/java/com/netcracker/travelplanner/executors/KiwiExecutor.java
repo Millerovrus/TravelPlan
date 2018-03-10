@@ -4,6 +4,7 @@ import com.netcracker.travelplanner.entities.Edge;
 import org.springframework.stereotype.Service;
 import javax.inject.Singleton;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -11,16 +12,26 @@ import java.util.concurrent.*;
 @Service
 public class KiwiExecutor implements ExecutorManager {
 
-    private ExecutorService executorService = Executors.newFixedThreadPool(2);
+    private final ExecutorService executorService = Executors.newFixedThreadPool(4);
 
     @Override
     public List<Edge> execute(List<Callable<List<Edge>>> taskList) {
 
         List<Edge> edgeList = new ArrayList<>();
 
-        List<Future<List<Edge>>> futures = null;
-        try {
+        List<Future<List<Edge>>> futures = Collections.synchronizedList(new ArrayList<>());
+        /*try {
             futures = executorService.invokeAll(taskList, 1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
+
+        taskList.forEach(callable -> futures.add(executorService.submit(callable)));
+
+        executorService.shutdown();
+
+        try {
+            executorService.awaitTermination(30, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
