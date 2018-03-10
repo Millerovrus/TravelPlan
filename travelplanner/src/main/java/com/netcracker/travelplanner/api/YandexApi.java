@@ -36,26 +36,26 @@ public class YandexApi implements ApiInterface {
                 date.format(formatter) +
                 "&system=iata";
 
-        YandexRasp yandexRasp = getYandexRaspFromUrl(url);
-
-        List<Edge> result = new ArrayList<>();
         List<Edge> edgeList = new ArrayList<>();
 
-        yandexRasp.getSegments()
-                .stream()
-                .filter(l -> l.getTicketsInfo().getPlaces().size()!=0)
-                .forEach(l -> edgeList.add(new Edge(dateNow
-                        ,from.getName()
-                        ,to.getName()
-                        ,l.getThread().getTransportType()
-                        ,l.getDuration()
-                        ,(double)l.getTicketsInfo().getPlaces().get(0).getPrice().getWhole()
-                        ,null
-                        , LocalDateTime.parse(l.getDeparture(),DateTimeFormatter.ISO_OFFSET_DATE_TIME)
-                        , LocalDateTime.parse(l.getArrival(),DateTimeFormatter.ISO_OFFSET_DATE_TIME)
-                        ,"RUB"
-                        , from.getIataCode()
-                        , to.getIataCode())));
+        if(! from.getIataCode().equals(to.getIataCode())) {
+            YandexRasp yandexRasp = getYandexRaspFromUrl(url);
+
+            yandexRasp.getSegments()
+                    .stream()
+                    .filter(l -> l.getTicketsInfo().getPlaces().size() != 0)
+                    .forEach(l -> edgeList.add(new Edge(dateNow
+                            , from.getName()
+                            , to.getName()
+                            , l.getThread().getTransportType()
+                            , l.getDuration()
+                            , (double) l.getTicketsInfo().getPlaces().get(0).getPrice().getWhole()
+                            , null
+                            , LocalDateTime.parse(l.getDeparture(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+                            , LocalDateTime.parse(l.getArrival(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+                            , "RUB"
+                            , from.getIataCode()
+                            , to.getIataCode())));
 //
 //        if (!edgeList.isEmpty()) {
 //            result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
@@ -64,6 +64,7 @@ public class YandexApi implements ApiInterface {
 //            result.add(filterEdgeByTypes(edgeList, RouteType.fastest));
 //            result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
 //        }
+        }
         return edgeList;
 
     }
