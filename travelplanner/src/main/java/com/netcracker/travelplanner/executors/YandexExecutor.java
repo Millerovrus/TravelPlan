@@ -21,21 +21,21 @@ public class YandexExecutor implements ExecutorManager {
         List<Edge> edgeList = new ArrayList<>();
 
         List<Future<List<Edge>>> futures = Collections.synchronizedList(new ArrayList<>());
-        /*try {
-            futures = executorService.invokeAll(taskList, 1, TimeUnit.MINUTES);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
-
-        taskList.forEach(callable -> futures.add(executorService.submit(callable)));
-
-        executorService.shutdown();
-
         try {
-            executorService.awaitTermination(30, TimeUnit.SECONDS);
+            futures = executorService.invokeAll(taskList, 30, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+//        taskList.forEach(callable -> futures.add(executorService.submit(callable)));
+//
+//        executorService.shutdown();
+//
+//        try {
+//            executorService.awaitTermination(30, TimeUnit.SECONDS);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         for (Future<List<Edge>> future : futures) {
             try {
