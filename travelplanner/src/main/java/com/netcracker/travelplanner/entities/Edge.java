@@ -352,9 +352,15 @@ public class Edge implements Cloneable {
                 .append("startDate", startDate)
                 .append("endDate", endDate)
                 .append("currency", currency)
+                .append("startIataCode", startIataCode)
+                .append("endIataCode", endIataCode)
                 .append("edgeType", edgeType)
+                .append("edgeOrder", edgeOrder)
+                .append("latitudeFrom", latitudeFrom)
+                .append("longitudeFrom", longitudeFrom)
+                .append("latitudeTo", latitudeTo)
+                .append("longitudeTo", longitudeTo)
                 .append("weight", weight)
-                .append("route", route)
                 .toString();
     }
 

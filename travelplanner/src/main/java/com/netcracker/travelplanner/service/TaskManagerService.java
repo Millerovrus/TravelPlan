@@ -12,6 +12,11 @@ import com.netcracker.travelplanner.executors.YandexParserExecutor;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.inject.Inject;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -25,11 +30,11 @@ public class TaskManagerService {
     private ApiServiceManager apiServiceManager;
 
 
-    @Autowired
+    @Inject
     private YandexExecutor yandexExecutor;
-    @Autowired
+    @Inject
     private YandexParserExecutor yandexParserExecutor;
-    @Autowired
+    @Inject
     private KiwiExecutor kiwiExecutor;
 
 
@@ -80,10 +85,11 @@ public class TaskManagerService {
         executorService.shutdown();
 
         try {
-            executorService.awaitTermination(1, TimeUnit.MINUTES);
+            executorService.awaitTermination(2, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
 
         List<Route> routeList = new ArrayList<>();
 
