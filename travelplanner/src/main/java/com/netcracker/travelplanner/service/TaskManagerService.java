@@ -1,6 +1,7 @@
 package com.netcracker.travelplanner.service;
 
 import com.netcracker.travelplanner.algorithms.Algorithm;
+import com.netcracker.travelplanner.algorithms.Algorithm2;
 import com.netcracker.travelplanner.api.KiwiApi;
 import com.netcracker.travelplanner.webParsers.WebParser;
 import com.netcracker.travelplanner.api.YandexApi;
@@ -19,9 +20,9 @@ import java.util.concurrent.*;
 public class TaskManagerService {
 
     @Autowired
-    private Algorithm algorithm;
+    private Algorithm2 algorithm;
 
-    private WebDriver driver = WebParser.getDriver();
+//    private WebDriver driver = WebParser.getDriver();
     private ApiServiceManager apiServiceManager;
 
 
@@ -60,8 +61,8 @@ public class TaskManagerService {
 
         List<Edge> edgeList  = Collections.synchronizedList(new ArrayList<>());
 
-        YandexParser yandexParser = new YandexParser();
-        yandexParser.setWebDriver(driver);
+//        YandexParser yandexParser = new YandexParser();
+//        yandexParser.setWebDriver(driver);
         KiwiApi kiwiApi = new KiwiApi();
         YandexApi yandexApi = new YandexApi();
 
@@ -80,40 +81,69 @@ public class TaskManagerService {
         executorService.shutdown();
 
         try {
-            executorService.awaitTermination(30, TimeUnit.SECONDS);
+            executorService.awaitTermination(4, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+
+
+
+
+//        for (int i = 0; i < RouteType.values().length ; i++) {
+//
+//            boolean needSave = true;
+//
+//            List<Edge> tempEdgeList = separator(edgeList,RouteType.values()[i]);
+//
+//            List<Edge> edges = algorithm.getMinimalRoute(tempEdgeList,from,to);
+//
+//            if (!routeList.isEmpty()){
+//                double duration = 0.0;
+//                double cost = 0.0;
+//                for (Edge edge : edges) {
+//                    cost += edge.getCost();
+//                    duration += edge.getDuration();
+//                }
+//                for (Route route : routeList) {
+//                    if (route.getCost() == cost && route.getDuration() == duration){
+//                        needSave = false;
+//                    }
+//                }
+//            }
+//
+//            if (needSave) {
+//                edgeList.addAll(edges);
+//                Route route = new Route(new Date(), from, to, RouteType.values()[i]);
+//                Short order = 1;
+//                for (Edge edge : edges) {
+//                    edge.setEdgeOrder(order++);
+//                    edge.setRoute(route);
+//                    route.getEdges().add(edge);
+//                    route.setCost(route.getCost() + edge.getCost());
+//                    route.setDuration(route.getDuration() + edge.getDuration());
+//                }
+//                routeList.add(route);
+//            }
+//        }
+
         List<Route> routeList = new ArrayList<>();
 
-        for (int i = 0; i < RouteType.values().length ; i++) {
+        List<List<Edge>> listAllEdges = algorithm.getBestFoundRoutes(edgeList,initializatorApi.getFrom().getName(),initializatorApi.getTo().getName());
 
-            boolean needSave = true;
+        int idRouteForView  = 0;
 
-            List<Edge> tempEdgeList = separator(edgeList,RouteType.values()[i]);
+        for (List<Edge> lists : listAllEdges) {
 
-            List<Edge> edges = algorithm.getMinimalRoute(tempEdgeList,from,to);
+            if (!routeList.isEmpty()) {
 
-            if (!routeList.isEmpty()){
-                double duration = 0.0;
-                double cost = 0.0;
-                for (Edge edge : edges) {
-                    cost += edge.getCost();
-                    duration += edge.getDuration();
-                }
-                for (Route route : routeList) {
-                    if (route.getCost() == cost && route.getDuration() == duration){
-                        needSave = false;
-                    }
-                }
-            }
-
-            if (needSave) {
-                edgeList.addAll(edges);
-                Route route = new Route(new Date(), from, to, RouteType.values()[i]);
+//                edgeList.addAll(lists);
+                Route route = new Route();
+//                route.setEdges(lists);
+                route.setIdRouteForView(idRouteForView);
+                idRouteForView++;
                 Short order = 1;
-                for (Edge edge : edges) {
+                for (Edge edge : lists) {
                     edge.setEdgeOrder(order++);
                     edge.setRoute(route);
                     route.getEdges().add(edge);
@@ -121,11 +151,10 @@ public class TaskManagerService {
                     route.setDuration(route.getDuration() + edge.getDuration());
                 }
                 routeList.add(route);
+                }
             }
-        }
+
         return routeList;
-
-
     }
 
 }

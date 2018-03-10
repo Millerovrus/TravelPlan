@@ -57,16 +57,16 @@ public class KiwiApi implements ApiInterface {
                 ,currency
                 ,from.getIataCode()
                 ,to.getIataCode())));
+//
+//        if (!listOfEdges.isEmpty()) {
+//            result.add(filterEdgeByTypes(listOfEdges, RouteType.cheap));
+//            result.add(filterEdgeByTypes(listOfEdges, RouteType.optimal));
+//            result.add(filterEdgeByTypes(listOfEdges, RouteType.comfort));
+//            result.add(filterEdgeByTypes(listOfEdges, RouteType.fastest));
+//            result.add(filterEdgeByTypes(listOfEdges, RouteType.cheapest));
+//        }
 
-        if (!listOfEdges.isEmpty()) {
-            result.add(filterEdgeByTypes(listOfEdges, RouteType.cheap));
-            result.add(filterEdgeByTypes(listOfEdges, RouteType.optimal));
-            result.add(filterEdgeByTypes(listOfEdges, RouteType.comfort));
-            result.add(filterEdgeByTypes(listOfEdges, RouteType.fastest));
-            result.add(filterEdgeByTypes(listOfEdges, RouteType.cheapest));
-        }
-
-        return result;
+        return listOfEdges;
 
     }
 

@@ -11,7 +11,7 @@ import java.util.concurrent.*;
 @Service
 public class KiwiExecutor implements ExecutorManager {
 
-    private ExecutorService executorService = Executors.newFixedThreadPool(2);
+    private ExecutorService executorService = Executors.newFixedThreadPool(4);
 
     @Override
     public List<Edge> execute(List<Callable<List<Edge>>> taskList) {
@@ -20,7 +20,7 @@ public class KiwiExecutor implements ExecutorManager {
 
         List<Future<List<Edge>>> futures = null;
         try {
-            futures = executorService.invokeAll(taskList, 1, TimeUnit.MINUTES);
+            futures = executorService.invokeAll(taskList, 2, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

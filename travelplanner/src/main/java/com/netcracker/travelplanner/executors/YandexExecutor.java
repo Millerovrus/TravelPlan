@@ -12,7 +12,7 @@ import java.util.concurrent.*;
 @Singleton
 public class YandexExecutor implements ExecutorManager {
 
-    private ExecutorService executorService = Executors.newFixedThreadPool(2);
+    private ExecutorService executorService = Executors.newFixedThreadPool(4);
 
     @Override
     public List<Edge> execute(List<Callable<List<Edge>>> taskList) {
@@ -21,7 +21,7 @@ public class YandexExecutor implements ExecutorManager {
 
         List<Future<List<Edge>>> futures = null;
         try {
-            futures = executorService.invokeAll(taskList, 1, TimeUnit.MINUTES);
+            futures = executorService.invokeAll(taskList, 2, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

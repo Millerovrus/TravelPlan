@@ -56,15 +56,15 @@ public class YandexApi implements ApiInterface {
                         ,"RUB"
                         , from.getIataCode()
                         , from.getIataCode())));
-
-        if (!edgeList.isEmpty()) {
-            result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
-            result.add(filterEdgeByTypes(edgeList, RouteType.optimal));
-            result.add(filterEdgeByTypes(edgeList, RouteType.comfort));
-            result.add(filterEdgeByTypes(edgeList, RouteType.fastest));
-            result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
-        }
-        return result;
+//
+//        if (!edgeList.isEmpty()) {
+//            result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
+//            result.add(filterEdgeByTypes(edgeList, RouteType.optimal));
+//            result.add(filterEdgeByTypes(edgeList, RouteType.comfort));
+//            result.add(filterEdgeByTypes(edgeList, RouteType.fastest));
+//            result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
+//        }
+        return edgeList;
 
     }
 

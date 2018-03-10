@@ -79,17 +79,17 @@ public class YandexParser implements ApiInterface {
                         , to.getLatitude()
                         , to.getLongitude())));
 
-        if (!edgeList.isEmpty()) {
-            result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
-            result.add(filterEdgeByTypes(edgeList, RouteType.optimal));
-            result.add(filterEdgeByTypes(edgeList, RouteType.comfort));
-            result.add(filterEdgeByTypes(edgeList, RouteType.fastest));
-            result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
-        }
+//        if (!edgeList.isEmpty()) {
+//            result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
+//            result.add(filterEdgeByTypes(edgeList, RouteType.optimal));
+//            result.add(filterEdgeByTypes(edgeList, RouteType.comfort));
+//            result.add(filterEdgeByTypes(edgeList, RouteType.fastest));
+//            result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
+//        }
 
         }
 
-        return result;
+        return edgeList;
 
     }
 
