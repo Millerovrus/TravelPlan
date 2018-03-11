@@ -27,6 +27,8 @@
     <!--angular-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="js/my-angular-modules.js"></script>
+    <!--<script src="//code.angularjs.org/1.2.2/angular-sanitize.js"></script>-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
 
     <!-- bootstrap select -->
     <script src="js/bootstrap.min.js"></script>
@@ -173,26 +175,68 @@
                                         <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
                                         <div ng-show="loading" class="preloader"></div>
                                         <div ng-show="loaded">
-                                            <div>
-                                                <div class="row">
-                                                    <div class="container">
-                                                        <div class="panel-group" id="accordion1">
-                                                            <div class="panel panel-default" ng-repeat="record in records">
-                                                                <div class="panel-heading">
-                                                                    <h5 class="panel-title">
-                                                                        <a class="accordion-toggle" aria-expanded="false" data-toggle="collapse" data-parent="#accordion1" aria-controls={{record.routeType}} href=#{{record.routeType}}>{{record.startPoint}} - {{record.destinationPoint}}</a>
-                                                                    </h5>
-                                                                </div>
-                                                                <div id={{record.routeType}} class="panel-collapse collapse in">
-                                                                    <div class="panel-body">
-                                                                        <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                        <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
-                                                                        <div ng-repeat="item in record.edges">
-                                                                            <ul>
-                                                                                <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>
-                                                                                <p><b>Cost:</b> {{item.cost}} (RUB)</p>
-                                                                                <p><b>Type of transport:</b> {{item.transportType}}</p>
-                                                                            </ul>
+                                            <!--<div>-->
+                                                <!--<div class="row">-->
+                                                    <!--<div class="container">-->
+                                                        <!--<div class="panel-group" role="tablist" id="accordion1" aria-multiselectable="true">-->
+                                                            <!--<div class="panel panel-default" ng-repeat="record in records">-->
+                                                                <!--<div class="panel-heading" role="tab" id="header-collapse">-->
+                                                                    <!--<h5 class="panel-title">-->
+                                                                        <!--<a class="accordion-toggle"  data-toggle="collapse" data-parent="#accordion1" aria-expanded="false" aria-controls={{record.routeType}} href=#{{record.routeType}}>{{record.startPoint}} - {{record.destinationPoint}}</a>-->
+                                                                    <!--</h5>-->
+                                                                <!--</div>-->
+                                                                <!--<div id={{record.routeType}} role="tabpanel" aria-labelledby="header-collapse" class="panel-collapse collapse in" aria-expanded="false">-->
+                                                                    <!--<div class="panel-body">-->
+                                                                        <!--<p><b>Total cost:</b> {{record.cost}} (RUB)</p>-->
+                                                                        <!--<p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>-->
+                                                                        <!--<div ng-repeat="item in record.edges">-->
+                                                                            <!--<ul>-->
+                                                                                <!--<p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>-->
+                                                                                <!--<p><b>Cost:</b> {{item.cost}} (RUB)</p>-->
+                                                                                <!--<p><b>Type of transport:</b> {{item.transportType}}</p>-->
+                                                                            <!--</ul>-->
+                                                                        <!--</div>-->
+                                                                    <!--</div>-->
+                                                                <!--</div>-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+
+                                            <!-- test collapse -->
+                                            <div class="output-collapse">
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="fancy-collapse-panel">
+                                                                <div class="panel-group" id="accordion" role="tablist" ng-repeat="record in records">
+                                                                    <div class="panel panel-default"  aria-multiselectable="true" >
+                                                                        <div class="panel-heading" role="tab" id="headingOne" >
+                                                                            <h4 class="panel-title">
+                                                                                <a data-toggle="collapse" data-parent="#accordion" href=#{{record.routeType}} aria-expanded="false" aria-controls={{record.routeType}}>
+                                                                                    <div class="route-header" ng-repeat="item in record.edges"> {{item.startPoint}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{item.destinationPoint}} </div>
+                                                                                    <div class="divider-inverse"></div>
+                                                                                    <div class="json-data">
+                                                                                        <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                                        <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </h4>
+                                                                        </div>
+                                                                        <div id={{record.routeType}} class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                                                            <div class="panel-body" >
+                                                                                <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                                <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
+                                                                                <div ng-repeat="item in record.edges">
+                                                                                    <ul>
+                                                                                        <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>
+                                                                                        <p><b>Cost:</b> {{item.cost}} (RUB)</p>
+                                                                                        <p><b>Type of transport:</b> {{item.transportType}}</p>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -201,6 +245,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+
+
                                         </div>
                                     </div>
                                 </div>

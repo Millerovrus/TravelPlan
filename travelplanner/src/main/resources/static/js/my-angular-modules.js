@@ -1,5 +1,5 @@
 
-angular.module('controllerModule',[]);
+angular.module('controllerModule',['ngSanitize']);
 angular.module('myApp',['controllerModule'])
     .directive('myNavbar', function () {
         return {
@@ -44,10 +44,29 @@ angular.module('controllerModule')
             return ('00'+hours).slice(-2) +' hours ' + ('00'+mins).slice(-2)+' minutes';
         };
     }])
-    .filter('outputJson', [function () {
-        return function (records) {
-            var routes = records.length;
+   /* .filter('outputJson', [function () {
+        return function (hello) {
+            var routes = hello.length;
             return 'json length is '+routes;
+        };
+    }])*/
+    .filter('transportTypeToIcon', [function () {
+        return function (transportType) {
+            if(transportType =="bus"){
+                var bus = '      <i class="fa fa-bus"></i>      ';
+                return bus;
+            }
+            if(transportType =="plane"){
+                var plane = '      <i class="fa fa-plane"></i>      ';
+                return plane;
+            }
+            if(transportType =="train"){
+                var train= '      <i class="fa fa-train"></i>      ';
+                return train;
+            }
+
+            var output = 'some other type: ' + transportType;
+            return output;
         };
     }])
     .controller('appController', function ($scope) {
