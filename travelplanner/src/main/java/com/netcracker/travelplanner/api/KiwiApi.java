@@ -37,39 +37,40 @@ public class KiwiApi implements ApiInterface {
                         "&dateTo=" +
                         date.format(formatter) +
                         "&partner=picky&partner_market=us&curr=RUB";
-
-        Date dateNow = new Date();
-        KiwiFlights kiwiFlights = getKiwiFlightsFromUrl(url);
-        String currency = kiwiFlights.getCurrency();
-
         List<Edge> result = new ArrayList<>();
         List<Edge> listOfEdges = new ArrayList<>();
 
-        kiwiFlights.getData().forEach(l -> listOfEdges.add(new Edge(dateNow
-                ,from.getName()
-                ,to.getName()
-                ,"plane"
-                ,(double)l.getDuration().getTotal()
-                ,(double)l.getPrice()
-                ,l.getDistance()
-                ,LocalDateTime.ofEpochSecond(l.getDTime(),0, ZoneOffset.UTC)
-                ,LocalDateTime.ofEpochSecond(l.getATime(),0, ZoneOffset.UTC)
-                ,currency
-                ,from.getIataCode()
-                ,to.getIataCode()
-                ,from.getLatitude()
-                ,from.getLongitude()
-                ,to.getLatitude()
-                ,to.getLongitude())));
+        if(! from.getIataCode().equals(to.getIataCode())) {
 
-        if (!listOfEdges.isEmpty()) {
-            result.add(filterEdgeByTypes(listOfEdges, RouteType.cheap));
-            result.add(filterEdgeByTypes(listOfEdges, RouteType.optimal));
-            result.add(filterEdgeByTypes(listOfEdges, RouteType.comfort));
-            result.add(filterEdgeByTypes(listOfEdges, RouteType.fastest));
-            result.add(filterEdgeByTypes(listOfEdges, RouteType.cheapest));
+            Date dateNow = new Date();
+            KiwiFlights kiwiFlights = getKiwiFlightsFromUrl(url);
+            String currency = kiwiFlights.getCurrency();
+
+            kiwiFlights.getData().forEach(l -> listOfEdges.add(new Edge(dateNow
+                    , from.getName()
+                    , to.getName()
+                    , "plane"
+                    , (double) l.getDuration().getTotal()
+                    , (double) l.getPrice()
+                    , l.getDistance()
+                    , LocalDateTime.ofEpochSecond(l.getDTime(), 0, ZoneOffset.UTC)
+                    , LocalDateTime.ofEpochSecond(l.getATime(), 0, ZoneOffset.UTC)
+                    , currency
+                    , from.getIataCode()
+                    , to.getIataCode()
+                    , from.getLatitude()
+                    , from.getLongitude()
+                    , to.getLatitude()
+                    , to.getLongitude())));
+
+            if (!listOfEdges.isEmpty()) {
+                result.add(filterEdgeByTypes(listOfEdges, RouteType.cheap));
+                result.add(filterEdgeByTypes(listOfEdges, RouteType.optimal));
+                result.add(filterEdgeByTypes(listOfEdges, RouteType.comfort));
+                result.add(filterEdgeByTypes(listOfEdges, RouteType.fastest));
+                result.add(filterEdgeByTypes(listOfEdges, RouteType.cheapest));
+            }
         }
-
         return result;
 
     }
