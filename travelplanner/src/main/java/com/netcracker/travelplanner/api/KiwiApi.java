@@ -56,7 +56,8 @@ public class KiwiApi implements ApiInterface {
                     , LocalDateTime.ofEpochSecond(l.getATime(), 0, ZoneOffset.UTC)
                     , currency
                     , from.getIataCode()
-                    , to.getIataCode())));
+                    , to.getIataCode()
+                    , (short) (l.getRoute().size() - 1))));
 //
 //        if (!listOfEdges.isEmpty()) {
 //            result.add(filterEdgeByTypes(listOfEdges, RouteType.cheap));

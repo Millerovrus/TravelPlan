@@ -84,7 +84,7 @@ public class Algorithm2 {
     //фильтрация всех маршрутов
     private void searchBestRoutes(List<List<Edge>> allFoundRoutes){
         logger.debug("Старт фильтрации найденных маршрутов");
-        int minSize = Integer.MAX_VALUE;
+        short minNumberOfTransfers = Short.MAX_VALUE;
         double minWeight1ForMinSize = Double.MAX_VALUE, minWeight2ForMinSize = Double.MAX_VALUE, minWeight3ForMinSize = Double.MAX_VALUE,
                 minWeight1 = Double.MAX_VALUE, minWeight2 = Double.MAX_VALUE, minWeight3 = Double.MAX_VALUE;
         bestFoundRoutes.clear();
@@ -95,12 +95,14 @@ public class Algorithm2 {
             double weight1 = ChronoUnit.SECONDS.between(foundRoute.get(0).getStartDate(), foundRoute.get(foundRoute.size() - 1).getEndDate()) / 72,
                     weight2 = ChronoUnit.SECONDS.between(foundRoute.get(0).getStartDate(), foundRoute.get(foundRoute.size() - 1).getEndDate()) / 9,
                     weight3 = ChronoUnit.SECONDS.between(foundRoute.get(0).getStartDate(), foundRoute.get(foundRoute.size() - 1).getEndDate()) / 2.4;
+            short numberOfTransfers = 0;
             for (Edge edge : foundRoute) {
                 weight1 += edge.getCost();
                 weight2 += edge.getCost();
                 weight3 += edge.getCost();
+                numberOfTransfers += edge.getNumberOfTransfers() + 1;
             }
-            if (foundRoute.size() <= minSize){
+            if (numberOfTransfers <= minNumberOfTransfers){
                 if (weight1 < minWeight1ForMinSize) {
                     bestFoundRoutes.set(0, foundRoute);
                     minWeight1ForMinSize = weight1;
@@ -113,7 +115,7 @@ public class Algorithm2 {
                     bestFoundRoutes.set(2, foundRoute);
                     minWeight3ForMinSize = weight3;
                 }
-                minSize = foundRoute.size();
+                minNumberOfTransfers = numberOfTransfers;
             }
             if (weight1 < minWeight1) {
                 bestFoundRoutes.set(3, foundRoute);
