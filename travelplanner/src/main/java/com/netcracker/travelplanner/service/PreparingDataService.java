@@ -1,14 +1,19 @@
 package com.netcracker.travelplanner.service;
 
 import com.netcracker.travelplanner.entities.Point;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 
 public class PreparingDataService {
 
     private InitializatorApi initializatorApi = InitializatorApi.getInstance();
+
+    private static final Logger logger = LoggerFactory.getLogger(PreparingDataService.class);
 
     private Point pointFrom;
 
@@ -53,10 +58,25 @@ public class PreparingDataService {
         if(EdgeService.isGlobalRoute(latFrom,lonFrom,latTo,lonTo)){
 
             initializatorApi.setGlobalRoute(true);
+            List<Point> tempFrom = EdgeService.getCities(iataCodeFrom, latFrom, lonFrom);
+            List<Point> tempTo = EdgeService.getCities(iataCodeTo, latTo, lonTo);
+            for (Point point : tempFrom) {
+                if (point.getName().equals(to)){
+                    tempFrom.remove(point);
+                    break;
+                }
+            }
+            for (Point point : tempTo) {
+                if (point.getName().equals(from)){
+                    tempTo.remove(point);
+                    break;
+                }
+            }
+            logger.debug("Точки в окружении {} {}", from, tempFrom.toString());
+            logger.debug("Точки в окружении {} {}", to, tempTo.toString());
 
-            initializatorApi.setCitiesFrom(EdgeService.getCities(iataCodeFrom, latFrom, lonFrom));
-            initializatorApi.setCitiesTo(EdgeService.getCities(iataCodeTo, latTo, lonTo));
-
+            initializatorApi.setCitiesFrom(tempFrom);
+            initializatorApi.setCitiesTo(tempTo);
         }
         else {
             initializatorApi.setGlobalRoute(false);

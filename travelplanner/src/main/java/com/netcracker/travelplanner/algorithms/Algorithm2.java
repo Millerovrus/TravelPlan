@@ -22,11 +22,10 @@ public class Algorithm2 {
 
 
     public List<List<Edge>> getBestFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint) {
-        System.out.println("Было ребер " + edges.size());
         edges = edges.stream().distinct().collect(Collectors.toList());
-        logger.info("start with " + edges.size() + " edges");
+        logger.debug("Start search with {} edges", edges.size());
         startSearch(edges, startPoint, destinationPoint);
-        logger.info("finish");
+        logger.debug("finish search");
         return bestFoundRoutes;
     }
 
@@ -84,6 +83,7 @@ public class Algorithm2 {
 
     //фильтрация всех маршрутов
     private void searchBestRoutes(List<List<Edge>> allFoundRoutes){
+        logger.debug("Старт фильтрации найденных маршрутов");
         int minSize = Integer.MAX_VALUE;
         double minWeight1ForMinSize = Double.MAX_VALUE, minWeight2ForMinSize = Double.MAX_VALUE, minWeight3ForMinSize = Double.MAX_VALUE,
                 minWeight1 = Double.MAX_VALUE, minWeight2 = Double.MAX_VALUE, minWeight3 = Double.MAX_VALUE;
@@ -129,9 +129,10 @@ public class Algorithm2 {
             }
         }
         for (List<Edge> bestFoundRoute : bestFoundRoutes) {
-            System.out.println(bestFoundRoute.toString());
+            logger.debug("{}", bestFoundRoute.toString());
         }
         bestFoundRoutes = bestFoundRoutes.stream().distinct().collect(Collectors.toList());
+        logger.debug("Финиш фильтрации найденных маршрутов");
     }
 
     //прибавляем к endDate 30 минут для поезда и автобуса, 1 час для самолета. Чтобы высадится, забрать вещи...

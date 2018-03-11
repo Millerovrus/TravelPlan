@@ -11,6 +11,8 @@ import com.netcracker.travelplanner.executors.KiwiExecutor;
 import com.netcracker.travelplanner.executors.YandexExecutor;
 import com.netcracker.travelplanner.executors.YandexParserExecutor;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,7 @@ public class TaskManagerService {
 //    private WebDriver driver = WebParser.getDriver();
     private ApiServiceManager apiServiceManager;
 
+    private static final Logger logger = LoggerFactory.getLogger(TaskManagerService.class);
 
     @Autowired
     private YandexExecutor yandexExecutor;
@@ -149,9 +152,11 @@ public class TaskManagerService {
             }
             routeList.add(route);
         }
+        logger.debug("Найденные маршруты:");
         for (Route route : routeList) {
-            System.out.println(route.toString());
+            logger.debug("{}", route.toString());
         }
+
         return routeList;
     }
 }
