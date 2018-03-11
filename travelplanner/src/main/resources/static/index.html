@@ -186,8 +186,9 @@
                                                     <div class="container">
                                                         <div class="panel-group" id="accordion1">
                                                             <div id="json-for-map" ng-show="false">{{records}}</div>
-                                                            <input type="button" value="Построить на карте первый маршрут" name="hello" OnClick="reinitMap(0);">
-                                                            <input type="button" value="Построить на карте второй маршрут" name="hello" OnClick="reinitMap(1);">
+                                                            <input type="button" value="Построить на карте первый маршрут" OnClick="reinitMap(0);">
+                                                            <input type="button" value="Построить на карте второй маршрут" OnClick="reinitMap(1);">
+                                                            <input type="button" value="Сбросить карту" OnClick="initMap();">
                                                             <div class="panel panel-default" ng-repeat="record in records">
                                                                 <div class="panel-heading">
                                                                     <h5 class="panel-title">
