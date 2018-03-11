@@ -36,8 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests().antMatchers(HttpMethod.POST, "/api/users/adduser", "/signUp").permitAll();
 
         // If no login, it will redirect to /login page.
-        http.formLogin().loginPage("/signIn")/*.loginProcessingUrl("/j_spring_security_check")*/
-                .defaultSuccessUrl("/users").permitAll()
+        http.formLogin().loginPage("/signIn").defaultSuccessUrl("/users").permitAll()
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
                 .and().csrf().disable();
 
@@ -50,16 +49,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        /*in-memory autentification*/
-         /*auth
-                /*.inMemoryAuthentication()
-                    .withUser("user").password("123").roles("USER")
-                    .and()
-                    .withUser("admin").password("321").roles("ADMIN");*/
-
-        /*аутентификация без зашифрованного пароля*/
-        //auth.userDetailsService(userDetailsServiceImpl);
-
         /*аутентификация с зашифрованным паролем*/
         auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(new BCryptPasswordEncoder());
 

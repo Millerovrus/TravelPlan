@@ -75,8 +75,8 @@
             <version>2.6</version>
         </dependency>
 
-        
-        <!--Логгирование-->
+
+        <!--====================================Логгирование=========================================-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -97,7 +97,7 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.25</version>
         </dependency>
-
+        <!--====================================/Логгирование=========================================-->
 
         <!--====================================SpringSecurity=======================================-->
         <dependency>
@@ -148,7 +148,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-           <version>21.0</version>
+            <version>21.0</version>
         </dependency>
 
     </dependencies>

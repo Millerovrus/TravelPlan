@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.Date;
 
 @Controller
@@ -27,38 +26,40 @@ public class UserController {
 
     @RequestMapping(value = "/signUp", method = RequestMethod.GET)
     public String registration() {
-        return "signup.html";
+        return "signup";
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
-    public String registration(
-            @RequestParam(value = "firstname", required = true) String firstName,
-            @RequestParam(value = "lastname", required = true) String lastName,
-            @RequestParam(value = "birthdate", required = true) String birthDate,
-            @RequestParam(value = "email", required = true) String email,
-            @RequestParam(value = "password", required = true) String password) {
+    public String registration( Model model,
+                                @RequestParam(value = "firstname", required = true) String firstName,
+                                @RequestParam(value = "lastname", required = true) String lastName,
+                                @RequestParam(value = "birthdate", required = true) String birthDate,
+                                @RequestParam(value = "email", required = true) String email,
+                                @RequestParam(value = "password", required = true) String password) {
 
-        logger.info("Процесс регистрации нового пользователя...");
+        logger.info("Process of registration new user...");
         Date date = java.sql.Date.valueOf(birthDate);
         User user = new User(email, firstName, lastName, date, false, new Date(), password);
+        model.addAttribute("email", userService.findUserByEmail(email) != null);
         try {
             if (userService.findUserByEmail(email) == null) {
                 //Шифрование пароля и сохрание в БД
                 userService.save(user);
-                logger.info("Регистрация прошла успешно!");
+                logger.info("Registration is successful!");
                 securityService.autologin(email, password);
+                return "redirect:/users";
             } else {
                 logger.error("Error! Email already exists: {}", email);
+                return "signup";
             }
         } catch (Exception ex) {
-            logger.error("Процесс регистрации прерван с ошибкой: " + ex);
+            logger.error("The registration process was interrupted with an error: " + ex);
             ex.printStackTrace();
+            return "signup";
         }
-        //return new ModelAndView("redirect:/users");
-        return "redirect:/users";
     }
 
-    @RequestMapping("/signIn")
+    @RequestMapping(value = "/signIn", method = RequestMethod.GET)
     public String getLogin(@RequestParam(value = "error", required = false) String error,
                            @RequestParam(value = "logout", required = false) String logout,
                            Model model) {
@@ -66,17 +67,9 @@ public class UserController {
         model.addAttribute("logout", logout != null);
         return "signin";
     }
-    /*@RequestMapping(value = "/signIn", method = RequestMethod.GET)
-    public ModelAndView login() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("signin.html");
-        return mav;
-    }*/
-    /*public String login(Model model, String error, String logout) {
-        if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
-        return "signin.html";
-    }*/
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public String users(){
+        return "user";
+    }
 }

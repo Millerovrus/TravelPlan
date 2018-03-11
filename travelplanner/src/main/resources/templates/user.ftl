@@ -39,33 +39,29 @@
     <script src="js/bootstrap-datetimepicker.min.js"></script>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><i class="fa fa-ravelry" aria-hidden="true"></i>Travel planner</a>
-        </div>
-        <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
-                <!--<li><a href="/signIn">Sign in</a></li>
-                <li><a href="/signUp">Sign up</a></li>-->
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="/logout">Logout</a></li>
-            </ul>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><i class="fa fa-ravelry" aria-hidden="true"></i>Travel planner</a>
+            </div>
+            <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-HELLO USERS!!!!
-
-<div>
-<button type="button" onclick="location.href='/logout'">Logout</button>
-</div>
-
+    HELLO USERS!!!!
+    <div>
+        <button type="button" onclick="location.href='/logout'">Logout</button>
+    </div>
 </body>
 </html>

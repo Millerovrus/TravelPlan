@@ -2,18 +2,12 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <#--<!-- Latest compiled and minified CSS &ndash;&gt;
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Optional theme &ndash;&gt;
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Sign in to account</title>
+
     <!-- Bootstrap, fonts -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-select.css" rel="stylesheet">
@@ -75,7 +69,7 @@
         <div class="col-sm-12">
             <div id="logbox">
                 <form method="post" id="signIn">
-                   <#-- <input name="${_csrf.parameterName}" value="${_csrf.token}" type="hidden">-->
+                <#-- <input name="${_csrf.parameterName}" value="${_csrf.token}" type="hidden">-->
                     <h1>Enter your e-mail and password</h1>
                     <#if logout>
                     <div class="alert alert-success" role="alert">You've been logged out successfully.</div>
