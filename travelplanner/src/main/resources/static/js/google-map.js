@@ -1,11 +1,9 @@
-var coordinates = [
-        {name: 'Voronezh', lat: 51.675, lng: 39.208, type: 'bus'},
-        {name: 'Rostov', lat: 47.235, lng: 39.701, type: 'plane'},
-        {name: 'Tbilisi', lat: 41.715, lng: 44.827, type: 'car'},
-        {name: 'Orenburg', lat: 51.772, lng: 55.098, type: 'train'},
-        {name: 'Krasnodar', lat: 45.044, lng: 38.976, type: 'finish'}
+var edges = [
+        {startPoint: 'Voronezh', destinationPoint: 'Rostov', latitudeFrom: 51.675, longitudeFrom: 39.208, latitudeTo: 47.235, longitudeTo: 39.701, transportType: 'bus'},
+        {startPoint: 'Rostov', destinationPoint: 'Tbilisi', latitudeFrom: 47.235, longitudeFrom: 39.701, latitudeTo: 41.715, longitudeTo: 44.827, transportType: 'plane'},
+        {startPoint: 'Tbilisi', destinationPoint: 'Orenburg', latitudeFrom: 41.715, longitudeFrom: 44.827, latitudeTo: 51.772, longitudeTo: 55.098, transportType: 'car'},
+        {startPoint: 'Orenburg', destinationPoint: 'Krasnodar', latitudeFrom: 51.772, longitudeFrom: 55.098, latitudeTo: 45.044, longitudeTo: 38.976, transportType: 'train'}
 ];
-
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         gestureHandling: 'cooperative',
@@ -91,13 +89,16 @@ function initMap() {
             }
         ]
     });
+    fillInAll(map, edges);
+}
 
+function fillInAll(map, edges) {
     var lines = [];
     var speed = [];
-    for (var i = 0; i < coordinates.length-1; i++) {
-        var from = new google.maps.LatLng(coordinates[i].lat, coordinates[i].lng);
-        var to = new google.maps.LatLng(coordinates[i+1].lat, coordinates[i+1].lng);
-        switch (coordinates[i].type) {
+    for (var i = 0; i < edges.length; i++) {
+        var from = new google.maps.LatLng(edges[i].latitudeFrom, edges[i].longitudeFrom);
+        var to = new google.maps.LatLng(edges[i].latitudeTo, edges[i].longitudeTo);
+        switch (edges[i].transportType) {
             case 'plane':
                 speed.push(1);
                 break;
@@ -110,16 +111,13 @@ function initMap() {
             case 'car':
                 speed.push(0.6);
                 break;
-            case 'finish':
-                break;
             default:
                 alert( 'Неверное значение type' );
         }
-        createLine(map, from, to, coordinates[i].type, lines);
+        createLine(map, from, to, edges[i].transportType, lines);
     }
-
-    adaptZoomAndCenter(map, coordinates);
-    setMarkers(map, coordinates);
+    adaptZoomAndCenter(map, edges);
+    setMarkers(map, edges);
     animateSymbols(lines, speed);
 }
 
@@ -205,7 +203,6 @@ function createLine(map, from, to, type, lines) {
                 strokeWeight: 1,
                 fillColor: 'black'
             };
-        case 'finish':
             break;
         default:
             alert( 'Неверное значение type' );
@@ -245,7 +242,7 @@ function animateSymbols(lines, speed) {
             lines[i].set('icons', icons2);
             i++;
         }
-        if (i == lines.length){
+        if (i === lines.length){
             for (var j = 0; j < lines.length; j++){
                 var icons3 = lines[j].get('icons');
                 icons3[0].offset = '0%';
@@ -257,26 +254,40 @@ function animateSymbols(lines, speed) {
 }
 
 //адаптируем зум и центр карты под координаты
-function adaptZoomAndCenter(map, coordinates) {
+function adaptZoomAndCenter(map, edges) {
     var bounds = new google.maps.LatLngBounds();
-    for (var i = 0; i < coordinates.length; i++) {
-        var pointLatLng = new google.maps.LatLng(coordinates[i].lat, coordinates[i].lng);
+    for (var i = 0; i < edges.length; i++) {
+        var pointLatLng = new google.maps.LatLng(edges[i].latitudeFrom, edges[i].longitudeFrom);
         bounds.extend(pointLatLng);
+        if (i === edges.length - 1){
+            var pointLatLng2 = new google.maps.LatLng(edges[i].latitudeTo, edges[i].longitudeTo);
+            bounds.extend(pointLatLng2);
+        }
     }
     map.fitBounds(bounds);
 }
 
 //ставим маркеры
-function setMarkers(map, coordinates) {
-    for (var i = 0; i < coordinates.length; i++) {
-        var pointLatLng = new google.maps.LatLng(coordinates[i].lat, coordinates[i].lng);
+function setMarkers(map, edges) {
+    for (var i = 0; i < edges.length; i++) {
+        var pointLatLng = new google.maps.LatLng(edges[i].latitudeFrom, edges[i].longitudeFrom);
         var marker = new google.maps.Marker({
             position: pointLatLng,
-            title: coordinates[i].name,
-            label: coordinates[i].name.charAt(0),
+            title: edges[i].startPoint,
+            label: edges[i].startPoint.charAt(0),
             opacity: 0.75,
             map: map
         });
+        if (i === edges.length - 1){
+            var pointLatLng2 = new google.maps.LatLng(edges[i].latitudeTo, edges[i].longitudeTo);
+            var marker2 = new google.maps.Marker({
+                position: pointLatLng2,
+                title: edges[i].destinationPoint,
+                label: edges[i].destinationPoint.charAt(0),
+                opacity: 0.75,
+                map: map
+            });
+        }
     }
 }
 
