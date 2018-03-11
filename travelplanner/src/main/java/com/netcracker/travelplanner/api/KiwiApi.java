@@ -57,7 +57,11 @@ public class KiwiApi implements ApiInterface {
                     , currency
                     , from.getIataCode()
                     , to.getIataCode()
-                    , (short) (l.getRoute().size() - 1))));
+                    , (short) (l.getRoute().size() - 1)
+                    , from.getLatitude()
+                    , from.getLongitude()
+                    , to.getLatitude()
+                    , to.getLongitude())));
 //
 //        if (!listOfEdges.isEmpty()) {
 //            result.add(filterEdgeByTypes(listOfEdges, RouteType.cheap));

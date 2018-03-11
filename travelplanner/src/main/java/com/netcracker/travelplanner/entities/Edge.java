@@ -313,7 +313,7 @@ public class Edge implements Cloneable {
         this.edgeType = edgeType;
     }
 
-    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode, Short numberOfTransfers) {
+    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode, Short numberOfTransfers, Double latitudeFrom, Double longitudeFrom, Double latitudeTo, Double longitudeTo) {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;
@@ -327,6 +327,10 @@ public class Edge implements Cloneable {
         this.startIataCode = startIataCode;
         this.endIataCode = endIataCode;
         this.numberOfTransfers = numberOfTransfers;
+        this.latitudeFrom = latitudeFrom;
+        this.longitudeFrom = longitudeFrom;
+        this.latitudeTo = latitudeTo;
+        this.longitudeTo = longitudeTo;
     }
     public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode) {
         this.creationDate = creationDate;
