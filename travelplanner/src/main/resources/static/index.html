@@ -181,7 +181,7 @@
                                         <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
                                         <div ng-show="loading" class="preloader"></div>
                                         <div ng-show="loaded">
-                                            <div>
+                                            <div ng-controller="controller">
                                                 <div class="row">
                                                     <div class="container">
                                                         <div class="panel-group" id="accordion1">
@@ -190,10 +190,10 @@
                                                             <!--<input type="button" value="Построить на карте второй маршрут" OnClick="reinitMap(1);">-->
                                                             <!--<input type="button" value="Сбросить карту" OnClick="initMap();">-->
                                                             <div class="panel panel-default" ng-repeat="record in records">
-                                                                <input type="text" id="id-for-view" ng-show="false" value={{record.idRouteForView}}>
+                                                                <input type="text" id="id-for-view" ng-show="true" value={{record.idRouteForView}}>
                                                                 <div class="panel-heading">
                                                                     <h5 class="panel-title">
-                                                                        <a class="accordion-toggle" OnClick="reinitMap(document.getElementById('id-for-view').value);" aria-expanded="false" data-toggle="collapse" data-parent="#accordion1" aria-controls={{record.idRouteForView}} href=#{{record.idRouteForView}}>{{record.startPoint}} - {{record.destinationPoint}}</a>
+                                                                        <a class="accordion-toggle" ng-click="reinitMap(record.idRouteForView);" aria-expanded="false" data-toggle="collapse" data-parent="#accordion1" aria-controls={{record.idRouteForView}} href=#{{record.idRouteForView}}>{{record.startPoint}} - {{record.destinationPoint}}</a>
                                                                     </h5>
                                                                 </div>
                                                                 <div id={{record.idRouteForView}} class="panel-collapse collapse">

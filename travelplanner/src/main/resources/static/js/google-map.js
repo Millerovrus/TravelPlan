@@ -88,6 +88,7 @@ function initMap() {
     
 }
 function reinitMap(id) {
+   // var id = document.getElementById("id-for-view").value;
     var routes = JSON.parse(document.getElementById("json-for-map").innerHTML);
     var map = new google.maps.Map(document.getElementById('map'), {
         gestureHandling: 'cooperative',
