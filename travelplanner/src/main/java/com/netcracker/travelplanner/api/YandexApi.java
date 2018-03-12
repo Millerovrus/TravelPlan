@@ -36,11 +36,15 @@ public class YandexApi implements ApiInterface {
                 date.format(formatter) +
                 "&system=iata";
 
-        List<Edge> edgeList = new ArrayList<>();
+//         List<Edge> edgeList = new ArrayList<>();
 
+//         if(! from.getIataCode().equals(to.getIataCode())) {
+//             YandexRasp yandexRasp = getYandexRaspFromUrl(url);
+
+        List<Edge> result = new ArrayList<>();
+        List<Edge> edgeList = new ArrayList<>();
         if(! from.getIataCode().equals(to.getIataCode())) {
             YandexRasp yandexRasp = getYandexRaspFromUrl(url);
-
             yandexRasp.getSegments()
                     .stream()
                     .filter(l -> l.getTicketsInfo().getPlaces().size() != 0)
@@ -68,9 +72,17 @@ public class YandexApi implements ApiInterface {
 //            result.add(filterEdgeByTypes(edgeList, RouteType.fastest));
 //            result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
 //        }
-        }
-        return edgeList;
 
+            if (!edgeList.isEmpty()) {
+                result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
+                result.add(filterEdgeByTypes(edgeList, RouteType.optimal));
+                result.add(filterEdgeByTypes(edgeList, RouteType.comfort));
+                result.add(filterEdgeByTypes(edgeList, RouteType.fastest));
+                result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
+            }
+        }
+       // return edgeList;
+      return result;
     }
 
     private YandexRasp getYandexRaspFromUrl(String urlQueryString){

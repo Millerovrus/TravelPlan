@@ -19,6 +19,7 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
     <!-- bootstrap touchspin -->
     <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.css" />
@@ -27,6 +28,8 @@
     <!--angular-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="js/my-angular-modules.js"></script>
+    <!--<script src="//code.angularjs.org/1.2.2/angular-sanitize.js"></script>-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
 
     <!-- bootstrap select -->
     <script src="js/bootstrap.min.js"></script>
@@ -57,45 +60,12 @@
 </head>
 
 <body ng-controller="appController" onload="initAutocompleteFields()">
-<!--<div class="alert alert-info" ng-show="loading">Loading</div>-->
-    <!--
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/"><i class="fa fa-ravelry" aria-hidden="true"></i>Travel planner</a>
-            </div>
-            <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/signIn">Sign in</a></li>
-                    <li><a href="/signUp">Sign up</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    -->
-
     <div>
-
         <my-navbar></my-navbar>
 
        <!-- <div ng-controller="myParameterController"> -->
             <div  class="scrollbar" id="container1">
                 <img src="img/travel-top.jpg" class="background-main-pic"/>
-
-                <!--<div class="background-main-pic">-->
-                    <!--<div class="row">-->
-                        <!--<div id="travel-header-row" class="col-sm-12">-->
-                            <!--<h1>Start your journey right now</h1>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
                 <div class="container">
                     <div class="row">
                         <div id="travel-header-row" class="col-sm-12">
@@ -126,10 +96,35 @@
                                     <div class="col-sm-6">
                                             <div class="inputBox">
                                                 <div class="input">
-                                                    <div class="form-group-passengers">
-                                                        <label id="label-passengers" for="demo2" class="col-sm-9">Number of passengers:</label>
-                                                        <input class="col-sm-3" id="demo2" type="text" value="1" name="demo_vertical">
+                                                    <div class="dropdown show">
+                                                        <!--<div class="dropdown">-->
+                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Passengers<span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
+                                                            <ul class="dropdown-menu" id="passengers-qunatity">
+                                                                <div class="drop-passengers">
+                                                                    <li>
+                                                                        <a href="#" ><label for="spin-adult">Adults</label><input id="spin-adult" type="text" value="" name="demo_vertical"></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#"><label for="spin-senior">Seniors</label><input id="spin-senior" type="text" value="" name="demo_vertical"></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#"><label for="spin-children">Children</label><input id="spin-children" type="text" value="" name="demo_vertical"></a>
+                                                                    </li>
+                                                                    <li class="divider"></li>
+                                                                    <li class="form-check">
+                                                                        <label class="checkbox">
+                                                                            <input type="checkbox"><span>Business class</span>
+                                                                        </label>
+                                                                    </li>
+                                                                </div>
+                                                            </ul>
+                                                        <!--</div>-->
                                                     </div>
+
+                                                    <!--<div class="form-group-passengers" id="touch-spin-box">-->
+                                                        <!--<label id="label-passengers" for="demo2" class="col-sm-9">Number of passengers:</label>-->
+                                                        <!--<input class="col-sm-3" id="demo2" type="text" value="1" name="demo_vertical">-->
+                                                    <!--</div>-->
                                                 </div>
                                             </div>
                                     </div>
@@ -181,6 +176,7 @@
                                         <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
                                         <div ng-show="loading" class="preloader"></div>
                                         <div ng-show="loaded">
+
                                             <div ng-controller="controller">
                                                 <div class="row">
                                                     <div class="container">
@@ -205,7 +201,41 @@
                                                                                 <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>
                                                                                 <p><b>Cost:</b> {{item.cost}} (RUB)</p>
                                                                                 <p><b>Type of transport:</b> {{item.transportType}}</p>
-                                                                            </ul>
+                                                                            </ul> 
+                             
+
+                                            <!-- test collapse     -->
+                                            <div class="output-collapse">
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="fancy-collapse-panel">
+                                                                <div class="panel-group" id="accordion" role="tablist" ng-repeat="record in records">
+                                                                    <div class="panel panel-default"  aria-multiselectable="true" >
+                                                                        <div class="panel-heading" role="tab" id="headingOne" >
+                                                                            <h4 class="panel-title">
+                                                                                <a data-toggle="collapse" data-parent="#accordion" href=#{{record.routeType}} aria-expanded="false" aria-controls={{record.routeType}}>
+                                                                                    <div class="route-header" ng-repeat="item in record.edges"> {{item.startPoint}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{item.destinationPoint}} </div>
+                                                                                    <div class="divider-inverse"></div>
+                                                                                    <div class="json-data">
+                                                                                        <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                                        <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </h4>
+                                                                        </div>
+                                                                        <div id={{record.routeType}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                                            <div class="panel-body" >
+                                                                                <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                                <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
+                                                                                <div ng-repeat="item in record.edges">
+                                                                                    <ul>
+                                                                                        <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>
+                                                                                        <p><b>Cost:</b> {{item.cost}} (RUB)</p>
+                                                                                        <p><b>Type of transport:</b> {{item.transportType}}</p>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -214,6 +244,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+
+
                                         </div>
                                     </div>
                                 </div>

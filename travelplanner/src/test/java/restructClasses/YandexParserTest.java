@@ -25,7 +25,7 @@ public class YandexParserTest {
         List<Edge> list = yandexParser.findEdgesFromTo(initializatorApi.getFrom(),initializatorApi.getTo(),initializatorApi.getDeparture());
         list.forEach(edge -> System.out.println(edge.toString()));
 
-        driver.close();
+        driver.quit();
     }
 
 }

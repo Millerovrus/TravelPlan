@@ -18,6 +18,10 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import javax.inject.Inject;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -32,11 +36,11 @@ public class TaskManagerService {
 
     private static final Logger logger = LoggerFactory.getLogger(TaskManagerService.class);
 
-    @Autowired
+    @Inject
     private YandexExecutor yandexExecutor;
-//    @Autowired
-//    private YandexParserExecutor yandexParserExecutor;
-    @Autowired
+    @Inject
+    private YandexParserExecutor yandexParserExecutor;
+    @Inject
     private KiwiExecutor kiwiExecutor;
 
 
@@ -81,20 +85,17 @@ public class TaskManagerService {
         edgeList.addAll(kiwiExecutor.execute(apiServiceManager.getTasks(kiwiApi))));
 
 
-//        executorService.execute( () ->
-//        edgeList.addAll(yandexParserExecutor.execute(apiServiceManager.getTasks(yandexParser))));
+        executorService.execute( () ->
+        edgeList.addAll(yandexParserExecutor.execute(apiServiceManager.getTasks(yandexParser))));
 
         executorService.shutdown();
 
         try {
-            executorService.awaitTermination(4, TimeUnit.MINUTES);
+          //  executorService.awaitTermination(4, TimeUnit.MINUTES);
+            executorService.awaitTermination(2, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
-
-
 
 //        for (int i = 0; i < RouteType.values().length ; i++) {
 //

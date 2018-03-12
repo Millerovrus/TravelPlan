@@ -9,7 +9,7 @@ public class EdgeServiceTest {
 
         EdgeService
                 .getCities("VOZ", 51.6754, 39.2088)
-                .forEach(myPoint -> System.out.println(myPoint.getName()));
+                .forEach(myPoint -> System.out.println(myPoint.toString()));
     }
 
     @Test
@@ -32,7 +32,7 @@ public class EdgeServiceTest {
     public void getIataCode() throws Exception {
 
 
-        System.out.println(EdgeService.getIataCode(51.5073,-0.1277));
+        System.out.println(EdgeService.getIataCode(55.972399,37.411645));
     }
 
     @Test

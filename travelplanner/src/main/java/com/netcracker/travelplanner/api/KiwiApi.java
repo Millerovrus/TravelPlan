@@ -37,7 +37,9 @@ public class KiwiApi implements ApiInterface {
                         "&dateTo=" +
                         date.format(formatter) +
                         "&partner=picky&partner_market=us&curr=RUB";
-        List<Edge> listOfEdges = new ArrayList<>();
+
+        List<Edge> result = new ArrayList<>();
+       // List<Edge> listOfEdges = new ArrayList<>();
 
         if(! from.getIataCode().equals(to.getIataCode())) {
 
@@ -57,22 +59,20 @@ public class KiwiApi implements ApiInterface {
                     , currency
                     , from.getIataCode()
                     , to.getIataCode()
-                    , (short) (l.getRoute().size() - 1)
                     , from.getLatitude()
                     , from.getLongitude()
                     , to.getLatitude()
                     , to.getLongitude())));
-//
-//        if (!listOfEdges.isEmpty()) {
-//            result.add(filterEdgeByTypes(listOfEdges, RouteType.cheap));
-//            result.add(filterEdgeByTypes(listOfEdges, RouteType.optimal));
-//            result.add(filterEdgeByTypes(listOfEdges, RouteType.comfort));
-//            result.add(filterEdgeByTypes(listOfEdges, RouteType.fastest));
-//            result.add(filterEdgeByTypes(listOfEdges, RouteType.cheapest));
-//        }
-        }
 
-        return listOfEdges;
+            if (!listOfEdges.isEmpty()) {
+                result.add(filterEdgeByTypes(listOfEdges, RouteType.cheap));
+                result.add(filterEdgeByTypes(listOfEdges, RouteType.optimal));
+                result.add(filterEdgeByTypes(listOfEdges, RouteType.comfort));
+                result.add(filterEdgeByTypes(listOfEdges, RouteType.fastest));
+                result.add(filterEdgeByTypes(listOfEdges, RouteType.cheapest));
+            }
+        }
+        return result;
 
     }
 

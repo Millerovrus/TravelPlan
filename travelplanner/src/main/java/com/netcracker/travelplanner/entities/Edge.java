@@ -76,8 +76,8 @@ public class Edge implements Cloneable {
     @Column(name = "longitude_to")
     private double longitudeTo;
 
-    @Column(name = "number_of_transfers")
-    private short numberOfTransfers;
+//     @Column(name = "number_of_transfers")
+//     private short numberOfTransfers;
 
 
     @ManyToOne
@@ -88,13 +88,13 @@ public class Edge implements Cloneable {
     @Transient
     private double weight;
 
-    public short getNumberOfTransfers() {
-        return numberOfTransfers;
-    }
+//     public short getNumberOfTransfers() {
+//         return numberOfTransfers;
+//     }
 
-    public void setNumberOfTransfers(short numberOfTransfers) {
-        this.numberOfTransfers = numberOfTransfers;
-    }
+//     public void setNumberOfTransfers(short numberOfTransfers) {
+//         this.numberOfTransfers = numberOfTransfers;
+//     }
 
     public Route getRoute() {
         return route;
@@ -313,25 +313,25 @@ public class Edge implements Cloneable {
         this.edgeType = edgeType;
     }
 
-    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode, Short numberOfTransfers, Double latitudeFrom, Double longitudeFrom, Double latitudeTo, Double longitudeTo) {
-        this.creationDate = creationDate;
-        this.startPoint = startPoint;
-        this.destinationPoint = destinationPoint;
-        this.transportType = transportType;
-        this.duration = duration;
-        this.cost = cost;
-        this.distance = distance;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.currency = currency;
-        this.startIataCode = startIataCode;
-        this.endIataCode = endIataCode;
-        this.numberOfTransfers = numberOfTransfers;
-        this.latitudeFrom = latitudeFrom;
-        this.longitudeFrom = longitudeFrom;
-        this.latitudeTo = latitudeTo;
-        this.longitudeTo = longitudeTo;
-    }
+//     public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode, Short numberOfTransfers, Double latitudeFrom, Double longitudeFrom, Double latitudeTo, Double longitudeTo) {
+//         this.creationDate = creationDate;
+//         this.startPoint = startPoint;
+//         this.destinationPoint = destinationPoint;
+//         this.transportType = transportType;
+//         this.duration = duration;
+//         this.cost = cost;
+//         this.distance = distance;
+//         this.startDate = startDate;
+//         this.endDate = endDate;
+//         this.currency = currency;
+//         this.startIataCode = startIataCode;
+//         this.endIataCode = endIataCode;
+//         this.numberOfTransfers = numberOfTransfers;
+//         this.latitudeFrom = latitudeFrom;
+//         this.longitudeFrom = longitudeFrom;
+//         this.latitudeTo = latitudeTo;
+//         this.longitudeTo = longitudeTo;
+//     }
     public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode) {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
@@ -391,7 +391,7 @@ public class Edge implements Cloneable {
                 .append("latitudeTo", latitudeTo)
                 .append("longitudeTo", longitudeTo)
                 .append("weight", weight)
-                .append("numberOfTransfers", numberOfTransfers)
+               // .append("numberOfTransfers", numberOfTransfers)
                 .toString();
     }
 

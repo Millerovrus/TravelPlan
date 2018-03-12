@@ -11,10 +11,8 @@ import java.util.List;
 
 public class PreparingDataService {
 
-    private InitializatorApi initializatorApi = InitializatorApi.getInstance();
-
-    private static final Logger logger = LoggerFactory.getLogger(PreparingDataService.class);
-
+//     private InitializatorApi initializatorApi = InitializatorApi.getInstance();
+     private static final Logger logger = LoggerFactory.getLogger(PreparingDataService.class);
     private Point pointFrom;
 
     private Point pointTo;
@@ -24,6 +22,8 @@ public class PreparingDataService {
             , String latLongFrom
             , String latLongTo
             , String date){
+
+        InitializatorApi initializatorApi = new InitializatorApi();
 
         pointFrom = new Point();
         pointTo = new Point();
@@ -58,25 +58,28 @@ public class PreparingDataService {
         if(EdgeService.isGlobalRoute(latFrom,lonFrom,latTo,lonTo)){
 
             initializatorApi.setGlobalRoute(true);
-            List<Point> tempFrom = EdgeService.getCities(iataCodeFrom, latFrom, lonFrom);
-            List<Point> tempTo = EdgeService.getCities(iataCodeTo, latTo, lonTo);
-            for (Point point : tempFrom) {
-                if (point.getName().equals(to)){
-                    tempFrom.remove(point);
-                    break;
-                }
-            }
-            for (Point point : tempTo) {
-                if (point.getName().equals(from)){
-                    tempTo.remove(point);
-                    break;
-                }
-            }
-            logger.debug("Точки в окружении {} {}", from, tempFrom.toString());
-            logger.debug("Точки в окружении {} {}", to, tempTo.toString());
+//             List<Point> tempFrom = EdgeService.getCities(iataCodeFrom, latFrom, lonFrom);
+//             List<Point> tempTo = EdgeService.getCities(iataCodeTo, latTo, lonTo);
+//             for (Point point : tempFrom) {
+//                 if (point.getName().equals(to)){
+//                     tempFrom.remove(point);
+//                     break;
+//                 }
+//             }
+//             for (Point point : tempTo) {
+//                 if (point.getName().equals(from)){
+//                     tempTo.remove(point);
+//                     break;
+//                 }
+//             }
+//             logger.debug("Точки в окружении {} {}", from, tempFrom.toString());
+//             logger.debug("Точки в окружении {} {}", to, tempTo.toString());
 
-            initializatorApi.setCitiesFrom(tempFrom);
-            initializatorApi.setCitiesTo(tempTo);
+//             initializatorApi.setCitiesFrom(tempFrom);
+//             initializatorApi.setCitiesTo(tempTo);
+
+            initializatorApi.setCitiesFrom(EdgeService.getCities(iataCodeFrom, latFrom, lonFrom));
+            initializatorApi.setCitiesTo(EdgeService.getCities(iataCodeTo, latTo, lonTo));
         }
         else {
             initializatorApi.setGlobalRoute(false);
@@ -85,7 +88,7 @@ public class PreparingDataService {
         initializatorApi.setFrom(pointFrom);
         initializatorApi.setTo(pointTo);
 
-        return this.initializatorApi;
+        return initializatorApi;
     }
 
 }

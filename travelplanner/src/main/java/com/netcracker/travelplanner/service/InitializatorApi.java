@@ -16,20 +16,7 @@ public class InitializatorApi {
     private List<Point> citiesFrom;
     private List<Point> citiesTo;
 
-    private static volatile InitializatorApi ourInstance = null;
-
-    public static InitializatorApi getInstance() {
-        if(ourInstance==null){
-            synchronized (InitializatorApi.class){
-                if(ourInstance==null){
-                    ourInstance = new InitializatorApi();
-                }
-            }
-        }
-        return ourInstance;
-    }
-
-    private InitializatorApi() {
+    public InitializatorApi() {
     }
 
     public Point getFrom() {

@@ -48,16 +48,18 @@ public class YandexParser implements ApiInterface {
         List<Edge> result = new ArrayList<>();
         List<Edge> edgeList = new ArrayList<>();
 
-        webDriver.get(url);
-        webDriver.navigate().refresh();
-        WebParser.waitForLoad(webDriver);
+        if(! from.getYandexCode().equals(to.getYandexCode())) {
 
-        String sourceHtml = webDriver.getPageSource();
+            webDriver.get(url);
+            webDriver.navigate().refresh();
+            WebParser.waitForLoad(webDriver);
 
-        Document doc = Jsoup.parse(sourceHtml);
+            String sourceHtml = webDriver.getPageSource();
+
+            Document doc = Jsoup.parse(sourceHtml);
 
 //      Убрать NPE при пустой странице
-        Elements el = doc.getElementsByClass("SearchSegment");
+      /*  Elements el = doc.getElementsByClass("SearchSegment");
 
         if( el.is("div.SegmentPrices")){
         el.stream()
@@ -86,10 +88,42 @@ public class YandexParser implements ApiInterface {
 //            result.add(filterEdgeByTypes(edgeList, RouteType.fastest));
 //            result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
 //        }
+*/
 
+            Elements el = doc.getElementsByClass("SearchSegment");
+
+                if(el.hasClass("SearchSegment")){
+                el.stream()
+                        .filter(element -> !element.getElementsByClass("SegmentPrices").first().text().equals(""))
+                        .forEach(element -> edgeList.add(new Edge(new Date()
+                                , from.getName()
+                                , to.getName()
+                                , convertTypes(element.getElementsByClass("TransportIcon").first().attr("aria-label"))
+                                , (double) splStr(element.getElementsByClass("SearchSegment__duration").first().text())
+                                , splCost(element.getElementsByClass("Price").first().text())
+                                , 0.0
+                                , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text()))
+                                , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text()))
+                                , "RUB"
+                                , from.getIataCode()
+                                , to.getIataCode()
+                                , from.getLatitude()
+                                , from.getLongitude()
+                                , to.getLatitude()
+                                , to.getLongitude())));
+
+                if (!edgeList.isEmpty()) {
+                    result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
+                    result.add(filterEdgeByTypes(edgeList, RouteType.optimal));
+                    result.add(filterEdgeByTypes(edgeList, RouteType.comfort));
+                    result.add(filterEdgeByTypes(edgeList, RouteType.fastest));
+                    result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
+                }
+            }
         }
 
-        return edgeList;
+     //   return edgeList;
+        return result;
 
     }
 

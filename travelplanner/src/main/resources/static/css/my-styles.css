@@ -5,7 +5,7 @@ body{
     font-family: "Lato";
     font-weight: 300;
     font-size: 16px;
-    color: #555;
+    color: #2d2d2d;
     -webkit-font-smoothing: antialiased;
     margin-top: 70px;
     overflow-y: scroll;
@@ -55,6 +55,7 @@ hr{
     margin: 1em 0;
     padding: 0;
 }
+
 /*  scroll */
 .scrollbar{
     margin-top: -10px;
@@ -88,9 +89,12 @@ hr{
 
 
 /* navbar top*/
+#navbar-collapse{
+    background-color: #2d2d2d;
+}
 
 .navbar-inverse .navbar-brand{
-    color: #999;
+    color: #fff0f5;
     font-weight: bolder;
     font-family: "Raleway";
     font-size: 28px;
@@ -111,8 +115,8 @@ hr{
 }
 
 /*.navbar-inverse .navbar-nav > .active > a{
-    background-color: #ff7878;
-} */
+    background-color: #ff7878 !important;
+}*/
 
 .navbar-text{
     margin-top: 11px;
@@ -120,15 +124,29 @@ hr{
     padding:0;
 }
 
-/* toDo change colors of navbar menu when it's minimized, calendar color*/
+.navbar-inverse .navbar-nav > li > a{
+    color: #fff0f5;
+}
+.checkbox{
+    margin-left: 40px;
+    font-size: 14px;
+}
 
+#signUp h1{
+    font-size: 34px;
+    text-align: center;
+}
+
+#signIn h1{
+    font-size: 34px;
+    text-align: center;
+}
 /* background pic in main page*/
 .background-main-pic{
     width: 100%;
     height: 140px;
     margin-top: -10px;
-   /* background-image: url("../img/travel-top.jpg");*/
-    background-position: 50% 50%;
+    background-position: 60% 40%;
     background-size: cover;
     object-fit: cover;
     display: block;
@@ -142,6 +160,46 @@ hr{
     color: #2b2b2b;
     margin-bottom: 7px;
 }
+
+@media screen and (max-width: 465px){
+    #travel-header-row h1{
+        font-size: 34px;
+        margin-bottom: -12px;
+    }
+}
+
+@media screen and (min-width: 466px) and (max-width: 535px) {
+    #travel-header-row h1{
+        margin-top: 30px;
+        font-size: 38px;
+        margin-bottom: -15px;
+    }
+}
+
+@media screen and (min-width: 536px) and (max-width: 561px) {
+    #travel-header-row h1{
+        font-size: 40px;
+        margin-top: 30px;
+        margin-bottom: -22px;
+    }
+}
+
+@media screen and (min-width: 562px) and (max-width: 650px) {
+    #travel-header-row h1{
+        font-size: 40px;
+        margin-top: 45px;
+        margin-bottom: 8px;
+    }
+}
+
+@media screen and (min-width: 651px) and (max-width: 750px) {
+    #travel-header-row h1{
+        font-size: 43px;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+}
+
 
 /* map */
 #map{
@@ -225,7 +283,7 @@ textarea{
     margin-top: -10px;
     object-fit: cover;
     position: absolute;
-    display: block;
+    background-size: cover;
 }
 
 #sign-pic{
@@ -244,6 +302,10 @@ textarea{
 #signup h1 {
     font-family: Raleway;
     text-align: center;
+}
+
+#sign-in-from{
+    padding-top: 60px;
 }
 
 .input {
@@ -367,7 +429,75 @@ textarea{
 
 
 /* collapse */
-.panel-group {
+
+/* FANCY COLLAPSE PANEL STYLES */
+.fancy-collapse-panel .panel-default > .panel-heading {
+    padding: 0;
+
+}
+.fancy-collapse-panel .panel-heading a {
+    padding: 12px 35px 12px 15px;
+    display: inline-block;
+    width: 100%;
+    background-color: #2b2b2b;
+    color: #ffffff;
+    position: relative;
+    text-decoration: none;
+    border-radius: 3px;
+}
+.fancy-collapse-panel .panel-heading a:after {
+    font-family: "FontAwesome";
+    content: "\f147";
+    position: absolute;
+    right: 20px;
+    font-size: 20px;
+    font-weight: 400;
+    top: 50%;
+    line-height: 1;
+    margin-top: -10px;
+
+}
+
+.fancy-collapse-panel .panel-heading a.collapsed:after {
+    content: "\f196";
+}
+
+.route-header{
+    /*display: inline-block;*/
+    padding: 4px;
+}
+
+.divider-inverse{
+    border-bottom: 1px solid #ffffff;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: 97%;
+}
+
+.json-data{
+    font-family: Lato;
+    font-weight: 100;
+    font-size: 14px;
+    padding: 0;
+}
+
+.panel-default {
+    border-radius: 0;
+    border: 2px #2b2b2b;
+    background: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.json-data p{
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.output-collapse{
+    margin-top: 10px;
+}
+/*.panel-group {
     padding-top: 50px;
 }
 .panel-default {
@@ -423,7 +553,7 @@ textarea{
 }
 .panel-default .collapsed {
     color: #2d2d2d;
-}
+}*/
 
 
 /* touchspin  +-*/
@@ -456,3 +586,82 @@ textarea{
     text-align: center;
 }
 
+
+
+/* dropdown passengers*/
+.dropdown {
+    background: #fff;
+    border: none;
+    outline: none !important;
+    width: 100%;
+    color: #3c3c3c;
+    padding-top: 7px;
+}
+.dropdown a{
+    color: #3c3c3c;
+}
+
+.dropdown-menu>li>a {
+    color: #2b2b2b;
+}
+.dropdown ul.dropdown-menu {
+    border-radius:4px;
+    box-shadow:none;
+    margin-top:20px;
+    width: 100%;
+}
+.dropdown ul.dropdown-menu:before {
+    content: "";
+    border-bottom: 10px solid #fff;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    z-index: 10;
+}
+.dropdown ul.dropdown-menu:after {
+    content: "";
+    border-bottom: 12px solid #ccc;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    position: absolute;
+    top: -12px;
+    right: 14px;
+    z-index: 9;
+}
+
+.drop-passengers{
+    text-align: center;
+    font-family: Lato;
+    font-size: 16px;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-weight: 200;
+}
+
+#spin-adult, #spin-children, #spin-senior{
+    text-align: center;
+    padding-top: 2px;
+}
+
+/* check-box */
+input[type='checkbox'] {
+    /* Hide the checkbox input ui */
+    opacity: 0;
+}
+
+/* Take any custom image you want and encode it with http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/ or alike */
+input[type='checkbox'] + span{
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAEbgAABG4B0KOyaAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACLSURBVDiN7Y4hDoNAAAR3rxeCxyBaX15ADsG3SPhAU9tP3RP4AgZbQbLZKlQNtJbxM7t0398kjQYqA2/sowz2cpEeUdIo6VXkPO2UAQBrSg1iHIKB6qgMAEXOk8k6HLj9hW2FX+WNM3AGtkD5h88Q7GVNqTlqrl13JznTbXtVjIPJ2rb2LpOco/38ABW9OK5LzYh0AAAAAElFTkSuQmCC) no-repeat center left;
+    padding-left: 18px;
+    margin-left: -18px;
+}
+input[type='checkbox']:checked + span{
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAEbgAABG4B0KOyaAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFiSURBVDiNlZAxSyNRFIW/+3wTBBvRxsK12kLBWsmMSbkLu62dYB2xsBQE0UIQO5HdztY/4A/YJiEZxHpdsFOLNO52C0nmzbGKmMTI5JTn3e++c4+pWv0UQjgQzAv+U0zTTnqeCuHUhxAOQggXpVbrriAMQLdcXsH7fSeYnxQGKLVadzJbcBPEHpGk4ApPm7ksSc47cfz5re2L8iFJfgI1B3PAdt8fTbC6Whq2skrlWFAD0qjTqb19G1iQVatJb3b2vhfHa32vlyQ7SEfAb5/n37m9Hehs4ASTtoAlnPuVVSqbluczZvZD8Bhl2VfS9O9wuoEEU43GLmYXwAzStcyugH/K8y+k6dNoM8MdSPL1+h5mh0AEZMrzb6Vm88978MgJr2a9ftLb2Gib9BA1mzfj4LELAKJG4/IjsC8HTBcZHCNzTnrulssrk5LdOF42s7ZpfX0xeL8vswVJoejPZtb20tkLKyaJLiCC000AAAAASUVORK5CYII=) no-repeat center left;
+}
+
+/* чтобы чекбокс на странице входа был виден */
+#my-check{
+    opacity: 1;
+}
