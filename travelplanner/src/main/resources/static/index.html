@@ -186,16 +186,17 @@
                                                     <div class="container">
                                                         <div class="panel-group" id="accordion1">
                                                             <div id="json-for-map" ng-show="false">{{records}}</div>
-                                                            <input type="button" value="Построить на карте первый маршрут" OnClick="reinitMap(0);">
-                                                            <input type="button" value="Построить на карте второй маршрут" OnClick="reinitMap(1);">
-                                                            <input type="button" value="Сбросить карту" OnClick="initMap();">
+                                                            <!--<input type="button" value="Построить на карте первый маршрут" OnClick="reinitMap(0);">-->
+                                                            <!--<input type="button" value="Построить на карте второй маршрут" OnClick="reinitMap(1);">-->
+                                                            <!--<input type="button" value="Сбросить карту" OnClick="initMap();">-->
                                                             <div class="panel panel-default" ng-repeat="record in records">
+                                                                <input type="text" id="id-for-view" ng-show="false" value={{record.idRouteForView}}>
                                                                 <div class="panel-heading">
                                                                     <h5 class="panel-title">
-                                                                        <a class="accordion-toggle" aria-expanded="false" data-toggle="collapse" data-parent="#accordion1" aria-controls={{record.idRouteForView}} href=#{{record.idRouteForView}}>{{record.startPoint}} - {{record.destinationPoint}}</a>
+                                                                        <a class="accordion-toggle" OnClick="reinitMap(document.getElementById('id-for-view').value);" aria-expanded="false" data-toggle="collapse" data-parent="#accordion1" aria-controls={{record.idRouteForView}} href=#{{record.idRouteForView}}>{{record.startPoint}} - {{record.destinationPoint}}</a>
                                                                     </h5>
                                                                 </div>
-                                                                <div id={{record.idRouteForView}} class="panel-collapse collapse in">
+                                                                <div id={{record.idRouteForView}} class="panel-collapse collapse">
                                                                     <div class="panel-body">
                                                                         <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
                                                                         <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
