@@ -1,13 +1,7 @@
-var coordinates = [
-        {name: 'Voronezh', lat: 51.675, lng: 39.208, type: 'bus'},
-        {name: 'Rostov', lat: 47.235, lng: 39.701, type: 'plane'},
-        {name: 'Tbilisi', lat: 41.715, lng: 44.827, type: 'car'},
-        {name: 'Orenburg', lat: 51.772, lng: 55.098, type: 'train'},
-        {name: 'Krasnodar', lat: 45.044, lng: 38.976, type: 'finish'}
-];
-
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 51.675, lng: 39.208},
+        zoom: 8,
         gestureHandling: 'cooperative',
         minZoom: 2,
         styles: [
@@ -92,12 +86,104 @@ function initMap() {
         ]
     });
 
+}
+function reinitMap(id) {
+    // var id = document.getElementById("id-for-view").value;
+    var routes = JSON.parse(document.getElementById("json-for-map").innerHTML);
+    var map = new google.maps.Map(document.getElementById('map'), {
+        gestureHandling: 'cooperative',
+        minZoom: 2,
+        styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+                featureType: 'administrative.locality',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#d59563'}]
+            },
+            {
+                featureType: 'poi',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#d59563'}]
+            },
+            {
+                featureType: 'poi.park',
+                elementType: 'geometry',
+                stylers: [{color: '#263c3f'}]
+            },
+            {
+                featureType: 'poi.park',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#6b9a76'}]
+            },
+            {
+                featureType: 'road',
+                elementType: 'geometry',
+                stylers: [{color: '#38414e'}]
+            },
+            {
+                featureType: 'road',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#212a37'}]
+            },
+            {
+                featureType: 'road',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#9ca5b3'}]
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'geometry',
+                stylers: [{color: '#746855'}]
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#1f2835'}]
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#f3d19c'}]
+            },
+            {
+                featureType: 'transit',
+                elementType: 'geometry',
+                stylers: [{color: '#2f3948'}]
+            },
+            {
+                featureType: 'transit.station',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#d59563'}]
+            },
+            {
+                featureType: 'water',
+                elementType: 'geometry',
+                stylers: [{color: '#17263c'}]
+            },
+            {
+                featureType: 'water',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#515c6d'}]
+            },
+            {
+                featureType: 'water',
+                elementType: 'labels.text.stroke',
+                stylers: [{color: '#17263c'}]
+            }
+        ]
+    });
+    fillInAll(map, routes[id].edges);
+}
+
+function fillInAll(map, edges) {
     var lines = [];
     var speed = [];
-    for (var i = 0; i < coordinates.length-1; i++) {
-        var from = new google.maps.LatLng(coordinates[i].lat, coordinates[i].lng);
-        var to = new google.maps.LatLng(coordinates[i+1].lat, coordinates[i+1].lng);
-        switch (coordinates[i].type) {
+    for (var i = 0; i < edges.length; i++) {
+        var from = new google.maps.LatLng(edges[i].latitudeFrom, edges[i].longitudeFrom);
+        var to = new google.maps.LatLng(edges[i].latitudeTo, edges[i].longitudeTo);
+        switch (edges[i].transportType) {
             case 'plane':
                 speed.push(1);
                 break;
@@ -110,16 +196,13 @@ function initMap() {
             case 'car':
                 speed.push(0.6);
                 break;
-            case 'finish':
-                break;
             default:
                 alert( 'Неверное значение type' );
         }
-        createLine(map, from, to, coordinates[i].type, lines);
+        createLine(map, from, to, edges[i].transportType, lines);
     }
-
-    adaptZoomAndCenter(map, coordinates);
-    setMarkers(map, coordinates);
+    adaptZoomAndCenter(map, edges);
+    setMarkers(map, edges);
     animateSymbols(lines, speed);
 }
 
@@ -205,7 +288,6 @@ function createLine(map, from, to, type, lines) {
                 strokeWeight: 1,
                 fillColor: 'black'
             };
-        case 'finish':
             break;
         default:
             alert( 'Неверное значение type' );
@@ -245,7 +327,7 @@ function animateSymbols(lines, speed) {
             lines[i].set('icons', icons2);
             i++;
         }
-        if (i == lines.length){
+        if (i === lines.length){
             for (var j = 0; j < lines.length; j++){
                 var icons3 = lines[j].get('icons');
                 icons3[0].offset = '0%';
@@ -257,26 +339,39 @@ function animateSymbols(lines, speed) {
 }
 
 //адаптируем зум и центр карты под координаты
-function adaptZoomAndCenter(map, coordinates) {
+function adaptZoomAndCenter(map, edges) {
     var bounds = new google.maps.LatLngBounds();
-    for (var i = 0; i < coordinates.length; i++) {
-        var pointLatLng = new google.maps.LatLng(coordinates[i].lat, coordinates[i].lng);
+    for (var i = 0; i < edges.length; i++) {
+        var pointLatLng = new google.maps.LatLng(edges[i].latitudeFrom, edges[i].longitudeFrom);
         bounds.extend(pointLatLng);
+        if (i === edges.length - 1){
+            var pointLatLng2 = new google.maps.LatLng(edges[i].latitudeTo, edges[i].longitudeTo);
+            bounds.extend(pointLatLng2);
+        }
     }
     map.fitBounds(bounds);
 }
 
 //ставим маркеры
-function setMarkers(map, coordinates) {
-    for (var i = 0; i < coordinates.length; i++) {
-        var pointLatLng = new google.maps.LatLng(coordinates[i].lat, coordinates[i].lng);
+function setMarkers(map, edges) {
+    for (var i = 0; i < edges.length; i++) {
+        var pointLatLng = new google.maps.LatLng(edges[i].latitudeFrom, edges[i].longitudeFrom);
         var marker = new google.maps.Marker({
             position: pointLatLng,
-            title: coordinates[i].name,
-            label: coordinates[i].name.charAt(0),
+            title: edges[i].startPoint,
+            label: edges[i].startPoint.charAt(0),
             opacity: 0.75,
             map: map
         });
+        if (i === edges.length - 1){
+            var pointLatLng2 = new google.maps.LatLng(edges[i].latitudeTo, edges[i].longitudeTo);
+            var marker2 = new google.maps.Marker({
+                position: pointLatLng2,
+                title: edges[i].destinationPoint,
+                label: edges[i].destinationPoint.charAt(0),
+                opacity: 0.75,
+                map: map
+            });
+        }
     }
 }
-

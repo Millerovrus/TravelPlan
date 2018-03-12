@@ -176,47 +176,22 @@
                                         <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
                                         <div ng-show="loading" class="preloader"></div>
                                         <div ng-show="loaded">
-                                            <!--<div>-->
-                                                <!--<div class="row">-->
-                                                    <!--<div class="container">-->
-                                                        <!--<div class="panel-group" role="tablist" id="accordion1" aria-multiselectable="true">-->
-                                                            <!--<div class="panel panel-default" ng-repeat="record in records">-->
-                                                                <!--<div class="panel-heading" role="tab" id="header-collapse">-->
-                                                                    <!--<h5 class="panel-title">-->
-                                                                        <!--<a class="accordion-toggle"  data-toggle="collapse" data-parent="#accordion1" aria-expanded="false" aria-controls={{record.routeType}} href=#{{record.routeType}}>{{record.startPoint}} - {{record.destinationPoint}}</a>-->
-                                                                    <!--</h5>-->
-                                                                <!--</div>-->
-                                                                <!--<div id={{record.routeType}} role="tabpanel" aria-labelledby="header-collapse" class="panel-collapse collapse in" aria-expanded="false">-->
-                                                                    <!--<div class="panel-body">-->
-                                                                        <!--<p><b>Total cost:</b> {{record.cost}} (RUB)</p>-->
-                                                                        <!--<p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>-->
-                                                                        <!--<div ng-repeat="item in record.edges">-->
-                                                                            <!--<ul>-->
-                                                                                <!--<p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>-->
-                                                                                <!--<p><b>Cost:</b> {{item.cost}} (RUB)</p>-->
-                                                                                <!--<p><b>Type of transport:</b> {{item.transportType}}</p>-->
-                                                                            <!--</ul>-->
-                                                                        <!--</div>-->
-                                                                    <!--</div>-->
-                                                                <!--</div>-->
-                                                            <!--</div>-->
-                                                        <!--</div>-->
-                                                    <!--</div>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
-
 
                                             <!-- test collapse -->
-                                            <div class="output-collapse">
+                                            <div ng-controller="mapController">
+                                                <div class="output-collapse">
                                                 <div class="container-fluid">
+                                                    <form>
                                                     <div class="row">
-                                                        <div class="col-sm-12">
+                                                        <div class="col-sm-5">
                                                             <div class="fancy-collapse-panel">
+                                                                <!-- костыль -->
+                                                                <div id="json-for-map" ng-show="false">{{records}}</div>
                                                                 <div class="panel-group" id="accordion" role="tablist" ng-repeat="record in records">
                                                                     <div class="panel panel-default"  aria-multiselectable="true" >
                                                                         <div class="panel-heading" role="tab" id="headingOne" >
                                                                             <h4 class="panel-title">
-                                                                                <a data-toggle="collapse" data-parent="#accordion" href=#{{record.routeType}} aria-expanded="false" aria-controls={{record.routeType}}>
+                                                                                <a data-toggle="collapse" data-parent="#accordion" href=#{{record.routeType}} ng-click="reinitMap(record.idRouteForView);"  aria-expanded="false" aria-controls={{record.routeType}}>
                                                                                     <div class="route-header" ng-repeat="item in record.edges"> {{item.startPoint}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{item.destinationPoint}} </div>
                                                                                     <div class="divider-inverse"></div>
                                                                                     <div class="json-data">
@@ -243,24 +218,25 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="col-sm-7" id="map-margin">
+                                                            <div class="container-map" id="map"></div>
+                                                        </div>
                                                     </div>
+                                                    </form>
                                                 </div>
                                             </div>
-
-
+                                            </div>
 
                                         </div>
                                     </div>
                                 </div>
                             </form>
 
+                            <!-- костыли -->
                             <form>
                                 <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="container-map" id="map">
-                                            <!--  <iframe width="100%" height="450" frameborder="0" style="border:0; align-items: center; margin-top: 10px"
-                                                      src="https://www.google.com/maps/embed/v1/directions?origin=moscow&destination=voronezh&key=AIzaSyBH9sOW2H-SXtrbKLUX8G1ZZWtH3JSrrJ0" allowfullscreen></iframe> -->
-                                        </div>
+                                    <div class="container" id="test-container">
+
                                     </div>
                                 </div>
                             </form>

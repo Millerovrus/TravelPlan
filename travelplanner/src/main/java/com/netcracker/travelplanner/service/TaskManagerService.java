@@ -91,6 +91,7 @@ public class TaskManagerService {
         }
 
 
+        int idRouteForView = 0;
         List<Route> routeList = new ArrayList<>();
 
         for (int i = 0; i < RouteType.values().length ; i++) {
@@ -118,6 +119,8 @@ public class TaskManagerService {
             if (needSave) {
                 edgeList.addAll(edges);
                 Route route = new Route(new Date(), from, to, RouteType.values()[i]);
+                route.setIdRouteForView(idRouteForView);
+                idRouteForView++;
                 Short order = 1;
                 for (Edge edge : edges) {
                     edge.setEdgeOrder(order++);

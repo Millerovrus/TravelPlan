@@ -52,6 +52,16 @@ public class Route implements Serializable {
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Edge> edges;
 
+    private int idRouteForView;
+
+    public int getIdRouteForView() {
+        return idRouteForView;
+    }
+
+    public void setIdRouteForView(int idRouteForView) {
+        this.idRouteForView = idRouteForView;
+    }
+
     public double getCost() {
         return cost;
     }
@@ -193,4 +203,6 @@ public class Route implements Serializable {
                 .append("edges", edges.toString())
                 .toString();
     }
+
+
 }
