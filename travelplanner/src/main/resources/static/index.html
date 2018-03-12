@@ -19,6 +19,7 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
     <!-- bootstrap touchspin -->
     <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.css" />
@@ -225,7 +226,7 @@
                                                                                 </a>
                                                                             </h4>
                                                                         </div>
-                                                                        <div id={{record.routeType}} class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                                                        <div id={{record.routeType}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                                                             <div class="panel-body" >
                                                                                 <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
                                                                                 <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>

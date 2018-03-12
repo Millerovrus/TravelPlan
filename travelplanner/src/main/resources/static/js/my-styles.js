@@ -28,4 +28,11 @@ $(function () {
     });
 });
 
+/*
+$(function(){
+    $("#accordion1").accordion({
+        collapsible: true,
+        active: false
+    });
+});*/
 
