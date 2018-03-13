@@ -21,7 +21,7 @@ public class KiwiExecutor implements ExecutorManager {
 
         List<Future<List<Edge>>> futures = Collections.synchronizedList(new ArrayList<>());
         try {
-            futures = executorService.invokeAll(taskList, 30, TimeUnit.SECONDS);
+            futures = executorService.invokeAll(taskList, 60, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

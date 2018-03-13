@@ -85,7 +85,7 @@ public class TaskManagerService {
         executorService.shutdown();
 
         try {
-            executorService.awaitTermination(2, TimeUnit.MINUTES);
+            executorService.awaitTermination(3, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

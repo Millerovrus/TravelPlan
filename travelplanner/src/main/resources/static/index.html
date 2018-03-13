@@ -203,8 +203,6 @@
                                                                     </div>
                                                                     <div id={{record.routeType}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                                                         <div class="panel-body" >
-                                                                            <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                            <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
                                                                             <div ng-repeat="item in record.edges">
                                                                                 <ul>
                                                                                     <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>
