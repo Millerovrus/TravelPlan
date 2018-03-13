@@ -86,5 +86,5 @@ angular.module('controllerModule')
         $scope.resetMap = function () {
             resetMap();
         };
-    });
+        });
 

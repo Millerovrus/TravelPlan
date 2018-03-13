@@ -18,7 +18,7 @@ $(function () {
 /* spinner + -*/
 $(function () {
     $("input[name='demo_vertical']").TouchSpin({
-        min: 1,
+        min: 0,
         max: 10,
         step: 1,
         verticalupclass: 'fas fa-plus'

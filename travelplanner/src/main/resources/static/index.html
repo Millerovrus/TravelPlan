@@ -184,14 +184,14 @@
                                                     <form>
                                                     <div class="row">
                                                         <div class="col-sm-5">
-                                                            <div class="fancy-collapse-panel">
+                                                            <div class="fancy-collapse-panel" >
                                                                 <!-- костыль -->
                                                                 <div id="json-for-map" ng-show="false">{{records}}</div>
-                                                                <div class="panel-group" id="accordion" role="tablist" ng-repeat="record in records">
-                                                                <div class="panel panel-default"  aria-multiselectable="true" >
+                                                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false" >
+                                                                <div class="panel panel-default"  ng-repeat="record in records">
                                                                     <div class="panel-heading" role="tab" id="headingOne" >
                                                                         <h4 class="panel-title">
-                                                                            <a data-toggle="collapse" data-parent="#accordion" href=#{{record.routeType}} ng-click="setMap(record.idRouteForView)"  aria-expanded="false" aria-controls={{record.routeType}}>
+                                                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#{{record.routeType}} ng-click="setMap(record.idRouteForView)" aria-expanded="false" aria-controls={{record.routeType}}>
                                                                                 <div class="route-header" ng-repeat="item in record.edges"> {{item.startPoint}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{item.destinationPoint}} </div>
                                                                                 <div class="divider-inverse"></div>
                                                                                 <div class="json-data">
@@ -202,14 +202,12 @@
                                                                         </h4>
                                                                     </div>
                                                                     <div id={{record.routeType}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                                                        <div class="panel-body" >
-                                                                            <div ng-repeat="item in record.edges">
-                                                                                <ul>
-                                                                                    <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>
-                                                                                    <p><b>Cost:</b> {{item.cost}} (RUB)</p>
-                                                                                    <p><b>Type of transport:</b> {{item.transportType}}</p>
-                                                                                </ul>
-                                                                            </div>
+                                                                        <div class="panel-body" ng-repeat="item in record.edges">
+                                                                            <ul>
+                                                                                <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>
+                                                                                <p><b>Cost:</b> {{item.cost}} (RUB)</p>
+                                                                                <p><b>Type of transport:</b> {{item.transportType}}</p>
+                                                                            </ul>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -235,6 +233,7 @@
                                 <div class="row">
                                     <div class="container" id="test-container"></div>
                                 </div>
+
                             </form>
                         </div>
                     </div>
