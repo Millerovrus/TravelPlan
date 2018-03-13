@@ -174,6 +174,15 @@ public class Route implements Serializable {
         edges = new LinkedList<>();
     }
 
+    public Route(Date creationDate, String startPoint, String destinationPoint, double duration, int idRouteForView) {
+        this.creationDate = creationDate;
+        this.startPoint = startPoint;
+        this.destinationPoint = destinationPoint;
+        this.duration = duration;
+        this.idRouteForView = idRouteForView;
+        edges = new LinkedList<>();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
