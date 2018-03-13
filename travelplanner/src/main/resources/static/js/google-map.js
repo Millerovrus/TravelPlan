@@ -3,6 +3,7 @@ var interval;
 var lines = [];
 var markers = [];
 
+//инициализация карты
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 51.675, lng: 39.208},
@@ -120,14 +121,14 @@ function initMap() {
             }
         ]
     });
-
 }
+//установка значений на карту
 function setMap(id) {
     resetMap();
     var routes = JSON.parse(document.getElementById("json-for-map").innerHTML);
     fillInAll(routes[id].edges);
 }
-
+//обнуление значений с карты
 function resetMap() {
     if (markers.length !== 0){
         window.clearInterval(interval);

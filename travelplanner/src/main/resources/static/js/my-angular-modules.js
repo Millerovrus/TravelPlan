@@ -34,6 +34,8 @@ angular.module('controllerModule')
                     $scope.$emit('UNLOAD');
                     alert("Something goes wrong :(");
                 });
+            resetMap();
+            initMap();
         };
 
     })
@@ -80,10 +82,9 @@ angular.module('controllerModule')
     .controller('mapController', function ($scope) {
         $scope.setMap = function (id) {
             setMap(id);
-        }
-
+        };
         $scope.resetMap = function () {
             resetMap();
-        }
+        };
     });
 
