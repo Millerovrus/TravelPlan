@@ -61,7 +61,8 @@ public class KiwiApi implements ApiInterface {
                     , from.getLatitude()
                     , from.getLongitude()
                     , to.getLatitude()
-                    , to.getLongitude())));
+                    , to.getLongitude()
+                    , (byte) (l.getRoute().size() - 1))));
 
             if (!listOfEdges.isEmpty()) {
                 result.add(filterEdgeByTypes(listOfEdges, RouteType.cheap));

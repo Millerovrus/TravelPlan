@@ -34,7 +34,6 @@ angular.module('controllerModule')
                     $scope.$emit('UNLOAD');
                     alert("Something goes wrong :(");
                 });
-            resetMap();
             initMap();
         };
 
@@ -45,34 +44,23 @@ angular.module('controllerModule')
             var hours = Math.floor((seconds % 86400) / 3600);
             var mins = Math.floor(((seconds % 86400) % 3600) / 60);
             if (days !== 0) {
-                return (days) +' days ' + ('00'+hours).slice(-2) +' hours ' + ('00'+mins).slice(-2)+' minutes';
+                return (days) + ' days ' + ('0'+hours).slice(-2) + ' hours ' + ('0'+mins).slice(-2) + ' minutes';
             }
-            return ('00'+hours).slice(-2) +' hours ' + ('00'+mins).slice(-2)+' minutes';
+            return ('0'+hours).slice(-2) + ' hours ' + ('0'+mins).slice(-2) + ' minutes';
         };
     }])
-   /* .filter('outputJson', [function () {
-        return function (hello) {
-            var routes = hello.length;
-            return 'json length is '+routes;
-        };
-    }])*/
     .filter('transportTypeToIcon', [function () {
         return function (transportType) {
-            if(transportType ==="bus"){
-                var bus = '      <i class="fa fa-bus"></i>      ';
-                return bus;
+            switch(transportType) {
+                case "bus":
+                    return '<i class="fa fa-bus"></i>';
+                case "plane":
+                    return '<i class="fa fa-plane"></i>';
+                case "train":
+                    return '<i class="fa fa-train"></i>';
+                default:
+                    return 'some other type: ' + transportType;
             }
-            if(transportType ==="plane"){
-                var plane = '      <i class="fa fa-plane"></i>      ';
-                return plane;
-            }
-            if(transportType ==="train"){
-                var train= '      <i class="fa fa-train"></i>      ';
-                return train;
-            }
-
-            var output = 'some other type: ' + transportType;
-            return output;
         };
     }])
     .controller('appController', function ($scope) {

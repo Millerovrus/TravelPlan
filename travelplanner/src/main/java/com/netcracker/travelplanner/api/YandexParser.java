@@ -80,7 +80,8 @@ public class YandexParser implements ApiInterface {
                                 , from.getLatitude()
                                 , from.getLongitude()
                                 , to.getLatitude()
-                                , to.getLongitude())));
+                                , to.getLongitude()
+                                , (byte) 0)));
 
                 if (!edgeList.isEmpty()) {
                     result.add(filterEdgeByTypes(edgeList, RouteType.cheap));

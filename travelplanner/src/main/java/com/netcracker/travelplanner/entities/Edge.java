@@ -85,6 +85,9 @@ public class Edge implements Cloneable {
     @Transient
     private double weight;
 
+    @Transient
+    private byte numberOfTransfers;
+
     public Route getRoute() {
         return route;
     }
@@ -286,6 +289,15 @@ public class Edge implements Cloneable {
         this.longitudeTo = longitudeTo;
     }
 
+    public short getNumberOfTransfers() {
+        return numberOfTransfers;
+    }
+
+    public void setNumberOfTransfers(byte numberOfTransfers) {
+        this.numberOfTransfers = numberOfTransfers;
+    }
+
+
 
     public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, RouteType edgeType)
     {
@@ -317,7 +329,7 @@ public class Edge implements Cloneable {
         this.endIataCode = endIataCode;
     }
 
-    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode, double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo) {
+    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode, double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo, byte numberOfTransfers) {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;
@@ -334,6 +346,7 @@ public class Edge implements Cloneable {
         this.longitudeFrom = longitudeFrom;
         this.latitudeTo = latitudeTo;
         this.longitudeTo = longitudeTo;
+        this.numberOfTransfers = numberOfTransfers;
     }
 
     private Edge(){}
@@ -371,7 +384,15 @@ public class Edge implements Cloneable {
 
         Edge edge = (Edge) o;
 
-        return id == edge.id;
+        if (numberOfTransfers != edge.numberOfTransfers) return false;
+        if (!startPoint.equals(edge.startPoint)) return false;
+        if (!destinationPoint.equals(edge.destinationPoint)) return false;
+        if (!transportType.equals(edge.transportType)) return false;
+        if (!duration.equals(edge.duration)) return false;
+        if (!cost.equals(edge.cost)) return false;
+        if (distance != null ? !distance.equals(edge.distance) : edge.distance != null) return false;
+        if (!startDate.equals(edge.startDate)) return false;
+        return endDate.equals(edge.endDate);
     }
 
     @Override
