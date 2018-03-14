@@ -4,6 +4,7 @@ $(function () {
     $('#datetimepicker1').datetimepicker({
         locale: 'en',
         stepping: 10,
+        minDate: new Date(),
         format: 'YYYY-MM-DD'
     });
 });
@@ -36,10 +37,12 @@ $(function(){
     });
 });*/
 
-/*
 $(function(){
-    $('.panel').on('hidden.bs.collapse', function (e) {
-        resetMap();
+    $('#map-margin').scrollToFixed({
+        marginTop: 65,
+        limit: $('#div-to-fix')
     });
-});*/
+});
+/* todo to fix limit in div without jumping out from container after limit */
+
 

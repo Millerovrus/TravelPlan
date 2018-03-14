@@ -213,7 +213,7 @@ hr{
     margin-top: 0px;
     margin-bottom: 20px;
     align-items: center;
-  /*  position: fixed;*/
+    position: sticky;
 }
 
 
@@ -687,8 +687,6 @@ input[type='checkbox']:checked + span{
 
 /* костыль для пустого места на странице */
 #test-container{
-    height: 150px;
+    height: 120px;
     background-color: transparent;
 }
-
-

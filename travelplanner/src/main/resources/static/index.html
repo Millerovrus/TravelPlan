@@ -48,6 +48,9 @@
     <!-- my scripts -->
     <script src="js/my-styles.js"></script>
 
+    <!-- fix to -->
+    <script src="js/jquery-scrolltofixed.js"></script>
+
     <!-- map -->
 
     <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap"-->
@@ -201,7 +204,7 @@
                                                                             <ul>
                                                                                 <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>
                                                                                 <p><b>Cost:</b> {{item.cost}} (RUB)</p>
-                                                                                <!--<p><b>Start:</b> {{item.startDate}}</p>     -->
+                                                                                <p><b>Departure <date></date>:</b> {{item.startDate.year}}-{{item.startDate.monthValue}}-{{item.startDate.dayOfMonth}} at {{item.startDate.hour}}:{{item.startDate.minute}}</p>
                                                                             </ul>
                                                                         </div>
                                                                     </div>
@@ -228,7 +231,6 @@
                                 <div class="row">
                                     <div class="container" id="test-container"></div>
                                 </div>
-
                             </form>
                         </div>
                     </div>
