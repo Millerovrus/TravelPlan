@@ -205,13 +205,8 @@ hr{
 /* map */
 #map{
     width: 100%;
-    height: 470px;
+    height: 500px;
 
-}
-
-#map2{
-    width: 100%;
-    height: 200px;
 }
 
 .container-map{
@@ -434,6 +429,7 @@ textarea{
 /* FANCY COLLAPSE PANEL STYLES */
 .fancy-collapse-panel .panel-default > .panel-heading {
     padding: 0;
+    display: block;
 }
 
 .fancy-collapse-panel .panel-heading a{
@@ -460,6 +456,15 @@ textarea{
 }
 .fancy-collapse-panel .panel-heading a.collapsed:after {
     content:"\f196";
+}
+
+.panel-body ul{
+    padding: 0;
+    margin-bottom: 2px;
+}
+
+.panel-body p{
+    margin-bottom: 2px;
 }
 
 

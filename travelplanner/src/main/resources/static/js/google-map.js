@@ -341,4 +341,4 @@ function setMarkers(edges) {
             markers.push(marker2);
         }
     }
-}
+};

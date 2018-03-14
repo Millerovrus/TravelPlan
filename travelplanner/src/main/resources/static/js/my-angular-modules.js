@@ -81,10 +81,18 @@ angular.module('controllerModule')
     })
     .controller('mapController', function ($scope) {
         $scope.setMap = function (id) {
-            setMap(id);
+           // setMap(id);
+            $('.panel').on('hidden.bs.collapse', function () {
+                resetMap();
+            });
+            $('.panel').on('shown.bs.collapse', function () {
+                setMap(id);
+            });
+
         };
         $scope.resetMap = function () {
             resetMap();
         };
-        });
+
+    });
 

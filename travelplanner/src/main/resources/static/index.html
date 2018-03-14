@@ -187,7 +187,7 @@
                                                             <div class="fancy-collapse-panel" >
                                                                 <!-- костыль -->
                                                                 <div id="json-for-map" ng-show="false">{{records}}</div>
-                                                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false" >
+                                                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
                                                                 <div class="panel panel-default"  ng-repeat="record in records">
                                                                     <div class="panel-heading" role="tab" id="headingOne" >
                                                                         <h4 class="panel-title">
@@ -206,7 +206,7 @@
                                                                             <ul>
                                                                                 <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>
                                                                                 <p><b>Cost:</b> {{item.cost}} (RUB)</p>
-                                                                                <p><b>Type of transport:</b> {{item.transportType}}</p>
+                                                                                <!--<p><b>Start:</b> {{item.startDate}}</p>     -->
                                                                             </ul>
                                                                         </div>
                                                                     </div>

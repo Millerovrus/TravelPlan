@@ -36,3 +36,10 @@ $(function(){
     });
 });*/
 
+/*
+$(function(){
+    $('.panel').on('hidden.bs.collapse', function (e) {
+        resetMap();
+    });
+});*/
+
