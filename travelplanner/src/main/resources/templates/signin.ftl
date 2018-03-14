@@ -56,8 +56,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="/signIn">Sign in</a></li>
                 <li><a href="/signUp">Sign up</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Contact</a></li>
                 <li><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
             </ul>
         </div>
@@ -77,7 +75,7 @@
                     <#if error>
                     <div class="alert alert-danger" role="alert">Invalid E-mail or Password!</div>
                     </#if>
-                    <input type="text" class="input pass" id="username" placeholder="Email"
+                    <input type="text" class="input pass" id="username" placeholder="E-mail"
                            name="username">
                     <input type="password" class="input pass" id="password" placeholder="Password"
                            name="password">
@@ -87,6 +85,10 @@
                         </label>
                     </div>
                     <button type="submit" class="inputButton">Log in</button>
+
+                    <div class="bottom text-center">
+                        New here? <a href="/signUp"><b>Join Us</b></a>
+                    </div>
                 </form>
             </div>
         </div>

@@ -213,6 +213,7 @@ hr{
     margin-top: 0px;
     margin-bottom: 20px;
     align-items: center;
+    position: fixed;
 }
 
 
@@ -302,6 +303,14 @@ textarea{
 
 #sign-in-from{
     padding-top: 60px;
+}
+
+/* for sign in*/
+.bottom{
+    background-color: transparent;
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:10px;
 }
 
 .input {

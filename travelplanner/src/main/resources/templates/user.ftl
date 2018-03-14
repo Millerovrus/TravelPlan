@@ -51,10 +51,9 @@
             </div>
             <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/signIn">Sign in</a></li>
+                    <li><a href="/signUp">Sign up</a></li>
                     <li class="active"><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="/logout">Logout</a></li>
                 </ul>
             </div>
         </div>
