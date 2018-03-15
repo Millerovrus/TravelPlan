@@ -26,7 +26,6 @@ public class Algorithm2 {
         edges = edges.stream().distinct().collect(Collectors.toList());
         logger.debug("Start search with {} edges", edges.size());
         startSearch(edges, startPoint, destinationPoint);
-        logger.debug("finish search");
         return bestFoundRoutes;
     }
 
@@ -45,15 +44,15 @@ public class Algorithm2 {
 
         byte expectedSize = 1;
         logger.debug("После прохода {}: {} найденных маршрутов", expectedSize, allFoundEdges.size());
-        while (!stopSearch || expectedSize < 4) {
+        while (!stopSearch && expectedSize < 3) {
             int size = allFoundEdges.size();
             //пробегаемся по edge и добавляем к уже найденным ребрам те, у которых startPoint соответствует найденным ранее destinationPoint и они состыкуются по времени
             for (int i = 0; i < size; i++) {
                 for (Edge edge : edges) {
                     if (allFoundEdges.get(i).get(allFoundEdges.get(i).size() - 1).getDestinationPoint().equals(edge.getStartPoint()) &&
                             calculateEndDateTime(allFoundEdges.get(i).get(allFoundEdges.get(i).size() - 1)).isBefore(calculateStartDateTime(edge)) &&
-                            (ChronoUnit.HOURS.between(allFoundEdges.get(i).get(allFoundEdges.get(i).size() - 1).getEndDate(), edge.getStartDate()) < 10)){
-                        List<Edge> tempEdges = new ArrayList<>();
+                            (ChronoUnit.HOURS.between(allFoundEdges.get(i).get(allFoundEdges.get(i).size() - 1).getEndDate(), edge.getStartDate()) < 8)){
+                        List<Edge> tempEdges = new LinkedList<>();
                         tempEdges.addAll(allFoundEdges.get(i));
                         tempEdges.add(edge);
                         allFoundEdges.add(tempEdges);
@@ -133,9 +132,6 @@ public class Algorithm2 {
                 minWeight3 = weight3;
             }
         }
-        for (List<Edge> foundEdges : bestFoundEdges) {
-            logger.debug("{}", foundEdges.toString());
-        }
         bestFoundEdges = bestFoundEdges.stream().distinct().collect(Collectors.toList());
         logger.debug("Финиш фильтрации найденных маршрутов");
         convertingEdgesToRoutes(bestFoundEdges);
@@ -158,11 +154,13 @@ public class Algorithm2 {
                 edge.setRoute(route);
                 route.getEdges().add(edge);
                 route.setCost(route.getCost() + edge.getCost());
-                route.setDistance(route.getDistance() + edge.getDistance());
+                if (edge.getDistance() != null){
+                    route.setDistance(route.getDistance() + edge.getDistance());
+                }
             }
             routeList.add(route);
         }
-        logger.debug("Найденные маршруты:");
+        logger.debug("Found routes:");
         for (Route route : routeList) {
             logger.debug("{}", route.toString());
         }

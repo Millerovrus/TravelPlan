@@ -1,7 +1,11 @@
 package com.netcracker.travelplanner.executors;
 
+import com.netcracker.travelplanner.api.YandexParser;
 import com.netcracker.travelplanner.entities.Edge;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import sun.security.x509.EDIPartyName;
 
 import javax.inject.Singleton;
 import java.util.ArrayList;
@@ -12,6 +16,8 @@ import java.util.concurrent.*;
 @Singleton
 @Service
 public class YandexParserExecutor implements ExecutorManager {
+
+    private final Logger logger = LoggerFactory.getLogger(YandexParserExecutor.class);
 
     private final ExecutorService executorService = Executors.newFixedThreadPool(4);
 
@@ -39,17 +45,14 @@ public class YandexParserExecutor implements ExecutorManager {
 
         for (Future<List<Edge>> future : futures) {
             try {
-                    if(future.get() != null ){
-                        edgeList.addAll(future.get());
-                    }
+                if(future.get() != null ){
+                    edgeList.addAll(future.get());
+                }
 
             } catch (InterruptedException e) {
-                System.out.println("Ошибочка!!!");
-                e.printStackTrace();
+                logger.error("Ошибка выполнения");
             } catch (ExecutionException e) {
-                System.out.println("Ошибочка блин!!!");
-                e.printStackTrace();
-
+                logger.error("Ошибка запроса");
             }
         }
 

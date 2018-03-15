@@ -25,7 +25,6 @@ public class KiwiApi implements ApiInterface {
     @Override
     public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date) {
 
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String url =
                 "https://api.skypicker.com/flights?flyFrom=" +
@@ -38,7 +37,7 @@ public class KiwiApi implements ApiInterface {
                         date.format(formatter) +
                         "&partner=picky&partner_market=us&curr=RUB";
         List<Edge> result = new ArrayList<>();
-        List<Edge> listOfEdges = new ArrayList<>();
+        List<Edge> edgeList = new ArrayList<>();
 
         if(! from.getIataCode().equals(to.getIataCode())) {
 
@@ -46,7 +45,7 @@ public class KiwiApi implements ApiInterface {
             KiwiFlights kiwiFlights = getKiwiFlightsFromUrl(url);
             String currency = kiwiFlights.getCurrency();
 
-            kiwiFlights.getData().forEach(l -> listOfEdges.add(new Edge(dateNow
+            kiwiFlights.getData().forEach(l -> edgeList.add(new Edge(dateNow
                     , from.getName()
                     , to.getName()
                     , "plane"
@@ -63,16 +62,16 @@ public class KiwiApi implements ApiInterface {
                     , to.getLatitude()
                     , to.getLongitude()
                     , (byte) (l.getRoute().size() - 1))));
-
-            if (!listOfEdges.isEmpty()) {
-                result.add(filterEdgeByTypes(listOfEdges, RouteType.cheap));
-                result.add(filterEdgeByTypes(listOfEdges, RouteType.optimal));
-                result.add(filterEdgeByTypes(listOfEdges, RouteType.comfort));
-                result.add(filterEdgeByTypes(listOfEdges, RouteType.fastest));
-                result.add(filterEdgeByTypes(listOfEdges, RouteType.cheapest));
-            }
+//
+//            if (!listOfEdges.isEmpty()) {
+//                result.add(filterEdgeByTypes(listOfEdges, RouteType.cheap));
+//                result.add(filterEdgeByTypes(listOfEdges, RouteType.optimal));
+//                result.add(filterEdgeByTypes(listOfEdges, RouteType.comfort));
+//                result.add(filterEdgeByTypes(listOfEdges, RouteType.fastest));
+//                result.add(filterEdgeByTypes(listOfEdges, RouteType.cheapest));
+//            }
         }
-        return result;
+        return edgeList;
 
     }
 

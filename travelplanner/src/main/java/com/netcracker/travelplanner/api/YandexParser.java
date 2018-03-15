@@ -37,7 +37,7 @@ public class YandexParser implements ApiInterface {
     public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date){
 
 
-            String url = "https://rasp.yandex.ru/search/?fromId=" +
+        String url = "https://rasp.yandex.ru/search/?fromId=" +
                 from.getYandexCode() +
                 "&toId=" +
                 to.getYandexCode() +
@@ -62,7 +62,7 @@ public class YandexParser implements ApiInterface {
 
             Elements el = doc.getElementsByClass("SearchSegment");
 
-                if(el.hasClass("SearchSegment")){
+            if(el.hasClass("SearchSegment")){
                 el.stream()
                         .filter(element -> !element.getElementsByClass("SegmentPrices").first().text().equals(""))
                         .forEach(element -> edgeList.add(new Edge(new Date()
@@ -83,18 +83,18 @@ public class YandexParser implements ApiInterface {
                                 , to.getLongitude()
                                 , (byte) 0)));
 
-                if (!edgeList.isEmpty()) {
-                    result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
-                    result.add(filterEdgeByTypes(edgeList, RouteType.optimal));
-                    result.add(filterEdgeByTypes(edgeList, RouteType.comfort));
-                    result.add(filterEdgeByTypes(edgeList, RouteType.fastest));
-                    result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
-                }
+//                if (!edgeList.isEmpty()) {
+//                    result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
+//                    result.add(filterEdgeByTypes(edgeList, RouteType.optimal));
+//                    result.add(filterEdgeByTypes(edgeList, RouteType.comfort));
+//                    result.add(filterEdgeByTypes(edgeList, RouteType.fastest));
+//                    result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
+//                }
             }
         }
 
 
-        return result;
+        return edgeList;
 
     }
 

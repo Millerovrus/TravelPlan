@@ -189,7 +189,7 @@
                                                                 <div class="panel panel-default"  ng-repeat="record in records">
                                                                     <div class="panel-heading" role="tab" id="headingOne" >
                                                                         <h4 class="panel-title">
-                                                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#{{record.routeType}} ng-click="setMap(record.idRouteForView)" aria-expanded="false" aria-controls={{record.routeType}}>
+                                                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.idRouteForView)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
                                                                                 <div class="route-header" ng-repeat="item in record.edges"> {{item.startPoint}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{item.destinationPoint}} </div>
                                                                                 <div class="divider-inverse"></div>
                                                                                 <div class="json-data">
@@ -199,7 +199,7 @@
                                                                             </a>
                                                                         </h4>
                                                                     </div>
-                                                                    <div id={{record.routeType}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                                    <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                                                         <div class="panel-body" ng-repeat="item in record.edges">
                                                                             <ul>
                                                                                 <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>
