@@ -57,6 +57,12 @@ public class Edge implements Cloneable {
     @Column(name = "end_point_iata_code")
     private String endIataCode;
 
+    @Transient
+    private String startAirportIataCode;
+
+    @Transient
+    private String endAirportIataCode;
+
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "edge_type")
     private RouteType edgeType;
@@ -213,6 +219,22 @@ public class Edge implements Cloneable {
         return duration;
     }
 
+    public String getStartAirportIataCode() {
+        return startAirportIataCode;
+    }
+
+    public void setStartAirportIataCode(String startAirportIataCode) {
+        this.startAirportIataCode = startAirportIataCode;
+    }
+
+    public String getEndAirportIataCode() {
+        return endAirportIataCode;
+    }
+
+    public void setEndAirportIataCode(String endAirportIataCode) {
+        this.endAirportIataCode = endAirportIataCode;
+    }
+
     public void setDuration(Double duration) {
         this.duration = duration;
     }
@@ -329,6 +351,27 @@ public class Edge implements Cloneable {
         this.endIataCode = endIataCode;
     }
 
+    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode, double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo, byte numberOfTransfers, String startAirportIataCode, String endAirportIataCode) {
+        this.creationDate = creationDate;
+        this.startPoint = startPoint;
+        this.destinationPoint = destinationPoint;
+        this.transportType = transportType;
+        this.duration = duration;
+        this.cost = cost;
+        this.distance = distance;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.currency = currency;
+        this.startIataCode = startIataCode;
+        this.endIataCode = endIataCode;
+        this.latitudeFrom = latitudeFrom;
+        this.longitudeFrom = longitudeFrom;
+        this.latitudeTo = latitudeTo;
+        this.longitudeTo = longitudeTo;
+        this.numberOfTransfers = numberOfTransfers;
+        this.startAirportIataCode = startAirportIataCode;
+        this.endAirportIataCode = endAirportIataCode;
+    }
     public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode, double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo, byte numberOfTransfers) {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
@@ -374,6 +417,7 @@ public class Edge implements Cloneable {
                 .append("latitudeTo", latitudeTo)
                 .append("longitudeTo", longitudeTo)
                 .append("weight", weight)
+                .append("numberOfTransfers", numberOfTransfers)
                 .toString();
     }
 

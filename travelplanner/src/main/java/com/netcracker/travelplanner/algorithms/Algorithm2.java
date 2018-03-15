@@ -31,7 +31,7 @@ public class Algorithm2 {
 
     private void startSearch(List<Edge> edges, String startPoint, String destinationPoint) {
         List<List<Edge>> allFoundEdges = new ArrayList<>();
-        boolean stopSearch = false;
+        boolean stopSearch;
 
         // пробегаемся по edges, записываем все ребра, у которых startPoint == заданному startPoint
         for (Edge edge : edges) {
@@ -44,14 +44,20 @@ public class Algorithm2 {
 
         byte expectedSize = 1;
         logger.debug("После прохода {}: {} найденных маршрутов", expectedSize, allFoundEdges.size());
+        stopSearch = true;
+        for (List<Edge> foundEdges : allFoundEdges) {
+            if (!foundEdges.get(foundEdges.size()-1).getDestinationPoint().equals(destinationPoint)){
+                stopSearch = false;
+                break;
+            }
+        }
         while (!stopSearch && expectedSize < 3) {
             int size = allFoundEdges.size();
             //пробегаемся по edge и добавляем к уже найденным ребрам те, у которых startPoint соответствует найденным ранее destinationPoint и они состыкуются по времени
             for (int i = 0; i < size; i++) {
                 for (Edge edge : edges) {
                     if (allFoundEdges.get(i).get(allFoundEdges.get(i).size() - 1).getDestinationPoint().equals(edge.getStartPoint()) &&
-                            calculateEndDateTime(allFoundEdges.get(i).get(allFoundEdges.get(i).size() - 1)).isBefore(calculateStartDateTime(edge)) &&
-                            (ChronoUnit.HOURS.between(allFoundEdges.get(i).get(allFoundEdges.get(i).size() - 1).getEndDate(), edge.getStartDate()) < 8)){
+                                    timeDockingBetween(allFoundEdges.get(i).get(allFoundEdges.get(i).size() - 1), edge)){
                         List<Edge> tempEdges = new LinkedList<>();
                         tempEdges.addAll(allFoundEdges.get(i));
                         tempEdges.add(edge);
@@ -167,6 +173,29 @@ public class Algorithm2 {
         bestFoundRoutes = routeList;
     }
 
+    private boolean timeDockingBetween(Edge edgeFrom, Edge edgeTo) {
+        return (edgeFrom.getTransportType().toLowerCase().equals("plane")
+                && edgeTo.getTransportType().toLowerCase().equals("plane")
+                && edgeFrom.getEndAirportIataCode().equals(edgeTo.getStartAirportIataCode())
+                && edgeFrom.getEndDate().plusHours(2).isBefore(edgeTo.getStartDate())
+                && edgeFrom.getEndDate().plusHours(10).isAfter(edgeTo.getStartDate()))
+                || (calculateEndDateTime(edgeFrom).isBefore(calculateStartDateTime(edgeTo))
+                && (edgeFrom.getEndDate().plusHours(12).isAfter(edgeTo.getStartDate())));
+    }
+
+    //обычно в аэропорт приезжают за 2 часа до вылета, на автобус/поезд за 30 минут, с запасом
+    private LocalDateTime calculateStartDateTime(Edge edge){
+        switch(edge.getTransportType().toLowerCase()){
+            case "bus":
+            case "train":
+                return edge.getStartDate().minusMinutes(30);
+            case "plane":
+                return edge.getStartDate().minusHours(2);
+            default:
+                return edge.getStartDate().minusHours(1);
+        }
+    }
+
     //прибавляем к endDate 30 минут для поезда и автобуса, 1 час для самолета. Чтобы высадится, забрать вещи...
     //плюс 1 час на перемещение с места прибытия в место следуюшего отбытия
     private LocalDateTime calculateEndDateTime(Edge edge){
@@ -178,19 +207,6 @@ public class Algorithm2 {
                 return edge.getEndDate().plusHours(2);
             default:
                 return edge.getEndDate().plusHours(1);
-        }
-    }
-
-    //обычно в аэропорт приезжают за 2 часа до вылета, на автобус/поезд за 1 час, с запасом
-    private LocalDateTime calculateStartDateTime(Edge edge){
-        switch(edge.getTransportType().toLowerCase()){
-            case "bus":
-            case "train":
-                return edge.getStartDate().minusHours(1);
-            case "plane":
-                return edge.getStartDate().minusHours(2);
-            default:
-                return edge.getStartDate().minusHours(1);
         }
     }
 }
