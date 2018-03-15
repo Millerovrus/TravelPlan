@@ -40,7 +40,8 @@ $(function(){
 $(function(){
     $('#map-margin').scrollToFixed({
         marginTop: 65,
-        limit: $('#div-to-fix')
+        limit: $('#div-to-fix'),
+        zIndex: 0
     });
 });
 /* todo to fix limit in div without jumping out from container after limit */

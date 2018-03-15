@@ -487,7 +487,7 @@ textarea{
 .panel-default {
     border: none;
     background: none;
-    margin-top: -2px;
+    margin-top: 0px;
     margin-bottom: 0;
     padding-bottom: 0;
 }
@@ -687,6 +687,15 @@ input[type='checkbox']:checked + span{
 
 /* костыль для пустого места на странице */
 #test-container{
-    height: 120px;
-    background-color: transparent;
+    height: 150px;
+}
+
+/* чтобы календарь не прятался под карту */
+#inputForm{
+    overflow: visible!important;
+}
+
+.output-collapse .row{
+    display: block;
+    padding: 0;
 }
