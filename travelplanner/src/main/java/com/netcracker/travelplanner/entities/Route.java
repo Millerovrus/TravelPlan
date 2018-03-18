@@ -153,8 +153,20 @@ public class Route implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Route route = (Route) o;
-        return id == route.id;
+
+        if (id != route.id) return false;
+        if (Double.compare(route.cost, cost) != 0) return false;
+        if (Double.compare(route.duration, duration) != 0) return false;
+        if (Double.compare(route.distance, distance) != 0) return false;
+        if (idRouteForView != route.idRouteForView) return false;
+        if (user != null ? !user.equals(route.user) : route.user != null) return false;
+        if (!creationDate.equals(route.creationDate)) return false;
+        if (!startPoint.equals(route.startPoint)) return false;
+        if (!destinationPoint.equals(route.destinationPoint)) return false;
+        if (!weights.equals(route.weights)) return false;
+        return edges.equals(route.edges);
     }
 
     @Override

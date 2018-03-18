@@ -96,31 +96,41 @@ public class Algorithm {
 
     //временное решение, чтобы работала текущая программа...
     private List<Route> findOptimalRoutes(List<Route> allFoundRoutes){
-        List<Route> temp = new ArrayList<>();
-        double min1 = Double.POSITIVE_INFINITY, min2 = Double.POSITIVE_INFINITY, min3 = Double.POSITIVE_INFINITY;
-        Route minRoute1 = allFoundRoutes.get(0), minRoute2 = allFoundRoutes.get(0), minRoute3 = allFoundRoutes.get(0);
+        double min1 = Double.POSITIVE_INFINITY, min2 = Double.POSITIVE_INFINITY, min3 = Double.POSITIVE_INFINITY, min4 = Double.POSITIVE_INFINITY, min5 = Double.POSITIVE_INFINITY;
+        Route minRoute1 = allFoundRoutes.get(0), minRoute2 = allFoundRoutes.get(0), minRoute3 = allFoundRoutes.get(0), minRoute4 = allFoundRoutes.get(0), minRoute5 = allFoundRoutes.get(0);
         for (Route allFoundRoute : allFoundRoutes) {
             if (allFoundRoute.getWeights().get(0) < min1){
                 minRoute1 = allFoundRoute;
                 min1 = allFoundRoute.getWeights().get(0);
-            } else {
-                if (allFoundRoute.getWeights().get(1) < min2){
-                    minRoute2 = allFoundRoute;
-                    min2 = allFoundRoute.getWeights().get(1);
-                } else {
-                    if (allFoundRoute.getWeights().get(2) < min3){
-                        minRoute3 = allFoundRoute;
-                        min3 = allFoundRoute.getWeights().get(2);
-                    }
-                }
+            }
+            if (allFoundRoute.getWeights().get(1) < min2){
+                minRoute2 = allFoundRoute;
+                min2 = allFoundRoute.getWeights().get(1);
+            }
+            if (allFoundRoute.getWeights().get(2) < min3){
+                minRoute3 = allFoundRoute;
+                min3 = allFoundRoute.getWeights().get(2);
+            }
+            if (allFoundRoute.getWeights().get(3) < min4){
+                minRoute4 = allFoundRoute;
+                min4 = allFoundRoute.getWeights().get(3);
+            }
+            if (allFoundRoute.getWeights().get(4) < min5){
+                minRoute5 = allFoundRoute;
+                min5 = allFoundRoute.getWeights().get(4);
             }
         }
-        minRoute1.setIdRouteForView(0);
-        minRoute2.setIdRouteForView(1);
-        minRoute3.setIdRouteForView(2);
+
+        List<Route> temp = new ArrayList<>();
         temp.add(minRoute1);
         temp.add(minRoute2);
         temp.add(minRoute3);
+        temp.add(minRoute4);
+        temp.add(minRoute5);
+        temp = temp.stream().distinct().collect(Collectors.toList());
+        for (int i = 0; i < temp.size(); i++) {
+            temp.get(i).setIdRouteForView(i);
+        }
         return temp;
     }
 
@@ -133,11 +143,6 @@ public class Algorithm {
                     , foundEdges.get(foundEdges.size() - 1).getDestinationPoint()
                     , ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size()-1).getEndDate())
                     , idRouteForView++);
-            route.getWeights().add(((double) ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size() - 1).getEndDate())) / 72);
-            route.getWeights().add(((double) ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size() - 1).getEndDate())) / 9);
-            route.getWeights().add(((double) ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size() - 1).getEndDate())) / 4);
-            route.getWeights().add(((double) ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size() - 1).getEndDate())) / 100000);
-            route.getWeights().add(((double) ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size() - 1).getEndDate())) * 100);
             short order = 1;
             for (Edge edge : foundEdges) {
                 edge.setEdgeOrder(order++);
@@ -148,11 +153,12 @@ public class Algorithm {
                     route.setDistance(route.getDistance() + edge.getDistance());
                 }
             }
-            route.getWeights().set(0, route.getWeights().get(0) + route.getCost());
-            route.getWeights().set(1, route.getWeights().get(1) + route.getCost());
-            route.getWeights().set(2, route.getWeights().get(2) + route.getCost());
-            route.getWeights().set(3, route.getWeights().get(3) + route.getCost() * 100);
-            route.getWeights().set(4, route.getWeights().get(4) + route.getCost() / 100000);
+            route.getWeights().add(route.getDuration() / 72 + route.getCost());
+            route.getWeights().add(route.getDuration() / 9 + route.getCost());
+            route.getWeights().add(route.getDuration() / 4 + route.getCost());
+            route.getWeights().add(route.getDuration() / 100000 + route.getCost() * 100);
+            route.getWeights().add(route.getDuration() * 100 + route.getCost() / 100000);
+
             routeList.add(route);
         }
         allFoundRoutes = routeList;
