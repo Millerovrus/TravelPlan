@@ -19,14 +19,15 @@ import java.util.stream.Collectors;
  */
 @Service
 public class Algorithm2 {
-    private List<Route> bestFoundRoutes = new ArrayList<>();
+    private List<Route> allFoundRoutes = new ArrayList<>();
+    private List<Route> optimalFoundRoutes = new ArrayList<>();
     private static final Logger logger = LoggerFactory.getLogger(Algorithm2.class);
 
-    public List<Route> getBestFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint) {
+    public List<Route> getOptimalFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint) {
         edges = edges.stream().distinct().collect(Collectors.toList());
         logger.debug("Start search with {} edges", edges.size());
         startSearch(edges, startPoint, destinationPoint);
-        return bestFoundRoutes;
+        return optimalFoundRoutes;
     }
 
     private void startSearch(List<Edge> edges, String startPoint, String destinationPoint) {
@@ -86,74 +87,53 @@ public class Algorithm2 {
                 }
             }
         }
-        searchTheBestOf(allFoundEdges);
+        convertingEdgesToRoutes(allFoundEdges);
     }
 
-    //фильтрация всех маршрутов
-    private void searchTheBestOf(List<List<Edge>> allFoundEdges){
-        List<List<Edge>> bestFoundEdges = new ArrayList<>();
-        logger.debug("Старт фильтрации найденных маршрутов");
-        short minNumberOfTransfers = Short.MAX_VALUE;
-        double minWeight1ForMinSize = Double.MAX_VALUE, minWeight2ForMinSize = Double.MAX_VALUE, minWeight3ForMinSize = Double.MAX_VALUE,
-                minWeight1 = Double.MAX_VALUE, minWeight2 = Double.MAX_VALUE, minWeight3 = Double.MAX_VALUE;
-        for (int i = 0; i < 6; i++) {
-            bestFoundEdges.add(null);
-        }
-        for (List<Edge> foundEdges : allFoundEdges) {
-            double weight1 = ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size() - 1).getEndDate()) / 72,
-                    weight2 = ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size() - 1).getEndDate()) / 9,
-                    weight3 = ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size() - 1).getEndDate()) / 2.4;
-            short numberOfTransfers = 0;
-            for (Edge edge : foundEdges) {
-                weight1 += edge.getCost();
-                weight2 += edge.getCost();
-                weight3 += edge.getCost();
-                numberOfTransfers += edge.getNumberOfTransfers() + 1;
-            }
-            if (numberOfTransfers <= minNumberOfTransfers){
-                if (weight1 < minWeight1ForMinSize) {
-                    bestFoundEdges.set(0, foundEdges);
-                    minWeight1ForMinSize = weight1;
+    //временное решение, чтобы работала текущая программа...
+    private List<Route> findOptimalRoutes(List<Route> allFoundRoutes){
+        List<Route> temp = new ArrayList<>();
+        double min1 = Double.POSITIVE_INFINITY, min2 = Double.POSITIVE_INFINITY, min3 = Double.POSITIVE_INFINITY;
+        Route minRoute1 = allFoundRoutes.get(0), minRoute2 = allFoundRoutes.get(0), minRoute3 = allFoundRoutes.get(0);
+        for (Route allFoundRoute : allFoundRoutes) {
+            if (allFoundRoute.getWeights().get(0) < min1){
+                minRoute1 = allFoundRoute;
+                min1 = allFoundRoute.getWeights().get(0);
+            } else {
+                if (allFoundRoute.getWeights().get(1) < min2){
+                    minRoute2 = allFoundRoute;
+                    min2 = allFoundRoute.getWeights().get(1);
+                } else {
+                    if (allFoundRoute.getWeights().get(2) < min3){
+                        minRoute3 = allFoundRoute;
+                        min3 = allFoundRoute.getWeights().get(2);
+                    }
                 }
-                if (weight2 < minWeight2ForMinSize){
-                    bestFoundEdges.set(1, foundEdges);
-                    minWeight2ForMinSize = weight2;
-                }
-                if (weight3 < minWeight3ForMinSize){
-                    bestFoundEdges.set(2, foundEdges);
-                    minWeight3ForMinSize = weight3;
-                }
-                minNumberOfTransfers = numberOfTransfers;
-            }
-            if (weight1 < minWeight1) {
-                bestFoundEdges.set(3, foundEdges);
-                minWeight1 = weight1;
-            }
-            if (weight2 < minWeight2) {
-                bestFoundEdges.set(4, foundEdges);
-                minWeight2 = weight2;
-            }
-            if (weight3 < minWeight3) {
-                bestFoundEdges.set(5, foundEdges);
-                minWeight3 = weight3;
             }
         }
-        bestFoundEdges = bestFoundEdges.stream().distinct().collect(Collectors.toList());
-        logger.debug("Финиш фильтрации найденных маршрутов");
-        convertingEdgesToRoutes(bestFoundEdges);
+        minRoute1.setIdRouteForView(0);
+        minRoute2.setIdRouteForView(1);
+        minRoute3.setIdRouteForView(2);
+        temp.add(minRoute1);
+        temp.add(minRoute2);
+        temp.add(minRoute3);
+        return temp;
     }
 
-    private void convertingEdgesToRoutes(List<List<Edge>> bestFoundEdges){
+    private void convertingEdgesToRoutes(List<List<Edge>> allFoundEdges){
         List<Route> routeList = new ArrayList<>();
-
         int idRouteForView  = 0;
-
-        for (List<Edge> foundEdges : bestFoundEdges) {
+        for (List<Edge> foundEdges : allFoundEdges) {
             Route route = new Route(new Date()
                     , foundEdges.get(0).getStartPoint()
                     , foundEdges.get(foundEdges.size() - 1).getDestinationPoint()
                     , ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size()-1).getEndDate())
                     , idRouteForView++);
+            route.getWeights().add(((double) ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size() - 1).getEndDate())) / 72);
+            route.getWeights().add(((double) ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size() - 1).getEndDate())) / 9);
+            route.getWeights().add(((double) ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size() - 1).getEndDate())) / 4);
+            route.getWeights().add(((double) ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size() - 1).getEndDate())) / 100000);
+            route.getWeights().add(((double) ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size() - 1).getEndDate())) * 100);
             short order = 1;
             for (Edge edge : foundEdges) {
                 edge.setEdgeOrder(order++);
@@ -164,23 +144,30 @@ public class Algorithm2 {
                     route.setDistance(route.getDistance() + edge.getDistance());
                 }
             }
+            route.getWeights().set(0, route.getWeights().get(0) + route.getCost());
+            route.getWeights().set(1, route.getWeights().get(1) + route.getCost());
+            route.getWeights().set(2, route.getWeights().get(2) + route.getCost());
+            route.getWeights().set(3, route.getWeights().get(3) + route.getCost() * 100);
+            route.getWeights().set(4, route.getWeights().get(4) + route.getCost() / 100000);
             routeList.add(route);
         }
-        logger.debug("Found routes:");
-        for (Route route : routeList) {
-            logger.debug("{}", route.toString());
-        }
-        bestFoundRoutes = routeList;
+        allFoundRoutes = routeList;
+        optimalFoundRoutes = findOptimalRoutes(allFoundRoutes);
     }
 
     private boolean timeDockingBetween(Edge edgeFrom, Edge edgeTo) {
         return (edgeFrom.getTransportType().toLowerCase().equals("plane")
                 && edgeTo.getTransportType().toLowerCase().equals("plane")
-                && edgeFrom.getEndAirportIataCode().equals(edgeTo.getStartAirportIataCode())
+                && edgeFrom.getEndPointCode().equals(edgeTo.getStartPointCode())
                 && edgeFrom.getEndDate().plusHours(2).isBefore(edgeTo.getStartDate())
-                && edgeFrom.getEndDate().plusHours(10).isAfter(edgeTo.getStartDate()))
+                && edgeFrom.getEndDate().plusHours(10).isAfter(edgeTo.getStartDate())
+                || edgeFrom.getTransportType().toLowerCase().equals("bus")
+                && edgeTo.getTransportType().toLowerCase().equals("bus")
+                && edgeFrom.getEndPointCode().equals(edgeTo.getStartPointCode())
+                && edgeFrom.getEndDate().plusHours(1).isBefore(edgeTo.getStartDate())
+                && edgeFrom.getEndDate().plusHours(9).isAfter(edgeTo.getStartDate())
                 || (calculateEndDateTime(edgeFrom).isBefore(calculateStartDateTime(edgeTo))
-                && (edgeFrom.getEndDate().plusHours(12).isAfter(edgeTo.getStartDate())));
+                && (edgeFrom.getEndDate().plusHours(12).isAfter(edgeTo.getStartDate()))));
     }
 
     //обычно в аэропорт приезжают за 2 часа до вылета, на автобус/поезд за 30 минут, с запасом

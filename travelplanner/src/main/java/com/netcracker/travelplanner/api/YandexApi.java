@@ -59,15 +59,9 @@ public class YandexApi implements ApiInterface {
                             , from.getLongitude()
                             , to.getLatitude()
                             , to.getLongitude()
-                            ,(byte) 0)));
-
-//            if (!edgeList.isEmpty()) {
-//                result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
-//                result.add(filterEdgeByTypes(edgeList, RouteType.optimal));
-//                result.add(filterEdgeByTypes(edgeList, RouteType.comfort));
-//                result.add(filterEdgeByTypes(edgeList, RouteType.fastest));
-//                result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
-//            }
+                            , (byte) 0
+                            , l.getFrom().getCode()
+                            , l.getTo().getCode())));
         }
         return edgeList;
 

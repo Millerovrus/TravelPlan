@@ -146,7 +146,7 @@ public class TaskManagerService {
 
 //        return edgeList;
 
-        return algorithm.getBestFoundRoutes(edgeList,initializatorApi.getFrom().getName(),initializatorApi.getTo().getName());
+        return algorithm.getOptimalFoundRoutes(edgeList,initializatorApi.getFrom().getName(),initializatorApi.getTo().getName());
 
 
 

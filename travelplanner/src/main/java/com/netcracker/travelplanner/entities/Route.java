@@ -38,7 +38,7 @@ public class Route implements Serializable {
     private RouteType routeType;
 
     @Transient
-    private double weight;
+    private List<Double> weights;
 
     @Column(name = "cost", nullable = false)
     private double cost;
@@ -86,12 +86,12 @@ public class Route implements Serializable {
         this.distance = distance;
     }
 
-    public double getWeight() {
-        return weight;
+    public List<Double> getWeights() {
+        return weights;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
+    public void setWeights(List<Double> weights) {
+        this.weights = weights;
     }
 
     public List<Edge> getEdges() {
@@ -155,11 +155,13 @@ public class Route implements Serializable {
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;
         this.routeType = routeType;
-        edges = new LinkedList<>();
+        this.edges = new LinkedList<>();
+        this.weights = new ArrayList<>();
     }
 
     public Route(){
-        edges = new LinkedList<>();
+        this.edges = new LinkedList<>();
+        this.weights = new ArrayList<>();
     }
 
 
@@ -171,7 +173,8 @@ public class Route implements Serializable {
         this.cost = cost;
         this.duration = duration;
         this.distance = distance;
-        edges = new LinkedList<>();
+        this.edges = new LinkedList<>();
+        this.weights = new ArrayList<>();
     }
 
     public Route(Date creationDate, String startPoint, String destinationPoint, double duration, int idRouteForView) {
@@ -180,7 +183,8 @@ public class Route implements Serializable {
         this.destinationPoint = destinationPoint;
         this.duration = duration;
         this.idRouteForView = idRouteForView;
-        edges = new LinkedList<>();
+        this.edges = new LinkedList<>();
+        this.weights = new ArrayList<>();
     }
 
     @Override
@@ -205,7 +209,7 @@ public class Route implements Serializable {
                 .append("startPoint", startPoint)
                 .append("destinationPoint", destinationPoint)
                 .append("routeType", routeType)
-                .append("weight", weight)
+                .append("weights", weights.toString())
                 .append("cost", cost)
                 .append("duration", duration)
                 .append("distance", distance)
