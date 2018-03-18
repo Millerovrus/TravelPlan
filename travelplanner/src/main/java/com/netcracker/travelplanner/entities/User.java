@@ -52,6 +52,8 @@ public class User implements Serializable {
         routes = new HashSet<>();
     }
 
+    private User() {};
+
     @Override
     public String toString() {
         return "User{" +

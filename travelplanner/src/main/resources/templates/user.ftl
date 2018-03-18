@@ -59,6 +59,7 @@
         </div>
     </div>
     HELLO USERS!!!!
+    <h2>You are logged with e-mail: <p style="color: #b92c28">${email}</p> and with roles <p style="color: #b92c28">${roles}</p></h2>
     <div>
         <button type="button" onclick="location.href='/logout'">Logout</button>
     </div>
