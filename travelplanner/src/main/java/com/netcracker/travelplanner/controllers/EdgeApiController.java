@@ -1,7 +1,6 @@
 package com.netcracker.travelplanner.controllers;
 
 import com.netcracker.travelplanner.entities.Edge;
-import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.service.EdgeRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -88,15 +87,5 @@ public class EdgeApiController {
     public List<Edge> getEdgesByTransportType(@RequestParam(value = "transporttype", required = true) String s) {
         logger.info("Запрос на получение cписка отрезков с transporttype = {}", s);
         return edgeRepositoryService.findByTransportType(s);
-    }
-
-    /**
-     * @param type - type of edges
-     * @return list of edges by type
-     */
-    @RequestMapping(value = "/findbyedgetype", method = RequestMethod.GET)
-    public List<Edge> getEdgesByEdgeType(@RequestParam(value = "edgetype", required = true) RouteType type) {
-        logger.info("Запрос на получение cписка отрезков с edgetype = {}", type);
-        return edgeRepositoryService.findByEdgeType(type);
     }
 }

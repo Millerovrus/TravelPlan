@@ -11,10 +11,6 @@ import java.util.List;
 
 public class PreparingDataService {
 
-    private Point pointFrom;
-
-    private Point pointTo;
-
     private static final Logger logger = LoggerFactory.getLogger(PreparingDataService.class);
 
     public InitializatorApi prepareData(String from
@@ -25,8 +21,8 @@ public class PreparingDataService {
 
         InitializatorApi initializatorApi = new InitializatorApi();
 
-        pointFrom = new Point();
-        pointTo = new Point();
+        Point pointFrom = new Point();
+        Point pointTo = new Point();
 
         pointFrom.setName(from);
         pointTo.setName(to);

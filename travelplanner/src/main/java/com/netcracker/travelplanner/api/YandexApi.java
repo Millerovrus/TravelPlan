@@ -3,7 +3,6 @@ package com.netcracker.travelplanner.api;
 import com.google.gson.Gson;
 import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.Point;
-import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.entities.yandex.YandexRasp;
 
 import java.io.IOException;
@@ -14,10 +13,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-
 
 public class YandexApi implements ApiInterface {
 
@@ -36,7 +33,6 @@ public class YandexApi implements ApiInterface {
                 date.format(formatter) +
                 "&system=iata";
 
-        List<Edge> result = new ArrayList<>();
         List<Edge> edgeList = new ArrayList<>();
         if(! from.getIataCode().equals(to.getIataCode())) {
             YandexRasp yandexRasp = getYandexRaspFromUrl(url);
@@ -64,7 +60,6 @@ public class YandexApi implements ApiInterface {
                             , l.getTo().getCode())));
         }
         return edgeList;
-
     }
 
     private YandexRasp getYandexRaspFromUrl(String urlQueryString){
@@ -93,21 +88,5 @@ public class YandexApi implements ApiInterface {
         }
 
         return yandexRasp;
-    }
-
-
-    private Edge filterEdgeByTypes(List<Edge> edgeList, RouteType type){
-
-        Edge edge = null;
-        edgeList.forEach(l->l.setEdgeType(type));
-        edgeList.forEach(l->l.setData(type));
-        try {
-            edge = (Edge) edgeList.stream().min(Comparator.comparingDouble(Edge::getWeight)).get().clone();
-        } catch (CloneNotSupportedException e) {
-
-            e.printStackTrace();
-        }
-
-        return edge;
     }
 }

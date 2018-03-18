@@ -84,7 +84,7 @@ public class EdgeService {
         return yandexCode;
     }
 
-    public static InputStreamReader getStreamReaderFromUrl(String url){
+    private static InputStreamReader getStreamReaderFromUrl(String url){
 
         InputStreamReader reader = null;
         try {

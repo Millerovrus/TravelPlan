@@ -7,6 +7,6 @@ import java.util.concurrent.Callable;
 
 public interface ExecutorManager {
 
-    List<Edge>  execute(List<Callable<List<Edge>>> taskList);
+    List<Edge> execute(List<Callable<List<Edge>>> taskList);
 
 }

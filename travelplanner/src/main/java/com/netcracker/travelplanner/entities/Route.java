@@ -33,10 +33,6 @@ public class Route implements Serializable {
     @Column(name="destination_point", nullable = false)
     private String destinationPoint;
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name="route_type", nullable = false)
-    private RouteType routeType;
-
     @Transient
     private List<Double> weights;
 
@@ -52,6 +48,7 @@ public class Route implements Serializable {
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Edge> edges;
 
+    @Transient
     private int idRouteForView;
 
     public int getIdRouteForView() {
@@ -134,47 +131,12 @@ public class Route implements Serializable {
         this.destinationPoint = destinationPoint;
     }
 
-    public RouteType getRouteType() {
-        return routeType;
-    }
-
-    public void setRouteType(RouteType routeType) {
-        this.routeType = routeType;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Route(Date creationDate, String startPoint, String destinationPoint, RouteType routeType) {
-        this.creationDate = creationDate;
-        this.startPoint = startPoint;
-        this.destinationPoint = destinationPoint;
-        this.routeType = routeType;
-        this.edges = new LinkedList<>();
-        this.weights = new ArrayList<>();
-    }
-
-    public Route(){
-        this.edges = new LinkedList<>();
-        this.weights = new ArrayList<>();
-    }
-
-
-    public Route(Date creationDate, String startPoint, String destinationPoint, RouteType routeType, double cost, double duration, double distance) {
-        this.creationDate = creationDate;
-        this.startPoint = startPoint;
-        this.destinationPoint = destinationPoint;
-        this.routeType = routeType;
-        this.cost = cost;
-        this.duration = duration;
-        this.distance = distance;
-        this.edges = new LinkedList<>();
-        this.weights = new ArrayList<>();
     }
 
     public Route(Date creationDate, String startPoint, String destinationPoint, double duration, int idRouteForView) {
@@ -208,7 +170,6 @@ public class Route implements Serializable {
                 .append("creationDate", creationDate)
                 .append("startPoint", startPoint)
                 .append("destinationPoint", destinationPoint)
-                .append("routeType", routeType)
                 .append("weights", weights.toString())
                 .append("cost", cost)
                 .append("duration", duration)

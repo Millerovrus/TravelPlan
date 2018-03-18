@@ -1,11 +1,9 @@
 package com.netcracker.travelplanner.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.*;
 
 @Entity
@@ -53,7 +51,6 @@ public class User implements Serializable {
         this.password = password;
         routes = new HashSet<>();
     }
-    private User(){}
 
     @Override
     public String toString() {

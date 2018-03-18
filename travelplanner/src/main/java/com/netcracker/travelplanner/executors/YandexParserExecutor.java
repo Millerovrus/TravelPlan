@@ -33,16 +33,6 @@ public class YandexParserExecutor implements ExecutorManager {
             e.printStackTrace();
         }
 
-//        taskList.forEach(callable -> futures.add(executorService.submit(callable)));
-//
-//        executorService.shutdown();
-//
-//        try {
-//            executorService.awaitTermination(30, TimeUnit.SECONDS);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
         for (Future<List<Edge>> future : futures) {
             try {
                 if(future.get() != null ){
