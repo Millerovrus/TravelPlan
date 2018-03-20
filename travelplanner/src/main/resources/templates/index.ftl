@@ -80,9 +80,7 @@
                 </div>
                 <div class="navbar-collapse collapse"  id="navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/routes">Routes</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                        <li><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> ${firstname} ${lastname} </a></li>
                         <li><a href="/logout">Logout</a></li>
                     </ul>
                 </div>

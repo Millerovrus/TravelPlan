@@ -82,12 +82,19 @@ public class UserController {
             model.addAttribute("email", user.getEmail());
             model.addAttribute("birthdate", user.getBirthDate());
         }
+        model.addAttribute("isAuthorized", email != null);
         return "user";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model){
-        model.addAttribute("isAuthorized", securityService.findLoggedInUsername() != null);
+        String email = securityService.findLoggedInUsername();
+        if (email != null) {
+            User user = userService.findUserByEmail(email);
+            model.addAttribute("firstname", user.getFirstName());
+            model.addAttribute("lastname", user.getLastName());
+        }
+        model.addAttribute("isAuthorized", email != null);
         return "index";
     }
 }

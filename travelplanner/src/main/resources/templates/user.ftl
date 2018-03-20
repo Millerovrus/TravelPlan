@@ -53,7 +53,11 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/routes">Routes</a></li>
                         <li><a href="/about">About</a></li>
-                        <li class="active"><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                        <#if !isAuthorized>
+                            <li class="active"><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile </a></li>
+                        <#else>
+                            <li class="active"><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> ${firstname} ${lastname} </a></li>
+                        </#if>
                         <li><a href="/logout">Logout</a></li>
                     </ul>
                 </div>
