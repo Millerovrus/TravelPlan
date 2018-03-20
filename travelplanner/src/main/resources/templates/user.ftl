@@ -49,17 +49,36 @@
                 </button>
                 <a class="navbar-brand" href="/"><i class="fa fa-ravelry" aria-hidden="true"></i>Travel planner</a>
             </div>
-            <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/signIn">Sign in</a></li>
-                    <li><a href="/signUp">Sign up</a></li>
-                    <li class="active"><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
-                </ul>
-            </div>
+                <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/routes">Routes</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li class="active"><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </div>
         </div>
     </div>
-    HELLO USERS!!!!
-    <h2>You are logged with e-mail: <p style="color: #b92c28">${email}</p> and with roles <p style="color: #b92c28">${roles}</p></h2>
+
+    <h1> Welcome ${firstname} ${lastname}! </h1>
+
+    <div style="color: #b92c28">Your data:</div>
+    <style type="text/css">
+        .tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #bcaf91;border-collapse: collapse;}
+        .tftable th {font-size:12px;background-color:#ded0b0;border-width: 1px;padding: 8px;border-style: solid;border-color: #bcaf91;text-align:left;}
+        .tftable tr {background-color:#e9dbbb;}
+        .tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #bcaf91;}
+        .tftable tr:hover {background-color:#ffffff;}
+    </style>
+
+    <table class="tftable" border="1">
+        <tr><th></th><th>Data</th></tr>
+        <tr><td>Firstname</td><td> ${firstname} </td></tr>
+        <tr><td>Lastname</td><td> ${lastname} </td></tr>
+        <tr><td>E-mail</td><td> ${email} </td></tr>
+        <tr><td>Birthday</td><td> ${birthdate} </td></tr>
+    </table>
+
     <div>
         <button type="button" onclick="location.href='/logout'">Logout</button>
     </div>

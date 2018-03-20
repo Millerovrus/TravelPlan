@@ -6,13 +6,12 @@ import com.netcracker.travelplanner.security.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.Date;
 
 @Controller
@@ -72,12 +71,23 @@ public class UserController {
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String users(Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        org.springframework.security.core.userdetails.User user =
-                (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
 
-        model.addAttribute("email", user.getUsername());
-        model.addAttribute("roles", user.getAuthorities().toString());
+        String email = securityService.findLoggedInUsername();
+        //model.addAttribute("email", email);
+
+        if (email != null) {
+            User user = userService.findUserByEmail(email);
+            model.addAttribute("firstname", user.getFirstName());
+            model.addAttribute("lastname", user.getLastName());
+            model.addAttribute("email", user.getEmail());
+            model.addAttribute("birthdate", user.getBirthDate());
+        }
         return "user";
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(Model model){
+        model.addAttribute("isAuthorized", securityService.findLoggedInUsername() != null);
+        return "index";
     }
 }
