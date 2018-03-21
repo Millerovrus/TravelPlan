@@ -56,10 +56,12 @@ public class EdgeService {
         GoogleDistance googleDistance = gson.fromJson(getStreamReaderFromUrl(url), GoogleDistance.class);
 
         if(googleDistance!=null){
+            if(googleDistance.getRows().get(0).getElements().get(0).getStatus().equals("ZERO_RESULTS")){
+                return true;
+            }
 
-         int distance =  googleDistance.getRows().get(0).getElements().get(0).getDistance().getValue();
-
-         return distance >= 600000;
+            int distance =  googleDistance.getRows().get(0).getElements().get(0).getDistance().getValue();
+            return distance >= 600000;
         }
 
         return false;

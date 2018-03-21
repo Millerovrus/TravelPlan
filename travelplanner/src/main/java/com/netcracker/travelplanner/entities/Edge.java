@@ -302,6 +302,8 @@ public class Edge implements Cloneable {
         this.numberOfTransfers = numberOfTransfers;
     }
 
+    private Edge(){}
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)

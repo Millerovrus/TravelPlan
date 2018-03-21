@@ -45,8 +45,10 @@ angular.module('controllerModule')
             var mins = Math.floor(((seconds % 86400) % 3600) / 60);
             if (days !== 0) {
                 return (days) + ' days ' + ('0'+hours).slice(-2) + ' hours ' + ('0'+mins).slice(-2) + ' minutes';
+            } else if (hours !== 0) {
+                return ('0' + hours).slice(-2) + ' hours ' + ('0' + mins).slice(-2) + ' minutes';
             }
-            return ('0'+hours).slice(-2) + ' hours ' + ('0'+mins).slice(-2) + ' minutes';
+            return ('0' + mins).slice(-2) + ' minutes';
         };
     }])
     .filter('transportTypeToIcon', [function () {
