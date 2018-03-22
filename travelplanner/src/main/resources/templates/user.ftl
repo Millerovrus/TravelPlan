@@ -51,8 +51,8 @@
             </div>
             <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/routes">Routes</a></li>
-                    <li><a href="/about">About</a></li>
+                    <#--<li><a href="/routes">Routes</a></li>
+                    <li><a href="/about">About</a></li>-->
                         <#if !isAuthorized>
                             <li class="active"><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile </a></li>
                         <#else>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="user-info-block">
                     <div class="user-heading">
-                        <h3>User Name Here</h3>
+                        <h3> ${firstname} ${lastname} </h3>
                         <span class="help-block">Voronezh, RU</span>
                     </div>
                     <div class="container navigation">
