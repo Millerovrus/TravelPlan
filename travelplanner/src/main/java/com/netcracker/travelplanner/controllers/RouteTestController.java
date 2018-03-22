@@ -34,4 +34,5 @@ public class RouteTestController {
     public List<Route> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to){
         return routeRepositoryService.findByStartPointAndDestinationPoint(from, to);
     }
+
 }
