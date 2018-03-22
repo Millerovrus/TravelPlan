@@ -26,7 +26,6 @@ public class RouteTestController {
 
         logger.debug("Start finding {} - {} - {}", from, to, date);
 
-//        return null;
         return taskManagerService.findTheBestRoutes(from,to,longLatFrom,longLatTo,date);
     }
 

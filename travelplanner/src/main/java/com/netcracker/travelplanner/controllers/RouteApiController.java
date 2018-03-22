@@ -1,14 +1,10 @@
 package com.netcracker.travelplanner.controllers;
 ;
-import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.Route;
-import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.service.RouteRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -61,16 +57,6 @@ public class RouteApiController {
                                         @RequestParam(value = "destination", required = false) String d){
         logger.info("Запрос на получение маршрутов с начальной точкой: {} или конечной точкой: {}", s, d);
         return routeRepositoryService.findByStartPointOrDestinationPoint(s, d);
-    }
-
-    /**
-     * @param type - type of route
-     * @return list of routes by type
-     */
-    @RequestMapping(value = "/findbytype", method = RequestMethod.GET)
-    public List<Route> getRoutesByType(@RequestParam(value = "type", required = true) RouteType type){
-        logger.info("Запрос на получение маршрутов с типом маршрута: {}", type);
-        return routeRepositoryService.findByRouteType(type);
     }
 
     /**

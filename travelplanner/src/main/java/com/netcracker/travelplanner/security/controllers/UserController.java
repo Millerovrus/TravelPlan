@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.Date;
 
 @Controller
@@ -69,7 +70,31 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public String users(){
+    public String users(Model model){
+
+        String email = securityService.findLoggedInUsername();
+        //model.addAttribute("email", email);
+
+        if (email != null) {
+            User user = userService.findUserByEmail(email);
+            model.addAttribute("firstname", user.getFirstName());
+            model.addAttribute("lastname", user.getLastName());
+            model.addAttribute("email", user.getEmail());
+            model.addAttribute("birthdate", user.getBirthDate());
+        }
+        model.addAttribute("isAuthorized", email != null);
         return "user";
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(Model model){
+        String email = securityService.findLoggedInUsername();
+        if (email != null) {
+            User user = userService.findUserByEmail(email);
+            model.addAttribute("firstname", user.getFirstName());
+            model.addAttribute("lastname", user.getLastName());
+        }
+        model.addAttribute("isAuthorized", email != null);
+        return "index";
     }
 }

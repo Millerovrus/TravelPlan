@@ -2,7 +2,6 @@ package com.netcracker.travelplanner.api;
 
 import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.Point;
-import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.webParsers.WebParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,10 +12,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-
 
 public class YandexParser implements ApiInterface {
 
@@ -44,8 +41,6 @@ public class YandexParser implements ApiInterface {
                 "&transportType=all&when=" +
                 date.format(DateTimeFormatter.ISO_LOCAL_DATE);
 
-
-        List<Edge> result = new ArrayList<>();
         List<Edge> edgeList = new ArrayList<>();
 
         if(! from.getYandexCode().equals(to.getYandexCode())) {
@@ -82,20 +77,9 @@ public class YandexParser implements ApiInterface {
                                 , to.getLatitude()
                                 , to.getLongitude()
                                 , (byte) 0)));
-
-//                if (!edgeList.isEmpty()) {
-//                    result.add(filterEdgeByTypes(edgeList, RouteType.cheap));
-//                    result.add(filterEdgeByTypes(edgeList, RouteType.optimal));
-//                    result.add(filterEdgeByTypes(edgeList, RouteType.comfort));
-//                    result.add(filterEdgeByTypes(edgeList, RouteType.fastest));
-//                    result.add(filterEdgeByTypes(edgeList, RouteType.cheapest));
-//                }
             }
         }
-
-
         return edgeList;
-
     }
 
     private  String convertTypes(String type){
@@ -115,7 +99,7 @@ public class YandexParser implements ApiInterface {
         return result;
     }
 
-    private  int splStr(String inString) {
+    private int splStr(String inString) {
 
         double d1 = 0.0;
 
@@ -154,7 +138,7 @@ public class YandexParser implements ApiInterface {
         return (int) d1;
     }
 
-    private  Double splCost(String string){
+    private Double splCost(String string){
 
         if(string==null){
             return 0.0;
@@ -177,27 +161,11 @@ public class YandexParser implements ApiInterface {
 
     }
 
-    private  LocalTime convertTime(String time){
+    private LocalTime convertTime(String time){
 
         String res = time + ":00";
 
         return LocalTime.parse(res, DateTimeFormatter.ISO_LOCAL_TIME);
 
     }
-
-    private Edge filterEdgeByTypes(List<Edge> edgeList, RouteType type){
-
-        Edge edge = null;
-        edgeList.forEach(l->l.setEdgeType(type));
-        edgeList.forEach(l->l.setData(type));
-        try {
-            edge = (Edge) edgeList.stream().min(Comparator.comparingDouble(Edge::getWeight)).get().clone();
-        } catch (CloneNotSupportedException e) {
-
-            e.printStackTrace();
-        }
-
-        return edge;
-    }
-
 }

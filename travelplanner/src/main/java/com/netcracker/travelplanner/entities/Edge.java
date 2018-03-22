@@ -41,11 +41,9 @@ public class Edge implements Cloneable {
     private Double distance;
 
     @Column(name = "start_date", nullable = false)
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime startDate;
 
     @Column(name = "end_date", nullable = false)
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime endDate;
 
     @Column(name = "currency")
@@ -57,9 +55,11 @@ public class Edge implements Cloneable {
     @Column(name = "end_point_iata_code")
     private String endIataCode;
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "edge_type")
-    private RouteType edgeType;
+    @Transient
+    private String startPointCode;
+
+    @Transient
+    private String endPointCode;
 
     @Column(name = "edge_order")
     private Short edgeOrder;
@@ -76,14 +76,10 @@ public class Edge implements Cloneable {
     @Column(name = "longitude_to")
     private double longitudeTo;
 
-
     @ManyToOne
     @JoinColumn(name = "route_id")
     @JsonIgnore
     private Route route;
-
-    @Transient
-    private double weight;
 
     @Transient
     private byte numberOfTransfers;
@@ -104,35 +100,6 @@ public class Edge implements Cloneable {
         this.edgeOrder = edgeOrder;
     }
 
-    public void setData(RouteType type){
-        setEdgeType(type);
-
-        switch (type){
-            case cheap:
-                setWeight(1.0, 50.0);
-                break;
-
-            case optimal:
-                setWeight(1.0, 400.0);
-                break;
-
-            case comfort:
-                setWeight(1.0, 1500.0);
-                break;
-
-            case cheapest:
-                setWeight(1.0, 0.0000001);
-                break;
-
-            case fastest:
-                setWeight(0.0000001, 10.0);
-                break;
-
-            default:
-                break;
-        }
-    }
-
     public String getStartIataCode() {
         return startIataCode;
     }
@@ -147,26 +114,6 @@ public class Edge implements Cloneable {
 
     public void setEndIataCode(String endIataCode) {
         this.endIataCode = endIataCode;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    private void setWeight(double c1, double c2) {
-        this.weight = c1 * cost + c2 * (duration / 3600);
-    }
-
-    public RouteType getEdgeType() {
-        return edgeType;
-    }
-
-    public void setEdgeType(RouteType edgeType) {
-        this.edgeType = edgeType;
     }
 
     public Integer getId() {
@@ -211,6 +158,22 @@ public class Edge implements Cloneable {
 
     public Double getDuration() {
         return duration;
+    }
+
+    public String getStartPointCode() {
+        return startPointCode;
+    }
+
+    public void setStartPointCode(String startPointCode) {
+        this.startPointCode = startPointCode;
+    }
+
+    public String getEndPointCode() {
+        return endPointCode;
+    }
+
+    public void setEndPointCode(String endPointCode) {
+        this.endPointCode = endPointCode;
     }
 
     public void setDuration(Double duration) {
@@ -298,23 +261,7 @@ public class Edge implements Cloneable {
     }
 
 
-
-    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, RouteType edgeType)
-    {
-        this.creationDate = creationDate;
-        this.startPoint = startPoint;
-        this.destinationPoint = destinationPoint;
-        this.transportType = transportType;
-        this.duration = duration;
-        this.cost = cost;
-        this.distance = distance;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.currency = currency;
-        this.edgeType = edgeType;
-    }
-
-    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode) {
+    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode, double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo, byte numberOfTransfers, String startPointCode, String endPointCode) {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;
@@ -327,8 +274,14 @@ public class Edge implements Cloneable {
         this.currency = currency;
         this.startIataCode = startIataCode;
         this.endIataCode = endIataCode;
+        this.latitudeFrom = latitudeFrom;
+        this.longitudeFrom = longitudeFrom;
+        this.latitudeTo = latitudeTo;
+        this.longitudeTo = longitudeTo;
+        this.numberOfTransfers = numberOfTransfers;
+        this.startPointCode = startPointCode;
+        this.endPointCode = endPointCode;
     }
-
     public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode, double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo, byte numberOfTransfers) {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
@@ -367,13 +320,12 @@ public class Edge implements Cloneable {
                 .append("currency", currency)
                 .append("startIataCode", startIataCode)
                 .append("endIataCode", endIataCode)
-                .append("edgeType", edgeType)
                 .append("edgeOrder", edgeOrder)
                 .append("latitudeFrom", latitudeFrom)
                 .append("longitudeFrom", longitudeFrom)
                 .append("latitudeTo", latitudeTo)
                 .append("longitudeTo", longitudeTo)
-                .append("weight", weight)
+                .append("numberOfTransfers", numberOfTransfers)
                 .toString();
     }
 

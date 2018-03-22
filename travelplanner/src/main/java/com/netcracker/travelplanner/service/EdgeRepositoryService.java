@@ -1,14 +1,11 @@
 package com.netcracker.travelplanner.service;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.repository.EdgeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.netcracker.travelplanner.entities.Edge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -85,14 +82,6 @@ public class EdgeRepositoryService {
      */
     public List<Edge> findByTransportType(String type){
         return edgeRepository.findByTransportType(type);
-    }
-
-    /**
-     * @param type - route type of edges
-     * @return list of edges by type
-     */
-    public List<Edge> findByEdgeType(RouteType type){
-        return edgeRepository.findByEdgeType(type);
     }
 
     /**

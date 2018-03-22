@@ -33,12 +33,8 @@ public class Route implements Serializable {
     @Column(name="destination_point", nullable = false)
     private String destinationPoint;
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name="route_type", nullable = false)
-    private RouteType routeType;
-
     @Transient
-    private double weight;
+    private List<Double> weights;
 
     @Column(name = "cost", nullable = false)
     private double cost;
@@ -52,6 +48,7 @@ public class Route implements Serializable {
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Edge> edges;
 
+    @Transient
     private int idRouteForView;
 
     public int getIdRouteForView() {
@@ -86,12 +83,12 @@ public class Route implements Serializable {
         this.distance = distance;
     }
 
-    public double getWeight() {
-        return weight;
+    public List<Double> getWeights() {
+        return weights;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
+    public void setWeights(List<Double> weights) {
+        this.weights = weights;
     }
 
     public List<Edge> getEdges() {
@@ -134,14 +131,6 @@ public class Route implements Serializable {
         this.destinationPoint = destinationPoint;
     }
 
-    public RouteType getRouteType() {
-        return routeType;
-    }
-
-    public void setRouteType(RouteType routeType) {
-        this.routeType = routeType;
-    }
-
     public User getUser() {
         return user;
     }
@@ -150,45 +139,34 @@ public class Route implements Serializable {
         this.user = user;
     }
 
-    public Route(Date creationDate, String startPoint, String destinationPoint, RouteType routeType) {
-        this.creationDate = creationDate;
-        this.startPoint = startPoint;
-        this.destinationPoint = destinationPoint;
-        this.routeType = routeType;
-        edges = new LinkedList<>();
-    }
-
-    public Route(){
-        edges = new LinkedList<>();
-    }
-
-
-    public Route(Date creationDate, String startPoint, String destinationPoint, RouteType routeType, double cost, double duration, double distance) {
-        this.creationDate = creationDate;
-        this.startPoint = startPoint;
-        this.destinationPoint = destinationPoint;
-        this.routeType = routeType;
-        this.cost = cost;
-        this.duration = duration;
-        this.distance = distance;
-        edges = new LinkedList<>();
-    }
-
     public Route(Date creationDate, String startPoint, String destinationPoint, double duration, int idRouteForView) {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;
         this.duration = duration;
         this.idRouteForView = idRouteForView;
-        edges = new LinkedList<>();
+        this.edges = new LinkedList<>();
+        this.weights = new ArrayList<>();
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Route route = (Route) o;
-        return id == route.id;
+
+        if (id != route.id) return false;
+        if (Double.compare(route.cost, cost) != 0) return false;
+        if (Double.compare(route.duration, duration) != 0) return false;
+        if (Double.compare(route.distance, distance) != 0) return false;
+        if (idRouteForView != route.idRouteForView) return false;
+        if (user != null ? !user.equals(route.user) : route.user != null) return false;
+        if (!creationDate.equals(route.creationDate)) return false;
+        if (!startPoint.equals(route.startPoint)) return false;
+        if (!destinationPoint.equals(route.destinationPoint)) return false;
+        if (!weights.equals(route.weights)) return false;
+        return edges.equals(route.edges);
     }
 
     @Override
@@ -204,8 +182,7 @@ public class Route implements Serializable {
                 .append("creationDate", creationDate)
                 .append("startPoint", startPoint)
                 .append("destinationPoint", destinationPoint)
-                .append("routeType", routeType)
-                .append("weight", weight)
+                .append("weights", weights.toString())
                 .append("cost", cost)
                 .append("duration", duration)
                 .append("distance", distance)

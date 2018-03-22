@@ -3,7 +3,6 @@ package com.netcracker.travelplanner.api;
 import com.google.gson.Gson;
 import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.Point;
-import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.entities.kiwi.KiwiFlights;
 
 import java.io.IOException;
@@ -15,10 +14,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-
 
 public class KiwiApi implements ApiInterface {
 
@@ -36,7 +33,6 @@ public class KiwiApi implements ApiInterface {
                         "&dateTo=" +
                         date.format(formatter) +
                         "&partner=picky&partner_market=us&curr=RUB";
-        List<Edge> result = new ArrayList<>();
         List<Edge> edgeList = new ArrayList<>();
 
         if(! from.getIataCode().equals(to.getIataCode())) {
@@ -61,18 +57,11 @@ public class KiwiApi implements ApiInterface {
                     , from.getLongitude()
                     , to.getLatitude()
                     , to.getLongitude()
-                    , (byte) (l.getRoute().size() - 1))));
-//
-//            if (!listOfEdges.isEmpty()) {
-//                result.add(filterEdgeByTypes(listOfEdges, RouteType.cheap));
-//                result.add(filterEdgeByTypes(listOfEdges, RouteType.optimal));
-//                result.add(filterEdgeByTypes(listOfEdges, RouteType.comfort));
-//                result.add(filterEdgeByTypes(listOfEdges, RouteType.fastest));
-//                result.add(filterEdgeByTypes(listOfEdges, RouteType.cheapest));
-//            }
+                    , (byte) (l.getRoute().size() - 1)
+                    ,l.getFlyFrom()
+                    ,l.getFlyTo())));
         }
         return edgeList;
-
     }
 
     private KiwiFlights getKiwiFlightsFromUrl(String urlQueryString) {
@@ -102,20 +91,4 @@ public class KiwiApi implements ApiInterface {
 
         return kiwiFlights;
     }
-
-    private Edge filterEdgeByTypes(List<Edge> edgeList, RouteType type){
-
-        Edge edge = null;
-        edgeList.forEach(l->l.setEdgeType(type));
-        edgeList.forEach(l->l.setData(type));
-        try {
-            edge = (Edge) edgeList.stream().min(Comparator.comparingDouble(Edge::getWeight)).get().clone();
-        } catch (CloneNotSupportedException e) {
-
-            e.printStackTrace();
-        }
-
-        return edge;
-    }
-
 }

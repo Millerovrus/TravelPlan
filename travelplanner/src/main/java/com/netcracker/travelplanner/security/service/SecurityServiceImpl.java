@@ -23,15 +23,24 @@ public class SecurityServiceImpl implements SecurityService {
 
     private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
 
+    /**
+     * Definition of the authorized user
+     * @return information about user
+     */
     @Override
     public String findLoggedInUsername() {
-        Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
+        Object userDetails = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (userDetails instanceof UserDetails) {
             return ((UserDetails)userDetails).getUsername();
         }
         return null;
     }
 
+    /**
+     * Autologin after registration
+     * @param email
+     * @param password
+     */
     @Override
     public void autologin(String email, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);

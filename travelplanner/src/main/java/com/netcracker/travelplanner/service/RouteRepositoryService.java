@@ -1,7 +1,6 @@
 package com.netcracker.travelplanner.service;
 
 import com.netcracker.travelplanner.entities.Route;
-import com.netcracker.travelplanner.entities.RouteType;
 import com.netcracker.travelplanner.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,14 +53,6 @@ public class RouteRepositoryService {
      */
     public List<Route> findByStartPointOrDestinationPoint(String s, String d){
         return routeRepository.findByStartPointIsOrDestinationPointIs(s, d);
-    }
-
-    /**
-     * @param routeType - type of route
-     * @return list of routes by type
-     */
-    public List<Route> findByRouteType(RouteType routeType){
-        return routeRepository.findByRouteTypeIs(routeType);
     }
 
     /**
