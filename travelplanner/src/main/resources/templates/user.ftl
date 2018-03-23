@@ -51,8 +51,6 @@
             </div>
             <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <#--<li><a href="/routes">Routes</a></li>
-                    <li><a href="/about">About</a></li>-->
                         <#if !isAuthorized>
                             <li class="active"><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> Profile </a></li>
                         <#else>
@@ -68,35 +66,37 @@
     <div class="container" id="container-user-general-panel">
         <div class="row">
             <div class="col-sm-12 user-details">
-                <div class="user-image">
-                    <img src="https://ru.gravatar.com/userimage/136663844/2e0ece2353baa9f598d4cede1dd9eb1b?size=200" alt="user name" title="User Name Here" class="img-circle">
-                </div>
                 <div class="user-info-block">
-                    <div class="user-heading">
-                        <h3> ${firstname} ${lastname} </h3>
-                        <span class="help-block">Voronezh, RU</span>
+                    <div class="row">
+                    <div class="col-sm-3">
+                        <div class="user-image">
+                            <img src="img/man-user.png" alt="user" title="${firstname} ${lastname}" class="img-circle">
+                        </div>
                     </div>
+                    <div class="col-sm-9">
+                        <v class="user-heading">
+                            <h3> ${firstname} ${lastname} </h3>
+                            <span class="help-block">${email}</span>
+                        </v>
+                    </div>
+                </div>
+
                     <div class="container navigation">
                         <div class="row" id="row-user-panel">
                             <ul >
-                                <li class="col-xs-3 active">
+                                <li class="col-xs-4 active">
                                     <a data-toggle="tab" href="#information">
                                         <span class="glyphicon glyphicon-user"></span>
                                     </a>
                                 </li>
-                                <li class="col-xs-3">
+                                <li class="col-xs-4">
                                     <a data-toggle="tab" href="#routes">
                                         <span class="glyphicon glyphicon-globe"></span>
                                     </a>
                                 </li>
-                                <li class="col-xs-3">
+                                <li class="col-xs-4">
                                     <a data-toggle="tab" href="#events">
                                         <span class="glyphicon glyphicon-calendar"></span>
-                                    </a>
-                                </li>
-                                <li class="col-xs-3">
-                                    <a data-toggle="tab" href="#settings">
-                                        <span class="glyphicon glyphicon-cog"></span>
                                     </a>
                                 </li>
                             </ul>
@@ -105,75 +105,76 @@
                     <div class="user-body">
                         <div class="tab-content">
                             <div id="information" class="tab-pane active">
-                                <h4>Account Information</h4>
+                                <#--<h4>Account Information</h4>-->
 
-                                <h1> Welcome ${firstname} ${lastname}! </h1>
+                                <#--<h1> Welcome ${firstname} ${lastname}! </h1>-->
 
-                                <div style="color: #b92c28">Your data:</div>
-                                <style type="text/css">
-                                    .tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #bcaf91;border-collapse: collapse;}
-                                    .tftable th {font-size:12px;background-color:#ded0b0;border-width: 1px;padding: 8px;border-style: solid;border-color: #bcaf91;text-align:left;}
-                                    .tftable tr {background-color:#e9dbbb;}
-                                    .tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #bcaf91;}
-                                    .tftable tr:hover {background-color:#ffffff;}
-                                </style>
+                                <#--<div style="color: #b92c28">Your data:</div>-->
+                                <#--<style type="text/css">-->
+                                    <#--.tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #bcaf91;border-collapse: collapse;}-->
+                                    <#--.tftable th {font-size:12px;background-color:#ded0b0;border-width: 1px;padding: 8px;border-style: solid;border-color: #bcaf91;text-align:left;}-->
+                                    <#--.tftable tr {background-color:#e9dbbb;}-->
+                                    <#--.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #bcaf91;}-->
+                                    <#--.tftable tr:hover {background-color:#ffffff;}-->
+                                <#--</style>-->
 
-                                <table class="tftable" border="1">
-                                    <tr><th></th><th>Data</th></tr>
-                                    <tr><td>Firstname</td><td> ${firstname} </td></tr>
-                                    <tr><td>Lastname</td><td> ${lastname} </td></tr>
-                                    <tr><td>E-mail</td><td> ${email} </td></tr>
-                                    <tr><td>Birthday</td><td> ${birthdate} </td></tr>
-                                </table>
-                            <#--<div class="container" id="container-user">-->
-                            <#--<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-xs-12">-->
-                            <#--<div class="full-width">-->
-                            <#--<input type="file" id="base-input" class="form-control form-input form-style-base">-->
-                            <#--<input type="text" id="fake-input" class="form-control form-input form-style-fake" placeholder="Choose your File" readonly>-->
-                            <#--<span class="glyphicon glyphicon-open input-place"></span>-->
-                            <#--</div>-->
+                                <#--<table class="tftable" border="1">-->
+                                    <#--<tr><th></th><th>Data</th></tr>-->
+                                    <#--<tr><td>Firstname</td><td> ${firstname} </td></tr>-->
+                                    <#--<tr><td>Lastname</td><td> ${lastname} </td></tr>-->
+                                    <#--<tr><td>E-mail</td><td> ${email} </td></tr>-->
+                                    <#--<tr><td>Birthday</td><td> ${birthdate} </td></tr>-->
+                                <#--</table>-->
 
-                            <#--<div class="full-width">-->
-                            <#--<h1 class="text-center color">Edit Profile Snippet</h1>-->
-                            <#--<div class="col-sm-12">-->
-                            <#--<div class="custom-form">-->
-                            <#--<div class="text-center bg-form">-->
-                            <#--<div class="img-section">-->
-                            <#--<img src="http://lorempixel.com/200/200/nature/" class="imgCircle" alt="Profile picture">-->
-                            <#--<span class="fake-icon-edit" id="PicUpload" style="color: #ffffff;"><span class="glyphicon glyphicon-camera camera"></span></span>-->
-                            <#--<div class="col-lg-12">-->
-                            <#--<h4 class="text-right col-lg-12"><span class="glyphicon glyphicon-edit"></span> Edit Profile</h4>-->
-                            <#--<input type="checkbox" class="form-control" id="checker">-->
-                            <#--</div>-->
-                            <#--</div>-->
-                            <#--<input type="file" id="image-input" onchange="readURL(this);" accept="image/*" disabled class="form-control form-input Profile-input-file" >-->
-                            <#--</div>-->
-                            <#--<div class="col-lg-12 col-md-12">-->
-                            <#--<input type="text" class="form-control form-input" value="Abhinit Roy" placeholder="Name" disabled id="name">-->
-                            <#--<span class="glyphicon glyphicon-user input-place"></span>-->
-                            <#--</div>-->
-                            <#--<div class="col-lg-12 col-md-12">-->
-                            <#--<input type="text" class="form-control form-input" value="rgba@gmail.com" placeholder="Email ID" disabled id="email">-->
-                            <#--<span class="glyphicon glyphicon-envelope input-place"></span>-->
-                            <#--</div>-->
-                            <#--<div class="col-lg-12 col-md-12">-->
-                            <#--<input type="text" class="form-control form-input" value="+91-00000000" placeholder="Phone Number" disabled id="phone">-->
-                            <#--<span class="glyphicon glyphicon-earphone input-place"></span>-->
-                            <#--</div>-->
-                            <#--<div class="col-lg-12 col-md-12">-->
-                            <#--<input type="text" class="form-control form-input" value="Chandigarh, India" placeholder="Address" disabled id="place">-->
-                            <#--<span class="glyphicon glyphicon-map-marker input-place"></span>-->
-                            <#--</div>-->
-                            <#--<div class="col-lg-12 col-md-12 text-center">-->
-                            <#--<button class="btn btn-info btn-lg custom-btn" id="submit" disabled><span class="glyphicon glyphicon-save"></span> Save</button>-->
-                            <#--</div>-->
-                            <#--</div>-->
-                            <#--</div>-->
-                            <#--</div>-->
+                                <div class="container-fluid" id="container-user">
+                                                <div class="custom-form">
+                                                    <div class="col-sm-12">
+                                                        <h4>First name</h4>
+                                                        <input type="text" class="form-input" value="${firstname}" placeholder="Name" disabled id="first-name">
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <h4>Last name</h4>
+                                                        <input type="text" class="form-input" value="${lastname}" placeholder="LastName" disabled id="last-name">
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <h4>E-mail</h4>
+                                                        <input type="text" class="form-input" value="${email}" placeholder="Email ID" disabled id="user-email">
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <h4>Date of birth</h4>
+                                                        <input type="text" class="form-input" value="${birthdate}" placeholder="Phone Number" disabled id="birth-date">
+                                                    </div>
+                                                    <div class="row">
+                                                        <div>
+                                                            <!-- отметить, что фото загружено -->
+                                                        </div>
+                                                        <div class="col-sm-offset-8 col-sm-4">
+                                                            <input type="file" id="base-input" style="display: none" onchange="readURL(this);" accept="image/*" class="form-control form-style-base">
+                                                            <h4 id="fake-input" style="display: none" class="upload-btn form-style-fake"><i class="fa fa-camera"></i> Upload photo</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 text-center" align="center">
+                                                        <button class="btn custom-btn"  onclick="saveEdit()" id="submit-edit" style="display: none" disabled> Save changes</button>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="edit-section">
+                                                            <h4 id="edit-header" class="text-right"><span class="glyphicon glyphicon-edit"></span> Edit Profile</h4>
+                                                            <input type="checkbox" onclick="enableEdit()" class="form-control" id="checker22" value="0">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                </div>
 
-                            <#--</div>-->
-                            <#--</div>-->
 
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="box box-info">
+                                            <div class="box-body">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div id="routes" class="tab-pane">
@@ -182,9 +183,6 @@
                             <div id="events" class="tab-pane">
                                 <h4>Events</h4>
                             </div>
-                            <div id="settings" class="tab-pane">
-                                <h4>Settings</h4>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -192,7 +190,8 @@
         </div>
     </div>
 
-
+    <!-- не трогать, не переносить в head!!!!!!! -->
+    <script src="js/user-info.js"></script>
 
 
     <#--<div>-->

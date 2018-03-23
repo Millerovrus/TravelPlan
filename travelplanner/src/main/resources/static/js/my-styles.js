@@ -51,7 +51,7 @@ $(function(){
 /* user information */
 
 $('input[id=base-input]').change(function() {
-    $('#fake-input').val($(this).val().replace("C:\\fakepath\\", ""));
+    $('#fake-input').val($(this).val().replace("C:\\", ""));
 });
 
 <!--==================Javascript code for custom input type file on button ================-->
@@ -66,39 +66,21 @@ $('input[id=main-input]').change(function() {
     }
 });
 
-<!--=========================input type file change on button ends here====================-->
-
-//    ===================== snippet for profile picture change ============================ //
-
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('.imgCircle')
+            $('.img-circle')
                 .attr('src', e.target.result)
-                .width(200)
-                .height(200);
+                .width(100)
+                .height(100);
         };
         reader.readAsDataURL(input.files[0]);
     }
 }
 
-//    =================================== ends here ============================================ //
-
-var checkme = document.getElementById('checker');
-var userImage = document.getElementById('image-input');
-var userName = document.getElementById('name');
-var userPhone = document.getElementById('phone');
-var userEmail = document.getElementById('email');
-var userPlace = document.getElementById('place');
-var UserSend = document.getElementById('submit');
-var editPic = document.getElementById('PicUpload');
-checkme.onchange = function() {
-    UserSend.disabled = !this.checked;
-    userImage.disabled = !this.checked;
-    userName.disabled = !this.checked;
-    userPhone.disabled = !this.checked;
-    userEmail.disabled = !this.checked;
-    userPlace.disabled = !this.checked;
-    editPic.style.display = this.checked ? 'block' : 'none';
-};
+$(function() {
+    $('#profile-image1').on('click', function() {
+        $('#profile-image-upload').click();
+    });
+})

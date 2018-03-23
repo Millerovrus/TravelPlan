@@ -209,9 +209,9 @@
                                                                 <div id="json-for-map" ng-show="false">{{records}}</div>
                                                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
                                                                     <div class="panel panel-default"  ng-repeat="record in records">
-                                                                            <#--<label class="checkbox" id="checkbox-{{record.idRouteForView}}">-->
-                                                                                <#--<input type="checkbox"><span> Save</span>-->
-                                                                            <#--</label>-->
+                                                                                <#--<label class="checkbox" id="checkbox-{{record.idRouteForView}}">-->
+                                                                                    <#--<input type="checkbox"><span> Save</span>-->
+                                                                                <#--</label>-->
                                                                             <div class="panel-heading" role="tab" id="headingOne" >
                                                                                 <h4 class="panel-title">
                                                                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.idRouteForView)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
