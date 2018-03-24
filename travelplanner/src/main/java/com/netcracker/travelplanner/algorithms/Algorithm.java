@@ -122,6 +122,8 @@ public class Algorithm {
                 min[4] = allFoundRoute.getWeights().get(4);
             }
         }
+        //временно
+        optimalFoundRoutes.clear();
         for (int i = 0; i < minRoutes.length; i++) {
             minRoutes[i].setOptimalRoute(true);
             //временно
