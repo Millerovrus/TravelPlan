@@ -20,7 +20,7 @@ $(function () {
 $(function () {
     $("input[name='demo_vertical']").TouchSpin({
         min: 0,
-        max: 10,
+        max: 5,
         step: 1,
         verticalupclass: 'fas fa-plus'
         /* verticalbuttons: true,

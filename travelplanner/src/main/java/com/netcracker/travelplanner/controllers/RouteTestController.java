@@ -22,11 +22,11 @@ public class RouteTestController {
     private static final Logger logger = LoggerFactory.getLogger(RouteTestController.class);
 
     @RequestMapping(value = "/get-routes/date/", method = RequestMethod.GET)
-    public List<Route> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to,@RequestParam("longLatFrom") String longLatFrom, @RequestParam("longLatTo") String longLatTo, @RequestParam("date") String date){
+    public List<Route> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to,@RequestParam("longLatFrom") String longLatFrom, @RequestParam("longLatTo") String longLatTo, @RequestParam("date") String date, @RequestParam("numberOfAdults") int numberOfAdults, @RequestParam("numberOfChildren") int numberOfChildren){
 
-        logger.debug("Start finding {} - {} - {}", from, to, date);
+        logger.debug("Start finding {} - {} - {} - {} - {}", from, to, date, numberOfAdults, numberOfChildren);
 
-        return taskManagerService.findTheBestRoutes(from,to,longLatFrom,longLatTo,date);
+        return taskManagerService.findTheBestRoutes(from,to,longLatFrom,longLatTo,date,numberOfAdults,numberOfChildren);
     }
 
     @RequestMapping(value = "/get-routes/", method = RequestMethod.GET)

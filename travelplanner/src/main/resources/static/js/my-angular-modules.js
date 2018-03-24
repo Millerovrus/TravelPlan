@@ -7,6 +7,7 @@ angular.module('myApp',['controllerModule'])
         };
     });
 angular.module('controllerModule')
+
     .controller('myParameterController', function requestFunc($scope, $http) {
 
         $scope.sendRequestParameters=function () {
@@ -20,8 +21,9 @@ angular.module('controllerModule')
                      to: angular.element($('#inputToHidden')).val(),
                      longLatFrom: angular.element($('#latit_longit_from')).val(),
                      longLatTo: angular.element($('#latit_longit_to')).val(),
-                     date: angular.element($('#inputDate')).val()
-                   /*passengers: angular.element($('#demo2')).val()*/
+                     date: angular.element($('#inputDate')).val(),
+                     numberOfAdults: angular.element($('#spin-adult')).val(),
+                     numberOfChildren: angular.element($('#spin-children')).val()
                 }
             }).then(
                 function success(response) {
@@ -36,6 +38,9 @@ angular.module('controllerModule')
                 });
             initMap();
         };
+        // $scope.isOptimalRoute = function(records) {
+        //     return records.optimalRoute;
+        // };
 
     })
     .filter('secondsToTime', [function() {

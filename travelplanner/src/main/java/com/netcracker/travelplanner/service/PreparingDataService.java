@@ -17,7 +17,9 @@ public class PreparingDataService {
             , String to
             , String latLongFrom
             , String latLongTo
-            , String date){
+            , String date
+            , int numberOfAdults
+            , int numberOfChildren){
 
         InitializatorApi initializatorApi = new InitializatorApi();
 
@@ -96,6 +98,8 @@ public class PreparingDataService {
 
         initializatorApi.setFrom(pointFrom);
         initializatorApi.setTo(pointTo);
+        initializatorApi.setNumberOfAdults(numberOfAdults);
+        initializatorApi.setNumberOfChildren(numberOfChildren);
 
         return initializatorApi;
     }
