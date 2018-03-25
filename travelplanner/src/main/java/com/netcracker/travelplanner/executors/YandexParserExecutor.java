@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.*;
 
+@Deprecated
 @Singleton
 @Service
 public class YandexParserExecutor implements ExecutorManager {
@@ -24,6 +25,7 @@ public class YandexParserExecutor implements ExecutorManager {
     @Override
     public List<Edge> execute(List<Callable<List<Edge>>> taskList) {
 
+        logger.debug("start yandexParser"+ this.toString());
         List<Edge> edgeList = new ArrayList<>();
 
         List<Future<List<Edge>>> futures = Collections.synchronizedList(new ArrayList<>());

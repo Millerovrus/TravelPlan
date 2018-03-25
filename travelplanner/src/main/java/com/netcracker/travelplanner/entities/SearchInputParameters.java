@@ -1,12 +1,11 @@
-package com.netcracker.travelplanner.service;
+package com.netcracker.travelplanner.entities;
 
-import com.netcracker.travelplanner.entities.Point;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import java.time.LocalDate;
 import java.util.List;
 
 
-public class InitializatorApi {
+public class SearchInputParameters {
 
     private Point from;
     private Point to;
@@ -19,7 +18,7 @@ public class InitializatorApi {
     private int numberOfChildren;
 
 
-    public InitializatorApi() {
+    public SearchInputParameters() {
     }
 
     public Point getFrom() {
