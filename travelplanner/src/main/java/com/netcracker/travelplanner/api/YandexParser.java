@@ -31,7 +31,7 @@ public class YandexParser implements ApiInterface {
     }
 
     @Override
-    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date){
+    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren){
 
 
         String url = "https://rasp.yandex.ru/search/?fromId=" +
@@ -65,7 +65,7 @@ public class YandexParser implements ApiInterface {
                                 , to.getName()
                                 , convertTypes(element.getElementsByClass("TransportIcon").first().attr("aria-label"))
                                 , (double) splStr(element.getElementsByClass("SearchSegment__duration").first().text())
-                                , splCost(element.getElementsByClass("Price").first().text())
+                                , splCost(element.getElementsByClass("Price").first().text()) * (numberOfAdults + numberOfChildren)
                                 , 0.0
                                 , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text()))
                                 , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text()))

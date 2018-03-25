@@ -36,6 +36,9 @@ public class Route implements Serializable {
     @Transient
     private List<Double> weights;
 
+    @Transient
+    private boolean isOptimalRoute = false;
+
     @Column(name = "cost", nullable = false)
     private double cost;
 
@@ -89,6 +92,14 @@ public class Route implements Serializable {
 
     public void setWeights(List<Double> weights) {
         this.weights = weights;
+    }
+
+    public boolean isOptimalRoute() {
+        return isOptimalRoute;
+    }
+
+    public void setOptimalRoute(boolean optimalRoute) {
+        isOptimalRoute = optimalRoute;
     }
 
     public List<Edge> getEdges() {

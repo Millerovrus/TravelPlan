@@ -23,15 +23,18 @@ public class Algorithm {
     private List<Route> optimalFoundRoutes = new ArrayList<>();
     private static final Logger logger = LoggerFactory.getLogger(Algorithm.class);
 
+//    public List<Route> getAllFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint) {
+//        edges = edges.stream().distinct().collect(Collectors.toList());
+//        logger.debug("Start search with {} edges", edges.size());
+//        startSearch(edges, startPoint, destinationPoint);
+//        return allFoundRoutes;
+//    }
+
     public List<Route> getOptimalFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint) {
         edges = edges.stream().distinct().collect(Collectors.toList());
         logger.debug("Start search with {} edges", edges.size());
         startSearch(edges, startPoint, destinationPoint);
         return optimalFoundRoutes;
-    }
-
-    public List<Route> getAllFoundRoutes() {
-        return allFoundRoutes;
     }
 
     private void startSearch(List<Edge> edges, String startPoint, String destinationPoint) {
@@ -62,7 +65,7 @@ public class Algorithm {
             for (int i = 0; i < size; i++) {
                 for (Edge edge : edges) {
                     if (allFoundEdges.get(i).get(allFoundEdges.get(i).size() - 1).getDestinationPoint().equals(edge.getStartPoint()) &&
-                                    timeDockingBetween(allFoundEdges.get(i).get(allFoundEdges.get(i).size() - 1), edge)){
+                            timeDockingBetween(allFoundEdges.get(i).get(allFoundEdges.get(i).size() - 1), edge)){
                         List<Edge> tempEdges = new LinkedList<>();
                         tempEdges.addAll(allFoundEdges.get(i));
                         tempEdges.add(edge);
@@ -94,44 +97,44 @@ public class Algorithm {
         convertingEdgesToRoutes(allFoundEdges);
     }
 
-    //временное решение, чтобы работала текущая программа...
-    private List<Route> findOptimalRoutes(List<Route> allFoundRoutes){
-        double min1 = Double.POSITIVE_INFINITY, min2 = Double.POSITIVE_INFINITY, min3 = Double.POSITIVE_INFINITY, min4 = Double.POSITIVE_INFINITY, min5 = Double.POSITIVE_INFINITY;
-        Route minRoute1 = allFoundRoutes.get(0), minRoute2 = allFoundRoutes.get(0), minRoute3 = allFoundRoutes.get(0), minRoute4 = allFoundRoutes.get(0), minRoute5 = allFoundRoutes.get(0);
+    private void findOptimalRoutes(List<Route> allFoundRoutes){
+        double[] min = {Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE};
+        Route[] minRoutes = new Route[5];
         for (Route allFoundRoute : allFoundRoutes) {
-            if (allFoundRoute.getWeights().get(0) < min1){
-                minRoute1 = allFoundRoute;
-                min1 = allFoundRoute.getWeights().get(0);
+            if (allFoundRoute.getWeights().get(0) < min[0]){
+                minRoutes[0] = allFoundRoute;
+                min[0] = allFoundRoute.getWeights().get(0);
             }
-            if (allFoundRoute.getWeights().get(1) < min2){
-                minRoute2 = allFoundRoute;
-                min2 = allFoundRoute.getWeights().get(1);
+            if (allFoundRoute.getWeights().get(1) < min[1]){
+                minRoutes[1] = allFoundRoute;
+                min[1] = allFoundRoute.getWeights().get(1);
             }
-            if (allFoundRoute.getWeights().get(2) < min3){
-                minRoute3 = allFoundRoute;
-                min3 = allFoundRoute.getWeights().get(2);
+            if (allFoundRoute.getWeights().get(2) < min[2]){
+                minRoutes[2] = allFoundRoute;
+                min[2] = allFoundRoute.getWeights().get(2);
             }
-            if (allFoundRoute.getWeights().get(3) < min4){
-                minRoute4 = allFoundRoute;
-                min4 = allFoundRoute.getWeights().get(3);
+            if (allFoundRoute.getWeights().get(3) < min[3]){
+                minRoutes[3] = allFoundRoute;
+                min[3] = allFoundRoute.getWeights().get(3);
             }
-            if (allFoundRoute.getWeights().get(4) < min5){
-                minRoute5 = allFoundRoute;
-                min5 = allFoundRoute.getWeights().get(4);
+            if (allFoundRoute.getWeights().get(4) < min[4]){
+                minRoutes[4] = allFoundRoute;
+                min[4] = allFoundRoute.getWeights().get(4);
             }
         }
-
-        List<Route> temp = new ArrayList<>();
-        temp.add(minRoute1);
-        temp.add(minRoute2);
-        temp.add(minRoute3);
-        temp.add(minRoute4);
-        temp.add(minRoute5);
-        temp = temp.stream().distinct().collect(Collectors.toList());
-        for (int i = 0; i < temp.size(); i++) {
-            temp.get(i).setIdRouteForView(i);
+        //временно
+        optimalFoundRoutes.clear();
+        for (int i = 0; i < minRoutes.length; i++) {
+            minRoutes[i].setOptimalRoute(true);
+            //временно
+            if (!optimalFoundRoutes.contains(minRoutes[i])) {
+                optimalFoundRoutes.add(minRoutes[i]);
+            }
         }
-        return temp;
+        //временно
+        for (int i = 0; i < optimalFoundRoutes.size(); i++) {
+            optimalFoundRoutes.get(i).setIdRouteForView(i);
+        }
     }
 
     private void convertingEdgesToRoutes(List<List<Edge>> allFoundEdges){
@@ -162,7 +165,7 @@ public class Algorithm {
             routeList.add(route);
         }
         allFoundRoutes = routeList;
-        optimalFoundRoutes = findOptimalRoutes(allFoundRoutes);
+        findOptimalRoutes(allFoundRoutes);
     }
 
     private boolean timeDockingBetween(Edge edgeFrom, Edge edgeTo) {

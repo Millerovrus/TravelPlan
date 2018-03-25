@@ -15,6 +15,9 @@ public class InitializatorApi {
     private boolean isGlobalRoute;
     private List<Point> citiesFrom;
     private List<Point> citiesTo;
+    private int numberOfAdults;
+    private int numberOfChildren;
+
 
     public InitializatorApi() {
     }
@@ -75,6 +78,21 @@ public class InitializatorApi {
         this.citiesTo = citiesTo;
     }
 
+    public int getNumberOfAdults() {
+        return numberOfAdults;
+    }
+
+    public void setNumberOfAdults(int numberOfAdults) {
+        this.numberOfAdults = numberOfAdults;
+    }
+
+    public int getNumberOfChildren() {
+        return numberOfChildren;
+    }
+
+    public void setNumberOfChildren(int numberOfChildren) {
+        this.numberOfChildren = numberOfChildren;
+    }
 
     @Override
     public String toString() {
@@ -86,6 +104,8 @@ public class InitializatorApi {
                 .append("isGlobalRoute", isGlobalRoute)
                 .append("citiesFrom", citiesFrom)
                 .append("citiesTo", citiesTo)
+                .append("numberOfAdults", numberOfAdults)
+                .append("numberOfChildren", numberOfChildren)
                 .toString();
     }
 }

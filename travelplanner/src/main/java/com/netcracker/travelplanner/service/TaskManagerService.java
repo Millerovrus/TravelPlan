@@ -36,13 +36,13 @@ public class TaskManagerService {
     @Autowired
     private KiwiExecutor kiwiExecutor;
 
-    public List<Route> findTheBestRoutes(String from, String to, String latLongFrom, String latLongTo, String date){
+    public List<Route> findTheBestRoutes(String from, String to, String latLongFrom, String latLongTo, String date, int numberOfAdults, int numberOfChildren){
 
         ExecutorService executorService = Executors.newFixedThreadPool(3);
 
         PreparingDataService preparingDataService = new PreparingDataService();
 
-        InitializatorApi initializatorApi = preparingDataService.prepareData(from, to, latLongFrom, latLongTo, date );
+        InitializatorApi initializatorApi = preparingDataService.prepareData(from, to, latLongFrom, latLongTo, date, numberOfAdults, numberOfChildren);
 
         apiServiceManager = new ApiServiceManager(initializatorApi);
 
