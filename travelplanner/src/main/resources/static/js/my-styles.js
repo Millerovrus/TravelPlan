@@ -18,14 +18,19 @@ $(function () {
 
 /* spinner + -*/
 $(function () {
-    $("input[name='demo_vertical']").TouchSpin({
-        min: 0,
-        max: 10,
+    $("input[name='spinner-adult']").TouchSpin({
+        min: 1,
+        max: 5,
         step: 1,
         verticalupclass: 'fas fa-plus'
-        /* verticalbuttons: true,
-        verticalupclass: 'fa fa-caret-up',
-        verticaldownclass: 'fa fa-caret-down'*/
+    });
+});
+$(function () {
+    $("input[name='spinner-children']").TouchSpin({
+        min: 0,
+        max: 4,
+        step: 1,
+        verticalupclass: 'fas fa-plus'
     });
 });
 
@@ -72,8 +77,8 @@ function readURL(input) {
         reader.onload = function (e) {
             $('.img-circle')
                 .attr('src', e.target.result)
-                .width(100)
-                .height(100);
+                .width(128)
+                .height(128);
         };
         reader.readAsDataURL(input.files[0]);
     }

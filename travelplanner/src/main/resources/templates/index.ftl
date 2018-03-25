@@ -127,20 +127,17 @@
                                             <ul class="dropdown-menu" id="passengers-qunatity">
                                                 <div class="drop-passengers">
                                                     <li>
-                                                        <a href="#" ><label for="spin-adult">Adults</label><input id="spin-adult" type="text" value="1" name="demo_vertical"></a>
+                                                        <a href="#" ><label for="spin-adult">Adults</label><input id="spin-adult" type="text" value="1" name="spinner-adult"></a>
                                                     </li>
-                                                    <!--<li>-->
-                                                    <!--<a href="#"><label for="spin-senior">Seniors</label><input id="spin-senior" type="text" value="" name="demo_vertical"></a>-->
-                                                    <!--</li>-->
                                                     <li>
-                                                        <a href="#"><label for="spin-children">Children</label><input id="spin-children" type="text" value="0" name="demo_vertical"></a>
+                                                        <a href="#"><label for="spin-children">Children</label><input id="spin-children" type="text" value="0" name="spinner-children"></a>
                                                     </li>
-                                                    <li class="divider"></li>
-                                                    <li class="form-check">
-                                                        <label class="checkbox">
-                                                            <input type="checkbox"><span>Business class</span>
-                                                        </label>
-                                                    </li>
+                                                    <#--<li class="divider"></li>-->
+                                                    <#--<li class="form-check">-->
+                                                        <#--<label class="checkbox">-->
+                                                            <#--<input type="checkbox"><span>Business class</span>-->
+                                                        <#--</label>-->
+                                                    <#--</li>-->
                                                 </div>
                                             </ul>
                                             <!--</div>-->

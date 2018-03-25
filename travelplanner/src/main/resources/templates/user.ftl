@@ -74,10 +74,10 @@
                         </div>
                     </div>
                     <div class="col-sm-9">
-                        <v class="user-heading">
+                        <div class="user-heading">
                             <h3> ${firstname} ${lastname} </h3>
                             <span class="help-block">${email}</span>
-                        </v>
+                        </div>
                     </div>
                 </div>
 
@@ -105,64 +105,39 @@
                     <div class="user-body">
                         <div class="tab-content">
                             <div id="information" class="tab-pane active">
-                                <#--<h4>Account Information</h4>-->
-
-                                <#--<h1> Welcome ${firstname} ${lastname}! </h1>-->
-
-                                <#--<div style="color: #b92c28">Your data:</div>-->
-                                <#--<style type="text/css">-->
-                                    <#--.tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #bcaf91;border-collapse: collapse;}-->
-                                    <#--.tftable th {font-size:12px;background-color:#ded0b0;border-width: 1px;padding: 8px;border-style: solid;border-color: #bcaf91;text-align:left;}-->
-                                    <#--.tftable tr {background-color:#e9dbbb;}-->
-                                    <#--.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #bcaf91;}-->
-                                    <#--.tftable tr:hover {background-color:#ffffff;}-->
-                                <#--</style>-->
-
-                                <#--<table class="tftable" border="1">-->
-                                    <#--<tr><th></th><th>Data</th></tr>-->
-                                    <#--<tr><td>Firstname</td><td> ${firstname} </td></tr>-->
-                                    <#--<tr><td>Lastname</td><td> ${lastname} </td></tr>-->
-                                    <#--<tr><td>E-mail</td><td> ${email} </td></tr>-->
-                                    <#--<tr><td>Birthday</td><td> ${birthdate} </td></tr>-->
-                                <#--</table>-->
-
                                 <div class="container-fluid" id="container-user">
-                                                <div class="custom-form">
-                                                    <div class="col-sm-12">
-                                                        <h4>First name</h4>
-                                                        <input type="text" class="form-input" value="${firstname}" placeholder="Name" disabled id="first-name">
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <h4>Last name</h4>
-                                                        <input type="text" class="form-input" value="${lastname}" placeholder="LastName" disabled id="last-name">
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <h4>E-mail</h4>
-                                                        <input type="text" class="form-input" value="${email}" placeholder="Email ID" disabled id="user-email">
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <h4>Date of birth</h4>
-                                                        <input type="text" class="form-input" value="${birthdate}" placeholder="Phone Number" disabled id="birth-date">
-                                                    </div>
-                                                    <div class="row">
-                                                        <div>
-                                                            <!-- отметить, что фото загружено -->
-                                                        </div>
-                                                        <div class="col-sm-offset-8 col-sm-4">
-                                                            <input type="file" id="base-input" style="display: none" onchange="readURL(this);" accept="image/*" class="form-control form-style-base">
-                                                            <h4 id="fake-input" style="display: none" class="upload-btn form-style-fake"><i class="fa fa-camera"></i> Upload photo</h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-12 text-center" align="center">
-                                                        <button class="btn custom-btn"  onclick="saveEdit()" id="submit-edit" style="display: none" disabled> Save changes</button>
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <div class="edit-section">
-                                                            <h4 id="edit-header" class="text-right"><span class="glyphicon glyphicon-edit"></span> Edit Profile</h4>
-                                                            <input type="checkbox" onclick="enableEdit()" class="form-control" id="checker22" value="0">
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    <div class="custom-form">
+                                        <div class="col-sm-12">
+                                            <h4>First name</h4>
+                                            <input type="text" class="form-input" value="${firstname}" placeholder="Name" disabled id="first-name">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <h4>Last name</h4>
+                                            <input type="text" class="form-input" value="${lastname}" placeholder="LastName" disabled id="last-name">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <h4>E-mail</h4>
+                                            <input type="text" class="form-input" value="${email}" placeholder="Email ID" disabled id="user-email">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <h4>Date of birth</h4>
+                                            <input type="text" class="form-input" value="${birthdate}" placeholder="Phone Number" disabled id="birth-date">
+                                        </div>
+                                        <div class="col-sm-12 text-right">
+                                            <input type="file" id="base-input" style="display: none" onchange="readURL(this);" accept="image/*" class=" form-style-base">
+                                            <h4 id="fake-input" style="display: none" class="upload-btn form-style-fake"><i class="fa fa-camera"></i> Upload photo</h4>
+                                        </div>
+
+                                        <div class="col-sm-12 text-center" align="center">
+                                            <button class="btn custom-btn"  onclick="saveEdit()" id="submit-edit" style="display: none" disabled> Save changes</button>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="edit-section">
+                                                <h4 id="edit-header" class="text-right"><span class="glyphicon glyphicon-edit"></span> Edit Profile</h4>
+                                                <input type="checkbox" onclick="enableEdit()" class="form-control" id="checker22" value="0">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
 

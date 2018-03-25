@@ -740,6 +740,7 @@ input[type='checkbox']:checked + span{
     width: 100%;
     margin: 0 0 0;
     text-align: left;
+    font-size: 18px;
 }
 
 .user-info-block .navigation {
@@ -789,7 +790,7 @@ li.col-xs-3{
     float: left;
     left: 50%;
     padding: 2%;
-    width: 90%;
+    width: 100%;
 }
 
 .user-body .tab-content > div {
@@ -840,6 +841,11 @@ li.col-xs-3{
     color:#2b2b2b;
 }
 
+#edit-header{
+    margin-top: -10px;
+}
+
+
 .custom-btn{
     width: 100%;
     margin-top: 40px;
@@ -859,7 +865,7 @@ li.col-xs-3{
 }
 
 .upload-btn {
-    float: left;
+    float: right;
     width: 100%;
     color: #2b2b2b;
     border: none;
@@ -872,13 +878,19 @@ li.col-xs-3{
 
 #base-input{
     outline: 0;
+    opacity: 0;
     border: 0;
 }
+
 #checker22{
     opacity: 0;
     position: absolute;
-    top: 18px;
+    top: 0;
     cursor: pointer;
+}
+
+#fake-input{
+    margin-left: -60px;
 }
 
 /*====== style for placeholder ========*/
