@@ -131,10 +131,6 @@ public class Algorithm {
                 optimalFoundRoutes.add(minRoutes[i]);
             }
         }
-        //временно
-        for (int i = 0; i < optimalFoundRoutes.size(); i++) {
-            optimalFoundRoutes.get(i).setIdRouteForView(i);
-        }
     }
 
     private void convertingEdgesToRoutes(List<List<Edge>> allFoundEdges){
