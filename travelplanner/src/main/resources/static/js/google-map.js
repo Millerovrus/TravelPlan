@@ -123,10 +123,9 @@ function initMap() {
     });
 }
 //установка значений на карту
-function setMap(id) {
+function setMap(edges) {
     resetMap();
-    var routes = JSON.parse(document.getElementById("json-for-map").innerHTML);
-    fillInAll(routes[id].edges);
+    fillInAll(edges);
 }
 //обнуление значений с карты
 function resetMap() {
@@ -156,7 +155,7 @@ function fillInAll(edges) {
                 speed.push(0.4);
                 break;
             case 'train':
-                speed.push(0.7);
+                speed.push(0.6);
                 break;
             case 'car':
                 speed.push(0.6);

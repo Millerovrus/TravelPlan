@@ -202,8 +202,6 @@
                                                     <div class="row">
                                                         <div class="col-sm-5">
                                                             <div class="fancy-collapse-panel" >
-                                                                <!-- костыль -->
-                                                                <div id="json-for-map" ng-show="false">{{records}}</div>
                                                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
                                                                     <div class="panel panel-default"  ng-repeat="record in records">
                                                                                 <#--<label class="checkbox" id="checkbox-{{record.idRouteForView}}">-->
@@ -211,7 +209,7 @@
                                                                                 <#--</label>-->
                                                                             <div class="panel-heading" role="tab" id="headingOne" >
                                                                                 <h4 class="panel-title">
-                                                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.idRouteForView)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
+                                                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
                                                                                         <div class="route-header" ng-repeat="item in record.edges"> {{item.startPoint}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{item.destinationPoint}} </div>
                                                                                         <div class="divider-inverse"></div>
                                                                                         <div class="json-data">
