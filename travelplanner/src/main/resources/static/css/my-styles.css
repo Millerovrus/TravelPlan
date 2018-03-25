@@ -827,6 +827,7 @@ li.col-xs-3{
 .edit-section{
     float: left;
     width: 100%;
+    margin-top: -20px;
     padding-top: 3px;
     padding-bottom: 5px;
     background: transparent;
@@ -848,7 +849,7 @@ li.col-xs-3{
 
 .custom-btn{
     width: 100%;
-    margin-top: 40px;
+    margin-top: 10px;
     padding: 3px 60px;
     margin-bottom: 15px;
     border: transparent;
@@ -889,10 +890,16 @@ li.col-xs-3{
     cursor: pointer;
 }
 
-#fake-input{
-    margin-left: -60px;
+.file-input{
+    margin-left: 14px;
+    height: 25px;
 }
 
+#file-name{
+    display: none;
+    float: right;
+    margin-left: -80px;
+}
 /*====== style for placeholder ========*/
 /*
 .form-control::-webkit-input-placeholder {

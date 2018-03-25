@@ -123,9 +123,12 @@
                                             <h4>Date of birth</h4>
                                             <input type="text" class="form-input" value="${birthdate}" placeholder="Phone Number" disabled id="birth-date">
                                         </div>
-                                        <div class="col-sm-12 text-right">
-                                            <input type="file" id="base-input" style="display: none" onchange="readURL(this);" accept="image/*" class=" form-style-base">
-                                            <h4 id="fake-input" style="display: none" class="upload-btn form-style-fake"><i class="fa fa-camera"></i> Upload photo</h4>
+                                        <div class="row">
+                                            <div class="col-sm-11 file-input text-left">
+                                                <input type="file" id="base-input" style="display: none" onchange="readURL(this);" accept="image/*" class="form-style-base">
+                                                <h4 id="fake-input" style="display: none" class="upload-btn form-style-fake"><i class="fa fa-camera"></i> Upload photo</h4>
+                                                <div id="file-name"><i class="fa fa-check"></i></div>
+                                            </div>
                                         </div>
 
                                         <div class="col-sm-12 text-center" align="center">
@@ -139,8 +142,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div class="panel panel-default">
                                     <div class="panel-body">
                                         <div class="box box-info">
