@@ -75,19 +75,13 @@ angular.module('controllerModule')
         $scope.$on('UNLOAD', function () { $scope.loading = false });
     })
     .controller('mapController', function ($scope) {
-        $scope.setMap = function (id) {
-           // setMap(id);
-            $('.panel').on('hidden.bs.collapse', function () {
+        $scope.setMap = function (record) {
+
                 resetMap();
-            });
+
             $('.panel').on('shown.bs.collapse', function () {
-                setMap(id);
+                setMap(record);
             });
-
         };
-        $scope.resetMap = function () {
-            resetMap();
-        };
-
     });
 
