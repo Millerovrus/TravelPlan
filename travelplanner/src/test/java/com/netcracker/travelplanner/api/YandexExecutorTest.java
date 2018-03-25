@@ -19,7 +19,7 @@ public class YandexExecutorTest {
     @Test
     public void execute() throws Exception {
 
-        mainRouteService.findTheBestRoutes("Voronezh", "Berlin", "(51.6754966, 39.20888230000003)","(52.5174, 13.4068)","2018-03-17", 1, 0)
+        mainRouteService.findBestRoutes("Voronezh", "Berlin", "(51.6754966, 39.20888230000003)","(52.5174, 13.4068)","2018-03-17", 1, 0)
                 .forEach(route -> System.out.println(route.toString()));
     }
 
