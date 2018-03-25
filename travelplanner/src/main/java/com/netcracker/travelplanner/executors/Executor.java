@@ -35,7 +35,7 @@ public class Executor implements ExecutorMan {
         );
 
         try {
-            futures = executorService.invokeAll(callables);
+            futures = executorService.invokeAll(callables,4,TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             logger.error("Executor. ошибка запроса в InvokeAll");
         } catch (CancellationException e) {
