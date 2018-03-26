@@ -113,13 +113,20 @@ public class Algorithm {
             }
         }
 
-        optimalFoundRoutes.clear();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++){
             for (int j = 0; j < l; j++){
-                minRoutes[i][j].setOptimalRoute(j == 0);
-
-                if (!optimalFoundRoutes.contains(minRoutes[i][j])) {
+                if (!optimalFoundRoutes.contains(minRoutes[i][j])){
                     optimalFoundRoutes.add(minRoutes[i][j]);
+                }
+            }
+        }
+
+        for (Route route :
+                optimalFoundRoutes) {
+            for (int i = 0; i < 5; i++) {
+                if (minRoutes[i][0].equals(route)){
+                    route.setOptimalRoute(true);
+                    break;
                 }
             }
         }
