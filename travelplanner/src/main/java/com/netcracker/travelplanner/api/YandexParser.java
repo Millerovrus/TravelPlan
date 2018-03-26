@@ -70,8 +70,8 @@ public class YandexParser implements ApiInterface {
                                 , to.getLatitude()
                                 , to.getLongitude()
                                 , (byte) 0
-                                , from.getIataCode()
-                                , to.getIataCode())));
+                                , ""
+                                , "")));
             }
         }
         return edgeList;

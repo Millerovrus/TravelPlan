@@ -130,9 +130,8 @@ public class MainRouteService {
         return edgeList;
     }
 
-    private List<Route> getRoutes(List<Edge> edgeList, String startPoint, String endPoint ){
-
-        return new Algorithm().getOptimalFoundRoutes(edgeList,startPoint,endPoint);
+    private List<Route> getRoutes(List<Edge> edgeList, String startPoint, String endPoint, int numberOfPassengers){
+        return new Algorithm().getOptimalFoundRoutes(edgeList,startPoint,endPoint,numberOfPassengers);
     }
 
     public List<Route> findBestRoutes(String from
@@ -160,7 +159,8 @@ public class MainRouteService {
 
         return getRoutes(edgeList
                 ,searchInputParameters.getFrom().getName()
-                ,searchInputParameters.getTo().getName());
+                ,searchInputParameters.getTo().getName()
+                ,searchInputParameters.getNumberOfAdults()+searchInputParameters.getNumberOfChildren());
 
     }
 

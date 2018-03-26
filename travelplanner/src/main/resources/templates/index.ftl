@@ -105,7 +105,7 @@
 
                         <div class="row">
                             <div class="col-sm-6">
-                                <div class="inputBox ">
+                                <div class="inputBox">
                                     <input type="text" name="" id="inputFrom" required class="input" placeholder="From" onfocus="geolocate()">
                                 </div>
                             </div>
@@ -203,7 +203,7 @@
                                                         <div class="col-sm-5">
                                                             <div class="fancy-collapse-panel" >
                                                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-                                                                    <div class="panel panel-default"  ng-repeat="record in records">
+                                                                    <div class="panel panel-default"  ng-repeat="record in records | filter:isOptimalRoute">
                                                                                 <#--<label class="checkbox" id="checkbox-{{record.idRouteForView}}">-->
                                                                                     <#--<input type="checkbox"><span> Save</span>-->
                                                                                 <#--</label>-->

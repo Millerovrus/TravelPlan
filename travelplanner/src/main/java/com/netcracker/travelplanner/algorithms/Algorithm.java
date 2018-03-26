@@ -16,27 +16,18 @@ import java.util.stream.Collectors;
  */
 @Service
 public class Algorithm {
-    private List<Route> allFoundRoutes = new ArrayList<>();
     private List<Route> optimalFoundRoutes = new ArrayList<>();
     private static final Logger logger = LoggerFactory.getLogger(Algorithm.class);
 
-//    public List<Route> getAllFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint) {
-//        edges = edges.stream().distinct().collect(Collectors.toList());
-//        logger.debug("Start search with {} edges", edges.size());
-//        startSearch(edges, startPoint, destinationPoint);
-//        return allFoundRoutes;
-//    }
-
-    public List<Route> getOptimalFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint) {
+    public List<Route> getOptimalFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint, int numberOfPassengers) {
         edges = edges.stream().distinct().collect(Collectors.toList());
         logger.debug("Start search with {} edges", edges.size());
-        startSearch(edges, startPoint, destinationPoint);
+        startSearch(edges, startPoint, destinationPoint, numberOfPassengers);
         return optimalFoundRoutes;
     }
 
-    private void startSearch(List<Edge> edges, String startPoint, String destinationPoint) {
+    private void startSearch(List<Edge> edges, String startPoint, String destinationPoint, int numberOfPassengers) {
         List<List<Edge>> allFoundEdges = new ArrayList<>();
-        boolean stopSearch;
 
         // пробегаемся по edges, записываем все ребра, у которых startPoint == заданному startPoint
         for (Edge edge : edges) {
@@ -49,7 +40,7 @@ public class Algorithm {
 
         byte expectedSize = 1;
         logger.debug("После прохода {}: {} найденных маршрутов", expectedSize, allFoundEdges.size());
-        stopSearch = true;
+        boolean stopSearch = true;
         for (List<Edge> foundEdges : allFoundEdges) {
             if (!foundEdges.get(foundEdges.size()-1).getDestinationPoint().equals(destinationPoint)){
                 stopSearch = false;
@@ -91,7 +82,7 @@ public class Algorithm {
                 }
             }
         }
-        convertingEdgesToRoutes(allFoundEdges);
+        convertingEdgesToRoutes(allFoundEdges, numberOfPassengers);
     }
 
     private void findOptimalRoutes(List<Route> allFoundRoutes){
@@ -121,7 +112,7 @@ public class Algorithm {
                 }
             }
         }
-        //временно
+
         optimalFoundRoutes.clear();
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < l; j++){
@@ -134,7 +125,7 @@ public class Algorithm {
         }
     }
 
-    private void convertingEdgesToRoutes(List<List<Edge>> allFoundEdges){
+    private void convertingEdgesToRoutes(List<List<Edge>> allFoundEdges, int numberOfPassengers){
         List<Route> routeList = new ArrayList<>();
         int idRouteForView  = 0;
         for (List<Edge> foundEdges : allFoundEdges) {
@@ -153,29 +144,38 @@ public class Algorithm {
                     route.setDistance(route.getDistance() + edge.getDistance());
                 }
             }
-            route.getWeights().add(route.getDuration() / 72 + route.getCost());
-            route.getWeights().add(route.getDuration() / 9 + route.getCost());
-            route.getWeights().add(route.getDuration() / 4 + route.getCost());
-            route.getWeights().add(route.getDuration() / 100000 + route.getCost() * 100);
-            route.getWeights().add(route.getDuration() * 100 + route.getCost() / 100000);
+            route.getWeights().add(route.getDuration() / 72 + route.getCost() / numberOfPassengers);
+            route.getWeights().add(route.getDuration() / 9 + route.getCost() / numberOfPassengers);
+            route.getWeights().add(route.getDuration() / 4 + route.getCost() / numberOfPassengers);
+            route.getWeights().add(route.getDuration() / 100000 + route.getCost() * 10 / numberOfPassengers);
+            route.getWeights().add(route.getDuration() + route.getCost() / 100000 / numberOfPassengers);
 
             routeList.add(route);
         }
-        allFoundRoutes = routeList;
-        findOptimalRoutes(allFoundRoutes);
+        findOptimalRoutes(routeList);
     }
 
     private boolean timeDockingBetween(Edge edgeFrom, Edge edgeTo) {
-        return (edgeFrom.getTransportType().toLowerCase().equals("plane")
+        return (
+                //Если прилет и вылет с одного аэропорта, то состыковка в 2 часа минимум
+                !edgeFrom.getEndPointCode().isEmpty()
+                && !edgeTo.getStartPointCode().isEmpty()
+                && edgeFrom.getTransportType().toLowerCase().equals("plane")
                 && edgeTo.getTransportType().toLowerCase().equals("plane")
                 && edgeFrom.getEndPointCode().equals(edgeTo.getStartPointCode())
                 && edgeFrom.getEndDate().plusHours(2).isBefore(edgeTo.getStartDate())
                 && edgeFrom.getEndDate().plusHours(10).isAfter(edgeTo.getStartDate())
-                || edgeFrom.getTransportType().toLowerCase().equals("bus")
+
+                //Если приезд и выезд с одной остановки, то состыковка в 30 минут минимум
+                || !edgeFrom.getEndPointCode().isEmpty()
+                && !edgeTo.getStartPointCode().isEmpty()
+                && edgeFrom.getTransportType().toLowerCase().equals("bus")
                 && edgeTo.getTransportType().toLowerCase().equals("bus")
                 && edgeFrom.getEndPointCode().equals(edgeTo.getStartPointCode())
-                && edgeFrom.getEndDate().plusHours(1).isBefore(edgeTo.getStartDate())
+                && edgeFrom.getEndDate().plusMinutes(30).isBefore(edgeTo.getStartDate())
                 && edgeFrom.getEndDate().plusHours(9).isAfter(edgeTo.getStartDate())
+
+                //В остальном если состыкуются по времени, то пропускаем, если нет, то нет
                 || (calculateEndDateTime(edgeFrom).isBefore(calculateStartDateTime(edgeTo))
                 && (edgeFrom.getEndDate().plusHours(12).isAfter(edgeTo.getStartDate()))));
     }

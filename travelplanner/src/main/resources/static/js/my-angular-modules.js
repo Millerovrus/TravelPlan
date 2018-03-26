@@ -38,9 +38,9 @@ angular.module('controllerModule')
                 });
             initMap();
         };
-        // $scope.isOptimalRoute = function(records) {
-        //     return records.optimalRoute;
-        // };
+        $scope.isOptimalRoute = function(records) {
+            return records.optimalRoute;
+        };
 
     })
     .filter('secondsToTime', [function() {
