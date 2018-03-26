@@ -59,18 +59,6 @@ $('input[id=base-input]').change(function() {
     $('#fake-input').val($(this).val().replace("C:\\", ""));
 });
 
-<!--==================Javascript code for custom input type file on button ================-->
-
-$('input[id=main-input]').change(function() {
-    console.log($(this).val());
-    var mainValue = $(this).val();
-    if(mainValue == ""){
-        document.getElementById("fake-btn").innerHTML = "Choose File";
-    }else{
-        document.getElementById("fake-btn").innerHTML = mainValue.replace("C:\\fakepath\\", "");
-    }
-});
-
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -81,11 +69,6 @@ function readURL(input) {
                 .height(128);
         };
         reader.readAsDataURL(input.files[0]);
+        document.getElementById('file-name').style.display = 'block';
     }
 }
-
-$(function() {
-    $('#profile-image1').on('click', function() {
-        $('#profile-image-upload').click();
-    });
-})

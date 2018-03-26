@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.*;
 
+@Deprecated
 @Singleton
 @Service
 public class KiwiExecutor implements ExecutorManager {
@@ -21,6 +22,8 @@ public class KiwiExecutor implements ExecutorManager {
     @Override
     public List<Edge> execute(List<Callable<List<Edge>>> taskList) {
 
+        logger.debug("start kiwi"+ this.toString());
+
         List<Edge> edgeList = new ArrayList<>();
 
         List<Future<List<Edge>>> futures = Collections.synchronizedList(new ArrayList<>());
@@ -28,6 +31,8 @@ public class KiwiExecutor implements ExecutorManager {
             futures = executorService.invokeAll(taskList, 60, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } catch (CancellationException e){
+            logger.error("cancellation exception");
         }
 
         for (Future<List<Edge>> future : futures) {

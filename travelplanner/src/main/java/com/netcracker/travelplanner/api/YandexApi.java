@@ -44,7 +44,7 @@ public class YandexApi implements ApiInterface {
                             , to.getName()
                             , l.getThread().getTransportType()
                             , l.getDuration()
-                            , (double) l.getTicketsInfo().getPlaces().get(0).getPrice().getWhole() * (numberOfAdults + numberOfChildren)
+                            , ((double) l.getTicketsInfo().getPlaces().get(0).getPrice().getWhole()) * (numberOfAdults + numberOfChildren)
                             , null
                             , LocalDateTime.parse(l.getDeparture(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
                             , LocalDateTime.parse(l.getArrival(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)

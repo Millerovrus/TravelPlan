@@ -1,9 +1,9 @@
 package com.netcracker.travelplanner.service;
 
 import com.netcracker.travelplanner.entities.Point;
+import com.netcracker.travelplanner.entities.SearchInputParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -13,7 +13,7 @@ public class PreparingDataService {
 
     private static final Logger logger = LoggerFactory.getLogger(PreparingDataService.class);
 
-    public InitializatorApi prepareData(String from
+    public SearchInputParameters prepareData(String from
             , String to
             , String latLongFrom
             , String latLongTo
@@ -21,7 +21,7 @@ public class PreparingDataService {
             , int numberOfAdults
             , int numberOfChildren){
 
-        InitializatorApi initializatorApi = new InitializatorApi();
+        SearchInputParameters searchInputParameters = new SearchInputParameters();
 
         Point pointFrom = new Point();
         Point pointTo = new Point();
@@ -42,7 +42,7 @@ public class PreparingDataService {
         pointTo.setLatitude(latTo);
         pointTo.setLongitude(lonTo);
 
-        initializatorApi.setDeparture(LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE));
+        searchInputParameters.setDeparture(LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE));
 
         pointFrom.setYandexCode(EdgeService.getYandexCode(latFrom, lonFrom));
         pointTo.setYandexCode(EdgeService.getYandexCode(latTo,lonTo));
@@ -55,7 +55,7 @@ public class PreparingDataService {
 
         if(EdgeService.isGlobalRoute(latFrom,lonFrom,latTo,lonTo)){
 
-            initializatorApi.setGlobalRoute(true);
+            searchInputParameters.setGlobalRoute(true);
 
             List<Point> citiesFrom = EdgeService.getCities(iataCodeFrom, latFrom, lonFrom);
             List<Point> citiesTo = EdgeService.getCities(iataCodeTo, latTo, lonTo);
@@ -88,20 +88,20 @@ public class PreparingDataService {
             logger.debug("{} cities around {}: {}", citiesFrom.size(), from, citiesFrom.toString());
             logger.debug("{} cities around {}: {}", citiesTo.size(), to, citiesTo.toString());
 
-            initializatorApi.setCitiesFrom(citiesFrom);
-            initializatorApi.setCitiesTo(citiesTo);
+            searchInputParameters.setCitiesFrom(citiesFrom);
+            searchInputParameters.setCitiesTo(citiesTo);
 
         }
         else {
-            initializatorApi.setGlobalRoute(false);
+            searchInputParameters.setGlobalRoute(false);
         }
 
-        initializatorApi.setFrom(pointFrom);
-        initializatorApi.setTo(pointTo);
-        initializatorApi.setNumberOfAdults(numberOfAdults);
-        initializatorApi.setNumberOfChildren(numberOfChildren);
+        searchInputParameters.setFrom(pointFrom);
+        searchInputParameters.setTo(pointTo);
+        searchInputParameters.setNumberOfAdults(numberOfAdults);
+        searchInputParameters.setNumberOfChildren(numberOfChildren);
 
-        return initializatorApi;
+        return searchInputParameters;
     }
 
 }

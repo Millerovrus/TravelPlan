@@ -41,4 +41,5 @@ function saveEdit() {
     fakeInput.style.display = 'none';
     baseInput.style.display = 'none';
     UserSend.style.display = 'none';
+    document.getElementById('file-name').style.display = 'none';
 }
