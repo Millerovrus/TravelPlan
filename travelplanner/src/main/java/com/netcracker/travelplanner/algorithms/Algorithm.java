@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -98,37 +95,41 @@ public class Algorithm {
     }
 
     private void findOptimalRoutes(List<Route> allFoundRoutes){
-        double[] min = {Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE};
-        Route[] minRoutes = new Route[5];
-        for (Route allFoundRoute : allFoundRoutes) {
-            if (allFoundRoute.getWeights().get(0) < min[0]){
-                minRoutes[0] = allFoundRoute;
-                min[0] = allFoundRoute.getWeights().get(0);
-            }
-            if (allFoundRoute.getWeights().get(1) < min[1]){
-                minRoutes[1] = allFoundRoute;
-                min[1] = allFoundRoute.getWeights().get(1);
-            }
-            if (allFoundRoute.getWeights().get(2) < min[2]){
-                minRoutes[2] = allFoundRoute;
-                min[2] = allFoundRoute.getWeights().get(2);
-            }
-            if (allFoundRoute.getWeights().get(3) < min[3]){
-                minRoutes[3] = allFoundRoute;
-                min[3] = allFoundRoute.getWeights().get(3);
-            }
-            if (allFoundRoute.getWeights().get(4) < min[4]){
-                minRoutes[4] = allFoundRoute;
-                min[4] = allFoundRoute.getWeights().get(4);
+        int l = 10;
+        Route[][] minRoutes = new Route[5][l];
+        int[] counters = {0, 0, 0, 0, 0};
+
+        for (Route eachFoundRoute : allFoundRoutes) {
+            for (int i = 0; i < 5; i++){
+                for (int j = 0; j < l; j++){
+                    if (minRoutes[i][j] == null){
+                        minRoutes[i][j] = eachFoundRoute;
+                        counters[i]++;
+                        break;
+                    }
+                    if (eachFoundRoute.getWeights().get(i) < minRoutes[i][j].getWeights().get(i)){
+                        if (counters[i] < l){
+                            System.arraycopy(minRoutes[i], j, minRoutes[i], j + 1, counters[i]++ - j);
+                        }
+                        else
+                        {
+                            System.arraycopy(minRoutes[i], j, minRoutes[i], j + 1, counters[i] - j - 1);
+                        }
+                        minRoutes[i][j] = eachFoundRoute;
+                        break;
+                    }
+                }
             }
         }
         //временно
         optimalFoundRoutes.clear();
-        for (int i = 0; i < minRoutes.length; i++) {
-            minRoutes[i].setOptimalRoute(true);
-            //временно
-            if (!optimalFoundRoutes.contains(minRoutes[i])) {
-                optimalFoundRoutes.add(minRoutes[i]);
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < l; j++){
+                minRoutes[i][j].setOptimalRoute(j == 0);
+
+                if (!optimalFoundRoutes.contains(minRoutes[i][j])) {
+                    optimalFoundRoutes.add(minRoutes[i][j]);
+                }
             }
         }
     }
