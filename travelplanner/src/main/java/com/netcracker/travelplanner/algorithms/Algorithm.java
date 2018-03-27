@@ -20,6 +20,10 @@ public class Algorithm {
     private static final Logger logger = LoggerFactory.getLogger(Algorithm.class);
 
     public List<Route> getOptimalFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint, int numberOfPassengers) {
+        if (edges.isEmpty()){
+            logger.debug("Edge list is empty =(");
+            return null;
+        }
         edges = edges.stream().distinct().collect(Collectors.toList());
         logger.debug("Start search with {} edges", edges.size());
         startSearch(edges, startPoint, destinationPoint, numberOfPassengers);
@@ -86,7 +90,13 @@ public class Algorithm {
     }
 
     private void findOptimalRoutes(List<Route> allFoundRoutes){
-        int l = 10;
+        int l;
+        if (allFoundRoutes.size() < 10){
+            l = allFoundRoutes.size();
+        } else {
+            l = 10;
+        }
+
         Route[][] minRoutes = new Route[5][l];
         int[] counters = {0, 0, 0, 0, 0};
 
@@ -121,8 +131,7 @@ public class Algorithm {
             }
         }
 
-        for (Route route :
-                optimalFoundRoutes) {
+        for (Route route : optimalFoundRoutes) {
             for (int i = 0; i < 5; i++) {
                 if (minRoutes[i][0].equals(route)){
                     route.setOptimalRoute(true);
