@@ -6,6 +6,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -83,6 +84,18 @@ public class Edge implements Cloneable {
 
     @Transient
     private byte numberOfTransfers;
+
+    @Transient
+    @JsonIgnore
+    private List<Point> transitPoints;
+
+    public List<Point> getTransitPoints() {
+        return transitPoints;
+    }
+
+    public void setTransitPoints(List<Point> transitPoints) {
+        this.transitPoints = transitPoints;
+    }
 
     public Route getRoute() {
         return route;
@@ -260,8 +273,26 @@ public class Edge implements Cloneable {
         this.numberOfTransfers = numberOfTransfers;
     }
 
+    public Edge(Date creationDate
+            , String startPoint
+            , String destinationPoint
+            , String transportType
+            , Double duration
+            , Double cost
+            , Double distance
+            , LocalDateTime startDate
+            , LocalDateTime endDate
+            , String currency
+            , String startIataCode
+            , String endIataCode
+            , double latitudeFrom
+            , double longitudeFrom
+            , double latitudeTo
+            , double longitudeTo
+            , byte numberOfTransfers
+            , String startPointCode
+            , String endPointCode) {
 
-    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode, double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo, byte numberOfTransfers, String startPointCode, String endPointCode) {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;
@@ -282,7 +313,26 @@ public class Edge implements Cloneable {
         this.startPointCode = startPointCode;
         this.endPointCode = endPointCode;
     }
-    public Edge(Date creationDate, String startPoint, String destinationPoint, String transportType, Double duration, Double cost, Double distance, LocalDateTime startDate, LocalDateTime endDate, String currency, String startIataCode, String endIataCode, double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo, byte numberOfTransfers) {
+
+    @Deprecated
+    public Edge(Date creationDate
+            , String startPoint
+            , String destinationPoint
+            , String transportType
+            , Double duration
+            , Double cost
+            , Double distance
+            , LocalDateTime startDate
+            , LocalDateTime endDate
+            , String currency
+            , String startIataCode
+            , String endIataCode
+            , double latitudeFrom
+            , double longitudeFrom
+            , double latitudeTo
+            , double longitudeTo
+            , byte numberOfTransfers) {
+
         this.creationDate = creationDate;
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;
@@ -351,7 +401,6 @@ public class Edge implements Cloneable {
     public int hashCode() {
         return Objects.hash(id);
     }
-
 
     @Override
     public Object clone() throws CloneNotSupportedException {

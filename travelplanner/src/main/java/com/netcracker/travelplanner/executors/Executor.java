@@ -25,6 +25,7 @@ public class Executor implements ExecutorMan {
 
         List<Edge> edgeList = new ArrayList<>();
 
+        /*Формируем задачи для  выполнения из АПИ. передаем в метод findEdgesFromTo параметры запроса из сущности Task*/
         tasks.forEach(task ->
                 callables.add(() ->
                         apiInterface.findEdgesFromTo(task.getFrom()
@@ -34,6 +35,7 @@ public class Executor implements ExecutorMan {
                                 , task.getChildrenCount()))
         );
 
+        /*Отправляем  задачи на выполнение*/
         try {
             futures = executorService.invokeAll(callables,4,TimeUnit.MINUTES);
         } catch (InterruptedException e) {
@@ -42,10 +44,11 @@ public class Executor implements ExecutorMan {
             logger.error("Cancellation Exception");
         }
 
+        /*Обрабатываем результат выполнения задач*/
         futures.forEach(listFuture -> {
             try {
 
-                while (!listFuture.isDone()) {
+                while ( ! listFuture.isDone()) {
                     System.out.println("Thread sleep. Task is not complete");
                     Thread.sleep(200);
                 }
@@ -61,7 +64,7 @@ public class Executor implements ExecutorMan {
             }
         });
 
-
+//        /*Для теста. запись в файлы полученных эджей*/
 //        logger.debug("edges from " + this.toString());
 //
 //        try (FileWriter writer = new FileWriter(new File("test" + this.toString() + ".txt"))) {

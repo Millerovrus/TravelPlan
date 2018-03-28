@@ -15,6 +15,7 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class KiwiApi implements ApiInterface {
@@ -45,7 +46,17 @@ public class KiwiApi implements ApiInterface {
             KiwiFlights kiwiFlights = getKiwiFlightsFromUrl(url);
             String currency = kiwiFlights.getCurrency();
 
-            kiwiFlights.getData().forEach(l -> edgeList.add(new Edge(dateNow
+            kiwiFlights.getData().forEach(l ->
+                    {
+                        if(l.getRoute().size()>1){
+                            List<Point> pointList = new LinkedList<>();
+                            l.getRoute().forEach(route ->
+                                    pointList.add(new Point(route.getCityFrom()
+                                            ,route.getLatFrom()
+                                            ,route.getLngFrom()
+                                            ,route.getFlyFrom())));
+                        }
+                    edgeList.add(new Edge(dateNow
                     , from.getName()
                     , to.getName()
                     , "plane"
@@ -63,7 +74,8 @@ public class KiwiApi implements ApiInterface {
                     , to.getLongitude()
                     , (byte) (l.getRoute().size() - 1)
                     ,l.getFlyFrom()
-                    ,l.getFlyTo())));
+                    ,l.getFlyTo()));
+                    });
         }
         return edgeList;
     }

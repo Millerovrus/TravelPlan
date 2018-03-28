@@ -65,7 +65,8 @@ public class Task {
                 .append("from", from)
                 .append("to", to)
                 .append("date", date)
+                .append("adultsCount", adultsCount)
+                .append("childrenCount", childrenCount)
                 .toString();
     }
-
 }

@@ -145,6 +145,7 @@ function resetMap() {
 function fillInAll(edges) {
     var speed = [];
     for (var i = 0; i < edges.length; i++) {
+        /*если пересадок больше 1, то еще один цикл и берем значения из внутренних эджей*/
         var from = new google.maps.LatLng(edges[i].latitudeFrom, edges[i].longitudeFrom);
         var to = new google.maps.LatLng(edges[i].latitudeTo, edges[i].longitudeTo);
         switch (edges[i].transportType) {

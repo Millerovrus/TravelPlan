@@ -59,9 +59,15 @@ public class Point {
         this.yandexCode = yandexCode;
     }
 
-    public Point() {
+    public Point(String name, double latitude, double longitude, String iataCode) {
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.iataCode = iataCode;
     }
 
+    public Point() {
+    }
 
     @Override
     public String toString() {
