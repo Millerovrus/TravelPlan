@@ -48,16 +48,21 @@ public class KiwiApi implements ApiInterface {
 
             kiwiFlights.getData().forEach(l ->
             {
-                List<Edge> transitEdges = new LinkedList<>();
+                List<Point> transitPoints = new LinkedList<>();
 
                 if(l.getRoute().size()>1){
-                    l.getRoute().forEach(route -> transitEdges.add(new Edge(
-                            "plane"
-                            , LocalDateTime.ofEpochSecond(route.getDTime(), 0, ZoneOffset.UTC)
-                            , LocalDateTime.ofEpochSecond(route.getATime(), 0, ZoneOffset.UTC)
-                            , new Point(route.getCityFrom(),route.getLatFrom(),route.getLngFrom(),route.getFlyFrom())
-                            , new Point(route.getCityTo(),route.getLatTo(),route.getLngTo(),route.getFlyTo())
-                    )));
+                    transitPoints.add(new Point(l.getRoute().get(0).getCityFrom()
+                            ,l.getRoute().get(0).getLatFrom()
+                            ,l.getRoute().get(0).getLngFrom()
+                            ,l.getRoute().get(0).getFlyFrom()));
+
+                    l.getRoute().forEach(route -> {
+                        transitPoints.add(new Point(route.getCityTo()
+                                ,route.getLatTo()
+                                ,route.getLngTo()
+                                ,route.getFlyTo()
+                                ));
+                    });
                 }
 
                 Edge edge = new Edge();
@@ -81,7 +86,7 @@ public class KiwiApi implements ApiInterface {
                                 ,to.getIataCode()
                                 ,to.getYandexCode()
                                 ,l.getFlyTo()));
-                edge.setTransitEdges(transitEdges);
+                edge.setTransitPoints(transitPoints);
             });
         }
         return edgeList;

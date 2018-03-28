@@ -87,7 +87,7 @@ public class Edge implements Cloneable {
 
     @Transient
     @JsonIgnore
-    private List<Edge> transitEdges;
+    private List<Point> transitPoints;
 
     @Transient
     @JsonIgnore
@@ -109,12 +109,12 @@ public class Edge implements Cloneable {
         this.endPointPoint = endPoint;
     }
 
-    public List<Edge> getTransitEdges() {
-        return transitEdges;
+    public List<Point> getTransitPoints() {
+        return transitPoints;
     }
 
-    public void setTransitEdges(List<Edge> transitEdges) {
-        this.transitEdges = transitEdges;
+    public void setTransitPoints(List<Point> transitPoints) {
+        this.transitPoints = transitPoints;
     }
 
     public Route getRoute() {
