@@ -10,6 +10,15 @@ public class Point {
     private double longitude;
     private String iataCode;
     private String yandexCode;
+    private String codeForVitja;
+
+    public String getCodeForVitja() {
+        return codeForVitja;
+    }
+
+    public void setCodeForVitja(String codeForVitja) {
+        this.codeForVitja = codeForVitja;
+    }
 
     public String getName() {
         return name;
@@ -51,12 +60,13 @@ public class Point {
         this.yandexCode = yandexCode;
     }
 
-    public Point(String name, double latitude, double longitude, String iataCode, String yandexCode) {
+    public Point(String name, double latitude, double longitude, String iataCode, String yandexCode, String codeForVitja) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
         this.iataCode = iataCode;
         this.yandexCode = yandexCode;
+        this.codeForVitja = codeForVitja;
     }
 
     public Point(String name, double latitude, double longitude, String iataCode) {

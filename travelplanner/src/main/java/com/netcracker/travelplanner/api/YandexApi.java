@@ -40,24 +40,25 @@ public class YandexApi implements ApiInterface {
                     .stream()
                     .filter(l -> l.getTicketsInfo().getPlaces().size() != 0)
                     .forEach(l -> edgeList.add(new Edge(dateNow
-                            , from.getName()
-                            , to.getName()
                             , l.getThread().getTransportType()
                             , l.getDuration()
                             , ((double) l.getTicketsInfo().getPlaces().get(0).getPrice().getWhole()) * (numberOfAdults + numberOfChildren)
-                            , null
                             , LocalDateTime.parse(l.getDeparture(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
                             , LocalDateTime.parse(l.getArrival(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
                             , "RUB"
-                            , from.getIataCode()
-                            , to.getIataCode()
-                            , from.getLatitude()
-                            , from.getLongitude()
-                            , to.getLatitude()
-                            , to.getLongitude()
-                            , (byte) 0
-                            , l.getFrom().getCode()
-                            , l.getTo().getCode())));
+                            , (byte) 1
+                            , new Point(from.getName()
+                                    ,from.getLatitude()
+                                    ,from.getLongitude()
+                                    ,from.getIataCode()
+                                    ,from.getYandexCode()
+                                    ,l.getFrom().getCode())
+                            , new Point(to.getName()
+                                    ,to.getLatitude()
+                                    ,to.getLongitude()
+                                    ,to.getIataCode()
+                                    ,to.getYandexCode()
+                                    ,l.getTo().getCode()))));
         }
         return edgeList;
     }

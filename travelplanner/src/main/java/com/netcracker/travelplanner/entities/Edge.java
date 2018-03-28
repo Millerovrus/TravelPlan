@@ -87,14 +87,34 @@ public class Edge implements Cloneable {
 
     @Transient
     @JsonIgnore
-    private List<Point> transitPoints;
+    private List<Edge> transitEdges;
 
-    public List<Point> getTransitPoints() {
-        return transitPoints;
+    @Transient
+    @JsonIgnore
+    private Point startPointPoint;
+
+    @Transient
+    @JsonIgnore
+    private Point endPointPoint;
+
+    public void setStartPointPoint(Point startPoint) {
+        this.startPointPoint = startPoint;
     }
 
-    public void setTransitPoints(List<Point> transitPoints) {
-        this.transitPoints = transitPoints;
+    public Point getEndPointPoint() {
+        return endPointPoint;
+    }
+
+    public void setEndPointPoint(Point endPoint) {
+        this.endPointPoint = endPoint;
+    }
+
+    public List<Edge> getTransitEdges() {
+        return transitEdges;
+    }
+
+    public void setTransitEdges(List<Edge> transitEdges) {
+        this.transitEdges = transitEdges;
     }
 
     public Route getRoute() {
@@ -273,6 +293,7 @@ public class Edge implements Cloneable {
         this.numberOfTransfers = numberOfTransfers;
     }
 
+    @Deprecated
     public Edge(Date creationDate
             , String startPoint
             , String destinationPoint
@@ -352,7 +373,41 @@ public class Edge implements Cloneable {
         this.numberOfTransfers = numberOfTransfers;
     }
 
-    private Edge(){}
+    public Edge(Date creationDate
+            , String transportType
+            , Double duration
+            , Double cost
+            , LocalDateTime startDate
+            , LocalDateTime endDate
+            , String currency
+            , byte numberOfTransfers
+            , Point startPointPoint
+            , Point endPointPoint) {
+        this.creationDate = creationDate;
+        this.transportType = transportType;
+        this.duration = duration;
+        this.cost = cost;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.currency = currency;
+        this.numberOfTransfers = numberOfTransfers;
+        this.startPointPoint = startPointPoint;
+        this.endPointPoint = endPointPoint;
+    }
+
+    public Edge(String transportType
+            , LocalDateTime startDate
+            , LocalDateTime endDate
+            , Point startPointPoint
+            , Point endPointPoint) {
+        this.transportType = transportType;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.startPointPoint = startPointPoint;
+        this.endPointPoint = endPointPoint;
+    }
+
+    public Edge(){}
 
     @Override
     public String toString() {

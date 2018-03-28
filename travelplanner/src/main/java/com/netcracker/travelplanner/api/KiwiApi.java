@@ -47,35 +47,42 @@ public class KiwiApi implements ApiInterface {
             String currency = kiwiFlights.getCurrency();
 
             kiwiFlights.getData().forEach(l ->
-                    {
-                        if(l.getRoute().size()>1){
-                            List<Point> pointList = new LinkedList<>();
-                            l.getRoute().forEach(route ->
-                                    pointList.add(new Point(route.getCityFrom()
-                                            ,route.getLatFrom()
-                                            ,route.getLngFrom()
-                                            ,route.getFlyFrom())));
-                        }
-                    edgeList.add(new Edge(dateNow
-                    , from.getName()
-                    , to.getName()
-                    , "plane"
-                    , (double) l.getDuration().getTotal()
-                    , (double) l.getPrice()
-                    , l.getDistance()
-                    , LocalDateTime.ofEpochSecond(l.getDTime(), 0, ZoneOffset.UTC)
-                    , LocalDateTime.ofEpochSecond(l.getATime(), 0, ZoneOffset.UTC)
-                    , currency
-                    , from.getIataCode()
-                    , to.getIataCode()
-                    , from.getLatitude()
-                    , from.getLongitude()
-                    , to.getLatitude()
-                    , to.getLongitude()
-                    , (byte) (l.getRoute().size() - 1)
-                    ,l.getFlyFrom()
-                    ,l.getFlyTo()));
-                    });
+            {
+                List<Edge> transitEdges = new LinkedList<>();
+
+                if(l.getRoute().size()>1){
+                    l.getRoute().forEach(route -> transitEdges.add(new Edge(
+                            "plane"
+                            , LocalDateTime.ofEpochSecond(route.getDTime(), 0, ZoneOffset.UTC)
+                            , LocalDateTime.ofEpochSecond(route.getATime(), 0, ZoneOffset.UTC)
+                            , new Point(route.getCityFrom(),route.getLatFrom(),route.getLngFrom(),route.getFlyFrom())
+                            , new Point(route.getCityTo(),route.getLatTo(),route.getLngTo(),route.getFlyTo())
+                    )));
+                }
+
+                Edge edge = new Edge();
+                edge.setCreationDate(dateNow);
+                edge.setTransportType("plane");
+                edge.setDuration((double) l.getDuration().getTotal());
+                edge.setCost((double) l.getPrice());
+                edge.setStartDate(LocalDateTime.ofEpochSecond(l.getDTime(), 0, ZoneOffset.UTC));
+                edge.setEndDate(LocalDateTime.ofEpochSecond(l.getATime(), 0, ZoneOffset.UTC));
+                edge.setCurrency(currency);
+                edge.setNumberOfTransfers((byte) (l.getRoute().size()));
+                edge.setStartPointPoint(new Point(from.getName()
+                                ,from.getLatitude()
+                                ,from.getLongitude()
+                                ,from.getIataCode()
+                                ,from.getYandexCode()
+                                ,l.getFlyFrom()));
+                edge.setEndPointPoint(new Point(to.getName()
+                                ,to.getLatitude()
+                                ,to.getLongitude()
+                                ,to.getIataCode()
+                                ,to.getYandexCode()
+                                ,l.getFlyTo()));
+                edge.setTransitEdges(transitEdges);
+            });
         }
         return edgeList;
     }

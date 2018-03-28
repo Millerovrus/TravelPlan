@@ -54,24 +54,25 @@ public class YandexParser implements ApiInterface {
                 el.stream()
                         .filter(element -> !element.getElementsByClass("SegmentPrices").first().text().equals(""))
                         .forEach(element -> edgeList.add(new Edge(new Date()
-                                , from.getName()
-                                , to.getName()
                                 , convertTypes(element.getElementsByClass("TransportIcon").first().attr("aria-label"))
                                 , (double) splStr(element.getElementsByClass("SearchSegment__duration").first().text())
                                 , (splCost(element.getElementsByClass("Price").first().text())) * (numberOfAdults + numberOfChildren)
-                                , 0.0
                                 , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text()))
                                 , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text()))
                                 , "RUB"
-                                , from.getIataCode()
-                                , to.getIataCode()
-                                , from.getLatitude()
-                                , from.getLongitude()
-                                , to.getLatitude()
-                                , to.getLongitude()
-                                , (byte) 0
-                                , ""
-                                , "")));
+                                , (byte) 1
+                                , new Point(from.getName()
+                                        ,from.getLatitude()
+                                        ,from.getLongitude()
+                                        ,from.getIataCode()
+                                        ,from.getYandexCode()
+                                        ,"")
+                                , new Point(to.getName()
+                                        ,to.getLatitude()
+                                        ,to.getLongitude()
+                                        ,to.getIataCode()
+                                        ,to.getYandexCode()
+                                        ,""))));
             }
         }
         return edgeList;

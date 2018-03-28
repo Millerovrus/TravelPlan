@@ -149,7 +149,12 @@ public class EdgeService {
 
         List<Point> points = new ArrayList<>();
 
-        list.forEach(myPoint -> points.add(new Point(myPoint.getCityName(), myPoint.getLat(), myPoint.getLon(),myPoint.getCityCode(),getYandexCode(myPoint.getLat(),myPoint.getLon()))));
+        list.forEach(myPoint -> points.add(new Point(myPoint.getCityName()
+                , myPoint.getLat()
+                , myPoint.getLon()
+                , myPoint.getCityCode()
+                , getYandexCode(myPoint.getLat(),myPoint.getLon())
+                , "")));
 
         return points;
 
