@@ -40,9 +40,6 @@ public class Edge implements Cloneable {
     @Column(name = "cost")
     private Double cost;
 
-    @Column(name = "distance")
-    private Double distance;
-
     @Column(name = "start_date", nullable = false)
     private LocalDateTime startDate;
 
@@ -85,7 +82,7 @@ public class Edge implements Cloneable {
     private Route route;
 
     @Transient
-    private byte numberOfTransfers;
+    private int numberOfTransfers;
 
     @Transient
     private List<Point> transitPoints;
@@ -224,14 +221,6 @@ public class Edge implements Cloneable {
         this.cost = cost;
     }
 
-    public Double getDistance() {
-        return distance;
-    }
-
-    public void setDistance(Double distance) {
-        this.distance = distance;
-    }
-
     public LocalDateTime getStartDate() {
         return startDate;
     }
@@ -288,11 +277,11 @@ public class Edge implements Cloneable {
         this.longitudeTo = longitudeTo;
     }
 
-    public short getNumberOfTransfers() {
+    public int getNumberOfTransfers() {
         return numberOfTransfers;
     }
 
-    public void setNumberOfTransfers(byte numberOfTransfers) {
+    public void setNumberOfTransfers(int numberOfTransfers) {
         this.numberOfTransfers = numberOfTransfers;
     }
 
@@ -303,7 +292,6 @@ public class Edge implements Cloneable {
             , String transportType
             , Double duration
             , Double cost
-            , Double distance
             , LocalDateTime startDate
             , LocalDateTime endDate
             , String currency
@@ -313,7 +301,7 @@ public class Edge implements Cloneable {
             , double longitudeFrom
             , double latitudeTo
             , double longitudeTo
-            , byte numberOfTransfers
+            , int numberOfTransfers
             , String startPointCode
             , String endPointCode) {
 
@@ -323,7 +311,6 @@ public class Edge implements Cloneable {
         this.transportType = transportType;
         this.duration = duration;
         this.cost = cost;
-        this.distance = distance;
         this.startDate = startDate;
         this.endDate = endDate;
         this.currency = currency;
@@ -345,7 +332,6 @@ public class Edge implements Cloneable {
             , String transportType
             , Double duration
             , Double cost
-            , Double distance
             , LocalDateTime startDate
             , LocalDateTime endDate
             , String currency
@@ -355,7 +341,7 @@ public class Edge implements Cloneable {
             , double longitudeFrom
             , double latitudeTo
             , double longitudeTo
-            , byte numberOfTransfers) {
+            , int numberOfTransfers) {
 
         this.creationDate = creationDate;
         this.startPoint = startPoint;
@@ -363,7 +349,6 @@ public class Edge implements Cloneable {
         this.transportType = transportType;
         this.duration = duration;
         this.cost = cost;
-        this.distance = distance;
         this.startDate = startDate;
         this.endDate = endDate;
         this.currency = currency;
@@ -385,7 +370,7 @@ public class Edge implements Cloneable {
             , LocalDateTime startDate
             , LocalDateTime endDate
             , String currency
-            , byte numberOfTransfers
+            , int numberOfTransfers
             , double latitudeFrom
             , double longitudeFrom
             , double latitudeTo
@@ -435,7 +420,6 @@ public class Edge implements Cloneable {
                 .append("transportType", transportType)
                 .append("duration", duration)
                 .append("cost", cost)
-                .append("distance", distance)
                 .append("startDate", startDate)
                 .append("endDate", endDate)
                 .append("currency", currency)

@@ -145,26 +145,35 @@ function resetMap() {
 function fillInAll(edges) {
     var speed = [];
     for (var i = 0; i < edges.length; i++) {
-        /*если пересадок больше 1, то еще один цикл и берем значения из внутренних эджей*/
-        var from = new google.maps.LatLng(edges[i].latitudeFrom, edges[i].longitudeFrom);
-        var to = new google.maps.LatLng(edges[i].latitudeTo, edges[i].longitudeTo);
-        switch (edges[i].transportType) {
-            case 'plane':
-                speed.push(1);
-                break;
-            case 'bus':
-                speed.push(0.4);
-                break;
-            case 'train':
-                speed.push(0.6);
-                break;
-            case 'car':
-                speed.push(0.6);
-                break;
-            default:
-                alert( 'Неверное значение type' );
+        if (edges[i].numberOfTransfers === 1){
+            var from = new google.maps.LatLng(edges[i].startPointPoint.latitude, edges[i].startPointPoint.longitude);
+            var to = new google.maps.LatLng(edges[i].endPointPoint.latitude, edges[i].endPointPoint.longitude);
+            switch (edges[i].transportType) {
+                case 'plane':
+                    speed.push(1);
+                    break;
+                case 'bus':
+                    speed.push(0.4);
+                    break;
+                case 'train':
+                    speed.push(0.6);
+                    break;
+                case 'car':
+                    speed.push(0.6);
+                    break;
+                default:
+                    alert( 'Неверное значение type' );
+            }
+            createLine(from, to, edges[i].transportType);
         }
-        createLine(from, to, edges[i].transportType);
+        if (edges[i].numberOfTransfers > 1){
+            for (var j = 0; j < edges[i].transitPoints.length - 1; j++) {
+                speed.push(1);
+                var fromTemp = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
+                var toTemp = new google.maps.LatLng(edges[i].transitPoints[j+1].latitude, edges[i].transitPoints[j+1].longitude);
+                createLine(fromTemp, toTemp, edges[i].transportType);
+            }
+        }
     }
     adaptZoomAndCenter(edges);
     setMarkers(edges);
@@ -307,11 +316,25 @@ function animateSymbols(speed) {
 function adaptZoomAndCenter(edges) {
     var bounds = new google.maps.LatLngBounds();
     for (var i = 0; i < edges.length; i++) {
-        var pointLatLng = new google.maps.LatLng(edges[i].latitudeFrom, edges[i].longitudeFrom);
-        bounds.extend(pointLatLng);
-        if (i === edges.length - 1){
-            var pointLatLng2 = new google.maps.LatLng(edges[i].latitudeTo, edges[i].longitudeTo);
-            bounds.extend(pointLatLng2);
+        if (edges[i].numberOfTransfers === 1) {
+            var pointLatLng = new google.maps.LatLng(edges[i].startPointPoint.latitude, edges[i].startPointPoint.longitude);
+            bounds.extend(pointLatLng);
+            if (i === edges.length - 1) {
+                var pointLatLng2 = new google.maps.LatLng(edges[i].endPointPoint.latitude, edges[i].endPointPoint.longitude);
+                bounds.extend(pointLatLng2);
+            }
+        }
+        if (edges[i].numberOfTransfers > 1 && i === edges.length - 1){
+            for (var j = 0; j < edges[i].transitPoints.length; j++) {
+                var pointLatLng3 = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
+                bounds.extend(pointLatLng3);
+            }
+        }
+        if (edges[i].numberOfTransfers > 1 && i !== edges.length - 1){
+            for (var j = 0; j < edges[i].transitPoints.length - 1; j++) {
+                var pointLatLng4 = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
+                bounds.extend(pointLatLng4);
+            }
         }
     }
     map.fitBounds(bounds);
@@ -320,25 +343,53 @@ function adaptZoomAndCenter(edges) {
 //ставим маркеры
 function setMarkers(edges) {
     for (var i = 0; i < edges.length; i++) {
-        var pointLatLng = new google.maps.LatLng(edges[i].latitudeFrom, edges[i].longitudeFrom);
-        var marker = new google.maps.Marker({
-            position: pointLatLng,
-            title: edges[i].startPoint,
-            label: edges[i].startPoint.charAt(0),
-            opacity: 0.75,
-            map: map
-        });
-        markers.push(marker);
-        if (i === edges.length - 1){
-            var pointLatLng2 = new google.maps.LatLng(edges[i].latitudeTo, edges[i].longitudeTo);
-            var marker2 = new google.maps.Marker({
-                position: pointLatLng2,
-                title: edges[i].destinationPoint,
-                label: edges[i].destinationPoint.charAt(0),
+        if (edges[i].numberOfTransfers === 1) {
+            var pointLatLng = new google.maps.LatLng(edges[i].startPointPoint.latitude, edges[i].startPointPoint.longitude);
+            var marker = new google.maps.Marker({
+                position: pointLatLng,
+                title: edges[i].startPointPoint.name,
+                label: edges[i].startPointPoint.name.charAt(0),
                 opacity: 0.75,
                 map: map
             });
-            markers.push(marker2);
+            markers.push(marker);
+            if (i === edges.length - 1) {
+                var pointLatLng2 = new google.maps.LatLng(edges[i].endPointPoint.latitude, edges[i].endPointPoint.longitude);
+                var marker2 = new google.maps.Marker({
+                    position: pointLatLng2,
+                    title: edges[i].endPointPoint.name,
+                    label: edges[i].endPointPoint.name.charAt(0),
+                    opacity: 0.75,
+                    map: map
+                });
+                markers.push(marker2);
+            }
+        }
+        if (edges[i].numberOfTransfers > 1 && i === edges.length - 1){
+            for (var j = 0; j < edges[i].transitPoints.length; j++) {
+                var pointLatLng3 = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
+                var marker3 = new google.maps.Marker({
+                    position: pointLatLng3,
+                    title: edges[i].transitPoints[j].name,
+                    label: edges[i].transitPoints[j].name.charAt(0),
+                    opacity: 0.75,
+                    map: map
+                });
+                markers.push(marker3);
+            }
+        }
+        if (edges[i].numberOfTransfers > 1 && i !== edges.length - 1){
+            for (var j = 0; j < edges[i].transitPoints.length - 1; j++) {
+                var pointLatLng4 = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
+                var marker4 = new google.maps.Marker({
+                    position: pointLatLng4,
+                    title: edges[i].transitPoints[j].name,
+                    label: edges[i].transitPoints[j].name.charAt(0),
+                    opacity: 0.75,
+                    map: map
+                });
+                markers.push(marker4);
+            }
         }
     }
 };

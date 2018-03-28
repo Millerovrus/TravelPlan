@@ -156,9 +156,6 @@ public class Algorithm {
                 edge.setRoute(route);
                 route.getEdges().add(edge);
                 route.setCost(route.getCost() + edge.getCost());
-                if (edge.getDistance() != null){
-                    route.setDistance(route.getDistance() + edge.getDistance());
-                }
             }
             route.getWeights().add(route.getDuration() / 72 + route.getCost() / numberOfPassengers);
             route.getWeights().add(route.getDuration() / 9 + route.getCost() / numberOfPassengers);
@@ -174,20 +171,20 @@ public class Algorithm {
     private boolean timeDockingBetween(Edge edgeFrom, Edge edgeTo) {
         return (
                 //Если прилет и вылет с одного аэропорта, то состыковка в 2 часа минимум
-                !edgeFrom.getEndPointPoint().getCodeForVitja().isEmpty()
-                && !edgeTo.getStartPointPoint().getCodeForVitja().isEmpty()
+                !edgeFrom.getEndPointPoint().getLocationCode().isEmpty()
+                && !edgeTo.getStartPointPoint().getLocationCode().isEmpty()
                 && edgeFrom.getTransportType().toLowerCase().equals("plane")
                 && edgeTo.getTransportType().toLowerCase().equals("plane")
-                && edgeFrom.getEndPointPoint().getCodeForVitja().equals(edgeTo.getStartPointPoint().getCodeForVitja())
+                && edgeFrom.getEndPointPoint().getLocationCode().equals(edgeTo.getStartPointPoint().getLocationCode())
                 && edgeFrom.getEndDate().plusHours(2).isBefore(edgeTo.getStartDate())
                 && edgeFrom.getEndDate().plusHours(10).isAfter(edgeTo.getStartDate())
 
                 //Если приезд и выезд с одной остановки, то состыковка в 30 минут минимум
-                || !edgeFrom.getEndPointPoint().getCodeForVitja().isEmpty()
-                && !edgeTo.getStartPointPoint().getCodeForVitja().isEmpty()
+                || !edgeFrom.getEndPointPoint().getLocationCode().isEmpty()
+                && !edgeTo.getStartPointPoint().getLocationCode().isEmpty()
                 && edgeFrom.getTransportType().toLowerCase().equals("bus")
                 && edgeTo.getTransportType().toLowerCase().equals("bus")
-                && edgeFrom.getEndPointPoint().getCodeForVitja().equals(edgeTo.getStartPointPoint().getCodeForVitja())
+                && edgeFrom.getEndPointPoint().getLocationCode().equals(edgeTo.getStartPointPoint().getLocationCode())
                 && edgeFrom.getEndDate().plusMinutes(30).isBefore(edgeTo.getStartDate())
                 && edgeFrom.getEndDate().plusHours(9).isAfter(edgeTo.getStartDate())
 

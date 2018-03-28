@@ -53,14 +53,6 @@ public class EdgeRepositoryService {
     }
 
     /**
-     * @param d - distance of edges
-     * @return list of edges by distance
-     */
-    public List<Edge> findByDistance(double d){
-        return edgeRepository.findByDistance(d);
-    }
-
-    /**
      * @param d - duration of edges
      * @return list of edges by duration
      */

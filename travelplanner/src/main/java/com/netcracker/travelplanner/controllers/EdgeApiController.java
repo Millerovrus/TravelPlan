@@ -50,16 +50,6 @@ public class EdgeApiController {
     }
 
     /**
-     * @param d - distance of edges
-     * @return list of edges by distance
-     */
-    @RequestMapping(value = "/findbydistance", method = RequestMethod.GET)
-    public List<Edge> getEdgesByDistance(@RequestParam(value = "distance", required = true) double d) {
-        logger.info("Запрос на получение cписка отрезков с distance = {}", d);
-        return edgeRepositoryService.findByDistance(d);
-    }
-
-    /**
      * @param d - duration of edges
      * @return list of edges by duration
      */

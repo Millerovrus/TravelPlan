@@ -7,9 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -34,8 +31,8 @@ public class Executor implements ExecutorMan {
                         apiInterface.findEdgesFromTo(task.getFrom()
                                 , task.getTo()
                                 , task.getDate()
-                                , task.getAdultsCount()
-                                , task.getChildrenCount()))
+                                , task.getNumberOfAdults()
+                                , task.getNumberOfChildren()))
         );
 
         /*Отправляем  задачи на выполнение*/
@@ -89,10 +86,9 @@ public class Executor implements ExecutorMan {
 //            e.printStackTrace();
 //
 //        }
-            return edgeList;
-        }
-
-
+        return edgeList;
     }
 
+
+}
 

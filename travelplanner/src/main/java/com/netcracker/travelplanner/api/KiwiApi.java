@@ -45,16 +45,15 @@ public class KiwiApi implements ApiInterface {
             Date dateNow = new Date();
             KiwiFlights kiwiFlights = getKiwiFlightsFromUrl(url);
             String currency = kiwiFlights.getCurrency();
-
             kiwiFlights.getData().forEach(l ->
             {
                 List<Point> transitPoints = new LinkedList<>();
 
-                if(l.getRoute().size()>1){
+                if(l.getRoute().size() > 1){
 
                     transitPoints.add(new Point(l.getRoute().get(0).getCityFrom()
-                            ,l.getRoute().get(0).getLatFrom()
-                            ,l.getRoute().get(0).getLngFrom()
+                            ,from.getLatitude()
+                            ,from.getLongitude()
                             ,l.getRoute().get(0).getFlyFrom()));
 
                     l.getRoute().forEach(route -> {
@@ -65,6 +64,8 @@ public class KiwiApi implements ApiInterface {
                                 ));
                     });
                 }
+                transitPoints.get(transitPoints.size()-1).setLatitude(to.getLatitude());
+                transitPoints.get(transitPoints.size()-1).setLongitude(to.getLongitude());
 
                 Edge edge = new Edge();
                 edge.setCreationDate(dateNow);

@@ -1,6 +1,7 @@
 package com.netcracker.travelplanner.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -10,16 +11,19 @@ public class Point {
     private String name;
     private double latitude;
     private double longitude;
+    @JsonIgnore
     private String iataCode;
+    @JsonIgnore
     private String yandexCode;
-    private String codeForVitja;
+    @JsonIgnore
+    private String locationCode;
 
-    public String getCodeForVitja() {
-        return codeForVitja;
+    public String getLocationCode() {
+        return locationCode;
     }
 
-    public void setCodeForVitja(String codeForVitja) {
-        this.codeForVitja = codeForVitja;
+    public void setLocationCode(String locationCode) {
+        this.locationCode = locationCode;
     }
 
     public String getName() {
@@ -62,13 +66,13 @@ public class Point {
         this.yandexCode = yandexCode;
     }
 
-    public Point(String name, double latitude, double longitude, String iataCode, String yandexCode, String codeForVitja) {
+    public Point(String name, double latitude, double longitude, String iataCode, String yandexCode, String locationCode) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
         this.iataCode = iataCode;
         this.yandexCode = yandexCode;
-        this.codeForVitja = codeForVitja;
+        this.locationCode = locationCode;
     }
 
     public Point(String name, double latitude, double longitude, String iataCode) {
