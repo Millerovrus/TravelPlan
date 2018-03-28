@@ -68,27 +68,27 @@ public class Executor implements ExecutorMan {
         });
 
         /*Для теста. запись в файлы полученных эджей*/
-        logger.debug("edges from " + this.toString());
-
-        try (FileWriter writer = new FileWriter(new File("test" + this.toString() + ".txt"))) {
-            edgeList.forEach(edge -> {
-                try {
-                    writer.write(edge.getStartPoint() + " "
-                            + edge.getDestinationPoint() + " "
-                            + edge.getTransportType() + " "
-                            + edge.getCost() + " "
-                            + edge.getDuration() +" "
-                            + edge.getStartDate().toString()+" "
-                            + edge.getEndDate().toString()
-                            +"\n");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
+//        logger.debug("edges from " + this.toString());
+//
+//        try (FileWriter writer = new FileWriter(new File("test" + this.toString() + ".txt"))) {
+//            edgeList.forEach(edge -> {
+//                try {
+//                    writer.write(edge.getStartPoint() + " "
+//                            + edge.getDestinationPoint() + " "
+//                            + edge.getTransportType() + " "
+//                            + edge.getCost() + " "
+//                            + edge.getDuration() +" "
+//                            + edge.getStartDate().toString()+" "
+//                            + edge.getEndDate().toString()
+//                            +"\n");
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            });
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//
+//        }
             return edgeList;
         }
 
