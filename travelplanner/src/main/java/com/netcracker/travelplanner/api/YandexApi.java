@@ -49,6 +49,10 @@ public class YandexApi implements ApiInterface {
                             , LocalDateTime.parse(l.getArrival(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
                             , "RUB"
                             , (byte) 1
+                            , from.getLatitude()
+                            , from.getLongitude()
+                            , to.getLatitude()
+                            , to.getLongitude()
                             , new Point(from.getName()
                                     ,from.getLatitude()
                                     ,from.getLongitude()

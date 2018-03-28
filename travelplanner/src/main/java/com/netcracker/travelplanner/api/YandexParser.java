@@ -63,6 +63,10 @@ public class YandexParser implements ApiInterface {
                                 , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text()))
                                 , "RUB"
                                 , (byte) 1
+                                , from.getLatitude()
+                                , from.getLongitude()
+                                , to.getLatitude()
+                                , to.getLongitude()
                                 , new Point(from.getName()
                                         ,from.getLatitude()
                                         ,from.getLongitude()

@@ -386,6 +386,10 @@ public class Edge implements Cloneable {
             , LocalDateTime endDate
             , String currency
             , byte numberOfTransfers
+            , double latitudeFrom
+            , double longitudeFrom
+            , double latitudeTo
+            , double longitudeTo
             , Point startPointPoint
             , Point endPointPoint) {
 
@@ -399,6 +403,10 @@ public class Edge implements Cloneable {
         this.endDate = endDate;
         this.currency = currency;
         this.numberOfTransfers = numberOfTransfers;
+        this.latitudeFrom = latitudeFrom;
+        this.longitudeFrom = longitudeFrom;
+        this.latitudeTo = latitudeTo;
+        this.longitudeTo = longitudeTo;
         this.startPointPoint = startPointPoint;
         this.endPointPoint = endPointPoint;
     }
