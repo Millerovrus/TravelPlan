@@ -51,6 +51,7 @@ public class KiwiApi implements ApiInterface {
                 List<Point> transitPoints = new LinkedList<>();
 
                 if(l.getRoute().size()>1){
+
                     transitPoints.add(new Point(l.getRoute().get(0).getCityFrom()
                             ,l.getRoute().get(0).getLatFrom()
                             ,l.getRoute().get(0).getLngFrom()
@@ -67,6 +68,8 @@ public class KiwiApi implements ApiInterface {
 
                 Edge edge = new Edge();
                 edge.setCreationDate(dateNow);
+                edge.setStartPoint(from.getName());
+                edge.setDestinationPoint(to.getName());
                 edge.setTransportType("plane");
                 edge.setDuration((double) l.getDuration().getTotal());
                 edge.setCost((double) l.getPrice());
@@ -87,6 +90,9 @@ public class KiwiApi implements ApiInterface {
                                 ,to.getYandexCode()
                                 ,l.getFlyTo()));
                 edge.setTransitPoints(transitPoints);
+
+                edgeList.add(edge);
+
             });
         }
         return edgeList;

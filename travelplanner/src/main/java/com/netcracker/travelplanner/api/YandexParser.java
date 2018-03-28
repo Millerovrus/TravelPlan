@@ -54,6 +54,8 @@ public class YandexParser implements ApiInterface {
                 el.stream()
                         .filter(element -> !element.getElementsByClass("SegmentPrices").first().text().equals(""))
                         .forEach(element -> edgeList.add(new Edge(new Date()
+                                , from.getName()
+                                , to.getName()
                                 , convertTypes(element.getElementsByClass("TransportIcon").first().attr("aria-label"))
                                 , (double) splStr(element.getElementsByClass("SearchSegment__duration").first().text())
                                 , (splCost(element.getElementsByClass("Price").first().text())) * (numberOfAdults + numberOfChildren)

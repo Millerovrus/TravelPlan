@@ -1,6 +1,8 @@
 package com.netcracker.travelplanner.entities;
 
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class Point {
@@ -77,6 +79,32 @@ public class Point {
     }
 
     public Point() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Point point = (Point) o;
+
+        return new EqualsBuilder()
+                .append(latitude, point.latitude)
+                .append(longitude, point.longitude)
+                .append(name, point.name)
+                .append(iataCode, point.iataCode)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(name)
+                .append(latitude)
+                .append(longitude)
+                .append(iataCode)
+                .toHashCode();
     }
 
     @Override

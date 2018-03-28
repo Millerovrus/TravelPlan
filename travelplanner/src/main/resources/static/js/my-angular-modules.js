@@ -70,6 +70,14 @@ angular.module('controllerModule')
             }
         };
     }])
+    .filter('transitPoints', [function () {
+        return function (numberOfTransfers) {
+            if(numberOfTransfers > 1){
+                var tempPoint;
+
+            }
+        }
+    }])
     .controller('appController', function ($scope) {
         $scope.$on('LOAD', function () { $scope.loading = true });
         $scope.$on('UNLOAD', function () { $scope.loading = false });

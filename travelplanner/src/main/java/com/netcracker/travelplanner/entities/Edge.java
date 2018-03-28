@@ -1,6 +1,8 @@
 package com.netcracker.travelplanner.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.*;
@@ -86,19 +88,20 @@ public class Edge implements Cloneable {
     private byte numberOfTransfers;
 
     @Transient
-    @JsonIgnore
     private List<Point> transitPoints;
 
     @Transient
-    @JsonIgnore
     private Point startPointPoint;
 
     @Transient
-    @JsonIgnore
     private Point endPointPoint;
 
     public void setStartPointPoint(Point startPoint) {
         this.startPointPoint = startPoint;
+    }
+
+    public Point getStartPointPoint() {
+        return startPointPoint;
     }
 
     public Point getEndPointPoint() {
@@ -374,6 +377,8 @@ public class Edge implements Cloneable {
     }
 
     public Edge(Date creationDate
+            , String startPoint
+            , String destinationPoint
             , String transportType
             , Double duration
             , Double cost
@@ -383,7 +388,10 @@ public class Edge implements Cloneable {
             , byte numberOfTransfers
             , Point startPointPoint
             , Point endPointPoint) {
+
         this.creationDate = creationDate;
+        this.startPoint = startPoint;
+        this.destinationPoint = destinationPoint;
         this.transportType = transportType;
         this.duration = duration;
         this.cost = cost;
@@ -437,24 +445,35 @@ public class Edge implements Cloneable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+
         if (o == null || getClass() != o.getClass()) return false;
 
         Edge edge = (Edge) o;
 
-        if (numberOfTransfers != edge.numberOfTransfers) return false;
-        if (!startPoint.equals(edge.startPoint)) return false;
-        if (!destinationPoint.equals(edge.destinationPoint)) return false;
-        if (!transportType.equals(edge.transportType)) return false;
-        if (!duration.equals(edge.duration)) return false;
-        if (!cost.equals(edge.cost)) return false;
-        if (distance != null ? !distance.equals(edge.distance) : edge.distance != null) return false;
-        if (!startDate.equals(edge.startDate)) return false;
-        return endDate.equals(edge.endDate);
+        return new EqualsBuilder()
+                .append(numberOfTransfers, edge.numberOfTransfers)
+                .append(transportType, edge.transportType)
+                .append(duration, edge.duration)
+                .append(cost, edge.cost)
+                .append(currency, edge.currency)
+                .append(transitPoints, edge.transitPoints)
+                .append(startPointPoint, edge.startPointPoint)
+                .append(endPointPoint, edge.endPointPoint)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return new HashCodeBuilder(17, 37)
+                .append(transportType)
+                .append(duration)
+                .append(cost)
+                .append(currency)
+                .append(numberOfTransfers)
+                .append(transitPoints)
+                .append(startPointPoint)
+                .append(endPointPoint)
+                .toHashCode();
     }
 
     @Override

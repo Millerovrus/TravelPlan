@@ -40,6 +40,8 @@ public class YandexApi implements ApiInterface {
                     .stream()
                     .filter(l -> l.getTicketsInfo().getPlaces().size() != 0)
                     .forEach(l -> edgeList.add(new Edge(dateNow
+                            , from.getName()
+                            , to.getName()
                             , l.getThread().getTransportType()
                             , l.getDuration()
                             , ((double) l.getTicketsInfo().getPlaces().get(0).getPrice().getWhole()) * (numberOfAdults + numberOfChildren)
