@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Travel Planner</title>
-
     <!-- Bootstrap, fonts -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-select.css" rel="stylesheet">
@@ -24,49 +23,41 @@
     <!-- bootstrap touchspin -->
     <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.css" />
     <script src="js/jquery.bootstrap-touchspin.js"></script>
-
     <!--angular-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="js/my-angular-modules.js"></script>
-    <!--<script src="//code.angularjs.org/1.2.2/angular-sanitize.js"></script>-->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
-
     <!-- bootstrap select -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-select.min.js"></script>
-
     <!-- bootstrap datetimepicker -->
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.css" />
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
     <script src="js/moment-with-locales.min.js"></script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <!-- bootstrap fix to -->
+    <script src="js/jquery-scrolltofixed.js"></script>
 
     <!-- my css -->
-    <link href="css/my-styles.css" rel="stylesheet">
-    <link href="css/sign-in-style.css" rel="stylesheet">
-
+    <link href="css/styles.css" rel="stylesheet">
+    <#--<link href="css/sign-in-style.css" rel="stylesheet">-->
     <!-- my scripts -->
     <script src="js/my-styles.js"></script>
 
-    <!-- fix to -->
-    <script src="js/jquery-scrolltofixed.js"></script>
-
     <!-- map -->
-
     <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap"-->
     <!--async defer></script>-->
     <script src="js/google-map.js"></script>
     <script src="js/autoComplite.js"></script>
     <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&language=en&libraries=places"></script>-->
-
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap&language=en&libraries=geometry,places"></script>
 </head>
 
 <body ng-controller="appController" onload="initAutocompleteFields()">
-<div>
 
+    <!-- navbar -->
     <#if !isAuthorized>
-        <my-navbar></my-navbar>
+    <my-navbar></my-navbar>
     <#else>
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
@@ -88,9 +79,8 @@
         </div>
     </#if>
 
-    <!-- <div ng-controller="myParameterController"> -->
-    <div  class="scrollbar" id="container1">
-        <img src="img/travel-top.jpg" class="background-main-pic"/>
+    <div>
+        <!-- header -->
         <div class="container">
             <div class="row">
                 <div id="travel-header-row" class="col-sm-12">
@@ -98,21 +88,25 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="container scrollbar">
-                <div class="formBox">
-                    <form id="inputForm" autocomplete="off">
 
+        <!-- parameter menu-->
+        <div class="col-sm-12">
+            <div class="container-fluid">
+            <div class="container">
+                <div class="formBox" id=>
+                    <form id="inputForm" autocomplete="off">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="inputBox ">
-                                    <input type="text" name="" id="inputFrom" required class="input" placeholder="From" onfocus="geolocate()">
+                                    <div class="inputText">Departure city</div>
+                                    <input type="text" id="inputFrom" class="input" onfocus="geolocate()" placeholder="">
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
                                 <div class="inputBox">
-                                    <input type="text" name="" id="inputTo" required class="input" placeholder="To" onfocus="geolocate()">
+                                    <div class="inputText">Arrival city</div>
+                                    <input type="text" id="inputTo" class="input" onfocus="geolocate()" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -120,48 +114,75 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="inputBox">
-                                    <div class="input">
-                                        <div class="dropdown show">
-                                            <!--<div class="dropdown">-->
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Passengers<span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
-                                            <ul class="dropdown-menu" id="passengers-qunatity">
-                                                <div class="drop-passengers">
-                                                    <li>
-                                                        <a href="#" ><label for="spin-adult">Adults</label><input id="spin-adult" type="text" value="1" name="spinner-adult"></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><label for="spin-children">Children</label><input id="spin-children" type="text" value="0" name="spinner-children"></a>
-                                                    </li>
-                                                    <#--<li class="divider"></li>-->
-                                                    <#--<li class="form-check">-->
-                                                        <#--<label class="checkbox">-->
-                                                            <#--<input type="checkbox"><span>Business class</span>-->
-                                                        <#--</label>-->
-                                                    <#--</li>-->
-                                                </div>
-                                            </ul>
-                                            <!--</div>-->
-                                        </div>
-                                    </div>
+                                    <div class="inputText">Departure date</div>
+                                    <input type='text' class="input" id="inputDate" placeholder="">
                                 </div>
                             </div>
-
                             <div class="col-sm-6">
                                 <div class="inputBox">
-                                    <div class="input">
-                                        <div class="form-group">
-                                            <div class="input-group date" id='datetimepicker1'>
-                                                <input type="text" id="inputDate" class="date-input-style" placeholder="Departure date" />
-                                                <span class="input-group-addon datepickerbutton">
-                                                                <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                            </div>
-                                        </div>
+                                    <div class="input dropdown-toggle " id="test">
+                                        <a href="#" class=" inputText" data-toggle="dropdown">More parameters  <span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
+                                        <ul class="dropdown-menu mega-dropdown-menu row">
+                                            <li class="col-sm-12">
+                                                <ul>
+                                                    <li class="dropdown-header centered">Passengers</li>
+                                                    <div class="drop-passengers">
+                                                        <div class="spinner-inline">
+                                                            <div class="col-sm-6">
+                                                                <label for="spin-adult">Adults  </label>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <input id="spin-adult" class="spinner text-center" type="text" value="1" name="spinner-adult">
+                                                            </div>
+                                                        </div>
+                                                        <div class="spinner-inline">
+                                                            <div class="col-sm-6">
+                                                                <label for="spin-children">Children</label>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <input id="spin-children" class="spinner text-center" type="text" value="0" name="spinner-children">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ul>
+                                                <div class="divider-inverse"></div>
+                                            </li>
+                                            <li class="col-sm-12">
+                                                <ul>
+                                                    <li class="dropdown-header centered">Type of transport</li>
+                                                    <div class="row form-check">
+                                                        <div class="col-sm-6">
+                                                            <label class="checkbox">
+                                                                <input id="only-plane" type="checkbox"><span>Only plane</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-check">
+                                                        <div class="col-sm-6">
+                                                            <label class="checkbox">
+                                                                <input id="use-bus" type="checkbox"><span>Find routes with bus</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </ul>
+                                                <div class="divider-inverse"></div>
+                                            </li>
+                                            <li class="col-sm-12">
+                                                <ul>
+                                                    <li class="dropdown-header centered">Max time for transferring</li>
+                                                    <div class="col-sm-12 margin-offset">
+                                                        <input id="range-slider" type="range" min="0" max="24" step="1" value="0">
+                                                    </div>
+                                                </ul>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        </ul>
 
+                        <!-- autocomplete -->
                         <div class="row" ng-show="false">
                             <div class="col-sm-4">
                                 <div class="inputBox ">
@@ -188,13 +209,12 @@
                             </div>
                         </div>
 
+                        <!-- angular controller for getting routes -->
                         <div class="row" ng-controller="myParameterController">
                             <div class="col-sm-12">
                                 <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
                                 <div ng-show="loading" class="preloader"></div>
                                 <div ng-show="loaded">
-
-                                    <!-- test collapse -->
                                     <div ng-controller="mapController">
                                         <div class="output-collapse">
                                             <div class="container-fluid">
@@ -204,30 +224,35 @@
                                                             <div class="fancy-collapse-panel" >
                                                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
                                                                     <div class="panel panel-default"  ng-repeat="record in records">
-                                                                                <#--<label class="checkbox" id="checkbox-{{record.idRouteForView}}">-->
-                                                                                    <#--<input type="checkbox"><span> Save</span>-->
-                                                                                <#--</label>-->
-                                                                            <div class="panel-heading" role="tab" id="headingOne" >
-                                                                                <h4 class="panel-title">
-                                                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
-                                                                                        <div class="route-header" ng-repeat="item in record.edges"> {{item.startPoint}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{item.destinationPoint}} </div>
-                                                                                        <div class="divider-inverse"></div>
-                                                                                        <div class="json-data">
-                                                                                            <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                                            <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
-                                                                                        </div>
-                                                                                    </a>
-                                                                                </h4>
-                                                                            </div>
-                                                                            <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                                                                <div class="panel-body" ng-repeat="item in record.edges">
+                                                                        <div class="panel-heading" role="tab" id="headingOne" >
+                                                                            <h4 class="panel-title">
+                                                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
+                                                                                    <div class="route-header" ng-repeat="item in record.edges"> {{item.startPoint}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{item.destinationPoint}} </div>
+                                                                                    <div class="divider-inverse"></div>
+                                                                                    <div class="json-data">
+                                                                                        <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                                        <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </h4>
+                                                                        </div>
+                                                                        <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                                            <div class="panel-body" ng-repeat="item in record.edges">
                                                                                 <ul>
                                                                                     <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>
                                                                                     <p><b>Cost:</b> {{item.cost}} (RUB)</p>
                                                                                     <p><b>Departure <date></date>:</b> {{item.startDate.year}}-{{item.startDate.monthValue}}-{{item.startDate.dayOfMonth}} at {{item.startDate.hour}}:{{item.startDate.minute}}</p>
-                                                                                </ul>
-                                                                                </div>
+
+
+                                                                                    <div class="row">
+                                                                                        <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
+                                                                                            <section>
+                                                                                                <button class='dotted thin' onclick="getAlert()">Buy tickets</button>
+                                                                                            </section>
+                                                                                        </div>
+                                                                                    </div>
                                                                             </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -240,28 +265,19 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <#--<input type="button" name="" required class="button" value="Save all routes" onclick="this.parentNode.submit();">-->
+                                <#--<input type="button" name="" required class="button" value="Save all routes" onclick="this.parentNode.submit();">-->
                                 </div>
                             </div>
                         </div>
 
-
-
-                    </form>
-
-                    <!-- костыли -->
-                    <form>
-                        <div class="row">
-                            <div class="container" id="test-container"></div>
-                        </div>
                     </form>
                 </div>
             </div>
         </div>
+        </div>
     </div>
-    <!-- </div> -->
 
-</div>
 
+    <script src="https://cdn.jsdelivr.net/rangeslider.js/2.3.0/rangeslider.min.js"></script>
 </body>
 </html>

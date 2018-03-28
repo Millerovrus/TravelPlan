@@ -1,7 +1,29 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Raleway');
 
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
 body{
     background-color: #f2f2f2;
+    background: url("../img/old.jpg") no-repeat center center fixed;
     font-family: "Lato";
     font-weight: 300;
     font-size: 16px;
@@ -129,6 +151,8 @@ hr{
 .navbar-inverse .navbar-nav > li > a{
     color: #fff0f5;
 }
+
+/* ////////////////////*/
 .checkbox{
     margin-left: 40px;
     font-size: 14px;
@@ -144,6 +168,9 @@ hr{
     font-size: 34px;
     text-align: center;
 }
+/* ////////////////////*/
+
+
 /* background pic in main page*/
 .background-main-pic{
     width: 100%;
@@ -237,9 +264,10 @@ hr{
 .inputBox{
     position: relative;
     box-sizing: border-box;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
     color: #3c3c3c;
 }
+
 .inputBox .inputText{
     position: absolute;
     font-size: 24px;
@@ -253,8 +281,9 @@ hr{
     height: 50px;
     background: transparent;
     border: none;
+
     outline: none;
-    font-size: 24px;
+    font-size: 22px;
     border-bottom: 1px solid rgba(0,0,0,.5);
 
 }
@@ -263,6 +292,17 @@ textarea{
     height: 100px !important;
 }
 .button{
+    width: 100%;
+    margin: 0;
+    height: 50px;
+    border: transparent;
+    border-radius: 5px;
+    outline: none;
+    background: #ff7878;
+    color: #f9f9f9;
+    font-family: Lato;
+    font-size: 20px;
+}.button{
     width: 100%;
     margin: 0;
     height: 50px;
@@ -321,11 +361,13 @@ textarea{
     width: 90%;
     height: 50px;
     display: block;
-    margin: 0 auto 15px;
+    margin: 0 auto 10px;
     padding: 0 15px;
     border: none;
     border-bottom: 2px solid #ebebeb;
+
 }
+
 .input:focus {
     outline: none;
     border-bottom-color: #ff7878 !important;
@@ -948,3 +990,89 @@ input[type="text"]:disabled{
     background-color: transparent;
     border-bottom: 1px solid #ccc;
 }
+
+/* ///////////////// */
+.mega-dropdown {
+    position: static !important;
+    width: 100%;
+}
+
+.mega-dropdown-menu {
+    padding: 20px 0px;
+    width: 100%;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+/*.mega-dropdown-menu:before {*/
+    /*content: "";*/
+    /*border-bottom: 15px solid #fff;*/
+    /*border-right: 17px solid transparent;*/
+    /*border-left: 17px solid transparent;*/
+    /*position: absolute;*/
+    /*top: -15px;*/
+    /*!*left: 285px;*!*/
+    /*right: 30px;*/
+    /*z-index: 10;*/
+/*}*/
+
+/*.mega-dropdown-menu:after {*/
+    /*content: "";*/
+    /*border-bottom: 17px solid #ccc;*/
+    /*border-right: 19px solid transparent;*/
+    /*border-left: 19px solid transparent;*/
+    /*position: absolute;*/
+    /*top: -17px;*/
+    /*!*left: 283px;*!*/
+    /*right: 28px;*/
+    /*z-index: 8;*/
+/*}*/
+
+.mega-dropdown-menu > li > ul {
+    padding: 0;
+    margin: 0;
+}
+
+.mega-dropdown-menu > li > ul > li {
+    list-style: none;
+}
+
+.mega-dropdown-menu > li > ul > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.428571429;
+    color: #999;
+    white-space: normal;
+}
+
+
+.mega-dropdown-menu > li ul > li > a:hover,
+.mega-dropdown-menu > li ul > li > a:focus {
+    text-decoration: none;
+    color: #444;
+    background-color: #f5f5f5;
+}
+
+.mega-dropdown-menu .dropdown-header {
+    color: #428bca;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.mega-dropdown-menu form {
+    margin: 3px 20px;
+}
+
+.mega-dropdown-menu .form-group {
+    margin-bottom: 3px;
+}
+
+
+/**/
+.date-input-style{
+    font-size: 22px;
+    margin-top: 10px;
+}
+

@@ -9,6 +9,16 @@ $(function () {
     });
 });
 
+$(function () {
+    $('#inputDate').datetimepicker({
+        // orientation: "auto",
+        locale: 'en',
+        stepping: 10,
+        minDate: new Date(),
+        format: 'YYYY-MM-DD'
+    });
+});
+
 /* stop dropdown closing while choosing number of passengers*/
 $(function () {
     $('.dropdown-menu').click(function(e) {
@@ -72,3 +82,46 @@ function readURL(input) {
         document.getElementById('file-name').style.display = 'block';
     }
 }
+
+/* parameter menu*/
+jQuery(document).on('click', '.mega-dropdown', function(e) {
+    e.stopPropagation()
+});
+
+$(function () {
+    $(".input").focus(function() {
+        $(this).parent().addClass("focus");
+    })
+});
+
+/* slider */
+$(document).ready(function() {
+
+    var $element = $('input[type="range"]');
+    var $handle;
+
+    $element.rangeslider({
+        polyfill: false,
+        onInit: function() {
+            $handle = $('.rangeslider__handle', this.$range);
+            updateHandle($handle[0], this.value);
+            $("#amount-label").html('<span class="pricing__dollar">€</span>' + this.value);
+        }
+    }).on('input', function() {
+        updateHandle($handle[0], this.value);
+        $("#amount-label").html('<span class="pricing__dollar">€</span>' + this.value);
+    });
+
+    function updateHandle(el, val) {
+        el.textContent = val;
+    }
+
+    $('input[type="range"]').rangeslider();
+
+});
+
+/* */
+function getAlert() {
+    alert("Ошибочка блин");
+}
+

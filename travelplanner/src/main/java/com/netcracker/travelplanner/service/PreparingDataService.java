@@ -1,5 +1,6 @@
 package com.netcracker.travelplanner.service;
 
+import com.gargoylesoftware.htmlunit.javascript.host.intl.DateTimeFormat;
 import com.netcracker.travelplanner.entities.Point;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +42,7 @@ public class PreparingDataService {
         double lonTo = Double.parseDouble(llTo[1]);
         pointTo.setLatitude(latTo);
         pointTo.setLongitude(lonTo);
+
 
         initializatorApi.setDeparture(LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE));
 
