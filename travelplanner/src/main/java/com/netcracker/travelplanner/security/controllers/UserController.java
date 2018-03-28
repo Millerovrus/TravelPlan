@@ -91,6 +91,7 @@ public class UserController {
         String email = securityService.findLoggedInUsername();
         if (email != null) {
             User user = userService.findUserByEmail(email);
+            model.addAttribute("id", user.getId());
             model.addAttribute("firstname", user.getFirstName());
             model.addAttribute("lastname", user.getLastName());
         }

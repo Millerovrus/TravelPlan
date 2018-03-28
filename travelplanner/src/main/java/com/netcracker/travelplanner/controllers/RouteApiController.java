@@ -5,8 +5,10 @@ import com.netcracker.travelplanner.service.RouteRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -67,5 +69,29 @@ public class RouteApiController {
     public List<Route> getRoutesByUser(@RequestParam(value = "user", required = true) int id){
         logger.info("Запрос на получение маршрутов пользователя с id = {}", id);
         return routeRepositoryService.findByUserId(id);
+    }
+
+    @RequestMapping(value = "/saveroutes", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public void saveRoute(
+            @RequestParam(value = "startpoint", required = true) String startPoint,
+            @RequestParam(value = "destinationpoint", required = true) String destinationPoint,
+            @RequestParam(value = "cost", required = true) double cost,
+            @RequestParam(value = "duration", required = true) double duration,
+            @RequestParam(value = "distance", required = true) double distance,
+            @RequestParam(value = "userid", required = true) int userId,
+            @RequestParam(value = "idrouteforview", required = true) int idRouteForView) {
+        logger.info("Процесс сохранения маршрута...");
+        try {
+            Route route = new Route(new Date(), startPoint, destinationPoint, duration, idRouteForView);
+            route.setCost(cost);
+            route.setDistance(distance);
+            route.setIdRouteForView(idRouteForView);
+            routeRepositoryService.save(route);
+            logger.info("Сохранение прошло успешно!");
+        } catch (Exception ex) {
+            logger.error("Процесс сохранения прерван с ошибкой: ", ex);
+            ex.printStackTrace();
+        }
     }
 }

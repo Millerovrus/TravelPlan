@@ -40,7 +40,7 @@
 
     <!-- my css -->
     <link href="css/styles.css" rel="stylesheet">
-    <#--<link href="css/sign-in-style.css" rel="stylesheet">-->
+<#--<link href="css/sign-in-style.css" rel="stylesheet">-->
     <!-- my scripts -->
     <script src="js/my-styles.js"></script>
 
@@ -55,7 +55,7 @@
 
 <body ng-controller="appController" onload="initAutocompleteFields()">
 
-    <!-- navbar -->
+<!-- navbar -->
     <#if !isAuthorized>
     <my-navbar></my-navbar>
     <#else>
@@ -79,19 +79,19 @@
         </div>
     </#if>
 
-    <div>
-        <!-- header -->
-        <div class="container">
-            <div class="row">
-                <div id="travel-header-row" class="col-sm-12">
-                    <h1>Start your journey right now</h1>
-                </div>
+<div>
+    <!-- header -->
+    <div class="container">
+        <div class="row">
+            <div id="travel-header-row" class="col-sm-12">
+                <h1>Start your journey right now</h1>
             </div>
         </div>
+    </div>
 
-        <!-- parameter menu-->
-        <div class="col-sm-12">
-            <div class="container-fluid">
+    <!-- parameter menu-->
+    <div class="col-sm-12">
+        <div class="container-fluid">
             <div class="container">
                 <div class="formBox" id=>
                     <form id="inputForm" autocomplete="off">
@@ -211,7 +211,8 @@
 
                         <!-- angular controller for getting routes -->
                         <div class="row" ng-controller="myParameterController">
-                            <div class="col-sm-12">
+                        <#--<input type="submit" ng-click="saveRoute()" class="inputButton" value="Save all routes">-->
+                            <div class="col-sm-12"
                                 <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
                                 <div ng-show="loading" class="preloader"></div>
                                 <div ng-show="loaded">
@@ -224,6 +225,7 @@
                                                             <div class="fancy-collapse-panel" >
                                                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
                                                                     <div class="panel panel-default"  ng-repeat="record in records">
+                                                                    <#--<input type="submit" ng-click="saveRoute()" class="inputButton" value="Save all routes">-->
                                                                         <div class="panel-heading" role="tab" id="headingOne" >
                                                                             <h4 class="panel-title">
                                                                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
@@ -274,10 +276,10 @@
                 </div>
             </div>
         </div>
-        </div>
     </div>
+</div>
 
 
-    <script src="https://cdn.jsdelivr.net/rangeslider.js/2.3.0/rangeslider.min.js"></script>
+<script src="https://cdn.jsdelivr.net/rangeslider.js/2.3.0/rangeslider.min.js"></script>
 </body>
 </html>

@@ -10,6 +10,30 @@ angular.module('controllerModule')
 
     .controller('myParameterController', function requestFunc($scope, $http) {
 
+        $scope.saveRoute=function () {
+            $http({
+                method: 'GET',
+                url: 'api/routes/saveroutes',
+                params: {
+                    startpoint: 'Moscow',
+                    destinationpoint: 'Voronezh',
+                    cost: '500.0',
+                    duration: '100.0',
+                    distance: '600.0',
+                    userid: '80',
+                    idrouteforview: '14'
+                }
+            }).then(
+                function success(response, status) {
+                    console.log('Route had been saved', status, response);
+                    alert("Route had been saved :)");
+                },
+                function error(response, status) {
+                    console.error('error', status, response);
+                    alert("Routes hadn't been save :(");
+                });
+        };
+
         $scope.sendRequestParameters=function () {
             $scope.$emit('LOAD');
             $scope.loaded=false;
@@ -38,9 +62,9 @@ angular.module('controllerModule')
                 });
             initMap();
         };
-        // $scope.isOptimalRoute = function(records) {
-        //     return records.optimalRoute;
-        // };
+        $scope.isOptimalRoute = function(records) {
+            return records.optimalRoute;
+        };
 
     })
     .filter('secondsToTime', [function() {

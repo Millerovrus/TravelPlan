@@ -17,17 +17,10 @@ import java.util.List;
 
 public class YandexParser implements ApiInterface {
 
-    public WebDriver getWebDriver() {
-        return webDriver;
-    }
-
-    public void setWebDriver(WebDriver webDriver) {
-        this.webDriver = webDriver;
-    }
-
     private WebDriver webDriver;
 
-    public YandexParser(){
+    public YandexParser(WebDriver webDriver) {
+        this.webDriver = webDriver;
     }
 
     @Override
@@ -65,7 +58,7 @@ public class YandexParser implements ApiInterface {
                                 , to.getName()
                                 , convertTypes(element.getElementsByClass("TransportIcon").first().attr("aria-label"))
                                 , (double) splStr(element.getElementsByClass("SearchSegment__duration").first().text())
-                                , splCost(element.getElementsByClass("Price").first().text()) * (numberOfAdults + numberOfChildren)
+                                , (splCost(element.getElementsByClass("Price").first().text())) * (numberOfAdults + numberOfChildren)
                                 , 0.0
                                 , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text()))
                                 , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text()))
@@ -76,7 +69,9 @@ public class YandexParser implements ApiInterface {
                                 , from.getLongitude()
                                 , to.getLatitude()
                                 , to.getLongitude()
-                                , (byte) 0)));
+                                , (byte) 0
+                                , ""
+                                , "")));
             }
         }
         return edgeList;
@@ -102,37 +97,75 @@ public class YandexParser implements ApiInterface {
     private int splStr(String inString) {
 
         double d1 = 0.0;
-
-        String[] strings = inString.split(" ");
         StringBuilder stringBuilder1 = new StringBuilder();
         StringBuilder stringBuilder2 = new StringBuilder();
 
-        for (int j = 0; j < strings.length ; j++) {
-            if (strings[j].matches("\\d*")) {
-                stringBuilder1.append(strings[j]);
-                strings[j] = "x";
-                break;
+        if(inString.contains("день")){
+
+            String[] strings = inString.split(" ");
+
+            for (int j = 0; j < strings.length; j++) {
+                if (strings[j].matches("\\d*")) {
+                    stringBuilder1.append(strings[j]);
+                    strings[j] = "x";
+                    break;
+                }
             }
-        }
+            return (int) Double.parseDouble(stringBuilder1.toString()) * 86400;
 
-        for (int i = 0; i < strings.length ; i++) {
-            if (strings[i].matches("\\d*")) {
-                stringBuilder2.append(strings[i]);
-                strings[i] = "y";
-                break;
+        }
+        if(inString.contains("дн")){
+
+            String[] strings = inString.split(" ");
+
+            for (int j = 0; j < strings.length; j++) {
+                if (strings[j].matches("\\d*")) {
+                    stringBuilder1.append(strings[j]);
+                    strings[j] = "x";
+                    break;
+                }
             }
-        }
 
-        if(stringBuilder1.toString().isEmpty()){
-            return (int) d1;
-        }
+            for (int i = 0; i < strings.length; i++) {
+                if (strings[i].matches("\\d*")) {
+                    stringBuilder2.append(strings[i]);
+                    strings[i] = "y";
+                    break;
+                }
+            }
 
-        if(stringBuilder2.toString().isEmpty()){
-            return (int) Double.parseDouble(stringBuilder1.toString())*3600;
-        }
+            return (int) ((Double.parseDouble(stringBuilder1.toString())) * 86400 + (Double.parseDouble(stringBuilder2.toString())) * 3600 );
 
-        else{
-            d1 = (Double.parseDouble(stringBuilder1.toString()))*3600 + (Double.parseDouble(stringBuilder2.toString()))*60;
+        }
+        else {
+
+            String[] strings = inString.split(" ");
+
+            for (int j = 0; j < strings.length; j++) {
+                if (strings[j].matches("\\d*")) {
+                    stringBuilder1.append(strings[j]);
+                    strings[j] = "x";
+                    break;
+                }
+            }
+
+            for (int i = 0; i < strings.length; i++) {
+                if (strings[i].matches("\\d*")) {
+                    stringBuilder2.append(strings[i]);
+                    strings[i] = "y";
+                    break;
+                }
+            }
+
+            if (stringBuilder1.toString().isEmpty()) {
+                return (int) d1;
+            }
+
+            if (stringBuilder2.toString().isEmpty()) {
+                return (int) Double.parseDouble(stringBuilder1.toString()) * 3600;
+            } else {
+                d1 = (Double.parseDouble(stringBuilder1.toString())) * 3600 + (Double.parseDouble(stringBuilder2.toString())) * 60;
+            }
         }
 
         return (int) d1;

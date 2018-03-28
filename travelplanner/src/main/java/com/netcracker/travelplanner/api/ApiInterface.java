@@ -8,5 +8,4 @@ import java.util.List;
 
 public interface ApiInterface {
     List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren);
-
 }

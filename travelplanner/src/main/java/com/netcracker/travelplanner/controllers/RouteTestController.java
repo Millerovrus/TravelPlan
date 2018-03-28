@@ -1,6 +1,6 @@
 package com.netcracker.travelplanner.controllers;
 
-import com.netcracker.travelplanner.service.TaskManagerService;
+import com.netcracker.travelplanner.service.MainRouteService;
 import com.netcracker.travelplanner.entities.*;
 import com.netcracker.travelplanner.service.*;
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ public class RouteTestController {
     private RouteRepositoryService routeRepositoryService;
 
     @Autowired
-    private TaskManagerService taskManagerService;
+    private MainRouteService mainRouteService;
 
     private static final Logger logger = LoggerFactory.getLogger(RouteTestController.class);
 
@@ -26,7 +26,7 @@ public class RouteTestController {
 
         logger.debug("Start finding {} - {} - {} - {} - {}", from, to, date, numberOfAdults, numberOfChildren);
 
-        return taskManagerService.findTheBestRoutes(from,to,longLatFrom,longLatTo,date,numberOfAdults,numberOfChildren);
+        return mainRouteService.findBestRoutes(from,to,longLatFrom,longLatTo,date,numberOfAdults,numberOfChildren);
     }
 
     @RequestMapping(value = "/get-routes/", method = RequestMethod.GET)

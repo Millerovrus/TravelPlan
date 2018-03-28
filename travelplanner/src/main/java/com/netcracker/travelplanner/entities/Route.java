@@ -197,6 +197,7 @@ public class Route implements Serializable {
                 .append("cost", cost)
                 .append("duration", duration)
                 .append("distance", distance)
+                .append("isOptimalRoute", isOptimalRoute)
                 .append("edges", edges.toString())
                 .toString();
     }
