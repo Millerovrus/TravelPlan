@@ -110,7 +110,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="inputBox">
@@ -180,8 +179,6 @@
                                 </div>
                             </div>
                         </div>
-                        </ul>
-
                         <!-- autocomplete -->
                         <div class="row" ng-show="false">
                             <div class="col-sm-4">
@@ -195,7 +192,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row" ng-show="false">
                             <div class="col-sm-4">
                                 <div class="inputBox ">
@@ -208,62 +204,59 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- angular controller for getting routes -->
                         <div class="row" ng-controller="myParameterController">
                         <#--<input type="submit" ng-click="saveRoute()" class="inputButton" value="Save all routes">-->
-                            <div class="col-sm-12"
+                            <div class="col-sm-12">
                                 <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
                                 <div ng-show="loading" class="preloader"></div>
                                 <div ng-show="loaded">
                                     <div ng-controller="mapController">
                                         <div class="output-collapse">
                                             <div class="container-fluid">
-                                                <form>
-                                                    <div class="row">
-                                                        <div class="col-sm-5">
-                                                            <div class="fancy-collapse-panel" >
-                                                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-                                                                    <div class="panel panel-default"  ng-repeat="record in records">
-                                                                    <#--<input type="submit" ng-click="saveRoute()" class="inputButton" value="Save all routes">-->
-                                                                        <div class="panel-heading" role="tab" id="headingOne" >
-                                                                            <h4 class="panel-title">
-                                                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
-                                                                                    <div class="route-header" ng-repeat="item in record.edges"> {{item.startPoint}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{item.destinationPoint}} </div>
-                                                                                    <div class="divider-inverse"></div>
-                                                                                    <div class="json-data">
-                                                                                        <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                                        <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
-                                                                                    </div>
-                                                                                </a>
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                                                            <div class="panel-body" ng-repeat="item in record.edges">
-                                                                                <ul>
-                                                                                    <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>
-                                                                                    <p><b>Cost:</b> {{item.cost}} (RUB)</p>
-                                                                                    <p><b>Departure <date></date>:</b> {{item.startDate.year}}-{{item.startDate.monthValue}}-{{item.startDate.dayOfMonth}} at {{item.startDate.hour}}:{{item.startDate.minute}}</p>
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <div class="fancy-collapse-panel" >
+                                                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+                                                                <div class="panel panel-default"  ng-repeat="record in records">
+                                                                <#--<input type="submit" ng-click="saveRoute()" class="inputButton" value="Save all routes">-->
+                                                                    <div class="panel-heading" role="tab" id="headingOne" >
+                                                                        <h4 class="panel-title">
+                                                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
+                                                                                <div class="route-header" ng-repeat="item in record.edges"> {{item.startPoint}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{item.destinationPoint}} </div>
+                                                                                <div class="divider-inverse"></div>
+                                                                                <div class="json-data">
+                                                                                    <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                                    <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
+                                                                                </div>
+                                                                            </a>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                                        <div class="panel-body" ng-repeat="item in record.edges">
+                                                                            <ul>
+                                                                                <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>
+                                                                                <p><b>Cost:</b> {{item.cost}} (RUB)</p>
+                                                                                <p><b>Departure <date></date>:</b> {{item.startDate.year}}-{{item.startDate.monthValue}}-{{item.startDate.dayOfMonth}} at {{item.startDate.hour}}:{{item.startDate.minute}}</p>
 
 
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
-                                                                                            <section>
-                                                                                                <button class='dotted thin' onclick="getAlert()">Buy tickets</button>
-                                                                                            </section>
-                                                                                        </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
+                                                                                        <section>
+                                                                                            <button class='dotted thin' onclick="getAlert()">Buy tickets</button>
+                                                                                        </section>
                                                                                     </div>
-                                                                            </div>
+                                                                                </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-7" id="map-margin">
-                                                            <div class="container-map" id="map"></div>
-                                                        </div>
                                                     </div>
-                                                </form>
+                                                    <div class="col-sm-7" id="map-margin">
+                                                        <div class="container-map" id="map"></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -271,7 +264,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
