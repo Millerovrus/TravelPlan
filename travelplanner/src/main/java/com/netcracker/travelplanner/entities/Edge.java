@@ -25,9 +25,11 @@ public class Edge implements Cloneable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
 
+    @Deprecated
     @Column(name="start_point", nullable = false)
     private String startPoint;
 
+    @Deprecated
     @Column(name="destination_point", nullable = false)
     private String destinationPoint;
 
@@ -49,30 +51,38 @@ public class Edge implements Cloneable {
     @Column(name = "currency")
     private String currency;
 
+    @Deprecated
     @Column(name = "start_point_iata_code")
     private String startIataCode;
 
+    @Deprecated
     @Column(name = "end_point_iata_code")
     private String endIataCode;
 
+    @Deprecated
     @Transient
     private String startPointCode;
 
+    @Deprecated
     @Transient
     private String endPointCode;
 
     @Column(name = "edge_order")
     private Short edgeOrder;
 
+    @Deprecated
     @Column(name = "latitude_from")
     private double latitudeFrom;
 
+    @Deprecated
     @Column(name = "longitude_from")
     private double longitudeFrom;
 
+    @Deprecated
     @Column(name = "latitude_to")
     private double latitudeTo;
 
+    @Deprecated
     @Column(name = "longitude_to")
     private double longitudeTo;
 
