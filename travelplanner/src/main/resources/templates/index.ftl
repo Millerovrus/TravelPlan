@@ -189,6 +189,7 @@
                         </div>
 
                         <div class="row" ng-controller="myParameterController">
+                            <#--<input type="submit" ng-click="saveRoute()" class="inputButton" value="Save all routes">-->
                             <div class="col-sm-12">
                                 <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
                                 <div ng-show="loading" class="preloader"></div>
@@ -207,6 +208,7 @@
                                                                                 <#--<label class="checkbox" id="checkbox-{{record.idRouteForView}}">-->
                                                                                     <#--<input type="checkbox"><span> Save</span>-->
                                                                                 <#--</label>-->
+                                                                            <#--<input type="submit" ng-click="saveRoute()" class="inputButton" value="Save all routes">-->
                                                                             <div class="panel-heading" role="tab" id="headingOne" >
                                                                                 <h4 class="panel-title">
                                                                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
