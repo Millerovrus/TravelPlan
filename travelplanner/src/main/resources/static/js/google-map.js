@@ -165,13 +165,14 @@ function fillInAll(edges) {
                     alert( 'Неверное значение type' );
             }
             createLine(from, to, edges[i].transportType);
-        }
-        if (edges[i].numberOfTransfers > 1){
-            for (var j = 0; j < edges[i].transitPoints.length - 1; j++) {
-                speed.push(1);
-                var fromTemp = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
-                var toTemp = new google.maps.LatLng(edges[i].transitPoints[j+1].latitude, edges[i].transitPoints[j+1].longitude);
-                createLine(fromTemp, toTemp, edges[i].transportType);
+        } else {
+            if (edges[i].numberOfTransfers > 1) {
+                for (var j = 0; j < edges[i].transitPoints.length - 1; j++) {
+                    speed.push(1);
+                    var fromTemp = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
+                    var toTemp = new google.maps.LatLng(edges[i].transitPoints[j + 1].latitude, edges[i].transitPoints[j + 1].longitude);
+                    createLine(fromTemp, toTemp, edges[i].transportType);
+                }
             }
         }
     }
@@ -323,17 +324,19 @@ function adaptZoomAndCenter(edges) {
                 var pointLatLng2 = new google.maps.LatLng(edges[i].endPointPoint.latitude, edges[i].endPointPoint.longitude);
                 bounds.extend(pointLatLng2);
             }
-        }
-        if (edges[i].numberOfTransfers > 1 && i === edges.length - 1){
-            for (var j = 0; j < edges[i].transitPoints.length; j++) {
-                var pointLatLng3 = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
-                bounds.extend(pointLatLng3);
-            }
-        }
-        if (edges[i].numberOfTransfers > 1 && i !== edges.length - 1){
-            for (var j = 0; j < edges[i].transitPoints.length - 1; j++) {
-                var pointLatLng4 = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
-                bounds.extend(pointLatLng4);
+        } else {
+            if (edges[i].numberOfTransfers > 1 && i === edges.length - 1){
+                for (var j = 0; j < edges[i].transitPoints.length; j++) {
+                    var pointLatLng3 = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
+                    bounds.extend(pointLatLng3);
+                }
+            } else {
+                if (edges[i].numberOfTransfers > 1 && i !== edges.length - 1){
+                    for (var k = 0; k < edges[i].transitPoints.length - 1; k++) {
+                        var pointLatLng4 = new google.maps.LatLng(edges[i].transitPoints[k].latitude, edges[i].transitPoints[k].longitude);
+                        bounds.extend(pointLatLng4);
+                    }
+                }
             }
         }
     }
@@ -364,32 +367,34 @@ function setMarkers(edges) {
                 });
                 markers.push(marker2);
             }
-        }
-        if (edges[i].numberOfTransfers > 1 && i === edges.length - 1){
-            for (var j = 0; j < edges[i].transitPoints.length; j++) {
-                var pointLatLng3 = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
-                var marker3 = new google.maps.Marker({
-                    position: pointLatLng3,
-                    title: edges[i].transitPoints[j].name,
-                    label: edges[i].transitPoints[j].name.charAt(0),
-                    opacity: 0.75,
-                    map: map
-                });
-                markers.push(marker3);
-            }
-        }
-        if (edges[i].numberOfTransfers > 1 && i !== edges.length - 1){
-            for (var j = 0; j < edges[i].transitPoints.length - 1; j++) {
-                var pointLatLng4 = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
-                var marker4 = new google.maps.Marker({
-                    position: pointLatLng4,
-                    title: edges[i].transitPoints[j].name,
-                    label: edges[i].transitPoints[j].name.charAt(0),
-                    opacity: 0.75,
-                    map: map
-                });
-                markers.push(marker4);
+        } else {
+            if (edges[i].numberOfTransfers > 1 && i === edges.length - 1){
+                for (var j = 0; j < edges[i].transitPoints.length; j++) {
+                    var pointLatLng3 = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
+                    var marker3 = new google.maps.Marker({
+                        position: pointLatLng3,
+                        title: edges[i].transitPoints[j].name,
+                        label: edges[i].transitPoints[j].name.charAt(0),
+                        opacity: 0.75,
+                        map: map
+                    });
+                    markers.push(marker3);
+                }
+            } else {
+                if (edges[i].numberOfTransfers > 1 && i !== edges.length - 1){
+                    for (var k = 0; k < edges[i].transitPoints.length - 1; k++) {
+                        var pointLatLng4 = new google.maps.LatLng(edges[i].transitPoints[k].latitude, edges[i].transitPoints[k].longitude);
+                        var marker4 = new google.maps.Marker({
+                            position: pointLatLng4,
+                            title: edges[i].transitPoints[k].name,
+                            label: edges[i].transitPoints[k].name.charAt(0),
+                            opacity: 0.75,
+                            map: map
+                        });
+                        markers.push(marker4);
+                    }
+                }
             }
         }
     }
-};
+}
