@@ -68,6 +68,7 @@ public class PreparingDataService {
                         citiesTo.remove(i);
                         i--;
                         citiesToSize--;
+                        break;
                     }
                 }
             }
