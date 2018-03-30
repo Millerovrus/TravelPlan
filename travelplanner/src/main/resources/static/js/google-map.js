@@ -161,7 +161,8 @@ function fillInAll(edges) {
                 speed.push(0.6);
                 break;
             default:
-                alert( 'Неверное значение type' );
+                speed.push(0.5);
+                break;
         }
         createLine(from, to, edges[i].transportType);
     }
@@ -203,6 +204,7 @@ function createLine(from, to, type) {
                 }
             }
             break;
+        case 'suburban':
         case 'train':
             lineSymbol = {
                 path: 'M-.07 9.094c-3.832 0-6.967-.435-6.967-3.484v-8.273c0-1.655 1.393-3.048 3.048-3.048l-1.306-1.306v-.435h10.451v.435L3.849-5.711c1.655 0 3.048 1.393 3.048 3.048V5.61C6.897 8.658 3.762 9.094-.07 9.094zM-3.989-3.97c-.697 0-1.306.61-1.306 1.306S-4.686-1.357-3.989-1.357s1.306-.61 1.306-1.306S-3.293-3.97-3.989-3.97zM-.941 1.256H-5.296V5.61h4.354V1.256zM3.849-3.97c-.697 0-1.306.61-1.306 1.306S3.152-1.357 3.849-1.357s1.306-.61 1.306-1.306S4.545-3.97 3.849-3.97zM5.155 1.256h-4.354V5.61h4.354V1.256z',
@@ -254,7 +256,15 @@ function createLine(from, to, type) {
             };
             break;
         default:
-            alert( 'Неверное значение type' );
+            lineSymbol = {
+                path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+                scale: 6,
+                strokeOpacity: 0.0,
+                fillOpacity: 0.0,
+                strokeColor: 'white',
+                strokeWeight: 1,
+                fillColor: 'black'
+            };
             break;
     }
 
