@@ -219,7 +219,9 @@
                                                         <div class="fancy-collapse-panel" >
                                                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
                                                                 <div class="panel panel-default"  ng-repeat="record in records">
-                                                                <#--<input type="submit" ng-click="saveRoute()" class="inputButton" value="Save all routes">-->
+                                                                    <#--<div ng-show="saved">
+                                                                        <input type="submit" ng-click="saveRoute(record)" class="inputButton" value="Save all routes">
+                                                                    </div>-->
                                                                     <div class="panel-heading" role="tab" id="headingOne" >
                                                                         <h4 class="panel-title">
                                                                             <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
@@ -243,6 +245,11 @@
                                                                                 <div class="row">
                                                                                     <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
                                                                                         <section>
+                                                                                            <#if isAuthorized>
+                                                                                                <div ng-hide="saved(record.idRouteForView)">
+                                                                                                    <button class='dotted thin' ng-click="saveRoute(record)">Save route</button>
+                                                                                                </div>
+                                                                                            </#if>
                                                                                             <button class='dotted thin' onclick="getAlert()">Buy tickets</button>
                                                                                         </section>
                                                                                     </div>

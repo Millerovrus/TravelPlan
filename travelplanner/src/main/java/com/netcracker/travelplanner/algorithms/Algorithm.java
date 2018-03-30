@@ -156,9 +156,6 @@ public class Algorithm {
                 edge.setRoute(route);
                 route.getEdges().add(edge);
                 route.setCost(route.getCost() + edge.getCost());
-                if (edge.getDistance() != null){
-                    route.setDistance(route.getDistance() + edge.getDistance());
-                }
             }
             route.getWeights().add(route.getDuration() / 72 + route.getCost() / numberOfPassengers);
             route.getWeights().add(route.getDuration() / 9 + route.getCost() / numberOfPassengers);

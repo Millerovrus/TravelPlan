@@ -1,6 +1,9 @@
 package com.netcracker.travelplanner.controllers;
-;
+
 import com.netcracker.travelplanner.entities.Route;
+import com.netcracker.travelplanner.entities.User;
+import com.netcracker.travelplanner.security.service.SecurityService;
+import com.netcracker.travelplanner.security.service.UserService;
 import com.netcracker.travelplanner.service.RouteRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +20,10 @@ public class RouteApiController {
     private static Logger logger = LoggerFactory.getLogger(RouteApiController.class);
     @Autowired
     private RouteRepositoryService routeRepositoryService;
+    @Autowired
+    private SecurityService securityService;
+    @Autowired
+    private UserService userService;
 
     /**
      * @return list of all routes
@@ -78,20 +85,22 @@ public class RouteApiController {
             @RequestParam(value = "destinationpoint", required = true) String destinationPoint,
             @RequestParam(value = "cost", required = true) double cost,
             @RequestParam(value = "duration", required = true) double duration,
-            @RequestParam(value = "distance", required = true) double distance,
-            @RequestParam(value = "userid", required = true) int userId,
             @RequestParam(value = "idrouteforview", required = true) int idRouteForView) {
         logger.info("Процесс сохранения маршрута...");
-        try {
-            Route route = new Route(new Date(), startPoint, destinationPoint, duration, idRouteForView);
-            route.setCost(cost);
-            route.setDistance(distance);
-            route.setIdRouteForView(idRouteForView);
-            routeRepositoryService.save(route);
-            logger.info("Сохранение прошло успешно!");
-        } catch (Exception ex) {
-            logger.error("Процесс сохранения прерван с ошибкой: ", ex);
-            ex.printStackTrace();
+        String email = securityService.findLoggedInUsername();
+        if (email != null) {
+            User user = userService.findUserByEmail(email);
+            try {
+                Route route = new Route(new Date(), startPoint, destinationPoint, duration, idRouteForView);
+                route.setCost(cost);
+                route.setUser(user);
+                routeRepositoryService.save(route);
+                logger.info("Сохранение прошло успешно!");
+            } catch (Exception ex) {
+                logger.error("Процесс сохранения прерван с ошибкой: ", ex);
+                ex.printStackTrace();
+            }
         }
+        //return "index";
     }
 }

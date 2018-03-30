@@ -45,9 +45,6 @@ public class Route implements Serializable {
     @Column(name = "duration", nullable = false)
     private double duration;
 
-    @Column(name = "distance")
-    private double distance;
-
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Edge> edges;
 
@@ -76,14 +73,6 @@ public class Route implements Serializable {
 
     public void setDuration(double duration) {
         this.duration = duration;
-    }
-
-    public double getDistance() {
-        return distance;
-    }
-
-    public void setDistance(double distance) {
-        this.distance = distance;
     }
 
     public List<Double> getWeights() {
@@ -170,7 +159,6 @@ public class Route implements Serializable {
         if (id != route.id) return false;
         if (Double.compare(route.cost, cost) != 0) return false;
         if (Double.compare(route.duration, duration) != 0) return false;
-        if (Double.compare(route.distance, distance) != 0) return false;
         if (idRouteForView != route.idRouteForView) return false;
         if (user != null ? !user.equals(route.user) : route.user != null) return false;
         if (!creationDate.equals(route.creationDate)) return false;
@@ -196,7 +184,6 @@ public class Route implements Serializable {
                 .append("weights", weights.toString())
                 .append("cost", cost)
                 .append("duration", duration)
-                .append("distance", distance)
                 .append("isOptimalRoute", isOptimalRoute)
                 .append("edges", edges.toString())
                 .toString();

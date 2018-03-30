@@ -10,18 +10,25 @@ angular.module('controllerModule')
 
     .controller('myParameterController', function requestFunc($scope, $http) {
 
-        $scope.saveRoute=function () {
+        /*$scope.saved=function(value) {
+            return true
+        };*/
+        $scope.saveRoute=function (record) {
+
+            $scope.saved=function(value) {
+                if (value == record.idRouteForView)
+                    return true;
+            };
+
             $http({
                 method: 'GET',
                 url: 'api/routes/saveroutes',
                 params: {
-                    startpoint: 'Moscow',
-                    destinationpoint: 'Voronezh',
-                    cost: '500.0',
-                    duration: '100.0',
-                    distance: '600.0',
-                    userid: '80',
-                    idrouteforview: '14'
+                    startpoint: record.startPoint,
+                    destinationpoint: record.destinationPoint,
+                    cost: record.cost,
+                    duration: record.duration,
+                    idrouteforview: record.idRouteForView
                 }
             }).then(
                 function success(response, status) {
