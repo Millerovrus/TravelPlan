@@ -166,11 +166,19 @@ function fillInAll(edges) {
             }
             createLine(from, to, edges[i].transportType);
         } else {
+            // if (edges[i].numberOfTransfers > 1) {
+            //     for (var j = 0; j < edges[i].transitPoints.length - 1; j++) {
+            //         speed.push(1);
+            //         var fromTemp = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
+            //         var toTemp = new google.maps.LatLng(edges[i].transitPoints[j + 1].latitude, edges[i].transitPoints[j + 1].longitude);
+            //         createLine(fromTemp, toTemp, edges[i].transportType);
+            //     }
+            // }
             if (edges[i].numberOfTransfers > 1) {
-                for (var j = 0; j < edges[i].transitPoints.length - 1; j++) {
+                for (var j = 0; j < edges[i].transitEdgeList.length; j++) {
                     speed.push(1);
-                    var fromTemp = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
-                    var toTemp = new google.maps.LatLng(edges[i].transitPoints[j + 1].latitude, edges[i].transitPoints[j + 1].longitude);
+                    var fromTemp = new google.maps.LatLng(edges[i].transitEdgeList[j].latitudeFrom, edges[i].transitEdgeList[j].longitudeFrom);
+                    var toTemp = new google.maps.LatLng(edges[i].transitEdgeList[j].latitudeTo, edges[i].transitEdgeList[j].longitudeTo);
                     createLine(fromTemp, toTemp, edges[i].transportType);
                 }
             }

@@ -226,11 +226,10 @@
                                                                                     <p><b>Cost:</b> {{item.cost}} (RUB)</p>
                                                                                     <p><b>Departure <date></date>:</b> {{item.startDate.year}}-{{item.startDate.monthValue}}-{{item.startDate.dayOfMonth}} at {{item.startDate.hour}}:{{item.startDate.minute}}</p>
                                                                                 </ul>
-                                                                                    <div ng-repeat="transits in item.transitPoints">
+                                                                                    <div ng-repeat="transits in item.transitEdgeList">
                                                                                         <ul>
-                                                                                            <p>Transit point {{transits.name}}</p>
+                                                                                            <p>Transit points {{transits.nameFrom}} - {{transits.nameTo}}</p>
                                                                                         </ul>
-
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

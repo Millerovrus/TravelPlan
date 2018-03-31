@@ -103,6 +103,17 @@ public class Edge implements Cloneable {
     @Transient
     private Point endPointPoint;
 
+    public List<TransitEdge> getTransitEdgeList() {
+        return transitEdgeList;
+    }
+
+    public void setTransitEdgeList(List<TransitEdge> transitEdgeList) {
+        this.transitEdgeList = transitEdgeList;
+    }
+
+    @Transient
+    private List<TransitEdge> transitEdgeList;
+
     public void setStartPointPoint(Point startPoint) {
         this.startPointPoint = startPoint;
     }

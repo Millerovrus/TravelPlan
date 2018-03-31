@@ -3,6 +3,7 @@ package com.netcracker.travelplanner.api;
 import com.google.gson.Gson;
 import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.Point;
+import com.netcracker.travelplanner.entities.TransitEdge;
 import com.netcracker.travelplanner.entities.kiwi.KiwiFlights;
 
 import java.io.IOException;
@@ -49,6 +50,8 @@ public class KiwiApi implements ApiInterface {
             {
                 List<Point> transitPoints = new LinkedList<>();
 
+                List<TransitEdge> transitEdges = new LinkedList<>();
+
                 if(l.getRoute().size() > 1){
 
                     transitPoints.add(new Point(l.getRoute().get(0).getCityFrom()
@@ -63,6 +66,18 @@ public class KiwiApi implements ApiInterface {
                                 ,route.getFlyTo()
                                 ));
                     });
+
+                    l.getRoute().forEach(route -> {
+                    transitEdges.add(new TransitEdge(route.getCityFrom()
+                            ,route.getCityTo()
+                            ,route.getLatFrom()
+                            ,route.getLngFrom()
+                            ,route.getLatTo()
+                            ,route.getLngTo()
+                            ,LocalDateTime.ofEpochSecond(route.getATime(), 0, ZoneOffset.UTC)
+                            ,LocalDateTime.ofEpochSecond(route.getDTime(), 0, ZoneOffset.UTC)));
+                    });
+
                 }
                 transitPoints.get(transitPoints.size()-1).setLatitude(to.getLatitude());
                 transitPoints.get(transitPoints.size()-1).setLongitude(to.getLongitude());
@@ -95,6 +110,8 @@ public class KiwiApi implements ApiInterface {
                                 ,to.getYandexCode()
                                 ,l.getFlyTo()));
                 edge.setTransitPoints(transitPoints);
+
+                edge.setTransitEdgeList(transitEdges);
 
                 edgeList.add(edge);
 
