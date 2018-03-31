@@ -155,6 +155,7 @@ function fillInAll(edges) {
                 case 'bus':
                     speed.push(0.4);
                     break;
+                case 'suburban':
                 case 'train':
                     speed.push(0.6);
                     break;
@@ -162,26 +163,10 @@ function fillInAll(edges) {
                     speed.push(0.6);
                     break;
                 default:
-                    alert( 'Неверное значение type' );
+                    speed.push(0.5);
+                    break;
             }
             createLine(from, to, edges[i].transportType);
-
-            // if (edges[i].numberOfTransfers > 1) {
-            //     for (var j = 0; j < edges[i].transitPoints.length - 1; j++) {
-            //         speed.push(1);
-            //         var fromTemp = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
-            //         var toTemp = new google.maps.LatLng(edges[i].transitPoints[j + 1].latitude, edges[i].transitPoints[j + 1].longitude);
-            //         createLine(fromTemp, toTemp, edges[i].transportType);
-            //     }
-            // }
-            // if (edges[i].numberOfTransfers > 1) {
-            //     for (var j = 0; j < edges[i].transitEdgeList.length; j++) {
-            //         speed.push(1);
-            //         var fromTemp = new google.maps.LatLng(edges[i].transitEdgeList[j].latitudeFrom, edges[i].transitEdgeList[j].longitudeFrom);
-            //         var toTemp = new google.maps.LatLng(edges[i].transitEdgeList[j].latitudeTo, edges[i].transitEdgeList[j].longitudeTo);
-            //         createLine(fromTemp, toTemp, edges[i].transportType);
-            //     }
-
         }
     }
     adaptZoomAndCenter(edges);
@@ -222,6 +207,7 @@ function createLine(from, to, type) {
                 }
             }
             break;
+        case 'suburban':
         case 'train':
             lineSymbol = {
                 path: 'M-.07 9.094c-3.832 0-6.967-.435-6.967-3.484v-8.273c0-1.655 1.393-3.048 3.048-3.048l-1.306-1.306v-.435h10.451v.435L3.849-5.711c1.655 0 3.048 1.393 3.048 3.048V5.61C6.897 8.658 3.762 9.094-.07 9.094zM-3.989-3.97c-.697 0-1.306.61-1.306 1.306S-4.686-1.357-3.989-1.357s1.306-.61 1.306-1.306S-3.293-3.97-3.989-3.97zM-.941 1.256H-5.296V5.61h4.354V1.256zM3.849-3.97c-.697 0-1.306.61-1.306 1.306S3.152-1.357 3.849-1.357s1.306-.61 1.306-1.306S4.545-3.97 3.849-3.97zM5.155 1.256h-4.354V5.61h4.354V1.256z',
@@ -273,7 +259,15 @@ function createLine(from, to, type) {
             };
             break;
         default:
-            alert( 'Неверное значение type' );
+            lineSymbol = {
+                path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+                    scale: 6,
+                    strokeOpacity: 0.0,
+                    fillOpacity: 0.0,
+                    strokeColor: 'white',
+                    strokeWeight: 1,
+                fillColor: 'black'
+            };
             break;
     }
 
@@ -325,32 +319,12 @@ function animateSymbols(speed) {
 function adaptZoomAndCenter(edges) {
     var bounds = new google.maps.LatLngBounds();
     for (var i = 0; i < edges.length; i++) {
-        // if (edges[i].numberOfTransfers === 1) {
-        //     var pointLatLng = new google.maps.LatLng(edges[i].startPoint.latitude, edges[i].startPoint.longitude);
-        //     bounds.extend(pointLatLng);
-        //     if (i === edges.length - 1) {
-        //         var pointLatLng2 = new google.maps.LatLng(edges[i].endPoint.latitude, edges[i].endPoint.longitude);
-        //         bounds.extend(pointLatLng2);
-        //     }
-        // } else {
-        //     if (edges[i].numberOfTransfers > 1 && i === edges.length - 1){
-        //         for (var j = 0; j < edges[i].transitPoints.length; j++) {
-        //             var pointLatLng3 = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
-        //             bounds.extend(pointLatLng3);
-        //         }
-        //     } else {
-        //         if (edges[i].numberOfTransfers > 1 && i !== edges.length - 1){
-        //             for (var k = 0; k < edges[i].transitPoints.length - 1; k++) {
-        //                 var pointLatLng4 = new google.maps.LatLng(edges[i].transitPoints[k].latitude, edges[i].transitPoints[k].longitude);
-        //                 bounds.extend(pointLatLng4);
-        //             }
-        //         }
-        //     }
-        // }
         for (var j = 0; j < edges[i].transitEdgeList.length ; j++) {
             var pointLatLng1 = new google.maps.LatLng(edges[i].transitEdgeList[j].startPoint.latitude, edges[i].transitEdgeList[j].startPoint.longitude);
-            var pointLatLng2 = new google.maps.LatLng(edges[i].transitEdgeList[j].endPoint.latitude, edges[i].transitEdgeList[j].endPoint.longitude);
             bounds.extend(pointLatLng1);
+        }
+        if (i === edges.length - 1){
+            var pointLatLng2 = new google.maps.LatLng(edges[i].transitEdgeList[edges[i].transitEdgeList.length - 1].endPoint.latitude, edges[i].transitEdgeList[edges[i].transitEdgeList.length - 1].endPoint.longitude);
             bounds.extend(pointLatLng2);
         }
     }
@@ -360,55 +334,27 @@ function adaptZoomAndCenter(edges) {
 //ставим маркеры
 function setMarkers(edges) {
     for (var i = 0; i < edges.length; i++) {
-        if (edges[i].numberOfTransfers === 1) {
-            var pointLatLng = new google.maps.LatLng(edges[i].startPointPoint.latitude, edges[i].startPointPoint.longitude);
+        for (var j = 0; j < edges[i].transitEdgeList.length; j++) {
+            var pointLatLng = new google.maps.LatLng(edges[i].transitEdgeList[j].startPoint.latitude, edges[i].transitEdgeList[j].startPoint.longitude);
             var marker = new google.maps.Marker({
                 position: pointLatLng,
-                title: edges[i].startPointPoint.name,
-                label: edges[i].startPointPoint.name.charAt(0),
+                title: edges[i].transitEdgeList[j].startPoint.name,
+                label: edges[i].transitEdgeList[j].startPoint.name.charAt(0),
                 opacity: 0.75,
                 map: map
             });
             markers.push(marker);
-            if (i === edges.length - 1) {
-                var pointLatLng2 = new google.maps.LatLng(edges[i].endPointPoint.latitude, edges[i].endPointPoint.longitude);
-                var marker2 = new google.maps.Marker({
-                    position: pointLatLng2,
-                    title: edges[i].endPointPoint.name,
-                    label: edges[i].endPointPoint.name.charAt(0),
-                    opacity: 0.75,
-                    map: map
-                });
-                markers.push(marker2);
-            }
-        } else {
-            if (edges[i].numberOfTransfers > 1 && i === edges.length - 1){
-                for (var j = 0; j < edges[i].transitPoints.length; j++) {
-                    var pointLatLng3 = new google.maps.LatLng(edges[i].transitPoints[j].latitude, edges[i].transitPoints[j].longitude);
-                    var marker3 = new google.maps.Marker({
-                        position: pointLatLng3,
-                        title: edges[i].transitPoints[j].name,
-                        label: edges[i].transitPoints[j].name.charAt(0),
-                        opacity: 0.75,
-                        map: map
-                    });
-                    markers.push(marker3);
-                }
-            } else {
-                if (edges[i].numberOfTransfers > 1 && i !== edges.length - 1){
-                    for (var k = 0; k < edges[i].transitPoints.length - 1; k++) {
-                        var pointLatLng4 = new google.maps.LatLng(edges[i].transitPoints[k].latitude, edges[i].transitPoints[k].longitude);
-                        var marker4 = new google.maps.Marker({
-                            position: pointLatLng4,
-                            title: edges[i].transitPoints[k].name,
-                            label: edges[i].transitPoints[k].name.charAt(0),
-                            opacity: 0.75,
-                            map: map
-                        });
-                        markers.push(marker4);
-                    }
-                }
-            }
+        }
+        if (i === edges.length - 1){
+            var pointLatLng2 = new google.maps.LatLng(edges[i].transitEdgeList[edges[i].transitEdgeList.length - 1].endPoint.latitude, edges[i].transitEdgeList[edges[i].transitEdgeList.length - 1].endPoint.longitude);
+            var marker2 = new google.maps.Marker({
+                position: pointLatLng2,
+                title: edges[i].transitEdgeList[edges[i].transitEdgeList.length - 1].endPoint.name,
+                label: edges[i].transitEdgeList[edges[i].transitEdgeList.length - 1].endPoint.name.charAt(0),
+                opacity: 0.75,
+                map: map
+            });
+            markers.push(marker2);
         }
     }
 }

@@ -210,7 +210,9 @@
                                                                             <div class="panel-heading" role="tab" id="headingOne" >
                                                                                 <h4 class="panel-title">
                                                                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
-                                                                                        <div class="route-header" ng-repeat="item in record.edges"> {{item.startPoint.name}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{item.endPoint.name}} </div>
+                                                                                        <div ng-repeat="item in record.edges">
+                                                                                            <div class="route-header" ng-repeat="transits in item.transitEdgeList"> {{transits.startPoint.name}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{transits.endPoint.name}} </div>
+                                                                                        </div>
                                                                                         <div class="divider-inverse"></div>
                                                                                         <div class="json-data">
                                                                                             <p><b>Total cost:</b> {{record.cost}} (RUB)</p>

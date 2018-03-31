@@ -63,20 +63,13 @@ angular.module('controllerModule')
                     return '<i class="fa fa-bus"></i>';
                 case "plane":
                     return '<i class="fa fa-plane"></i>';
+                case "suburban":
                 case "train":
                     return '<i class="fa fa-train"></i>';
                 default:
-                    return 'some other type: ' + transportType;
+                    return '- ' + transportType + ' -';
             }
         };
-    }])
-    .filter('transitPoints', [function () {
-        return function (numberOfTransfers) {
-            if(numberOfTransfers > 1){
-                var tempPoint;
-
-            }
-        }
     }])
     .controller('appController', function ($scope) {
         $scope.$on('LOAD', function () { $scope.loading = true });
