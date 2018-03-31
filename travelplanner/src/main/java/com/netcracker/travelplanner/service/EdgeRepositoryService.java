@@ -39,18 +39,18 @@ public class EdgeRepositoryService {
      * @param d - destination point
      * @return list of edges by start AND destination point
      */
-    public List<Edge> findByStartPointAndDestinationPoint(String s, String d){
-        return edgeRepository.findByStartPointIsAndDestinationPointIs(s, d);
-    }
+//    public List<Edge> findByStartPointAndDestinationPoint(String s, String d){
+//        return edgeRepository.findByStartPointIsAndDestinationPointIs(s, d);
+//    }
 
     /**
      * @param s - start point
      * @param d - destination point
      * @return list of edges by start OR destination point
      */
-    public List<Edge> findByStartPointOrDestinationPoint(String s, String d){
-        return edgeRepository.findByStartPointIsOrDestinationPointIs(s, d);
-    }
+//    public List<Edge> findByStartPointOrDestinationPoint(String s, String d){
+//        return edgeRepository.findByStartPointIsOrDestinationPointIs(s, d);
+//    }
 
     /**
      * @param d - duration of edges

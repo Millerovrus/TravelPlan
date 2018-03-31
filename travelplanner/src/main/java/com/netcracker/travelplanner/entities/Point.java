@@ -16,11 +16,8 @@ public class Point {
     private String name;
     private double latitude;
     private double longitude;
-    @JsonIgnore
     private String iataCode;
-    @JsonIgnore
     private String yandexCode;
-    @JsonIgnore
     private String locationCode;
 
     public String getLocationCode() {

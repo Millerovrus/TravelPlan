@@ -48,44 +48,64 @@ public class KiwiApi implements ApiInterface {
             String currency = kiwiFlights.getCurrency();
             kiwiFlights.getData().forEach(l ->
             {
-                List<Point> transitPoints = new LinkedList<>();
+//                List<Point> transitPoints = new LinkedList<>();
 
                 List<TransitEdge> transitEdges = new LinkedList<>();
 
                 if(l.getRoute().size() > 1){
 
-                    transitPoints.add(new Point(l.getRoute().get(0).getCityFrom()
-                            ,from.getLatitude()
-                            ,from.getLongitude()
-                            ,l.getRoute().get(0).getFlyFrom()));
+//                    transitPoints.add(new Point(l.getRoute().get(0).getCityFrom()
+//                            ,from.getLatitude()
+//                            ,from.getLongitude()
+//                            ,l.getRoute().get(0).getFlyFrom()));
+//
+//                    l.getRoute().forEach(route -> {
+//                        transitPoints.add(new Point(route.getCityTo()
+//                                ,route.getLatTo()
+//                                ,route.getLngTo()
+//                                ,route.getFlyTo()
+//                                ));
+//                    });
 
                     l.getRoute().forEach(route -> {
-                        transitPoints.add(new Point(route.getCityTo()
+                    transitEdges.add(new TransitEdge(new Point(route.getCityFrom()
+                                ,route.getLatFrom()
+                                ,route.getLngFrom()
+                                ,route.getFlyFrom())
+                            ,new Point(route.getCityTo()
                                 ,route.getLatTo()
                                 ,route.getLngTo()
-                                ,route.getFlyTo()
-                                ));
+                                ,route.getFlyTo())
+                            ,LocalDateTime.ofEpochSecond(route.getDTime(), 0, ZoneOffset.UTC)
+                            ,LocalDateTime.ofEpochSecond(route.getATime(), 0, ZoneOffset.UTC)));
                     });
 
-                    l.getRoute().forEach(route -> {
-                    transitEdges.add(new TransitEdge(route.getCityFrom()
-                            ,route.getCityTo()
-                            ,route.getLatFrom()
-                            ,route.getLngFrom()
-                            ,route.getLatTo()
-                            ,route.getLngTo()
-                            ,LocalDateTime.ofEpochSecond(route.getATime(), 0, ZoneOffset.UTC)
-                            ,LocalDateTime.ofEpochSecond(route.getDTime(), 0, ZoneOffset.UTC)));
-                    });
+                }else {
+                    transitEdges.add(new TransitEdge(
+                             new Point(from.getName()
+                                    ,from.getLatitude()
+                                    ,from.getLongitude()
+                                    ,from.getIataCode()
+                                    ,from.getYandexCode()
+                                    ,l.getFlyFrom())
+                            ,new Point(to.getName()
+                                    ,to.getLatitude()
+                                    ,to.getLongitude()
+                                    ,to.getIataCode()
+                                    ,to.getYandexCode()
+                                    ,l.getFlyTo())
+                            ,LocalDateTime.ofEpochSecond(l.getDTime(), 0, ZoneOffset.UTC)
+                            ,LocalDateTime.ofEpochSecond(l.getATime(), 0, ZoneOffset.UTC)
 
+                    ));
                 }
-                transitPoints.get(transitPoints.size()-1).setLatitude(to.getLatitude());
-                transitPoints.get(transitPoints.size()-1).setLongitude(to.getLongitude());
+
+
+//                transitPoints.get(transitPoints.size()-1).setLatitude(to.getLatitude());
+//                transitPoints.get(transitPoints.size()-1).setLongitude(to.getLongitude());
 
                 Edge edge = new Edge();
                 edge.setCreationDate(dateNow);
-                edge.setStartPoint(from.getName());
-                edge.setDestinationPoint(to.getName());
                 edge.setTransportType("plane");
                 edge.setDuration((double) l.getDuration().getTotal());
                 edge.setCost((double) l.getPrice());
@@ -93,23 +113,18 @@ public class KiwiApi implements ApiInterface {
                 edge.setEndDate(LocalDateTime.ofEpochSecond(l.getATime(), 0, ZoneOffset.UTC));
                 edge.setCurrency(currency);
                 edge.setNumberOfTransfers((byte) (l.getRoute().size()));
-                edge.setLatitudeFrom(from.getLatitude());
-                edge.setLongitudeFrom(from.getLongitude());
-                edge.setLatitudeTo(to.getLatitude());
-                edge.setLongitudeTo(to.getLongitude());
-                edge.setStartPointPoint(new Point(from.getName()
+                edge.setStartPoint(new Point(from.getName()
                                 ,from.getLatitude()
                                 ,from.getLongitude()
                                 ,from.getIataCode()
                                 ,from.getYandexCode()
                                 ,l.getFlyFrom()));
-                edge.setEndPointPoint(new Point(to.getName()
+                edge.setEndPoint(new Point(to.getName()
                                 ,to.getLatitude()
                                 ,to.getLongitude()
                                 ,to.getIataCode()
                                 ,to.getYandexCode()
                                 ,l.getFlyTo()));
-                edge.setTransitPoints(transitPoints);
 
                 edge.setTransitEdgeList(transitEdges);
 

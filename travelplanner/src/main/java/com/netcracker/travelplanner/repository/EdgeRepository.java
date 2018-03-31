@@ -9,8 +9,8 @@ import java.util.List;
 
 @Repository
 public interface EdgeRepository extends JpaRepository<Edge,Integer>, JpaSpecificationExecutor<Edge> {
-    List<Edge> findByStartPointIsAndDestinationPointIs(String s, String d);
-    List<Edge> findByStartPointIsOrDestinationPointIs(String s, String d);
+//    List<Edge> findByStartPointIsAndDestinationPointIs(String s, String d);
+//    List<Edge> findByStartPointIsOrDestinationPointIs(String s, String d);
     List<Edge> findByDuration(double d);
     List<Edge> findByCost(double d);
     List<Edge> findByTransportType(String type);

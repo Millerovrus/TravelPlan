@@ -4,79 +4,32 @@ import java.time.LocalDateTime;
 
 public class TransitEdge {
 
-    private String nameFrom;
-    private String nameTo;
-    private double latitudeFrom;
-    private double longitudeFrom;
-    private double latitudeTo;
-    private double longitudeTo;
+    private Point startPoint;
+    private Point endPoint;
     private LocalDateTime arrival;
     private LocalDateTime departure;
 
-    public TransitEdge(String nameFrom
-            , String nameTo
-            , double latitudeFrom
-            , double longitudeFrom
-            , double latitudeTo
-            , double longitudeTo
-            , LocalDateTime arrival
-            , LocalDateTime departure) {
-        this.nameFrom = nameFrom;
-        this.nameTo = nameTo;
-        this.latitudeFrom = latitudeFrom;
-        this.longitudeFrom = longitudeFrom;
-        this.latitudeTo = latitudeTo;
-        this.longitudeTo = longitudeTo;
+    public TransitEdge(Point startPoint, Point endPoint, LocalDateTime arrival, LocalDateTime departure) {
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
         this.arrival = arrival;
         this.departure = departure;
     }
 
-    public String getNameFrom() {
-        return nameFrom;
+    public Point getStartPoint() {
+        return startPoint;
     }
 
-    public void setNameFrom(String nameFrom) {
-        this.nameFrom = nameFrom;
+    public void setStartPoint(Point startPoint) {
+        this.startPoint = startPoint;
     }
 
-    public String getNameTo() {
-        return nameTo;
+    public Point getEndPoint() {
+        return endPoint;
     }
 
-    public void setNameTo(String nameTo) {
-        this.nameTo = nameTo;
-    }
-
-    public double getLatitudeFrom() {
-        return latitudeFrom;
-    }
-
-    public void setLatitudeFrom(double latitudeFrom) {
-        this.latitudeFrom = latitudeFrom;
-    }
-
-    public double getLongitudeFrom() {
-        return longitudeFrom;
-    }
-
-    public void setLongitudeFrom(double longitudeFrom) {
-        this.longitudeFrom = longitudeFrom;
-    }
-
-    public double getLatitudeTo() {
-        return latitudeTo;
-    }
-
-    public void setLatitudeTo(double latitudeTo) {
-        this.latitudeTo = latitudeTo;
-    }
-
-    public double getLongitudeTo() {
-        return longitudeTo;
-    }
-
-    public void setLongitudeTo(double longitudeTo) {
-        this.longitudeTo = longitudeTo;
+    public void setEndPoint(Point endPoint) {
+        this.endPoint = endPoint;
     }
 
     public LocalDateTime getArrival() {

@@ -2,6 +2,7 @@ package com.netcracker.travelplanner.api;
 
 import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.Point;
+import com.netcracker.travelplanner.entities.TransitEdge;
 import com.netcracker.travelplanner.webParsers.WebParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,6 +14,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class YandexParser implements ApiInterface {
@@ -53,32 +55,78 @@ public class YandexParser implements ApiInterface {
             if(el.hasClass("SearchSegment")){
                 el.stream()
                         .filter(element -> !element.getElementsByClass("SegmentPrices").first().text().equals(""))
-                        .forEach(element -> edgeList.add(new Edge(new Date()
-                                , from.getName()
-                                , to.getName()
-                                , convertTypes(element.getElementsByClass("TransportIcon").first().attr("aria-label"))
-                                , (double) splStr(element.getElementsByClass("SearchSegment__duration").first().text())
-                                , (splCost(element.getElementsByClass("Price").first().text())) * (numberOfAdults + numberOfChildren)
-                                , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text()))
-                                , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text()))
-                                , "RUB"
-                                , (byte) 1
-                                , from.getLatitude()
-                                , from.getLongitude()
-                                , to.getLatitude()
-                                , to.getLongitude()
-                                , new Point(from.getName()
-                                        ,from.getLatitude()
-                                        ,from.getLongitude()
-                                        ,from.getIataCode()
-                                        ,from.getYandexCode()
-                                        ,"")
-                                , new Point(to.getName()
-                                        ,to.getLatitude()
-                                        ,to.getLongitude()
-                                        ,to.getIataCode()
-                                        ,to.getYandexCode()
-                                        ,""))));
+                        .forEach(element -> {
+                            Edge edge = new Edge();
+                            edge.setCreationDate(new Date());
+                            edge.setTransportType(convertTypes(element.getElementsByClass("TransportIcon").first().attr("aria-label")));
+                            edge.setDuration((double) splStr(element.getElementsByClass("SearchSegment__duration").first().text()));
+                            edge.setCost((splCost(element.getElementsByClass("Price").first().text())) * (numberOfAdults + numberOfChildren));
+                            edge.setStartDate(LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text())));
+                            edge.setEndDate(LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())));
+                            edge.setCurrency("RUB");
+                            edge.setNumberOfTransfers((byte) 1);
+                            edge.setStartPoint(new Point(from.getName()
+                                    ,from.getLatitude()
+                                    ,from.getLongitude()
+                                    ,from.getIataCode()
+                                    ,from.getYandexCode()
+                                    ,""));
+                            edge.setEndPoint(new Point(to.getName()
+                                    ,to.getLatitude()
+                                    ,to.getLongitude()
+                                    ,to.getIataCode()
+                                    ,to.getYandexCode()
+                                    ,""));
+
+                            List<TransitEdge> transitEdges = new LinkedList<>();
+                            transitEdges.add(new TransitEdge(
+                                    new Point(from.getName()
+                                            ,from.getLatitude()
+                                            ,from.getLongitude()
+                                            ,from.getIataCode()
+                                            ,from.getYandexCode()
+                                            ,"")
+                                    ,new Point(to.getName()
+                                    ,to.getLatitude()
+                                    ,to.getLongitude()
+                                    ,to.getIataCode()
+                                    ,to.getYandexCode()
+                                    ,"")
+                                    ,LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text()))
+                                    ,LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text()))
+
+                            ));
+
+                            edge.setTransitEdgeList(transitEdges);
+                            edgeList.add(edge);
+
+//                            edgeList.add(new Edge(new Date()
+//                                    , from.getName()
+//                                    , to.getName()
+//                                    , convertTypes(element.getElementsByClass("TransportIcon").first().attr("aria-label"))
+//                                    , (double) splStr(element.getElementsByClass("SearchSegment__duration").first().text())
+//                                    , (splCost(element.getElementsByClass("Price").first().text())) * (numberOfAdults + numberOfChildren)
+//                                    , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text()))
+//                                    , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text()))
+//                                    , "RUB"
+//                                    , (byte) 1
+//                                    , from.getLatitude()
+//                                    , from.getLongitude()
+//                                    , to.getLatitude()
+//                                    , to.getLongitude()
+//                                    , new Point(from.getName()
+//                                    ,from.getLatitude()
+//                                    ,from.getLongitude()
+//                                    ,from.getIataCode()
+//                                    ,from.getYandexCode()
+//                                    ,"")
+//                                    , new Point(to.getName()
+//                                    ,to.getLatitude()
+//                                    ,to.getLongitude()
+//                                    ,to.getIataCode()
+//                                    ,to.getYandexCode()
+//                                    ,"")))
+                        });
             }
         }
         return edgeList;

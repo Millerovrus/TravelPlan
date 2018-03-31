@@ -210,7 +210,7 @@
                                                                             <div class="panel-heading" role="tab" id="headingOne" >
                                                                                 <h4 class="panel-title">
                                                                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
-                                                                                        <div class="route-header" ng-repeat="item in record.edges"> {{item.startPoint}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{item.destinationPoint}} </div>
+                                                                                        <div class="route-header" ng-repeat="item in record.edges"> {{item.startPoint.name}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{item.endPoint.name}} </div>
                                                                                         <div class="divider-inverse"></div>
                                                                                         <div class="json-data">
                                                                                             <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
@@ -222,13 +222,13 @@
                                                                             <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                                                                 <div class="panel-body" ng-repeat="item in record.edges">
                                                                                 <ul>
-                                                                                    <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint}} - {{item.destinationPoint}}</p>
+                                                                                    <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint.name}} - {{item.endPoint.name}}</p>
                                                                                     <p><b>Cost:</b> {{item.cost}} (RUB)</p>
                                                                                     <p><b>Departure <date></date>:</b> {{item.startDate.year}}-{{item.startDate.monthValue}}-{{item.startDate.dayOfMonth}} at {{item.startDate.hour}}:{{item.startDate.minute}}</p>
                                                                                 </ul>
                                                                                     <div ng-repeat="transits in item.transitEdgeList">
                                                                                         <ul>
-                                                                                            <p>Transit points {{transits.nameFrom}} - {{transits.nameTo}}</p>
+                                                                                            <p>Transit points {{transits.startPoint.name}} - {{transits.endPoint.name}}</p>
                                                                                         </ul>
                                                                                     </div>
                                                                                 </div>
