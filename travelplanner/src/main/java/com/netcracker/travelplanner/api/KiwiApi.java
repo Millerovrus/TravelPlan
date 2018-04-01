@@ -48,24 +48,9 @@ public class KiwiApi implements ApiInterface {
             String currency = kiwiFlights.getCurrency();
             kiwiFlights.getData().forEach(l ->
             {
-//                List<Point> transitPoints = new LinkedList<>();
-
                 List<TransitEdge> transitEdges = new LinkedList<>();
 
                 if(l.getRoute().size() > 1){
-
-//                    transitPoints.add(new Point(l.getRoute().get(0).getCityFrom()
-//                            ,from.getLatitude()
-//                            ,from.getLongitude()
-//                            ,l.getRoute().get(0).getFlyFrom()));
-//
-//                    l.getRoute().forEach(route -> {
-//                        transitPoints.add(new Point(route.getCityTo()
-//                                ,route.getLatTo()
-//                                ,route.getLngTo()
-//                                ,route.getFlyTo()
-//                                ));
-//                    });
 
                     l.getRoute().forEach(route -> {
                     transitEdges.add(new TransitEdge(new Point(route.getCityFrom()
@@ -80,7 +65,11 @@ public class KiwiApi implements ApiInterface {
                             ,LocalDateTime.ofEpochSecond(route.getATime(), 0, ZoneOffset.UTC)));
                     });
 
-                }else {
+                    transitEdges.get(0).getStartPoint().setLatitude(from.getLatitude());
+                    transitEdges.get(0).getStartPoint().setLongitude(from.getLongitude());
+                    transitEdges.get(transitEdges.size() - 1).getEndPoint().setLatitude(to.getLatitude());
+                    transitEdges.get(transitEdges.size() - 1).getEndPoint().setLongitude(to.getLongitude());
+                } else {
                     transitEdges.add(new TransitEdge(
                              new Point(from.getName()
                                     ,from.getLatitude()
@@ -99,10 +88,6 @@ public class KiwiApi implements ApiInterface {
 
                     ));
                 }
-
-
-//                transitPoints.get(transitPoints.size()-1).setLatitude(to.getLatitude());
-//                transitPoints.get(transitPoints.size()-1).setLongitude(to.getLongitude());
 
                 Edge edge = new Edge();
                 edge.setCreationDate(dateNow);

@@ -168,26 +168,6 @@ function fillInAll(edges) {
             }
             createLine(from, to, edges[i].transportType);
         }
-        var from = new google.maps.LatLng(edges[i].latitudeFrom, edges[i].longitudeFrom);
-        var to = new google.maps.LatLng(edges[i].latitudeTo, edges[i].longitudeTo);
-        switch (edges[i].transportType) {
-            case 'plane':
-                speed.push(1);
-                break;
-            case 'bus':
-                speed.push(0.4);
-                break;
-            case 'train':
-                speed.push(0.6);
-                break;
-            case 'car':
-                speed.push(0.6);
-                break;
-            default:
-                speed.push(0.5);
-                break;
-        }
-        createLine(from, to, edges[i].transportType);
     }
     adaptZoomAndCenter(edges);
     setMarkers(edges);
