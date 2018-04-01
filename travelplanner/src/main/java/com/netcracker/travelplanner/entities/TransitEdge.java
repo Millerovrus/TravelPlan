@@ -16,6 +16,7 @@ public class TransitEdge {
         this.departure = departure;
     }
 
+    //просто строчка. оставлю тут.
     public Point getStartPoint() {
         return startPoint;
     }
