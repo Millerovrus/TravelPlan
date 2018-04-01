@@ -214,6 +214,41 @@
                                     <div ng-controller="mapController">
                                         <div class="output-collapse">
                                             <div class="container-fluid">
+                                                <form>
+                                                    <div class="row">
+                                                        <div class="col-sm-5">
+                                                            <div class="fancy-collapse-panel" >
+                                                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+                                                                    <div class="panel panel-default"  ng-repeat="record in records | filter:isOptimalRoute">
+                                                                                <#--<label class="checkbox" id="checkbox-{{record.idRouteForView}}">-->
+                                                                                    <#--<input type="checkbox"><span> Save</span>-->
+                                                                                <#--</label>-->
+                                                                            <div class="panel-heading" role="tab" id="headingOne" >
+                                                                                <h4 class="panel-title">
+                                                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
+                                                                                        <div ng-repeat="item in record.edges">
+                                                                                            <div class="route-header" ng-repeat="transits in item.transitEdgeList"> {{transits.startPoint.name}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{transits.endPoint.name}} </div>
+                                                                                        </div>
+                                                                                        <div class="divider-inverse"></div>
+                                                                                        <div class="json-data">
+                                                                                            <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                                            <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                                                <div class="panel-body" ng-repeat="item in record.edges">
+                                                                                <ul>
+                                                                                    <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint.name}} - {{item.endPoint.name}}</p>
+                                                                                    <p><b>Cost:</b> {{item.cost}} (RUB)</p>
+                                                                                    <p><b>Departure <date></date>:</b> {{item.startDate.year}}-{{item.startDate.monthValue}}-{{item.startDate.dayOfMonth}} at {{item.startDate.hour}}:{{item.startDate.minute}}</p>
+                                                                                </ul>
+                                                                                    <div ng-repeat="transits in item.transitEdgeList">
+                                                                                        <ul>
+                                                                                            <p>Transit points {{transits.startPoint.name}} - {{transits.endPoint.name}}</p>
+                                                                                        </ul>
+                                                                                    </div>
                                                 <div class="row">
                                                     <div class="col-sm-5">
                                                         <div class="fancy-collapse-panel" >

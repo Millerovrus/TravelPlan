@@ -35,7 +35,7 @@ public class Algorithm {
 
         // пробегаемся по edges, записываем все ребра, у которых startPoint == заданному startPoint
         for (Edge edge : edges) {
-            if (startPoint.equals(edge.getStartPoint())) {
+            if (startPoint.equals(edge.getStartPoint().getName())) {
                 List<Edge> tempEdges = new LinkedList<>();
                 tempEdges.add(edge);
                 allFoundEdges.add(tempEdges);
@@ -46,7 +46,7 @@ public class Algorithm {
         logger.debug("После прохода {}: {} найденных маршрутов", expectedSize, allFoundEdges.size());
         boolean stopSearch = true;
         for (List<Edge> foundEdges : allFoundEdges) {
-            if (!foundEdges.get(foundEdges.size()-1).getDestinationPoint().equals(destinationPoint)){
+            if (!foundEdges.get(foundEdges.size()-1).getEndPoint().getName().equals(destinationPoint)){
                 stopSearch = false;
                 break;
             }
@@ -56,7 +56,7 @@ public class Algorithm {
             //пробегаемся по edge и добавляем к уже найденным ребрам те, у которых startPoint соответствует найденным ранее destinationPoint и они состыкуются по времени
             for (int i = 0; i < size; i++) {
                 for (Edge edge : edges) {
-                    if (allFoundEdges.get(i).get(allFoundEdges.get(i).size() - 1).getDestinationPoint().equals(edge.getStartPoint()) &&
+                    if (allFoundEdges.get(i).get(allFoundEdges.get(i).size() - 1).getEndPoint().getName().equals(edge.getStartPoint().getName()) &&
                             timeDockingBetween(allFoundEdges.get(i).get(allFoundEdges.get(i).size() - 1), edge)){
                         List<Edge> tempEdges = new LinkedList<>();
                         tempEdges.addAll(allFoundEdges.get(i));
@@ -69,7 +69,7 @@ public class Algorithm {
             /*удаляем те пути, которые нашли продолжения и уже продолжены и те,
             которые не нашли продолжения и их destinationPoint != заданному destinationPoint (они никогда не приведут к финишу)*/
             for (int i = 0; i < size; i++) {
-                if ((!allFoundEdges.get(i).get(allFoundEdges.get(i).size()-1).getDestinationPoint().equals(destinationPoint) &&
+                if ((!allFoundEdges.get(i).get(allFoundEdges.get(i).size()-1).getEndPoint().getName().equals(destinationPoint) &&
                         allFoundEdges.get(i).size() != expectedSize)) {
                     allFoundEdges.remove(i);
                     i--;
@@ -80,7 +80,7 @@ public class Algorithm {
             // если все пути имеют точку прибытия = destinationPoint - останавливаем поиск
             stopSearch = true;
             for (List<Edge> foundEdges : allFoundEdges) {
-                if (!foundEdges.get(foundEdges.size()-1).getDestinationPoint().equals(destinationPoint)){
+                if (!foundEdges.get(foundEdges.size()-1).getEndPoint().getName().equals(destinationPoint)){
                     stopSearch = false;
                     break;
                 }
@@ -146,8 +146,8 @@ public class Algorithm {
         int idRouteForView  = 0;
         for (List<Edge> foundEdges : allFoundEdges) {
             Route route = new Route(new Date()
-                    , foundEdges.get(0).getStartPoint()
-                    , foundEdges.get(foundEdges.size() - 1).getDestinationPoint()
+                    , foundEdges.get(0).getStartPoint().getName()
+                    , foundEdges.get(foundEdges.size() - 1).getEndPoint().getName()
                     , ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size()-1).getEndDate())
                     , idRouteForView++);
             short order = 1;
@@ -171,20 +171,20 @@ public class Algorithm {
     private boolean timeDockingBetween(Edge edgeFrom, Edge edgeTo) {
         return (
                 //Если прилет и вылет с одного аэропорта, то состыковка в 2 часа минимум
-                !edgeFrom.getEndPointCode().isEmpty()
-                && !edgeTo.getStartPointCode().isEmpty()
+                !edgeFrom.getEndPoint().getLocationCode().isEmpty()
+                && !edgeTo.getStartPoint().getLocationCode().isEmpty()
                 && edgeFrom.getTransportType().toLowerCase().equals("plane")
                 && edgeTo.getTransportType().toLowerCase().equals("plane")
-                && edgeFrom.getEndPointCode().equals(edgeTo.getStartPointCode())
+                && edgeFrom.getEndPoint().getLocationCode().equals(edgeTo.getStartPoint().getLocationCode())
                 && edgeFrom.getEndDate().plusHours(2).isBefore(edgeTo.getStartDate())
                 && edgeFrom.getEndDate().plusHours(10).isAfter(edgeTo.getStartDate())
 
                 //Если приезд и выезд с одной остановки, то состыковка в 30 минут минимум
-                || !edgeFrom.getEndPointCode().isEmpty()
-                && !edgeTo.getStartPointCode().isEmpty()
+                || !edgeFrom.getEndPoint().getLocationCode().isEmpty()
+                && !edgeTo.getStartPoint().getLocationCode().isEmpty()
                 && edgeFrom.getTransportType().toLowerCase().equals("bus")
                 && edgeTo.getTransportType().toLowerCase().equals("bus")
-                && edgeFrom.getEndPointCode().equals(edgeTo.getStartPointCode())
+                && edgeFrom.getEndPoint().getLocationCode().equals(edgeTo.getStartPoint().getLocationCode())
                 && edgeFrom.getEndDate().plusMinutes(30).isBefore(edgeTo.getStartDate())
                 && edgeFrom.getEndDate().plusHours(9).isAfter(edgeTo.getStartDate())
 

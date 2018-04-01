@@ -30,34 +30,24 @@ public class EdgeApiController {
      * @param d - destination point
      * @return list of edges by start AND destination point
      */
-    @RequestMapping(value = "/findbytwopoints", method = RequestMethod.GET)
-    public List<Edge> getEdgesByTwoPoints(@RequestParam(value = "start", required = true) String s,
-                                            @RequestParam(value = "destination", required = true) String d){
-        logger.info("Запрос на получение cписка отрезков с начальной точкой: {} и конечной: {}", s, d);
-        return edgeRepositoryService.findByStartPointAndDestinationPoint(s, d);
-    }
+//    @RequestMapping(value = "/findbytwopoints", method = RequestMethod.GET)
+//    public List<Edge> getEdgesByTwoPoints(@RequestParam(value = "start", required = true) String s,
+//                                            @RequestParam(value = "destination", required = true) String d){
+//        logger.info("Запрос на получение cписка отрезков с начальной точкой: {} и конечной: {}", s, d);
+//        return edgeRepositoryService.findByStartPointAndDestinationPoint(s, d);
+//    }
 
     /**
      * @param s - start point
      * @param d - destination point
      * @return list of edges by start OR destination point
      */
-    @RequestMapping(value = "/findbypoint", method = RequestMethod.GET)
-    public List<Edge> getEdgesByPoint(@RequestParam(value = "start", required = false) String s,
-                                        @RequestParam(value = "destination", required = false) String d){
-        logger.info("Запрос на получение cписка отрезков с начальной точкой: {} или конечной: {}", s, d);
-        return edgeRepositoryService.findByStartPointOrDestinationPoint(s, d);
-    }
-
-    /**
-     * @param d - distance of edges
-     * @return list of edges by distance
-     */
-    @RequestMapping(value = "/findbydistance", method = RequestMethod.GET)
-    public List<Edge> getEdgesByDistance(@RequestParam(value = "distance", required = true) double d) {
-        logger.info("Запрос на получение cписка отрезков с distance = {}", d);
-        return edgeRepositoryService.findByDistance(d);
-    }
+//    @RequestMapping(value = "/findbypoint", method = RequestMethod.GET)
+//    public List<Edge> getEdgesByPoint(@RequestParam(value = "start", required = false) String s,
+//                                        @RequestParam(value = "destination", required = false) String d){
+//        logger.info("Запрос на получение cписка отрезков с начальной точкой: {} или конечной: {}", s, d);
+//        return edgeRepositoryService.findByStartPointOrDestinationPoint(s, d);
+//    }
 
     /**
      * @param d - duration of edges

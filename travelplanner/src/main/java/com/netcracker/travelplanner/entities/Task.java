@@ -8,15 +8,15 @@ public class Task {
     private Point from;
     private Point to;
     private LocalDate date;
-    private int adultsCount;
-    private int childrenCount;
+    private int numberOfAdults;
+    private int numberOfChildren;
 
-    public Task(Point from, Point to, LocalDate date, int adultsCount, int childrenCount) {
+    public Task(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren) {
         this.from = from;
         this.to = to;
         this.date = date;
-        this.adultsCount = adultsCount;
-        this.childrenCount = childrenCount;
+        this.numberOfAdults = numberOfAdults;
+        this.numberOfChildren = numberOfChildren;
     }
 
     public Point getFrom() {
@@ -43,20 +43,20 @@ public class Task {
         this.date = date;
     }
 
-    public int getAdultsCount() {
-        return adultsCount;
+    public int getNumberOfAdults() {
+        return numberOfAdults;
     }
 
-    public void setAdultsCount(int adultsCount) {
-        this.adultsCount = adultsCount;
+    public void setNumberOfAdults(int numberOfAdults) {
+        this.numberOfAdults = numberOfAdults;
     }
 
-    public int getChildrenCount() {
-        return childrenCount;
+    public int getNumberOfChildren() {
+        return numberOfChildren;
     }
 
-    public void setChildrenCount(int childrenCount) {
-        this.childrenCount = childrenCount;
+    public void setNumberOfChildren(int numberOfChildren) {
+        this.numberOfChildren = numberOfChildren;
     }
 
     @Override
@@ -65,7 +65,8 @@ public class Task {
                 .append("from", from)
                 .append("to", to)
                 .append("date", date)
+                .append("numberOfAdults", numberOfAdults)
+                .append("numberOfChildren", numberOfChildren)
                 .toString();
     }
-
 }

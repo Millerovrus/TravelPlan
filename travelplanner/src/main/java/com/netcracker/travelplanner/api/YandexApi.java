@@ -3,6 +3,7 @@ package com.netcracker.travelplanner.api;
 import com.google.gson.Gson;
 import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.Point;
+import com.netcracker.travelplanner.entities.TransitEdge;
 import com.netcracker.travelplanner.entities.yandex.YandexRasp;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class YandexApi implements ApiInterface {
@@ -39,25 +41,82 @@ public class YandexApi implements ApiInterface {
             yandexRasp.getSegments()
                     .stream()
                     .filter(l -> l.getTicketsInfo().getPlaces().size() != 0)
-                    .forEach(l -> edgeList.add(new Edge(dateNow
-                            , from.getName()
-                            , to.getName()
-                            , l.getThread().getTransportType()
-                            , l.getDuration()
-                            , ((double) l.getTicketsInfo().getPlaces().get(0).getPrice().getWhole()) * (numberOfAdults + numberOfChildren)
-                            , null
-                            , LocalDateTime.parse(l.getDeparture(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
-                            , LocalDateTime.parse(l.getArrival(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
-                            , "RUB"
-                            , from.getIataCode()
-                            , to.getIataCode()
-                            , from.getLatitude()
-                            , from.getLongitude()
-                            , to.getLatitude()
-                            , to.getLongitude()
-                            , (byte) 0
-                            , l.getFrom().getCode()
-                            , l.getTo().getCode())));
+                    .forEach(l -> {
+
+                        List<TransitEdge> transitEdges = new LinkedList<>();
+                        transitEdges.add(new TransitEdge(
+                                new Point(from.getName()
+                                        ,from.getLatitude()
+                                        ,from.getLongitude()
+                                        ,from.getIataCode()
+                                        ,from.getYandexCode()
+                                        ,l.getFrom().getCode())
+                                ,new Point(to.getName()
+                                        ,to.getLatitude()
+                                        ,to.getLongitude()
+                                        ,to.getIataCode()
+                                        ,to.getYandexCode()
+                                        ,l.getTo().getCode())
+                                ,LocalDateTime.parse(l.getDeparture(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+                                ,LocalDateTime.parse(l.getArrival(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+
+                        ));
+
+                        Edge edge = new Edge();
+                        edge.setCreationDate(dateNow);
+                        edge.setTransportType(l.getThread().getTransportType());
+                        edge.setDuration(l.getDuration());
+                        edge.setCost(((double) l.getTicketsInfo().getPlaces().get(0).getPrice().getWhole()) * (numberOfAdults + numberOfChildren));
+                        edge.setStartDate(LocalDateTime.parse(l.getDeparture(), DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+                        edge.setEndDate(LocalDateTime.parse(l.getArrival(), DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+                        edge.setCurrency("RUB");
+                        edge.setNumberOfTransfers((byte) 1);
+                        edge.setStartPoint(new Point(from.getName()
+                                ,from.getLatitude()
+                                ,from.getLongitude()
+                                ,from.getIataCode()
+                                ,from.getYandexCode()
+                                ,l.getFrom().getCode()));
+                        edge.setEndPoint(new Point(to.getName()
+                                ,to.getLatitude()
+                                ,to.getLongitude()
+                                ,to.getIataCode()
+                                ,to.getYandexCode()
+                                ,l.getTo().getCode()));
+
+                        edge.setTransitEdgeList(transitEdges);
+
+                        edgeList.add(edge);
+
+
+//                        edgeList.add(new Edge(dateNow
+//                                , from.getName()
+//                                , to.getName()
+//                                , l.getThread().getTransportType()
+//                                , l.getDuration()
+//                                , ((double) l.getTicketsInfo().getPlaces().get(0).getPrice().getWhole()) * (numberOfAdults + numberOfChildren)
+//                                , LocalDateTime.parse(l.getDeparture(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+//                                , LocalDateTime.parse(l.getArrival(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+//                                , "RUB"
+//                                , (byte) 1
+//                                , from.getLatitude()
+//                                , from.getLongitude()
+//                                , to.getLatitude()
+//                                , to.getLongitude()
+//                                , new Point(from.getName()
+//                                ,from.getLatitude()
+//                                ,from.getLongitude()
+//                                ,from.getIataCode()
+//                                ,from.getYandexCode()
+//                                ,l.getFrom().getCode())
+//                                , new Point(to.getName()
+//                                ,to.getLatitude()
+//                                ,to.getLongitude()
+//                                ,to.getIataCode()
+//                                ,to.getYandexCode()
+//                                ,l.getTo().getCode())));
+
+                    });
         }
         return edgeList;
     }

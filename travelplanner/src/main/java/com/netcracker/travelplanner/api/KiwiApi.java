@@ -3,6 +3,7 @@ package com.netcracker.travelplanner.api;
 import com.google.gson.Gson;
 import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.Point;
+import com.netcracker.travelplanner.entities.TransitEdge;
 import com.netcracker.travelplanner.entities.kiwi.KiwiFlights;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class KiwiApi implements ApiInterface {
@@ -44,26 +46,91 @@ public class KiwiApi implements ApiInterface {
             Date dateNow = new Date();
             KiwiFlights kiwiFlights = getKiwiFlightsFromUrl(url);
             String currency = kiwiFlights.getCurrency();
+            kiwiFlights.getData().forEach(l ->
+            {
+//                List<Point> transitPoints = new LinkedList<>();
 
-            kiwiFlights.getData().forEach(l -> edgeList.add(new Edge(dateNow
-                    , from.getName()
-                    , to.getName()
-                    , "plane"
-                    , (double) l.getDuration().getTotal()
-                    , (double) l.getPrice()
-                    , l.getDistance()
-                    , LocalDateTime.ofEpochSecond(l.getDTime(), 0, ZoneOffset.UTC)
-                    , LocalDateTime.ofEpochSecond(l.getATime(), 0, ZoneOffset.UTC)
-                    , currency
-                    , from.getIataCode()
-                    , to.getIataCode()
-                    , from.getLatitude()
-                    , from.getLongitude()
-                    , to.getLatitude()
-                    , to.getLongitude()
-                    , (byte) (l.getRoute().size() - 1)
-                    ,l.getFlyFrom()
-                    ,l.getFlyTo())));
+                List<TransitEdge> transitEdges = new LinkedList<>();
+
+                if(l.getRoute().size() > 1){
+
+//                    transitPoints.add(new Point(l.getRoute().get(0).getCityFrom()
+//                            ,from.getLatitude()
+//                            ,from.getLongitude()
+//                            ,l.getRoute().get(0).getFlyFrom()));
+//
+//                    l.getRoute().forEach(route -> {
+//                        transitPoints.add(new Point(route.getCityTo()
+//                                ,route.getLatTo()
+//                                ,route.getLngTo()
+//                                ,route.getFlyTo()
+//                                ));
+//                    });
+
+                    l.getRoute().forEach(route -> {
+                    transitEdges.add(new TransitEdge(new Point(route.getCityFrom()
+                                ,route.getLatFrom()
+                                ,route.getLngFrom()
+                                ,route.getFlyFrom())
+                            ,new Point(route.getCityTo()
+                                ,route.getLatTo()
+                                ,route.getLngTo()
+                                ,route.getFlyTo())
+                            ,LocalDateTime.ofEpochSecond(route.getDTime(), 0, ZoneOffset.UTC)
+                            ,LocalDateTime.ofEpochSecond(route.getATime(), 0, ZoneOffset.UTC)));
+                    });
+
+                }else {
+                    transitEdges.add(new TransitEdge(
+                             new Point(from.getName()
+                                    ,from.getLatitude()
+                                    ,from.getLongitude()
+                                    ,from.getIataCode()
+                                    ,from.getYandexCode()
+                                    ,l.getFlyFrom())
+                            ,new Point(to.getName()
+                                    ,to.getLatitude()
+                                    ,to.getLongitude()
+                                    ,to.getIataCode()
+                                    ,to.getYandexCode()
+                                    ,l.getFlyTo())
+                            ,LocalDateTime.ofEpochSecond(l.getDTime(), 0, ZoneOffset.UTC)
+                            ,LocalDateTime.ofEpochSecond(l.getATime(), 0, ZoneOffset.UTC)
+
+                    ));
+                }
+
+
+//                transitPoints.get(transitPoints.size()-1).setLatitude(to.getLatitude());
+//                transitPoints.get(transitPoints.size()-1).setLongitude(to.getLongitude());
+
+                Edge edge = new Edge();
+                edge.setCreationDate(dateNow);
+                edge.setTransportType("plane");
+                edge.setDuration((double) l.getDuration().getTotal());
+                edge.setCost((double) l.getPrice());
+                edge.setStartDate(LocalDateTime.ofEpochSecond(l.getDTime(), 0, ZoneOffset.UTC));
+                edge.setEndDate(LocalDateTime.ofEpochSecond(l.getATime(), 0, ZoneOffset.UTC));
+                edge.setCurrency(currency);
+                edge.setNumberOfTransfers((byte) (l.getRoute().size()));
+                edge.setStartPoint(new Point(from.getName()
+                                ,from.getLatitude()
+                                ,from.getLongitude()
+                                ,from.getIataCode()
+                                ,from.getYandexCode()
+                                ,l.getFlyFrom()));
+                edge.setEndPoint(new Point(to.getName()
+                                ,to.getLatitude()
+                                ,to.getLongitude()
+                                ,to.getIataCode()
+                                ,to.getYandexCode()
+                                ,l.getFlyTo()));
+
+                edge.setTransitEdgeList(transitEdges);
+
+                edgeList.add(edge);
+
+            });
         }
         return edgeList;
     }

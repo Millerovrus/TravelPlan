@@ -20,14 +20,15 @@ public class MainRouteService {
 
     private final Logger logger = LoggerFactory.getLogger(MainRouteService.class);
 
-    private WebDriver driver = WebParser.getDriver();
-    private YandexParser yandexParser = new YandexParser(driver);
+//    private WebDriver driver = WebParser.getDriver();
+//    private YandexParser yandexParser = new YandexParser(driver);
     private KiwiApi kiwiApi = new KiwiApi();
     private YandexApi yandexApi = new YandexApi();
 
     private Executor executor1 = new Executor();
     private Executor executor2 = new Executor();
-    private Executor executor3 = new Executor();
+//    private Executor executor3 = new Executor();
+
 //    private ApiServiceManager apiServiceManager;
 
 //    @Autowired
@@ -114,10 +115,10 @@ public class MainRouteService {
         });
 
 
-        executorService.execute( () ->{
-            logger.debug("Start Thread yandexParser");
-            edgeList.addAll(executor3.execute(taskList,yandexParser));
-        });
+//        executorService.execute( () ->{
+//            logger.debug("Start Thread yandexParser");
+//            edgeList.addAll(executor3.execute(taskList,yandexParser));
+//        });
 
         executorService.shutdown();
 

@@ -1,7 +1,15 @@
 package com.netcracker.travelplanner.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 public class Point {
 
@@ -10,6 +18,15 @@ public class Point {
     private double longitude;
     private String iataCode;
     private String yandexCode;
+    private String locationCode;
+
+    public String getLocationCode() {
+        return locationCode;
+    }
+
+    public void setLocationCode(String locationCode) {
+        this.locationCode = locationCode;
+    }
 
     public String getName() {
         return name;
@@ -51,17 +68,50 @@ public class Point {
         this.yandexCode = yandexCode;
     }
 
-    public Point(String name, double latitude, double longitude, String iataCode, String yandexCode) {
+    public Point(String name, double latitude, double longitude, String iataCode, String yandexCode, String locationCode) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
         this.iataCode = iataCode;
         this.yandexCode = yandexCode;
+        this.locationCode = locationCode;
+    }
+
+    public Point(String name, double latitude, double longitude, String iataCode) {
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.iataCode = iataCode;
     }
 
     public Point() {
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Point point = (Point) o;
+
+        return new EqualsBuilder()
+                .append(latitude, point.latitude)
+                .append(longitude, point.longitude)
+                .append(name, point.name)
+                .append(iataCode, point.iataCode)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(name)
+                .append(latitude)
+                .append(longitude)
+                .append(iataCode)
+                .toHashCode();
+    }
 
     @Override
     public String toString() {

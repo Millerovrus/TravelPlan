@@ -145,6 +145,29 @@ function resetMap() {
 function fillInAll(edges) {
     var speed = [];
     for (var i = 0; i < edges.length; i++) {
+        for (var j = 0; j < edges[i].transitEdgeList.length ; j++) {
+            var from = new google.maps.LatLng(edges[i].transitEdgeList[j].startPoint.latitude, edges[i].transitEdgeList[j].startPoint.longitude);
+            var to = new google.maps.LatLng(edges[i].transitEdgeList[j].endPoint.latitude, edges[i].transitEdgeList[j].endPoint.longitude);
+            switch (edges[i].transportType) {
+                case 'plane':
+                    speed.push(1);
+                    break;
+                case 'bus':
+                    speed.push(0.4);
+                    break;
+                case 'suburban':
+                case 'train':
+                    speed.push(0.6);
+                    break;
+                case 'car':
+                    speed.push(0.6);
+                    break;
+                default:
+                    speed.push(0.5);
+                    break;
+            }
+            createLine(from, to, edges[i].transportType);
+        }
         var from = new google.maps.LatLng(edges[i].latitudeFrom, edges[i].longitudeFrom);
         var to = new google.maps.LatLng(edges[i].latitudeTo, edges[i].longitudeTo);
         switch (edges[i].transportType) {
@@ -265,6 +288,15 @@ function createLine(from, to, type) {
                 strokeWeight: 1,
                 fillColor: 'black'
             };
+            lineSymbol = {
+                path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+                    scale: 6,
+                    strokeOpacity: 0.0,
+                    fillOpacity: 0.0,
+                    strokeColor: 'white',
+                    strokeWeight: 1,
+                fillColor: 'black'
+            };
             break;
     }
 
@@ -316,10 +348,12 @@ function animateSymbols(speed) {
 function adaptZoomAndCenter(edges) {
     var bounds = new google.maps.LatLngBounds();
     for (var i = 0; i < edges.length; i++) {
-        var pointLatLng = new google.maps.LatLng(edges[i].latitudeFrom, edges[i].longitudeFrom);
-        bounds.extend(pointLatLng);
+        for (var j = 0; j < edges[i].transitEdgeList.length ; j++) {
+            var pointLatLng1 = new google.maps.LatLng(edges[i].transitEdgeList[j].startPoint.latitude, edges[i].transitEdgeList[j].startPoint.longitude);
+            bounds.extend(pointLatLng1);
+        }
         if (i === edges.length - 1){
-            var pointLatLng2 = new google.maps.LatLng(edges[i].latitudeTo, edges[i].longitudeTo);
+            var pointLatLng2 = new google.maps.LatLng(edges[i].transitEdgeList[edges[i].transitEdgeList.length - 1].endPoint.latitude, edges[i].transitEdgeList[edges[i].transitEdgeList.length - 1].endPoint.longitude);
             bounds.extend(pointLatLng2);
         }
     }
@@ -329,25 +363,27 @@ function adaptZoomAndCenter(edges) {
 //ставим маркеры
 function setMarkers(edges) {
     for (var i = 0; i < edges.length; i++) {
-        var pointLatLng = new google.maps.LatLng(edges[i].latitudeFrom, edges[i].longitudeFrom);
-        var marker = new google.maps.Marker({
-            position: pointLatLng,
-            title: edges[i].startPoint,
-            label: edges[i].startPoint.charAt(0),
-            opacity: 0.75,
-            map: map
-        });
-        markers.push(marker);
+        for (var j = 0; j < edges[i].transitEdgeList.length; j++) {
+            var pointLatLng = new google.maps.LatLng(edges[i].transitEdgeList[j].startPoint.latitude, edges[i].transitEdgeList[j].startPoint.longitude);
+            var marker = new google.maps.Marker({
+                position: pointLatLng,
+                title: edges[i].transitEdgeList[j].startPoint.name,
+                label: edges[i].transitEdgeList[j].startPoint.name.charAt(0),
+                opacity: 0.75,
+                map: map
+            });
+            markers.push(marker);
+        }
         if (i === edges.length - 1){
-            var pointLatLng2 = new google.maps.LatLng(edges[i].latitudeTo, edges[i].longitudeTo);
+            var pointLatLng2 = new google.maps.LatLng(edges[i].transitEdgeList[edges[i].transitEdgeList.length - 1].endPoint.latitude, edges[i].transitEdgeList[edges[i].transitEdgeList.length - 1].endPoint.longitude);
             var marker2 = new google.maps.Marker({
                 position: pointLatLng2,
-                title: edges[i].destinationPoint,
-                label: edges[i].destinationPoint.charAt(0),
+                title: edges[i].transitEdgeList[edges[i].transitEdgeList.length - 1].endPoint.name,
+                label: edges[i].transitEdgeList[edges[i].transitEdgeList.length - 1].endPoint.name.charAt(0),
                 opacity: 0.75,
                 map: map
             });
             markers.push(marker2);
         }
     }
-};
+}
