@@ -18,6 +18,15 @@ public class Edge implements Cloneable {
     @SequenceGenerator(name = "edges_seq", sequenceName = "edge_id_seq", allocationSize = 2)
     private int id;
 
+    @Transient
+    private Point startPoint;
+
+    @Transient
+    private Point endPoint;
+
+    @Transient
+    private List<TransitEdge> transitEdgeList;
+
     @Column(name="creation_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
@@ -52,13 +61,7 @@ public class Edge implements Cloneable {
     private int numberOfTransfers;
 
     @Transient
-    private Point startPoint;
-
-    @Transient
-    private Point endPoint;
-
-    @Transient
-    private List<TransitEdge> transitEdgeList;
+    private String purchaseLink;
 
     public Date getCreationDate() {
         return creationDate;
@@ -158,6 +161,15 @@ public class Edge implements Cloneable {
 
     public List<TransitEdge> getTransitEdgeList() {
         return transitEdgeList;
+    }
+
+
+    public String getPurchaseLink() {
+        return purchaseLink;
+    }
+
+    public void setPurchaseLink(String purchaseLink) {
+        this.purchaseLink = purchaseLink;
     }
 
     public void setTransitEdgeList(List<TransitEdge> transitEdgeList) {

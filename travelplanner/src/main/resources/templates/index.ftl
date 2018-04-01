@@ -238,16 +238,13 @@
                                                                         </div>
                                                                         <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                                                             <div class="panel-body" ng-repeat="item in record.edges">
-                                                                                <ul>
-                                                                                    <p><b>Transit route {{item.edgeOrder}}</b>: {{item.startPoint.name}} - {{item.endPoint.name}}</p>
-                                                                                    <p><b>Cost:</b> {{item.cost}} (RUB)</p>
-                                                                                    <p><b>Departure <date></date>:</b> {{item.startDate.year}}-{{item.startDate.monthValue}}-{{item.startDate.dayOfMonth}} at {{item.startDate.hour}}:{{item.startDate.minute}}</p>
-                                                                                </ul>
                                                                                 <div ng-repeat="transits in item.transitEdgeList">
-                                                                                    <ul>
-                                                                                        <p>Transit points {{transits.startPoint.name}} - {{transits.endPoint.name}}</p>
-                                                                                    </ul>
+                                                                                    <p><b>Transit:</b> {{transits.startPoint.name}} - {{transits.endPoint.name}}</p>
+                                                                                    <p><b>Arrival:</b> {{transits.arrival.year}}-{{transits.arrival.monthValue}}-{{transits.arrival.dayOfMonth}} at {{transits.arrival.hour}}:{{transits.arrival.minute}}</p>
+                                                                                    <p><b>Departure:</b> {{transits.departure.year}}-{{transits.departure.monthValue}}-{{transits.departure.dayOfMonth}} at {{transits.departure.hour}}:{{transits.departure.minute}}</p>
+
                                                                                 </div>
+                                                                                <p><b>Cost:</b> {{item.cost}} (RUB)</p>
 
                                                                                     <div class="row">
                                                                                         <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">

@@ -112,6 +112,7 @@ public class KiwiApi implements ApiInterface {
                                 ,l.getFlyTo()));
 
                 edge.setTransitEdgeList(transitEdges);
+                edge.setPurchaseLink(l.getDeepLink());
 
                 edgeList.add(edge);
 
