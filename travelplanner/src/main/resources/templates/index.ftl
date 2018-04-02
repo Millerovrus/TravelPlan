@@ -214,7 +214,11 @@
                                                         <div class="col-sm-5">
                                                             <div class="fancy-collapse-panel" >
                                                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-                                                                    <div class="panel panel-default" ng-repeat="record in records | filter:optimalRoutes | orderObjectBy:'cost'">
+                                                                    <button ng-click="orderByAttribute = 'cost'">Order by Cost</button>
+                                                                    <button ng-click="orderByAttribute = 'duration'">Order by Duration</button>
+                                                                    <button ng-click="orderByAttribute = 'startDate'">Order by Start Date</button>
+                                                                    <button ng-click="orderByAttribute = ''">Without order</button>
+                                                                    <div class="panel panel-default" ng-repeat="record in records | filter:optimalRoutes | orderObjectBy:orderByAttribute">
                                                                         <div class="panel-heading" role="tab" id="headingOne" >
                                                                             <h4 class="panel-title">
                                                                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
