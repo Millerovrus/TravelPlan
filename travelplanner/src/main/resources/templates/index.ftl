@@ -45,11 +45,8 @@
     <script src="js/my-styles.js"></script>
 
     <!-- map -->
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap"-->
-    <!--async defer></script>-->
     <script src="js/google-map.js"></script>
     <script src="js/autoComplite.js"></script>
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&language=en&libraries=places"></script>-->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap&language=en&libraries=geometry,places"></script>
 </head>
 
@@ -69,7 +66,7 @@
                     </button>
                     <a class="navbar-brand" href="/"><i class="fa fa-ravelry" aria-hidden="true"></i>Travel planner</a>
                 </div>
-                <div class="navbar-collapse collapse"  id="navbar-collapse">
+                <div class="navbar-collapse collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> ${firstname} ${lastname} </a></li>
                         <li><a href="/logout">Logout</a></li>
@@ -206,7 +203,6 @@
                         </div>
                         <!-- angular controller for getting routes -->
                         <div class="row" ng-controller="myParameterController">
-                        <#--<input type="submit" ng-click="saveRoute()" class="inputButton" value="Save all routes">-->
                             <div class="col-sm-12">
                                 <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
                                 <div ng-show="loading" class="preloader"></div>
@@ -218,15 +214,12 @@
                                                         <div class="col-sm-5">
                                                             <div class="fancy-collapse-panel" >
                                                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-                                                                    <div class="panel panel-default"  ng-repeat="record in records">
-                                                                    <#--<div ng-show="saved">
-                                                                        <input type="submit" ng-click="saveRoute(record)" class="inputButton" value="Save all routes">
-                                                                    </div>-->
+                                                                    <div class="panel panel-default" ng-repeat="record in records | filter:optimalRoutes | orderObjectBy:'cost'">
                                                                         <div class="panel-heading" role="tab" id="headingOne" >
                                                                             <h4 class="panel-title">
                                                                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
                                                                                     <div ng-repeat="item in record.edges">
-                                                                                        <div class="route-header" ng-repeat="transits in item.transitEdgeList"> {{transits.startPoint.name}}    <span ng-bind-html=' item.transportType | transportTypeToIcon'></span>    {{transits.endPoint.name}} </div>
+                                                                                        <div class="route-header" ng-repeat="transits in item.transitEdgeList"> {{transits.startPoint.name}} <span ng-bind-html=' item.transportType | transportTypeToIcon'></span> {{transits.endPoint.name}} </div>
                                                                                     </div>
                                                                                     <div class="divider-inverse"></div>
                                                                                     <div class="json-data">
@@ -242,7 +235,6 @@
                                                                                     <p><b>Transit:</b> {{transits.startPoint.name}} - {{transits.endPoint.name}}</p>
                                                                                     <p><b>Arrival:</b> {{transits.arrival.year}}-{{transits.arrival.monthValue}}-{{transits.arrival.dayOfMonth}} at {{transits.arrival.hour}}:{{transits.arrival.minute}}</p>
                                                                                     <p><b>Departure:</b> {{transits.departure.year}}-{{transits.departure.monthValue}}-{{transits.departure.dayOfMonth}} at {{transits.departure.hour}}:{{transits.departure.minute}}</p>
-
                                                                                 </div>
                                                                                 <p><b>Cost:</b> {{item.cost}} (RUB)</p>
 
@@ -254,7 +246,7 @@
                                                                                                     <button class='dotted thin' ng-click="saveRoute(record)">Save route</button>
                                                                                                 </div>
                                                                                             </#if>
-                                                                                                <button class='dotted thin' onclick="getAlert()">Buy tickets</button>
+                                                                                                <button class='dotted thin' ng-click="openLink(item.purchaseLink)">Buy ticket</button>
                                                                                             </section>
                                                                                         </div>
                                                                                     </div>
