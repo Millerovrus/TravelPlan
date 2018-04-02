@@ -116,11 +116,24 @@ angular.module('controllerModule')
             for(var objectKey in input) {
                 array.push(input[objectKey]);
             }
-            array.sort(function(a, b){
-                a = parseInt(a[attribute]);
-                b = parseInt(b[attribute]);
-                return a - b;
-            });
+
+            if (attribute === "startDate"){
+                array.sort(function(a, b) {
+                    if ((a.edges[0].startDate.hour * 60 + a.edges[0].startDate.minute) > (b.edges[0].startDate.hour * 60 + b.edges[0].startDate.minute)){
+                        return 1;
+                    }
+                    if ((a.edges[0].startDate.hour * 60 + a.edges[0].startDate.minute) < (b.edges[0].startDate.hour * 60 + b.edges[0].startDate.minute)){
+                        return -1;
+                    }
+                    return 0;
+                });
+            } else {
+                array.sort(function (a, b) {
+                    a = parseInt(a[attribute]);
+                    b = parseInt(b[attribute]);
+                    return a - b;
+                });
+            }
             return array;
         }
     })
