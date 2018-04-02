@@ -217,8 +217,11 @@
                                                                     <button ng-click="orderByAttribute = 'cost'">Order by Cost</button>
                                                                     <button ng-click="orderByAttribute = 'duration'">Order by Duration</button>
                                                                     <button ng-click="orderByAttribute = 'startDate'">Order by Start Date</button>
-                                                                    <button ng-click="orderByAttribute = ''">Without order</button>
-                                                                    <div class="panel panel-default" ng-repeat="record in records | filter:optimalRoutes | orderObjectBy:orderByAttribute">
+                                                                    <button ng-click="orderByAttribute = ''">Reset order</button>
+                                                                    <button ng-click="filterOptimalRoutes = optimalRoutes">Only Optimal Routes</button>
+                                                                    <button ng-click="filterOptimalRoutes = allRoutes">All Routes</button>
+
+                                                                    <div class="panel panel-default" ng-repeat="record in records | filter:filterOptimalRoutes | orderObjectBy:orderByAttribute">
                                                                         <div class="panel-heading" role="tab" id="headingOne" >
                                                                             <h4 class="panel-title">
                                                                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>

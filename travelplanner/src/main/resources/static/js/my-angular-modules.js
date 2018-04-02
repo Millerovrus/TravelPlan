@@ -72,6 +72,9 @@ angular.module('controllerModule')
         $scope.optimalRoutes = function(records) {
             return records.optimalRoute;
         };
+        $scope.allRoutes = function(records) {
+            return records;
+        };
 
         $scope.openLink = function(purchaseLink) {
             if (purchaseLink === null){
