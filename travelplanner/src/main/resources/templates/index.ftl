@@ -254,7 +254,7 @@
                                                                                                     <button class='dotted thin' ng-click="saveRoute(record)">Save route</button>
                                                                                                 </div>
                                                                                             </#if>
-                                                                                                <button class='dotted thin' onclick="getAlert()">Buy tickets</button>
+                                                                                                <button class='dotted thin' ng-click="openLink(item.purchaseLink)">Buy tickets</button>
                                                                                             </section>
                                                                                         </div>
                                                                                     </div>

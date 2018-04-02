@@ -8,7 +8,7 @@ angular.module('myApp',['controllerModule'])
     });
 angular.module('controllerModule')
 
-    .controller('myParameterController', function requestFunc($scope, $http) {
+    .controller('myParameterController', function requestFunc($scope, $http, $window) {
 
         /*$scope.saved=function(value) {
             return true
@@ -71,6 +71,12 @@ angular.module('controllerModule')
         };
         $scope.isOptimalRoute = function(records) {
             return records.optimalRoute;
+        };
+
+        $scope.openLink = function(purchaseLink) {
+            if (purchaseLink === null){
+                alert("Нет ссылки на покупку")
+            } else $window.open(purchaseLink);
         };
 
     })
