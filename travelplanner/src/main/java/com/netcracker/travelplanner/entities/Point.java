@@ -2,16 +2,21 @@ package com.netcracker.travelplanner.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.Set;
 
 
 public class Point {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "points_seq")
+    @SequenceGenerator(name = "points_seq", sequenceName = "point_id_seq", allocationSize = 2)
+    private int id;
 
     private String name;
     private double latitude;
@@ -19,6 +24,11 @@ public class Point {
     private String iataCode;
     private String yandexCode;
     private String locationCode;
+
+
+    @OneToMany(mappedBy = "point", orphanRemoval = true)
+    @JsonManagedReference
+    private Set<Edge> edges;
 
     public String getLocationCode() {
         return locationCode;

@@ -1,5 +1,6 @@
 package com.netcracker.travelplanner.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -17,15 +18,6 @@ public class Edge implements Cloneable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "edges_seq")
     @SequenceGenerator(name = "edges_seq", sequenceName = "edge_id_seq", allocationSize = 2)
     private int id;
-
-    @Transient
-    private Point startPoint;
-
-    @Transient
-    private Point endPoint;
-
-    @Transient
-    private List<TransitEdge> transitEdgeList;
 
     @Column(name="creation_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -57,11 +49,22 @@ public class Edge implements Cloneable {
     @JsonIgnore
     private Route route;
 
-    @Transient
+    @Column(name = "number_of_transfers")
     private int numberOfTransfers;
 
-    @Transient
-    private String purchaseLink;
+    @ManyToOne
+    @JoinColumn(name = "point_id")
+    @JsonBackReference
+    private Point startPoint;
+
+    @ManyToOne
+    @JoinColumn(name = "point_id")
+    @JsonBackReference
+    private Point endPoint;
+
+    @OneToMany(mappedBy = "", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column(name = "transit_edges")
+    private List<TransitEdge> transitEdgeList;
 
     public Date getCreationDate() {
         return creationDate;
@@ -161,15 +164,6 @@ public class Edge implements Cloneable {
 
     public List<TransitEdge> getTransitEdgeList() {
         return transitEdgeList;
-    }
-
-
-    public String getPurchaseLink() {
-        return purchaseLink;
-    }
-
-    public void setPurchaseLink(String purchaseLink) {
-        this.purchaseLink = purchaseLink;
     }
 
     public void setTransitEdgeList(List<TransitEdge> transitEdgeList) {
