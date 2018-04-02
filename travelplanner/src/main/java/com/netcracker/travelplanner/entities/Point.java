@@ -8,9 +8,14 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
+@Entity
+@Table(name="points")
 public class Point {
 
     @Id
@@ -26,9 +31,54 @@ public class Point {
     private String locationCode;
 
 
-    @OneToMany(mappedBy = "point", orphanRemoval = true)
-    @JsonManagedReference
-    private Set<Edge> edges;
+    @OneToMany(mappedBy = "startPoint", orphanRemoval = true)
+    @JsonIgnore
+    private List<Edge> edgesStart;
+
+    @OneToMany(mappedBy = "endPoint", orphanRemoval = true)
+    @JsonIgnore
+    private List<Edge> edgesEnd;
+
+    @OneToMany(mappedBy = "startPoint", orphanRemoval = true)
+    @JsonIgnore
+    private List<TransitEdge> transitEdgesStart;
+
+    @OneToMany(mappedBy = "endPoint", orphanRemoval = true)
+    @JsonIgnore
+    private List<TransitEdge> transitEdgesEnd;
+
+
+    public List<Edge> getEdgesStart() {
+        return edgesStart;
+    }
+
+    public void setEdgesStart(List<Edge> edgesStart) {
+        this.edgesStart = edgesStart;
+    }
+
+    public List<Edge> getEdgesEnd() {
+        return edgesEnd;
+    }
+
+    public void setEdgesEnd(List<Edge> edgesEnd) {
+        this.edgesEnd = edgesEnd;
+    }
+
+    public List<TransitEdge> getTransitEdgesStart() {
+        return transitEdgesStart;
+    }
+
+    public void setTransitEdgesStart(List<TransitEdge> transitEdgesStart) {
+        this.transitEdgesStart = transitEdgesStart;
+    }
+
+    public List<TransitEdge> getTransitEdgesEnd() {
+        return transitEdgesEnd;
+    }
+
+    public void setTransitEdgesEnd(List<TransitEdge> transitEdgesEnd) {
+        this.transitEdgesEnd = transitEdgesEnd;
+    }
 
     public String getLocationCode() {
         return locationCode;
@@ -78,13 +128,22 @@ public class Point {
         this.yandexCode = yandexCode;
     }
 
-    public Point(String name, double latitude, double longitude, String iataCode, String yandexCode, String locationCode) {
+    public Point(String name
+            , double latitude
+            , double longitude
+            , String iataCode
+            , String yandexCode
+            , String locationCode) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
         this.iataCode = iataCode;
         this.yandexCode = yandexCode;
         this.locationCode = locationCode;
+        this.edgesStart = new ArrayList<>();
+        this.edgesEnd = new ArrayList<>();
+        this.transitEdgesEnd = new ArrayList<>();
+        this.transitEdgesStart = new ArrayList<>();
     }
 
     public Point(String name, double latitude, double longitude, String iataCode) {

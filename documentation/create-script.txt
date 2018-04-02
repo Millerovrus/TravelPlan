@@ -1,0 +1,126 @@
+create sequence edge_id_seq
+;
+
+create sequence point_id_seq
+;
+
+create sequence route_id_seq
+;
+
+create sequence transit_point_id_seq
+;
+
+create sequence user_id_seq
+;
+
+create table if not exists airports
+(
+	id varchar(255) not null
+		constraint airports_pkey
+			primary key,
+	city_code varchar(255),
+	city_name varchar(255),
+	code varchar(255),
+	country_code varchar(255),
+	country_name varchar(255),
+	latitude double precision,
+	longitude double precision,
+	name varchar(255),
+	timezone varchar(255),
+	type varchar(255),
+	yandex_code_from varchar(255),
+	yandex_code_to varchar(255)
+)
+;
+
+create table if not exists points
+(
+	id integer not null
+		constraint points_pkey
+			primary key,
+	iata_code varchar(255),
+	latitude double precision not null,
+	location_code varchar(255),
+	longitude double precision not null,
+	name varchar(255),
+	yandex_code varchar(255)
+)
+;
+
+create table if not exists users
+(
+	id integer not null
+		constraint users_pkey
+			primary key,
+	birth_date date,
+	email varchar(255),
+	first_name varchar(50) not null,
+	is_admin boolean not null,
+	last_name varchar(50) not null,
+	password varchar(255) not null,
+	registration_date timestamp not null
+)
+;
+
+create table if not exists routes
+(
+	id integer not null
+		constraint routes_pkey
+			primary key,
+	cost double precision not null,
+	creation_date timestamp not null,
+	destination_point varchar(255) not null,
+	duration double precision not null,
+	start_point varchar(255) not null,
+	user_id integer
+		constraint fktn5l1ci7sxbp52akvblqjg4jm
+			references users
+)
+;
+
+create table if not exists edges
+(
+	id integer not null
+		constraint edges_pkey
+			primary key,
+	cost double precision,
+	creation_date timestamp not null,
+	currency varchar(255),
+	duration double precision not null,
+	edge_order smallint,
+	end_date timestamp not null,
+	number_of_transfers integer,
+	purchase_link varchar(255),
+	start_date timestamp not null,
+	transport_type varchar(255) not null,
+	end_point_id integer
+		constraint fk9x75mm5pd2sevy88y7ewapuyr
+			references points,
+	route_id integer
+		constraint fknn60o9aat0r741j816yn3pvo7
+			references routes,
+	start_point_id integer
+		constraint fknm5l4bft18qtwrxbey10hc04p
+			references points
+)
+;
+
+create table if not exists transit_edges
+(
+	id integer not null
+		constraint transit_edges_pkey
+			primary key,
+	end_date timestamp not null,
+	start_date timestamp not null,
+	edge_id integer
+		constraint fkg9tvyf439vk0tl5lpdcuhdx93
+			references edges,
+	end_point_id integer
+		constraint fkat00r752esjkik2k2hyn489hr
+			references points,
+	start_point_id integer
+		constraint fkm4sav3mri7o00vcpgl7uorec1
+			references points
+)
+;
+

@@ -53,18 +53,26 @@ public class Edge implements Cloneable {
     private int numberOfTransfers;
 
     @ManyToOne
-    @JoinColumn(name = "point_id")
-    @JsonBackReference
+    @JoinColumn(name = "start_point_id")
     private Point startPoint;
 
     @ManyToOne
-    @JoinColumn(name = "point_id")
-    @JsonBackReference
+    @JoinColumn(name = "end_point_id")
     private Point endPoint;
 
-    @OneToMany(mappedBy = "", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "edge", cascade = CascadeType.ALL, orphanRemoval = true)
     @Column(name = "transit_edges")
     private List<TransitEdge> transitEdgeList;
+
+    private String purchaseLink;
+
+    public String getPurchaseLink() {
+        return purchaseLink;
+    }
+
+    public void setPurchaseLink(String purchaseLink) {
+        this.purchaseLink = purchaseLink;
+    }
 
     public Date getCreationDate() {
         return creationDate;

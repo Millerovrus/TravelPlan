@@ -148,6 +148,7 @@ public class Route implements Serializable {
         this.edges = new LinkedList<>();
         this.weights = new ArrayList<>();
     }
+    private Route(){}
 
     @Override
     public boolean equals(Object o) {
