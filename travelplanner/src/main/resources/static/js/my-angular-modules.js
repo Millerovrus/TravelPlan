@@ -16,7 +16,7 @@ angular.module('controllerModule')
         $scope.saveRoute=function (record) {
 
             $scope.saved=function(value) {
-                if (value == record.idRouteForView)
+                if (value === record.idRouteForView)
                     return true;
             };
 
@@ -108,6 +108,22 @@ angular.module('controllerModule')
             }
         };
     }])
+    .filter('orderObjectBy', function(){
+        return function(input, attribute) {
+            if (!angular.isObject(input)) return input;
+
+            var array = [];
+            for(var objectKey in input) {
+                array.push(input[objectKey]);
+            }
+            array.sort(function(a, b){
+                a = parseInt(a[attribute]);
+                b = parseInt(b[attribute]);
+                return a - b;
+            });
+            return array;
+        }
+    })
     .controller('appController', function ($scope) {
         $scope.$on('LOAD', function () { $scope.loading = true });
         $scope.$on('UNLOAD', function () { $scope.loading = false });
