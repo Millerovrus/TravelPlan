@@ -240,8 +240,8 @@
                                                                             <div class="panel-body" ng-repeat="item in record.edges">
                                                                                 <div ng-repeat="transits in item.transitEdgeList">
                                                                                     <p><b>Transit:</b> {{transits.startPoint.name}} - {{transits.endPoint.name}}</p>
-                                                                                    <p><b>Arrival:</b> {{transits.arrival.year}}-{{transits.arrival.monthValue}}-{{transits.arrival.dayOfMonth}} at {{transits.arrival.hour}}:{{transits.arrival.minute}}</p>
                                                                                     <p><b>Departure:</b> {{transits.departure.year}}-{{transits.departure.monthValue}}-{{transits.departure.dayOfMonth}} at {{transits.departure.hour}}:{{transits.departure.minute}}</p>
+                                                                                    <p><b>Arrival:</b> {{transits.arrival.year}}-{{transits.arrival.monthValue}}-{{transits.arrival.dayOfMonth}} at {{transits.arrival.hour}}:{{transits.arrival.minute}}</p>
                                                                                 </div>
                                                                                 <p><b>Cost:</b> {{item.cost}} (RUB)</p>
 
