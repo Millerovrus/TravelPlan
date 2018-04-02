@@ -204,7 +204,7 @@
                         <!-- angular controller for getting routes -->
                         <div class="row" ng-controller="myParameterController">
                             <div class="col-sm-12">
-                                <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
+                                <input type="button" name="" ng-click="sendRequestParameters(); filterOptimalRoutes = optimalRoutes;" required class="button" value="Find route" onclick="this.parentNode.submit();">
                                 <div ng-show="loading" class="preloader"></div>
                                 <div ng-show="loaded">
                                     <div ng-controller="mapController">
