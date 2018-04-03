@@ -127,13 +127,9 @@ angular.module('controllerModule')
             }
         };
     }])
-    .filter('addZerosToDateTime', [function () {
-        return function (monthValue) {
-            if(monthValue.length==1){
-                return '0'+monthValue;
-            }
-            return monthValue;
-
+    .filter('localDateTimeToString', [function () {
+        return function (dateTime) {
+            return dateTime.year + '-' + ('0' + dateTime.monthValue).slice(-2) + '-' + ('0' + dateTime.dayOfMonth).slice(-2) + ' at ' + ('0' + dateTime.hour).slice(-2) + ':' + ('0' + dateTime.minute).slice(-2);
         }
     }])
     .filter('orderObjectBy', function(){
