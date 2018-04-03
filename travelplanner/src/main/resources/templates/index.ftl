@@ -240,7 +240,10 @@
                                                                         <button ng-click="costFilter = allRoutes">Without Cost Filter</button>
                                                                     </div>
 
-                                                                    <div class="panel panel-default" ng-repeat="record in records | filter:optimalFilter | filter:busFilter | filter:costFilter | orderObjectBy:orderByAttribute">
+                                                                    <div ng-repeat="record in records | filter:optimalFilter | filter:busFilter | filter:costFilter | orderObjectBy:orderByAttribute">
+                                                                        <br>
+                                                                        <div class="route-description"><b>{{record.description}}</b></div>
+                                                                        <div class="panel panel-default" >
                                                                         <div class="panel-heading" role="tab" id="headingOne" >
                                                                             <h4 class="panel-title">
                                                                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
@@ -278,6 +281,7 @@
                                                                                     </div>
                                                                             </div>
                                                                         </div>
+                                                                    </div>
                                                                     </div>
                                                                 </div>
                                                             </div>

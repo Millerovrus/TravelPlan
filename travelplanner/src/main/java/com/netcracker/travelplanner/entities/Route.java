@@ -51,6 +51,9 @@ public class Route implements Serializable {
     @Transient
     private int idRouteForView;
 
+    @Transient
+    private String description;
+
     public int getIdRouteForView() {
         return idRouteForView;
     }
@@ -139,6 +142,14 @@ public class Route implements Serializable {
         this.user = user;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Route(Date creationDate, String startPoint, String destinationPoint, double duration, int idRouteForView) {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
@@ -147,7 +158,9 @@ public class Route implements Serializable {
         this.idRouteForView = idRouteForView;
         this.edges = new LinkedList<>();
         this.weights = new ArrayList<>();
+        this.description = "";
     }
+
     private Route(){}
 
     @Override
