@@ -83,6 +83,11 @@ angular.module('controllerModule')
             }
             return true;
         };
+        $scope.routesWithCostFromTo = function (records) {
+            var from = parseInt(document.getElementById('cost_from').value);
+            var to = parseInt(document.getElementById('cost_to').value);
+            return (records.cost > from && records.cost < to)
+        };
 
         $scope.openLink = function(purchaseLink) {
             if (purchaseLink === null){

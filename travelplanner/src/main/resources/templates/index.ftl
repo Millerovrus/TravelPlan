@@ -206,7 +206,7 @@
                             <div class="col-sm-12">
                                 <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
                                 <div ng-show="loading" class="preloader"></div>
-                                <div ng-show="loaded" ng-init="filterRoutes = optimalRoutes; orderByAttribute = 'cost'">
+                                <div ng-show="loaded" ng-init="optimalFilter = optimalRoutes; busFilter = allRoutes; orderByAttribute = 'cost'">
                                     <div ng-controller="mapController">
                                             <div class="output-collapse">
                                                 <div class="container-fluid">
@@ -214,16 +214,31 @@
                                                         <div class="col-sm-5">
                                                             <div class="fancy-collapse-panel" >
                                                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-                                                                    <button ng-click="orderByAttribute = 'cost'">Order by Cost</button>
-                                                                    <button ng-click="orderByAttribute = 'duration'">Order by Duration</button>
-                                                                    <button ng-click="orderByAttribute = 'startDate'">Order by Start Date</button>
-                                                                    <button ng-click="orderByAttribute = ''">Reset order</button>
-                                                                    <button ng-click="filterRoutes = optimalRoutes">Only Optimal Routes</button>
-                                                                    <button ng-click="filterRoutes = allRoutes">All Routes</button>
-                                                                    <button ng-click="extraFilterRoutes = routesWithoutBus">Routes Without Bus</button>
-                                                                    <button ng-click="extraFilterRoutes = allRoutes">Routes With Bus</button>
+                                                                    <div style="margin: 5px">
+                                                                        <select ng-model="orderByAttribute">
+                                                                            <option value="cost">Order by cost</option>
+                                                                            <option value="duration">Order by duration</option>
+                                                                            <option value="startDate">Order by start date</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div style="margin: 5px">
+                                                                        <button ng-click="optimalFilter = optimalRoutes">Only Optimal Routes</button>
+                                                                        <button ng-click="optimalFilter = allRoutes">All Routes</button>
+                                                                    </div>
+                                                                    <div style="margin: 5px">
+                                                                        <button ng-click="busFilter = routesWithoutBus">Routes Without Bus</button>
+                                                                        <button ng-click="busFilter = allRoutes">Routes With Bus</button>
+                                                                    </div>
+                                                                    <div style="margin: 5px">
+                                                                        <input type="number" class="input" id="cost_from" placeholder="Cost from">
+                                                                        <input type="number" class="input" id="cost_to" placeholder="Cost to">
+                                                                    </div>
+                                                                    <div style="margin: 5px">
+                                                                        <button ng-click="costFilter = routesWithCostFromTo">Cost Filter</button>
+                                                                        <button ng-click="costFilter = allRoutes">Without Cost Filter</button>
+                                                                    </div>
 
-                                                                    <div class="panel panel-default" ng-repeat="record in records | filter:filterRoutes | filter:extraFilterRoutes | orderObjectBy:orderByAttribute">
+                                                                    <div class="panel panel-default" ng-repeat="record in records | filter:optimalFilter | filter:busFilter | filter:costFilter | orderObjectBy:orderByAttribute">
                                                                         <div class="panel-heading" role="tab" id="headingOne" >
                                                                             <h4 class="panel-title">
                                                                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
