@@ -99,33 +99,6 @@ public class YandexParser implements ApiInterface {
 
                             edge.setTransitEdgeList(transitEdges);
                             edgeList.add(edge);
-
-//                            edgeList.add(new Edge(new Date()
-//                                    , from.getName()
-//                                    , to.getName()
-//                                    , convertTypes(element.getElementsByClass("TransportIcon").first().attr("aria-label"))
-//                                    , (double) splStr(element.getElementsByClass("SearchSegment__duration").first().text())
-//                                    , (splCost(element.getElementsByClass("Price").first().text())) * (numberOfAdults + numberOfChildren)
-//                                    , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text()))
-//                                    , LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text()))
-//                                    , "RUB"
-//                                    , (byte) 1
-//                                    , from.getLatitude()
-//                                    , from.getLongitude()
-//                                    , to.getLatitude()
-//                                    , to.getLongitude()
-//                                    , new Point(from.getName()
-//                                    ,from.getLatitude()
-//                                    ,from.getLongitude()
-//                                    ,from.getIataCode()
-//                                    ,from.getYandexCode()
-//                                    ,"")
-//                                    , new Point(to.getName()
-//                                    ,to.getLatitude()
-//                                    ,to.getLongitude()
-//                                    ,to.getIataCode()
-//                                    ,to.getYandexCode()
-//                                    ,"")))
                         });
             }
         }

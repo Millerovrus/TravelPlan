@@ -34,7 +34,7 @@ public class TransitEdge {
     @JsonIgnore
     private Edge edge;
 
-    public TransitEdge(Point startPoint, Point endPoint, LocalDateTime arrival, LocalDateTime departure) {
+    public TransitEdge(Point startPoint, Point endPoint, LocalDateTime departure, LocalDateTime arrival) {
         this.startPoint = startPoint;
         this.endPoint = endPoint;
         this.arrival = arrival;

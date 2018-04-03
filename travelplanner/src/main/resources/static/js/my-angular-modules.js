@@ -72,6 +72,22 @@ angular.module('controllerModule')
         $scope.optimalRoutes = function(records) {
             return records.optimalRoute;
         };
+        $scope.allRoutes = function(records) {
+            return records;
+        };
+        $scope.routesWithoutBus = function (records) {
+            for (var i = 0; i < records.edges.length; i++){
+                if (records.edges[i].transportType === "bus"){
+                    return false;
+                }
+            }
+            return true;
+        };
+        $scope.routesWithCostFromTo = function (records) {
+            var from = parseInt(document.getElementById('cost_from').value);
+            var to = parseInt(document.getElementById('cost_to').value);
+            return (records.cost > from && records.cost < to)
+        };
 
         $scope.openLink = function(purchaseLink) {
             if (purchaseLink === null){
