@@ -220,9 +220,10 @@
                                                                     <button ng-click="orderByAttribute = ''">Reset order</button>
                                                                     <button ng-click="filterRoutes = optimalRoutes">Only Optimal Routes</button>
                                                                     <button ng-click="filterRoutes = allRoutes">All Routes</button>
-                                                                    <button ng-click="filterRoutes = routesWithoutBus">Routes Without Bus</button>
+                                                                    <button ng-click="extraFilterRoutes = routesWithoutBus">Routes Without Bus</button>
+                                                                    <button ng-click="extraFilterRoutes = allRoutes">Routes With Bus</button>
 
-                                                                    <div class="panel panel-default" ng-repeat="record in records | filter:filterRoutes | orderObjectBy:orderByAttribute">
+                                                                    <div class="panel panel-default" ng-repeat="record in records | filter:filterRoutes | filter:extraFilterRoutes | orderObjectBy:orderByAttribute">
                                                                         <div class="panel-heading" role="tab" id="headingOne" >
                                                                             <h4 class="panel-title">
                                                                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
