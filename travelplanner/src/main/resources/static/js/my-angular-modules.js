@@ -76,13 +76,12 @@ angular.module('controllerModule')
             return records;
         };
         $scope.routesWithoutBus = function (records) {
-            var need = true;
             for (var i = 0; i < records.edges.length; i++){
                 if (records.edges[i].transportType === "bus"){
-                    need = false;
+                    return false;
                 }
             }
-            return need;
+            return true;
         };
 
         $scope.openLink = function(purchaseLink) {

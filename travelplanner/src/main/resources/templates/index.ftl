@@ -206,7 +206,7 @@
                             <div class="col-sm-12">
                                 <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
                                 <div ng-show="loading" class="preloader"></div>
-                                <div ng-show="loaded" ng-init="filterOptimalRoutes = optimalRoutes">
+                                <div ng-show="loaded" ng-init="filterRoutes = optimalRoutes; orderByAttribute = 'cost'">
                                     <div ng-controller="mapController">
                                             <div class="output-collapse">
                                                 <div class="container-fluid">
