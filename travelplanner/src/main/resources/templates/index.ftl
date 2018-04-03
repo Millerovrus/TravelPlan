@@ -125,18 +125,7 @@
                                                     <div class="drop-passengers">
                                                         <div class="spinner-inline">
                                                             <div class="col-sm-6">
-                                                                <label for="spin-adult">Adults  </label>
-                                                            </div>
-                                                            <div class="col-sm-6">
                                                                 <input id="spin-adult" class="spinner text-center" type="text" value="1" name="spinner-adult">
-                                                            </div>
-                                                        </div>
-                                                        <div class="spinner-inline">
-                                                            <div class="col-sm-6">
-                                                                <label for="spin-children">Children</label>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <input id="spin-children" class="spinner text-center" type="text" value="0" name="spinner-children">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -147,16 +136,19 @@
                                                 <ul>
                                                     <li class="dropdown-header centered">Type of transport</li>
                                                     <div class="row form-check">
-                                                        <div class="col-sm-6">
+                                                        <div class="col-sm-4">
                                                             <label class="checkbox">
-                                                                <input id="only-plane" type="checkbox"><span>Only plane</span>
+                                                                <input id="only-plane" type="checkbox"><span>Plane</span>
                                                             </label>
                                                         </div>
-                                                    </div>
-                                                    <div class="row form-check">
-                                                        <div class="col-sm-6">
+                                                        <div class="col-sm-4">
                                                             <label class="checkbox">
-                                                                <input id="use-bus" type="checkbox"><span>Find routes with bus</span>
+                                                                <input id="only-bus" type="checkbox"><span>Bus</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <label class="checkbox">
+                                                                <input id="only-train" type="checkbox"><span>Train</span>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -165,18 +157,29 @@
                                             </li>
                                             <li class="col-sm-12">
                                                 <ul>
-                                                    <li class="dropdown-header centered">Max time for transferring</li>
-                                                    <div class="col-sm-12 margin-offset">
-                                                        <input id="range-slider" type="range" min="0" max="24" step="1" value="0">
+                                                    <li class="dropdown-header centered">Transfers</li>
+                                                    <div class="row form-check">
+                                                        <div class="col-sm-12">
+                                                            <label class="checkbox">
+                                                                <input id="only-plane" type="checkbox"><span>Find routes with fewer transfers</span>
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </ul>
                                             </li>
+                                            <#--<li class="col-sm-12">-->
+                                                <#--<ul>-->
+                                                    <#--<li class="dropdown-header centered">Max time for transferring</li>-->
+                                                    <#--<div class="col-sm-12 margin-offset">-->
+                                                        <#--<input id="range-slider" type="range" min="0" max="24" step="1" value="0">-->
+                                                    <#--</div>-->
+                                                <#--</ul>-->
+                                            <#--</li>-->
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- autocomplete -->
                         <!-- autocomplete -->
                         <div class="row" ng-show="false">
                             <div class="col-sm-4">
