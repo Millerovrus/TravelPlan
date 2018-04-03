@@ -139,6 +139,8 @@ public class Algorithm {
                 }
             }
         }
+
+        setDesrciptions(optimalFoundRoutes);
     }
 
     private void convertingEdgesToRoutes(List<List<Edge>> allFoundEdges, int numberOfPassengers){
@@ -217,6 +219,31 @@ public class Algorithm {
                 return edge.getEndDate().plusHours(2);
             default:
                 return edge.getEndDate().plusHours(1);
+        }
+    }
+
+    private void setDesrciptions(List<Route> routes){
+        double minCost = Double.MAX_VALUE, minDuration = Double.MAX_VALUE;
+        int minCostInd = 0, minDurInd = 0;
+
+        for (int i = 0; i < routes.size(); i++){
+            if (routes.get(i).getCost() < minCost){
+                minCost = routes.get(i).getCost();
+                minCostInd = i;
+            }
+
+            if (routes.get(i).getDuration() < minDuration){
+                minDuration = routes.get(i).getDuration();
+                minDurInd = i;
+            }
+        }
+
+        if (minCostInd == minDurInd){
+            routes.get(minCostInd).setDescription("Cheapest & fastest!");
+        }
+        else{
+            routes.get(minCostInd).setDescription("Cheapest!");
+            routes.get(minDurInd).setDescription("Fastest!");
         }
     }
 }
