@@ -75,6 +75,15 @@ angular.module('controllerModule')
         $scope.allRoutes = function(records) {
             return records;
         };
+        $scope.routesWithoutBus = function (records) {
+            var need = true;
+            for (var i = 0; i < records.edges.length; i++){
+                if (records.edges[i].transportType === "bus"){
+                    need = false;
+                }
+            }
+            return need;
+        };
 
         $scope.openLink = function(purchaseLink) {
             if (purchaseLink === null){
