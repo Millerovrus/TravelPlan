@@ -8,7 +8,7 @@ angular.module('myApp',['controllerModule'])
     });
 angular.module('controllerModule')
 
-    .controller('myParameterController', function requestFunc($scope, $http, $window    ) {
+    .controller('myParameterController', function requestFunc($scope, $http, $window) {
 
         /*$scope.saved=function(value) {
             return true
@@ -56,8 +56,7 @@ angular.module('controllerModule')
                      longLatFrom: angular.element($('#latit_longit_from')).val(),
                      longLatTo: angular.element($('#latit_longit_to')).val(),
                      date: angular.element($('#inputDate')).val(),
-                     numberOfAdults: angular.element($('#spin-adult')).val(),
-                     numberOfChildren:   0
+                     numberOfPassengers: angular.element($('#spin-passengers')).val()
                 }
             }).then(
                 function success(response) {
@@ -129,7 +128,11 @@ angular.module('controllerModule')
     }])
     .filter('localDateTimeToString', [function () {
         return function (dateTime) {
-            return dateTime.year + '-' + ('0' + dateTime.monthValue).slice(-2) + '-' + ('0' + dateTime.dayOfMonth).slice(-2) + ' at ' + ('0' + dateTime.hour).slice(-2) + ':' + ('0' + dateTime.minute).slice(-2);
+            return dateTime.year + '-'
+                + ('0' + dateTime.monthValue).slice(-2) + '-'
+                + ('0' + dateTime.dayOfMonth).slice(-2) + ' at '
+                + ('0' + dateTime.hour).slice(-2) + ':'
+                + ('0' + dateTime.minute).slice(-2);
         }
     }])
     .filter('orderObjectBy', function(){

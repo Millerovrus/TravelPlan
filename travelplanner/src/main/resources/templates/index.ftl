@@ -117,7 +117,7 @@
                             <div class="col-sm-6">
                                 <div class="inputBox">
                                     <div class="input dropdown-toggle " id="test">
-                                        <a href="#" class=" inputText" data-toggle="dropdown">More parameters  <span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
+                                        <a href="#" class=" inputText" data-toggle="dropdown">More parameters<span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
                                         <ul class="dropdown-menu mega-dropdown-menu row">
                                             <li class="col-sm-12">
                                                 <ul>
@@ -125,7 +125,7 @@
                                                     <div class="drop-passengers">
                                                         <div class="spinner-inline">
                                                             <div class="col-sm-6">
-                                                                <input id="spin-adult" class="spinner text-center" type="text" value="1" name="spinner-adult">
+                                                                <input id="spin-passengers" class="spinner text-center" type="text" value="1" name="spinner-passengers">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -138,17 +138,17 @@
                                                     <div class="row form-check">
                                                         <div class="col-sm-4">
                                                             <label class="checkbox">
-                                                                <input id="only-plane" type="checkbox"><span>Plane</span>
+                                                                <input id="need-plane" type="checkbox" checked><span>Plane</span>
                                                             </label>
                                                         </div>
                                                         <div class="col-sm-4">
                                                             <label class="checkbox">
-                                                                <input id="only-bus" type="checkbox"><span>Bus</span>
+                                                                <input id="need-bus" type="checkbox" checked><span>Bus</span>
                                                             </label>
                                                         </div>
                                                         <div class="col-sm-4">
                                                             <label class="checkbox">
-                                                                <input id="only-train" type="checkbox"><span>Train</span>
+                                                                <input id="need-train" type="checkbox" checked><span>Train</span>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -161,7 +161,7 @@
                                                     <div class="row form-check">
                                                         <div class="col-sm-12">
                                                             <label class="checkbox">
-                                                                <input id="only-plane" type="checkbox"><span>Find routes with fewer transfers</span>
+                                                                <input id="fewer-transfers" type="checkbox"><span>Find routes with fewer transfers</span>
                                                             </label>
                                                         </div>
                                                     </div>

@@ -8,15 +8,13 @@ public class Task {
     private Point from;
     private Point to;
     private LocalDate date;
-    private int numberOfAdults;
-    private int numberOfChildren;
+    private int numberOfPassengers;
 
-    public Task(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren) {
+    public Task(Point from, Point to, LocalDate date, int numberOfPassengers) {
         this.from = from;
         this.to = to;
         this.date = date;
-        this.numberOfAdults = numberOfAdults;
-        this.numberOfChildren = numberOfChildren;
+        this.numberOfPassengers = numberOfPassengers;
     }
 
     public Point getFrom() {
@@ -43,20 +41,12 @@ public class Task {
         this.date = date;
     }
 
-    public int getNumberOfAdults() {
-        return numberOfAdults;
+    public int getNumberOfPassengers() {
+        return numberOfPassengers;
     }
 
-    public void setNumberOfAdults(int numberOfAdults) {
-        this.numberOfAdults = numberOfAdults;
-    }
-
-    public int getNumberOfChildren() {
-        return numberOfChildren;
-    }
-
-    public void setNumberOfChildren(int numberOfChildren) {
-        this.numberOfChildren = numberOfChildren;
+    public void setNumberOfPassengers(int numberOfPassengers) {
+        this.numberOfPassengers = numberOfPassengers;
     }
 
     @Override
@@ -65,8 +55,7 @@ public class Task {
                 .append("from", from)
                 .append("to", to)
                 .append("date", date)
-                .append("numberOfAdults", numberOfAdults)
-                .append("numberOfChildren", numberOfChildren)
+                .append("numberOfPassengers", numberOfPassengers)
                 .toString();
     }
 }

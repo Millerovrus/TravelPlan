@@ -26,7 +26,7 @@ public class YandexParser implements ApiInterface {
     }
 
     @Override
-    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren){
+    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfPassengers){
 
 
         String url = "https://rasp.yandex.ru/search/?fromId=" +
@@ -60,7 +60,7 @@ public class YandexParser implements ApiInterface {
                             edge.setCreationDate(new Date());
                             edge.setTransportType(convertTypes(element.getElementsByClass("TransportIcon").first().attr("aria-label")));
                             edge.setDuration((double) splStr(element.getElementsByClass("SearchSegment__duration").first().text()));
-                            edge.setCost((splCost(element.getElementsByClass("Price").first().text())) * (numberOfAdults + numberOfChildren));
+                            edge.setCost((splCost(element.getElementsByClass("Price").first().text())) * (numberOfPassengers));
                             edge.setStartDate(LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text())));
                             edge.setEndDate(LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())));
                             edge.setCurrency("RUB");

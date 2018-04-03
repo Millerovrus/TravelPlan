@@ -28,17 +28,9 @@ $(function () {
 
 /* spinner + -*/
 $(function () {
-    $("input[name='spinner-adult']").TouchSpin({
+    $("input[name='spinner-passengers']").TouchSpin({
         min: 1,
-        max: 5,
-        step: 1,
-        verticalupclass: 'fas fa-plus'
-    });
-});
-$(function () {
-    $("input[name='spinner-children']").TouchSpin({
-        min: 0,
-        max: 4,
+        max: 9,
         step: 1,
         verticalupclass: 'fas fa-plus'
     });
@@ -120,8 +112,8 @@ $(document).ready(function() {
 
 });
 
-/* */
-function getAlert() {
-    alert("Ошибочка блин");
-}
+// /* */
+// function getAlert() {
+//     alert("Ошибочка блин");
+// }
 

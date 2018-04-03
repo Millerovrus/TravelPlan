@@ -31,8 +31,7 @@ public class Executor implements ExecutorMan {
                         apiInterface.findEdgesFromTo(task.getFrom()
                                 , task.getTo()
                                 , task.getDate()
-                                , task.getNumberOfAdults()
-                                , task.getNumberOfChildren()))
+                                , task.getNumberOfPassengers()))
         );
 
         /*Отправляем  задачи на выполнение*/

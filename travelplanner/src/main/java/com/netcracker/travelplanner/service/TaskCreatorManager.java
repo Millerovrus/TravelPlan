@@ -20,12 +20,10 @@ public class TaskCreatorManager {
         List<Task> tasks = new ArrayList<>();
 
         /* прямой рейс */
-
         tasks.add(new Task(searchInputParameters.getFrom()
                 ,searchInputParameters.getTo()
                 ,searchInputParameters.getDeparture()
-                ,searchInputParameters.getNumberOfAdults()
-                ,searchInputParameters.getNumberOfChildren()));
+                ,searchInputParameters.getNumberOfPassengers()));
 
         if (searchInputParameters.isGlobalRoute()) {
         /* рейсы рядом с точкой отправления */
@@ -33,21 +31,18 @@ public class TaskCreatorManager {
                 tasks.add(new Task(searchInputParameters.getFrom()
                         ,point
                         ,searchInputParameters.getDeparture()
-                        ,searchInputParameters.getNumberOfAdults()
-                        ,searchInputParameters.getNumberOfChildren()));
+                        ,searchInputParameters.getNumberOfPassengers()));
 
                 /* из начальной точки в окружение конечной*/
                 tasks.add(new Task(point
                         ,searchInputParameters.getTo()
                         ,searchInputParameters.getDeparture()
-                        ,searchInputParameters.getNumberOfAdults()
-                        ,searchInputParameters.getNumberOfChildren()));
+                        ,searchInputParameters.getNumberOfPassengers()));
 
                 tasks.add(new Task(point
                         ,searchInputParameters.getTo()
                         ,searchInputParameters.getDeparture().plusDays(1)
-                        ,searchInputParameters.getNumberOfAdults()
-                        ,searchInputParameters.getNumberOfChildren()));
+                        ,searchInputParameters.getNumberOfPassengers()));
             }
 
         /* рядом с точкой прибытия */
@@ -55,20 +50,17 @@ public class TaskCreatorManager {
                 tasks.add(new Task(point
                         ,searchInputParameters.getTo()
                         ,searchInputParameters.getDeparture()
-                        ,searchInputParameters.getNumberOfAdults()
-                        ,searchInputParameters.getNumberOfChildren()));
+                        ,searchInputParameters.getNumberOfPassengers()));
 
                 tasks.add(new Task(point
                         ,searchInputParameters.getTo()
                         ,searchInputParameters.getDeparture().plusDays(1)
-                        ,searchInputParameters.getNumberOfAdults()
-                        ,searchInputParameters.getNumberOfChildren()));
+                        ,searchInputParameters.getNumberOfPassengers()));
 
                 tasks.add(new Task(point
                         ,searchInputParameters.getTo()
                         ,searchInputParameters.getDeparture().plusDays(2)
-                        ,searchInputParameters.getNumberOfAdults()
-                        ,searchInputParameters.getNumberOfChildren()));
+                        ,searchInputParameters.getNumberOfPassengers()));
             }
 
         /* перебор между всеми точками */
@@ -77,14 +69,12 @@ public class TaskCreatorManager {
                     tasks.add(new Task(pointFrom
                             ,pointTo
                             ,searchInputParameters.getDeparture()
-                            ,searchInputParameters.getNumberOfAdults()
-                            ,searchInputParameters.getNumberOfChildren()));
+                            ,searchInputParameters.getNumberOfPassengers()));
 
                     tasks.add(new Task(pointFrom
                             ,pointTo
                             ,searchInputParameters.getDeparture().plusDays(1)
-                            ,searchInputParameters.getNumberOfAdults()
-                            ,searchInputParameters.getNumberOfChildren()));
+                            ,searchInputParameters.getNumberOfPassengers()));
                 }
             }
 

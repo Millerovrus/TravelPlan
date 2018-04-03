@@ -29,14 +29,13 @@ public class MainRouteService {
     private Executor executor2 = new Executor();
 //    private Executor executor3 = new Executor();
 
-    private SearchInputParameters prepareInputData(String from, String to, String latLongFrom, String latLongTo, String date, int numberOfAdults, int numberOfChildren){
+    private SearchInputParameters prepareInputData(String from, String to, String latLongFrom, String latLongTo, String date, int numberOfPassengers){
         return new PreparingDataService().prepareData(from
                 ,to
                 ,latLongFrom
                 ,latLongTo
                 ,date
-                ,numberOfAdults
-                ,numberOfChildren);
+                ,numberOfPassengers);
     }
 
     private List<Task> getTasks(SearchInputParameters searchInputParameters){
@@ -84,8 +83,7 @@ public class MainRouteService {
             ,String latLongFrom
             ,String latLongTo
             ,String date
-            ,int numberOfAdults
-            ,int numberOfChildren
+            ,int numberOfPassengers
             )
     {
         ExecutorService executorService = Executors.newFixedThreadPool(3);
@@ -95,8 +93,7 @@ public class MainRouteService {
                 ,latLongFrom
                 ,latLongTo
                 ,date
-                ,numberOfAdults
-                ,numberOfChildren);
+                ,numberOfPassengers);
 
         List<Task> taskList = getTasks(searchInputParameters);
 
@@ -105,7 +102,7 @@ public class MainRouteService {
         return getRoutes(edgeList
                 ,searchInputParameters.getFrom().getName()
                 ,searchInputParameters.getTo().getName()
-                ,searchInputParameters.getNumberOfAdults()+searchInputParameters.getNumberOfChildren());
+                ,searchInputParameters.getNumberOfPassengers());
 
     }
 
