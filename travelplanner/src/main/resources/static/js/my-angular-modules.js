@@ -72,7 +72,7 @@ angular.module('controllerModule')
                 });
             initMap();
         };
-        $scope.isOptimalRoute = function(records) {
+        $scope.optimalRoutes = function(records) {
             return records.optimalRoute;
         };
         $scope.allRoutes = function(records) {
