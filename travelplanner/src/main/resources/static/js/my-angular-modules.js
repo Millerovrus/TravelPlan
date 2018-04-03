@@ -8,18 +8,19 @@ angular.module('myApp',['controllerModule'])
     });
 angular.module('controllerModule')
 
-    .controller('myParameterController', function requestFunc($scope, $http, $window) {
+    .controller('myParameterController', function requestFunc($scope, $http, $window    ) {
 
         /*$scope.saved=function(value) {
             return true
         };*/
+        // $scope.saved = true;
         $scope.saveRoute=function (record) {
 
             $scope.saved=function(value) {
-                if (value === record.idRouteForView)
+                if (value == record.idRouteForView)
                     return true;
             };
-
+            
             $http({
                 method: 'GET',
                 url: 'api/routes/saveroutes',
@@ -33,7 +34,9 @@ angular.module('controllerModule')
             }).then(
                 function success(response, status) {
                     console.log('Route had been saved', status, response);
+                    $scope.saved=false;
                     alert("Route had been saved :)");
+
                 },
                 function error(response, status) {
                     console.error('error', status, response);
@@ -54,7 +57,7 @@ angular.module('controllerModule')
                      longLatTo: angular.element($('#latit_longit_to')).val(),
                      date: angular.element($('#inputDate')).val(),
                      numberOfAdults: angular.element($('#spin-adult')).val(),
-                     numberOfChildren: angular.element($('#spin-children')).val()
+                     numberOfChildren:   0
                 }
             }).then(
                 function success(response) {
@@ -69,7 +72,7 @@ angular.module('controllerModule')
                 });
             initMap();
         };
-        $scope.optimalRoutes = function(records) {
+        $scope.isOptimalRoute = function(records) {
             return records.optimalRoute;
         };
         $scope.allRoutes = function(records) {
@@ -123,6 +126,15 @@ angular.module('controllerModule')
                     return '- ' + transportType + ' -';
             }
         };
+    }])
+    .filter('addZerosToDateTime', [function () {
+        return function (monthValue) {
+            if(monthValue.length==1){
+                return '0'+monthValue;
+            }
+            return monthValue;
+
+        }
     }])
     .filter('orderObjectBy', function(){
         return function(input, attribute) {
