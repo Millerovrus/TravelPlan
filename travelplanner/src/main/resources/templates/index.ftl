@@ -45,8 +45,11 @@
     <script src="js/my-styles.js"></script>
 
     <!-- map -->
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap"-->
+    <!--async defer></script>-->
     <script src="js/google-map.js"></script>
     <script src="js/autoComplite.js"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&language=en&libraries=places"></script>-->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap&language=en&libraries=geometry,places"></script>
 </head>
 
@@ -66,7 +69,7 @@
                     </button>
                     <a class="navbar-brand" href="/"><i class="fa fa-ravelry" aria-hidden="true"></i>Travel planner</a>
                 </div>
-                <div class="navbar-collapse collapse" id="navbar-collapse">
+                <div class="navbar-collapse collapse"  id="navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/users"><i class="fa fa-user" aria-hidden="true"></i> ${firstname} ${lastname} </a></li>
                         <li><a href="/logout">Logout</a></li>
@@ -124,19 +127,11 @@
                                                     <li class="dropdown-header centered">Passengers</li>
                                                     <div class="drop-passengers">
                                                         <div class="spinner-inline">
-                                                            <div class="col-sm-6">
-                                                                <label for="spin-adult">Adults  </label>
-                                                            </div>
+                                                            <#--<div class="col-sm-6">-->
+                                                                <#--<label for="spin-adult">Adults  </label>-->
+                                                            <#--</div>-->
                                                             <div class="col-sm-6">
                                                                 <input id="spin-adult" class="spinner text-center" type="text" value="1" name="spinner-adult">
-                                                            </div>
-                                                        </div>
-                                                        <div class="spinner-inline">
-                                                            <div class="col-sm-6">
-                                                                <label for="spin-children">Children</label>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <input id="spin-children" class="spinner text-center" type="text" value="0" name="spinner-children">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -147,30 +142,43 @@
                                                 <ul>
                                                     <li class="dropdown-header centered">Type of transport</li>
                                                     <div class="row form-check">
-                                                        <div class="col-sm-6">
+                                                        <div class="col-sm-4">
                                                             <label class="checkbox">
-                                                                <input id="only-plane" type="checkbox"><span>Only plane</span>
+                                                                <input id="use-plane" type="checkbox"><span>Plane</span>
                                                             </label>
                                                         </div>
-                                                    </div>
-                                                    <div class="row form-check">
-                                                        <div class="col-sm-6">
+                                                        <div class="col-sm-4">
                                                             <label class="checkbox">
-                                                                <input id="use-bus" type="checkbox"><span>Find routes with bus</span>
+                                                                <input id="use-bus" type="checkbox"><span>Bus</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <label class="checkbox">
+                                                                <input id="use-train" type="checkbox"><span>Train</span>
                                                             </label>
                                                         </div>
                                                     </div>
                                                 </ul>
                                                 <div class="divider-inverse"></div>
-                                            </li>
-                                            <li class="col-sm-12">
                                                 <ul>
-                                                    <li class="dropdown-header centered">Max time for transferring</li>
-                                                    <div class="col-sm-12 margin-offset">
-                                                        <input id="range-slider" type="range" min="0" max="24" step="1" value="0">
+                                                    <li class="dropdown-header centered">Transfers</li>
+                                                    <div class="row form-check">
+                                                        <div class="col-sm-12">
+                                                            <label class="checkbox">
+                                                                <input id="use-transfer" type="checkbox"><span>Find routes with fewer transfers</span>
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </ul>
                                             </li>
+                                            <#--<li class="col-sm-12">-->
+                                                <#--<ul>-->
+                                                    <#--<li class="dropdown-header centered">Max time for transferring (Hours)</li>-->
+                                                    <#--<div class="col-sm-12 margin-offset">-->
+                                                        <#--<input id="range-slider" type="range" min="0" max="24" step="1" value="0">-->
+                                                    <#--</div>-->
+                                                <#--</ul>-->
+                                            <#--</li>-->
                                         </ul>
                                     </div>
                                 </div>
@@ -208,65 +216,84 @@
                                 <div ng-show="loading" class="preloader"></div>
                                 <div ng-show="loaded">
                                     <div ng-controller="mapController">
-                                            <div class="output-collapse">
-                                                <div class="container-fluid">
-                                                    <div class="row">
-                                                        <div class="col-sm-5">
-                                                            <div class="fancy-collapse-panel" >
-                                                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-                                                                    <button ng-click="orderByAttribute = 'cost'">Order by Cost</button>
-                                                                    <button ng-click="orderByAttribute = 'duration'">Order by Duration</button>
-                                                                    <button ng-click="orderByAttribute = 'startDate'">Order by Start Date</button>
-                                                                    <button ng-click="orderByAttribute = ''">Without order</button>
-                                                                    <div class="panel panel-default" ng-repeat="record in records | filter:optimalRoutes | orderObjectBy:orderByAttribute">
-                                                                        <div class="panel-heading" role="tab" id="headingOne" >
-                                                                            <h4 class="panel-title">
-                                                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
-                                                                                    <div ng-repeat="item in record.edges">
-                                                                                        <div class="route-header" ng-repeat="transits in item.transitEdgeList"> {{transits.startPoint.name}} <span ng-bind-html=' item.transportType | transportTypeToIcon'></span> {{transits.endPoint.name}} </div>
-                                                                                    </div>
-                                                                                    <div class="divider-inverse"></div>
-                                                                                    <div class="json-data">
-                                                                                        <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                                        <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
-                                                                                    </div>
-                                                                                </a>
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                                                            <div class="panel-body" ng-repeat="item in record.edges">
+                                        <div class="output-collapse">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <div class="fancy-collapse-panel" >
+                                                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+                                                                <button ng-click="orderByAttribute = 'cost'">Order by Cost</button>
+                                                                <button ng-click="orderByAttribute = 'duration'">Order by Duration</button>
+                                                                <button ng-click="orderByAttribute = 'startDate'">Order by Start Date</button>
+                                                                <button ng-click="orderByAttribute = ''">Without order</button>
+
+                                                                <div class="panel panel-default"  ng-repeat="record in records| filter: isOptimalRoute | orderObjectBy : orderByAttribute">
+                                                                    <div class="panel-heading" role="tab" id="headingOne" >
+                                                                        <h4 class="panel-title">
+                                                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
+                                                                                <div ng-repeat="item in record.edges">
+                                                                                    <div class="route-header" ng-repeat="transits in item.transitEdgeList"> {{transits.startPoint.name}} <span ng-bind-html=' item.transportType | transportTypeToIcon'></span> {{transits.endPoint.name}} </div>
+                                                                                </div>
+                                                                                <div class="divider-inverse"></div>
+                                                                                <div class="json-data">
+                                                                                    <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                                    <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
+                                                                                </div>
+                                                                            </a>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                                        <div class="panel-body" ng-repeat="item in record.edges">
+                                                                            <ul>
+
                                                                                 <div ng-repeat="transits in item.transitEdgeList">
                                                                                     <p><b>Transit:</b> {{transits.startPoint.name}} - {{transits.endPoint.name}}</p>
                                                                                     <p><b>Arrival:</b> {{transits.arrival.year}}-{{transits.arrival.monthValue}}-{{transits.arrival.dayOfMonth}} at {{transits.arrival.hour}}:{{transits.arrival.minute}}</p>
-                                                                                    <p><b>Departure:</b> {{transits.departure.year}}-{{transits.departure.monthValue}}-{{transits.departure.dayOfMonth}} at {{transits.departure.hour}}:{{transits.departure.minute}}</p>
+                                                                                    <p><b>Departure <date></date>:</b> {{item.startDate.year}}-{{item.startDate.monthValue | addZerosToDateTime }}-{{item.startDate.dayOfMonth | addZerosToDateTime}} at {{item.startDate.hour}}:{{item.startDate.minute}}</p>
                                                                                 </div>
+
                                                                                 <p><b>Cost:</b> {{item.cost}} (RUB)</p>
 
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
-                                                                                            <section>
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
+                                                                                        <section>
                                                                                             <#if isAuthorized>
                                                                                                 <div ng-hide="saved(record.idRouteForView)">
                                                                                                     <button class='dotted thin' ng-click="saveRoute(record)">Save route</button>
                                                                                                 </div>
                                                                                             </#if>
-                                                                                                <button class='dotted thin' ng-click="openLink(item.purchaseLink)">Buy ticket</button>
-                                                                                            </section>
-                                                                                        </div>
+                                                                                            <button class='dotted thin' ng-click="openLink(item.purchaseLink)">Buy ticket</button>
+                                                                                        </section>
                                                                                     </div>
-                                                                            </div>
+                                                                                </div>
+                                                                            </ul>
                                                                         </div>
                                                                     </div>
                                                                 </div>
+
+                                                                <#--<div class="row">-->
+                                                                    <#--<div class="col-sm-12">-->
+                                                                        <#--<input type="button" ng-click = "notOptimalRoute">Click -->
+                                                                        <#---->
+                                                                    <#--</div>-->
+                                                                <#--</div>-->
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-7" id="map-margin">
-                                                            <div class="container-map" id="map"></div>
-                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-7" id="map-margin">
+                                                        <div class="container-map" id="map"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
