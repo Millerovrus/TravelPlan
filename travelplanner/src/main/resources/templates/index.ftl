@@ -177,6 +177,7 @@
                             </div>
                         </div>
                         <!-- autocomplete -->
+                        <!-- autocomplete -->
                         <div class="row" ng-show="false">
                             <div class="col-sm-4">
                                 <div class="inputBox ">
@@ -229,6 +230,7 @@
                                                                         <button ng-click="busFilter = routesWithoutBus">Routes Without Bus</button>
                                                                         <button ng-click="busFilter = allRoutes">Routes With Bus</button>
                                                                     </div>
+
                                                                     <div style="margin: 5px">
                                                                         <input type="number" class="input" id="cost_from" placeholder="Cost from">
                                                                         <input type="number" class="input" id="cost_to" placeholder="Cost to">
