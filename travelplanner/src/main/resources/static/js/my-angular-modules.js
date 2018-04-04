@@ -144,22 +144,38 @@ angular.module('controllerModule')
                 array.push(input[objectKey]);
             }
 
-            if (attribute === "startDate"){
-                array.sort(function(a, b) {
-                    if ((a.edges[0].startDate.hour * 60 + a.edges[0].startDate.minute) > (b.edges[0].startDate.hour * 60 + b.edges[0].startDate.minute)){
-                        return 1;
-                    }
-                    if ((a.edges[0].startDate.hour * 60 + a.edges[0].startDate.minute) < (b.edges[0].startDate.hour * 60 + b.edges[0].startDate.minute)){
-                        return -1;
-                    }
-                    return 0;
-                });
-            } else {
-                array.sort(function (a, b) {
-                    a = parseInt(a[attribute]);
-                    b = parseInt(b[attribute]);
-                    return a - b;
-                });
+            switch (attribute){
+                case 'startDate':
+                    array.sort(function(a, b) {
+                        if ((a.edges[0].startDate.hour * 60 + a.edges[0].startDate.minute) > (b.edges[0].startDate.hour * 60 + b.edges[0].startDate.minute)){
+                            return 1;
+                        }
+                        if ((a.edges[0].startDate.hour * 60 + a.edges[0].startDate.minute) < (b.edges[0].startDate.hour * 60 + b.edges[0].startDate.minute)){
+                            return -1;
+                        }
+                        return 0;
+                    });
+                    break;
+                case 'transfers':
+                    array.sort(function(a, b) {
+                        var transfersA = 0;
+                        var transfersB = 0;
+                        for (var i = 0; i < a.edges.length; i++) {
+                            transfersA += a.edges[i].numberOfTransfers;
+                        }
+                        for (var j = 0; j < b.edges.length; j++) {
+                            transfersB += b.edges[j].numberOfTransfers;
+                        }
+                        return transfersA - transfersB;
+                    });
+                    break;
+                default:
+                    array.sort(function (a, b) {
+                        a = parseInt(a[attribute]);
+                        b = parseInt(b[attribute]);
+                        return a - b;
+                    });
+
             }
             return array;
         }
