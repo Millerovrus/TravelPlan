@@ -218,14 +218,24 @@
                             <div class="col-sm-12">
                                 <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
 
+                                <#--<div ng-show="loading" class="preloader"></div>-->
+                                <div class="row" ng-show="loading">
+                                    <div  class="col-sm-12 page-loader" style="">
+                                        <div class="loader">
+                                            <span class="dot dot_1"></span>
+                                            <span class="dot dot_2"></span>
+                                            <span class="dot dot_3"></span>
+                                            <span class="dot dot_4"></span>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                <div ng-show="loading" class="preloader"></div>
                                 <div ng-show="loaded" ng-init="optimalFilter = optimalRoutes; busFilter = allRoutes; orderByAttribute = 'cost'">
                                     <div ng-controller="mapController">
                                             <div class="output-collapse">
                                                 <div class="container-fluid">
                                                     <div class="row">
-                                                        <div class="col-sm-12">
+                                                        <div class="col-sm-12 nomargin">
                                                             <div class="accordion-panel">
                                                                 <div class="buttons-wrapper">
                                                                     <i class="plus-icon"></i>
@@ -302,34 +312,11 @@
                                                         <div class="col-sm-5">
                                                             <div class="fancy-collapse-panel" >
                                                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-                                                                    <#--<div style="margin: 5px">-->
-                                                                        <#--<select ng-model="orderByAttribute">-->
-                                                                            <#--<option value="cost">Order by cost</option>-->
-                                                                            <#--<option value="duration">Order by duration</option>-->
-                                                                            <#--<option value="startDate">Order by start date</option>-->
-                                                                        <#--</select>-->
-                                                                    <#--</div>-->
-                                                                    <#--<div style="margin: 5px">-->
-                                                                        <#--<button ng-click="optimalFilter = optimalRoutes">Only Optimal Routes</button>-->
-                                                                        <#--<button ng-click="optimalFilter = allRoutes">All Routes</button>-->
-                                                                    <#--</div>-->
-                                                                    <#--<div style="margin: 5px">-->
-                                                                        <#--<button ng-click="busFilter = routesWithoutBus">Routes Without Bus</button>-->
-                                                                        <#--<button ng-click="busFilter = allRoutes">Routes With Bus</button>-->
-                                                                    <#--</div>-->
-
-                                                                    <#--<div style="margin: 5px">-->
-                                                                        <#--<input type="number" class="input" id="cost_from" placeholder="Cost from">-->
-                                                                        <#--<input type="number" class="input" id="cost_to" placeholder="Cost to">-->
-                                                                    <#--</div>-->
-                                                                    <#--<div style="margin: 5px">-->
-                                                                        <#--<button ng-click="costFilter = routesWithCostFromTo">Cost Filter</button>-->
-                                                                        <#--<button ng-click="costFilter = allRoutes">Without Cost Filter</button>-->
-                                                                    <#--</div>-->
-
                                                                     <div ng-repeat="record in records | filter:optimalFilter | filter:busFilter | filter:costFilter | orderObjectBy:orderByAttribute">
-                                                                        <br>
-                                                                        <div class="route-description"><b>{{record.description}}</b></div>
+                                                                        <#--<br>-->
+                                                                        <div class="row">
+                                                                            <div class="route-description"><b>{{record.description}}</b></div>
+                                                                        </div>
                                                                         <div class="panel panel-default" >
                                                                         <div class="panel-heading" role="tab" id="headingOne" >
                                                                             <h4 class="panel-title">
