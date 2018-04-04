@@ -297,11 +297,11 @@
                                                                                     </div>
                                                                                     <div class="funkyradio-default">
                                                                                         <input type="radio" name="radio3" id="radio7" ng-click="orderByAttribute = 'startDate'"/>
-                                                                                        <label for="radio7">Start date</label>
+                                                                                        <label for="radio7">Departure time</label>
                                                                                     </div>
                                                                                     <div class="funkyradio-default">
                                                                                         <input type="radio" name="radio3" id="radio8" ng-click="orderByAttribute = 'transfers'"/>
-                                                                                        <label for="radio8">Number of transfers</label>
+                                                                                        <label for="radio8">Transfers quantity</label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -317,13 +317,12 @@
                                                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
                                                                     <div ng-repeat="record in records | filter:optimalFilter | filter:busFilter | filter:costFilter | orderObjectBy:orderByAttribute">
                                                                         <#--<br>-->
-                                                                        <div class="row">
-                                                                            <div class="route-description"><b>{{record.description}}</b></div>
-                                                                        </div>
+
                                                                         <div class="panel panel-default" >
                                                                             <div class="panel-heading" role="tab" id="headingOne" >
                                                                                 <h4 class="panel-title">
                                                                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
+                                                                                        <div class="route-description"><b>{{record.description}}</b></div>
                                                                                         <div ng-repeat="item in record.edges">
                                                                                             <div class="route-header" ng-repeat="transits in item.transitEdgeList"> {{transits.startPoint.name}} <span ng-bind-html=' item.transportType | transportTypeToIcon'></span> {{transits.endPoint.name}} </div>
                                                                                         </div>
