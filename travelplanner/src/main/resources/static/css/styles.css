@@ -716,7 +716,7 @@ html section button.dotted.thin, body section button.dotted.thin {
 .accordion-panel .accordion dt {
     display: block;
     padding: 5px;
-    background: #E3E1E2;
+    background: #f4f4f4;
     color: #555;
     cursor: pointer;
     position: relative;
@@ -728,12 +728,17 @@ html section button.dotted.thin, body section button.dotted.thin {
     transition: height .35s ease-out;
     margin-left: 0;
     margin-bottom: 10px;
-    background: #F4F4F4;
+    background: #fff;
+    border-radius: 2px;
 }
 .accordion-panel .accordion .content {
     padding: 10px;
     overflow: auto;
+    width: 100%;
+    height: 170px;
+
 }
+
 .accordion-panel .plus-icon {
     display: inline-block;
     width: 15px;
@@ -743,12 +748,15 @@ html section button.dotted.thin, body section button.dotted.thin {
     position: absolute;
     right: 35px;
     top: 50%;
-    margin-top: -12px;
+    margin-top: -8px;
+}
+.accordion-panel dt{
+    border: 1px #CCC solid;
 }
 .accordion-panel .plus-icon:before,
 .accordion-panel .plus-icon:after {
     content: '';
-    background: #6bbf49;
+    background: #e97f2b;
     position: absolute;
 }
 .accordion-panel .plus-icon:before {
@@ -778,7 +786,8 @@ html section button.dotted.thin, body section button.dotted.thin {
 .accordion-panel .close-btn {
     cursor: pointer;
     position: absolute;
-    right: 0;
+    right: 15px;
+    margin-top: -10px;
     width: 90px;
 }
 .accordion-panel .buttons-wrapper {
@@ -787,11 +796,78 @@ html section button.dotted.thin, body section button.dotted.thin {
 }
 .accordion-panel .buttons-wrapper .plus-icon {
     position: absolute;
-    right: 10px;
-    top: 12px;
+    right: 26px;
+    top: 3px;
+}
+
+.accordion dt{
+    line-height: 2em;
 }
 
 .nomargin{
     margin: 0!important;
     padding: 0 !important;
+}
+
+ /* radio */
+.funkyradio div {
+    clear: both;
+    /*margin: 0 50px;*/
+    overflow: hidden;
+}
+.funkyradio label {
+    /*min-width: 400px;*/
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #D1D3D4;
+    font-weight: normal;
+}
+.funkyradio input[type="radio"]:empty{
+    display: none;
+}
+.funkyradio input[type="radio"]:empty ~ label{
+    position: relative;
+    line-height: 2em;
+    text-indent: 3.25em;
+    margin-top: 5px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.funkyradio input[type="radio"]:empty ~ label:before{
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    content:'';
+    width: 2.5em;
+    background: #D1D3D4;
+    border-radius: 3px 0 0 3px;
+}
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before{
+    content:'\2714';
+    text-indent: .9em;
+    color: #2b2b2b;
+}
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label{
+    color: #888;
+}
+.funkyradio input[type="radio"]:checked ~ label:before{
+    content:'\2714';
+    text-indent: .9em;
+    color: #333;
+    background-color: #fff;
+}
+.funkyradio input[type="radio"]:checked ~ label{
+    color: #2b2b2b;
+}
+.funkyradio input[type="radio"]:focus ~ label:before{
+    box-shadow: 0 0 0 3px #999;
+}
+.funkyradio-default input[type="radio"]:checked ~ label:before {
+    color: #333;
+    background-color: #ccc;
 }

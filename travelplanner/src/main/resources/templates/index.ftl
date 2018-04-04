@@ -218,82 +218,86 @@
                             <div class="col-sm-12">
                                 <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
 
-                                <div class="row">
-                                    <div class="col-sm-12">
-
-                                        <div class="accordion-panel">
-                                            <div class="col-sm-3 nomargin">
-                                                <dt>item 1 <i class="plus-icon"></i></dt>
-                                                <dd>
-                                                    <div class="content">
-                                                        <p> tesst3 </p>
-                                                    </div>
-                                                </dd>
-                                            </div>
-
-                                            <div class="container">
-                                            <dl class="row accordion">
-
-                                                <div class="col-sm-3 nomargin">
-                                                    <dt>item 2 <i class="plus-icon"></i></dt>
-                                                    <dd>
-                                                        <div class="content">
-                                                            <p> test 2</p>
-                                                        </div>
-                                                    </dd>
-                                                </div>
-                                                <div class="col-sm-3 nomargin">
-                                                    <dt>item 3 <i class="plus-icon"></i></dt>
-                                                    <dd>
-                                                        <div class="content">
-                                                            <p> test </p>
-                                                        </div>
-                                                    </dd>
-                                                </div>
-                                                </div>
-                                            </dl>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-
-
-                                <div class="caption">
-                                    <select ng-model="orderByAttribute">
-                                        <option value="cost">Order by cost</option>
-                                        <option value="duration">Order by duration</option>
-                                        <option value="startDate">Order by start date</option>
-                                    </select>
-                                </div>
-                                <div class="caption">
-                                    <button class="action btn btn-Light" ng-click="optimalFilter = optimalRoutes">Only Optimal Routes</button>
-                                    <button class="action btn btn-Light" ng-click="optimalFilter = allRoutes">All Routes</button>
-                                </div>
-                                <div class="caption">
-                                    <button class="action btn btn-Light" ng-click="busFilter = routesWithoutBus">Routes Without Bus</button>
-                                    <button class="action btn btn-Light" ng-click="busFilter = allRoutes">Routes With Bus</button>
-                                </div>
-
-                                <div>
-                                    <input type="number" class="input" id="cost_from" placeholder="Cost from">
-                                    <input type="number" class="input" id="cost_to" placeholder="Cost to">
-                                </div>
-                                <div>
-                                    <button ng-click="costFilter = routesWithCostFromTo">Cost Filter</button>
-                                    <button ng-click="costFilter = allRoutes">Without Cost Filter</button>
-                                </div>
-
-
-                                <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
-
 
                                 <div ng-show="loading" class="preloader"></div>
                                 <div ng-show="loaded" ng-init="optimalFilter = optimalRoutes; busFilter = allRoutes; orderByAttribute = 'cost'">
                                     <div ng-controller="mapController">
                                             <div class="output-collapse">
                                                 <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="accordion-panel">
+                                                                <div class="buttons-wrapper">
+                                                                    <i class="plus-icon"></i>
+                                                                    <div class="open-btn">
+                                                                        Open all
+                                                                    </div>
+                                                                    <div class="close-btn hidden">
+                                                                        Close all
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="container-fluid">
+                                                                    <dl class="row accordion">
+                                                                        <div class="col-sm-4 nomargin accordion">
+                                                                            <dt>Show filter<i class="plus-icon"></i></dt>
+                                                                            <dd>
+                                                                                <div class="content">
+                                                                                    <div class="funkyradio">
+                                                                                        <div class="funkyradio-default">
+                                                                                            <input type="radio" name="radio1" id="radio1" ng-click="optimalFilter = optimalRoutes"/>
+                                                                                            <label for="radio1">Optimal routes</label>
+                                                                                        </div>
+                                                                                        <div class="funkyradio-default">
+                                                                                            <input type="radio" name="radio1" id="radio2" ng-click="optimalFilter = allRoutes"/>
+                                                                                            <label for="radio2">All routes</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </dd>
+                                                                        </div>
+                                                                        <div class="col-sm-4 nomargin accordion">
+                                                                            <dt>Transport type filter<i class="plus-icon"></i></dt>
+                                                                            <dd>
+                                                                                <div class="content">
+                                                                                    <div class="funkyradio">
+                                                                                        <div class="funkyradio-default">
+                                                                                            <input type="radio" name="radio2" id="radio3" ng-click="busFilter = routesWithoutBus"/>
+                                                                                            <label for="radio3">Without bus</label>
+                                                                                        </div>
+                                                                                        <div class="funkyradio-default">
+                                                                                            <input type="radio" name="radio2" id="radio4" ng-click="busFilter = allRoutes"/>
+                                                                                            <label for="radio4">With bus</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </dd>
+                                                                        </div>
+                                                                        <div class="col-sm-4 nomargin accordion">
+                                                                            <dt>Order routes by<i class="plus-icon"></i></dt>
+                                                                            <dd>
+                                                                                <div class="content" ng-model="orderByAttribute">
+                                                                                    <div class="funkyradio" >
+                                                                                        <div class="funkyradio-default" >
+                                                                                            <input type="radio" name="radio3" id="radio5"/>
+                                                                                            <label for="radio5">Cost</label>
+                                                                                        </div>
+                                                                                        <div class="funkyradio-default">
+                                                                                            <input type="radio" name="radio3" id="radio6" />
+                                                                                            <label for="radio6">Duration</label>
+                                                                                        </div>
+                                                                                        <div class="funkyradio-default">
+                                                                                            <input type="radio" name="radio3" id="radio7" />
+                                                                                            <label for="radio7">Start date</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </dd>
+                                                                        </div>
+                                                                    </dl>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     <div class="row">
                                                         <div class="col-sm-5">
                                                             <div class="fancy-collapse-panel" >
