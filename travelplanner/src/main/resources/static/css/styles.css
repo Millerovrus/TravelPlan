@@ -196,13 +196,15 @@ p{
 }
 
 .inputBox .input:focus{
-    border: 2px solid #e97f2b;
+    /*border: 2px solid #e97f2b;*/
+    box-shadow: 0 0 6px #e97f2b;
 }
 
 .input.dropdown-toggle:active, .input.open.dropdown-toggle {
      background:#FFF !important;
      color:#2b2b2b !important;
-     border: 2px solid #e97f2b !important;
+     /*border: 2px solid #e97f2b !important;*/
+     box-shadow: 0 0 6px #e97f2b !important;
 }
 
 a.inputText{
@@ -680,4 +682,116 @@ html section button.dotted.thin, body section button.dotted.thin {
     font-family: Lato;
     color: #e96227;
     font-size: 24px;
+}
+
+
+/* button filter*/
+.caption .action {
+    margin-bottom: 1rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    font-size: 14px;
+    font-family: Raleway;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.caption .action:focus{
+    border-radius: 10px;
+    /*border-color: #e96227;*/
+    box-shadow: 0 0 6px #e97f2b;
+    outline: none !important;
+}
+
+/* panel for filters*/
+.accordion-panel {
+    font-family: Lato;
+    margin: 0;
+    padding-top: 20px;
+    /*max-width: 560px;*/
+}
+.accordion-panel .accordion {
+    padding-top: 20px;
+}
+.accordion-panel .accordion dt {
+    display: block;
+    padding: 5px;
+    background: #E3E1E2;
+    color: #555;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+.accordion-panel .accordion dd {
+    height: 0;
+    overflow: hidden;
+    transition: height .35s ease-out;
+    margin-left: 0;
+    margin-bottom: 10px;
+    background: #F4F4F4;
+}
+.accordion-panel .accordion .content {
+    padding: 10px;
+    overflow: auto;
+}
+.accordion-panel .plus-icon {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    transition: transform 0.35s ease-out;
+    position: absolute;
+    right: 35px;
+    top: 50%;
+    margin-top: -12px;
+}
+.accordion-panel .plus-icon:before,
+.accordion-panel .plus-icon:after {
+    content: '';
+    background: #6bbf49;
+    position: absolute;
+}
+.accordion-panel .plus-icon:before {
+    width: 2px;
+    height: 15px;
+    margin-left: -0.5px;
+    left: 50%;
+}
+.accordion-panel .plus-icon:after {
+    width: 15px;
+    height: 2px;
+    margin-top: -0.5px;
+    top: 50%;
+    opacity: 1;
+    transition: opacity 0.35s ease-out;
+}
+.accordion-panel .is-open .plus-icon {
+    transform: rotate(90deg);
+}
+.accordion-panel .is-open .plus-icon:after {
+    opacity: 0;
+}
+.accordion-panel .hidden {
+    display: none;
+}
+.accordion-panel .open-btn,
+.accordion-panel .close-btn {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    width: 90px;
+}
+.accordion-panel .buttons-wrapper {
+    margin: 10px;
+    position: relative;
+}
+.accordion-panel .buttons-wrapper .plus-icon {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+}
+
+.nomargin{
+    margin: 0!important;
+    padding: 0 !important;
 }
