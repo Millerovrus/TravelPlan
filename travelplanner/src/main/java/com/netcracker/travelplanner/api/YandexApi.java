@@ -85,6 +85,13 @@ public class YandexApi implements ApiInterface {
                                 ,l.getTo().getCode()));
 
                         edge.setTransitEdgeList(transitEdges);
+                        edge.setPurchaseLink("https://rasp.yandex.ru/search/?fromId=" +
+                                from.getYandexCode() +
+                                "&toId=" +
+                                to.getYandexCode() +
+                                "&transportType=bus&when=" +
+                                date.format(DateTimeFormatter.ISO_LOCAL_DATE)
+                        );
 
                         edgeList.add(edge);
                     });
