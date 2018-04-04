@@ -914,14 +914,17 @@ html section button.dotted.thin, body section button.dotted.thin {
 }.dot_2 {
      animation: 1.5s linear 0.5s normal none infinite running;
      animation-name:animateDot2;
+     background: #ffffff none repeat scroll 0 0;
      left: 48px;
  }.dot_3 {
-      animation: 1.5s linear 0s normal none infinite running;
+       animation: 1.5s linear 0s normal none infinite running;
        animation-name: animateDot3;
-      left: 24px;
+       background: #ffffff none repeat scroll 0 0;
+       left: 24px;
   }.dot_4 {
        animation: 1.5s linear 0.5s normal none infinite running;
        animation-name: animateDot4;
+       background: #ffffff none repeat scroll 0 0;
        left: 48px;
    }
 @keyframes animateDot1 {
