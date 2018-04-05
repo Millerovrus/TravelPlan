@@ -333,8 +333,8 @@
                                                                                 <div class="panel-body" ng-repeat="item in record.edges">
                                                                                     <div ng-repeat="transits in item.transitEdgeList">
                                                                                         <p><b>Transit:</b> {{transits.startPoint.name}} - {{transits.endPoint.name}}</p>
-                                                                                        <p><b>Departure:</b> {{transits.departure | localDateTimeToString}}</p>
-                                                                                        <p><b>Arrival:</b> {{transits.arrival | localDateTimeToString}}</p>
+                                                                                        <p><b>Departure:</b> {{transits.departure}}</p>
+                                                                                        <p><b>Arrival:</b> {{transits.arrival}}</p>
                                                                                     </div>
                                                                                     <p><b>Cost:</b> {{item.cost}} (RUB)</p>
                                                                                     <div class="row">

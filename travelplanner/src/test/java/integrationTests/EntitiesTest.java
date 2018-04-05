@@ -107,13 +107,22 @@ public class EntitiesTest {
         edge.setRoute(route);
         route.setEdges(edges);
 
-        userRepository.save(user);
 
-        pointRepository.save(point1);
-        pointRepository.save(point2);
         routeRepository.save(route);
         edgeRepository.save(edges);
+        userRepository.save(user);
         transitEdgesRepository.save(transitEdges);
+        pointRepository.save(point1);
+        pointRepository.save(point2);
+
+
+
+
+
+
+
+
+
 
 
 

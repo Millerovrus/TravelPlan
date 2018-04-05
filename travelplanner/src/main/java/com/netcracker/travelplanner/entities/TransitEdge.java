@@ -1,11 +1,13 @@
 package com.netcracker.travelplanner.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import javax.persistence.*;
+import java.security.AllPermission;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,26 +19,30 @@ public class TransitEdge {
     @SequenceGenerator(name = "transits_points_seq", sequenceName = "transit_point_id_seq", allocationSize = 2)
     private int id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "start_point_id")
     @SerializedName("startPoint")
     @Expose
     private Point startPoint;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "end_point_id")
     @SerializedName("endPoint")
     @Expose
     private Point endPoint;
 
     @Column(name = "end_date", nullable = false)
-    /*@SerializedName("arrival")
-    @Expose*/
+    @SerializedName("arrival")
+    @Expose
+    @JsonSerialize(using = JsonLocalDateTimeSirializer.class)
+    @JsonDeserialize(using = JsonLocalDateTimeDeserializator.class)
     private LocalDateTime arrival;
 
     @Column(name = "start_date", nullable = false)
-    /*@SerializedName("departure")
-    @Expose*/
+    @SerializedName("departure")
+    @Expose
+    @JsonSerialize(using = JsonLocalDateTimeSirializer.class)
+    @JsonDeserialize(using = JsonLocalDateTimeDeserializator.class)
     private LocalDateTime departure;
 
     @ManyToOne

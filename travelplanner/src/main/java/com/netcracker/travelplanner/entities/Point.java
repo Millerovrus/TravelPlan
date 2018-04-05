@@ -56,19 +56,19 @@ public class Point {
     private String locationCode;
 
 
-    @OneToMany(mappedBy = "startPoint", orphanRemoval = true)
+    @OneToMany(mappedBy = "startPoint", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Edge> edgesStart;
 
-    @OneToMany(mappedBy = "endPoint", orphanRemoval = true)
+    @OneToMany(mappedBy = "endPoint", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Edge> edgesEnd;
 
-    @OneToMany(mappedBy = "startPoint", orphanRemoval = true)
+    @OneToMany(mappedBy = "startPoint", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<TransitEdge> transitEdgesStart;
 
-    @OneToMany(mappedBy = "endPoint", orphanRemoval = true)
+    @OneToMany(mappedBy = "endPoint", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<TransitEdge> transitEdgesEnd;
 
