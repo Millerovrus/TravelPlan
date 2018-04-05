@@ -346,7 +346,7 @@
                                                                                         <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
                                                                                             <section>
                                                                                             <#if isAuthorized>
-                                                                                                <div ng-hide="saved(record.idRouteForView)">
+                                                                                                <div ng-disabled="saved(record.idRouteForView)">
                                                                                                     <button class='dotted thin' ng-click="saveRoute(record)">Save route</button>
                                                                                                 </div>
                                                                                             </#if>

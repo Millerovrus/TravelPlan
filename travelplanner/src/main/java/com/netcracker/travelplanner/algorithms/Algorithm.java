@@ -130,6 +130,8 @@ public class Algorithm {
             }
         }
 
+        optimalFoundRoutes.clear();
+
         for (int i = 0; i < coefsCount; i++){
             for (int j = 0; j < l; j++){
                 if (!optimalFoundRoutes.contains(minRoutes[i][j])){

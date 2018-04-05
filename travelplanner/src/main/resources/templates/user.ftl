@@ -163,7 +163,10 @@
                                 <h4>Saved routes</h4>
                             </div>
                             <div id="events" class="tab-pane">
-                                <div class="container-fluid theme-showcase">
+                                 <#--<div class="container theme-showcase">-->
+                                    <#--<h1>Calendar</h1>-->
+                                    <#--<div id="holder" class="row" ></div>-->
+                                <#--</div>-->
 
                                 <#--<!-- calendar &ndash;&gt;-->
                                 <#--<script type="text/tmpl" id="tmpl">-->
@@ -593,7 +596,7 @@
 
 
                                 <!-- better calendar version-->
-                                    <div class="container">
+                                    <div class="container-fluid">
                                         <div class="row row-striped">
                                             <div class="col-sm-2 text-right pull-left">
                                                 <h1 class="display-4"><span class="badge badge-secondary">20</span></h1>
@@ -609,9 +612,7 @@
                                                 <br>
                                                 <p>
                                                     <b class="font-weight">Departure date:</b> 20 APR at 08:30 AM <br>
-                                                    <b class="font-weight">Arrival date:</b> 20 APR at 09:40 AM <br>
-                                                    <br>
-                                                    <b class="font-weight">Total cost:</b> 3440 (RUB)
+                                                    <b class="font-weight">Arrival date:</b> 20 APR at 09:40 AM
                                                 </p>
                                             </div>
                                         </div>
@@ -633,9 +634,7 @@
                                                     <b class="font-weight">Departure date:</b> 05 MAY at 09:50 PM<br>
                                                     <br>
                                                     <b class="font-weight">Transit:</b> Moscow - Prague <br>
-                                                    <b class="font-weight">Departure date:</b> 06 MAY at 05:05 PM<br>
-                                                    <br>
-                                                    <b class="font-weight"> Total cost:</b> 10216 (RUB)
+                                                    <b class="font-weight">Departure date:</b> 06 MAY at 05:05 PM
                                                 </p>
                                             </div>
                                         </div>
