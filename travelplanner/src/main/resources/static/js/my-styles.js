@@ -196,4 +196,3 @@ $(document).ready(function() {
     openCloseItem();
 });
 
-/* calendar */
