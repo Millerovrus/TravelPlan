@@ -1,11 +1,9 @@
 package com.netcracker.travelplanner.algorithms;
 
-import com.netcracker.travelplanner.entities.Edge;
-import com.netcracker.travelplanner.entities.Route;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.netcracker.travelplanner.entities.*;
+import org.slf4j.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -18,6 +16,18 @@ import java.util.stream.Collectors;
 public class Algorithm {
     private List<Route> optimalFoundRoutes = new ArrayList<>();
     private static final Logger logger = LoggerFactory.getLogger(Algorithm.class);
+
+    @Value("${algorithm.routes-by-coef-count}")
+    private Integer l;
+
+    @Value("${algorithm.coefs-count}")
+    private Integer coefsCount;
+
+    @Value("${algorithm.time.bus-pause-minutes}")
+    private Integer busPause;
+
+    @Value("${algorithm.time.plane-pause-hours}")
+    private Integer planePause;
 
     public List<Route> getOptimalFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint, int numberOfPassengers) {
         if (edges.isEmpty()){
@@ -90,18 +100,15 @@ public class Algorithm {
     }
 
     private void findOptimalRoutes(List<Route> allFoundRoutes){
-        int l;
         if (allFoundRoutes.size() < 10){
             l = allFoundRoutes.size();
-        } else {
-            l = 10;
         }
 
-        Route[][] minRoutes = new Route[5][l];
+        Route[][] minRoutes = new Route[coefsCount][l];
         int[] counters = {0, 0, 0, 0, 0};
 
         for (Route eachFoundRoute : allFoundRoutes) {
-            for (int i = 0; i < 5; i++){
+            for (int i = 0; i < coefsCount; i++){
                 for (int j = 0; j < l; j++){
                     if (minRoutes[i][j] == null){
                         minRoutes[i][j] = eachFoundRoute;
@@ -123,7 +130,7 @@ public class Algorithm {
             }
         }
 
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < coefsCount; i++){
             for (int j = 0; j < l; j++){
                 if (!optimalFoundRoutes.contains(minRoutes[i][j])){
                     optimalFoundRoutes.add(minRoutes[i][j]);
@@ -132,7 +139,7 @@ public class Algorithm {
         }
 
         for (Route route : optimalFoundRoutes) {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < coefsCount; i++) {
                 if (minRoutes[i][0].equals(route)){
                     route.setOptimalRoute(true);
                     break;
@@ -140,7 +147,7 @@ public class Algorithm {
             }
         }
 
-        setDesrciptions(optimalFoundRoutes);
+        setDescriptions(optimalFoundRoutes);
     }
 
     private void convertingEdgesToRoutes(List<List<Edge>> allFoundEdges, int numberOfPassengers){
@@ -178,7 +185,7 @@ public class Algorithm {
                 && edgeFrom.getTransportType().toLowerCase().equals("plane")
                 && edgeTo.getTransportType().toLowerCase().equals("plane")
                 && edgeFrom.getEndPoint().getLocationCode().equals(edgeTo.getStartPoint().getLocationCode())
-                && edgeFrom.getEndDate().plusHours(2).isBefore(edgeTo.getStartDate())
+                && edgeFrom.getEndDate().plusHours(planePause).isBefore(edgeTo.getStartDate())
                 && edgeFrom.getEndDate().plusHours(10).isAfter(edgeTo.getStartDate())
 
                 //Если приезд и выезд с одной остановки, то состыковка в 30 минут минимум
@@ -187,7 +194,7 @@ public class Algorithm {
                 && edgeFrom.getTransportType().toLowerCase().equals("bus")
                 && edgeTo.getTransportType().toLowerCase().equals("bus")
                 && edgeFrom.getEndPoint().getLocationCode().equals(edgeTo.getStartPoint().getLocationCode())
-                && edgeFrom.getEndDate().plusMinutes(30).isBefore(edgeTo.getStartDate())
+                && edgeFrom.getEndDate().plusMinutes(busPause).isBefore(edgeTo.getStartDate())
                 && edgeFrom.getEndDate().plusHours(9).isAfter(edgeTo.getStartDate())
 
                 //В остальном если состыкуются по времени, то пропускаем, если нет, то нет
@@ -200,9 +207,9 @@ public class Algorithm {
         switch(edge.getTransportType().toLowerCase()){
             case "bus":
             case "train":
-                return edge.getStartDate().minusMinutes(30);
+                return edge.getStartDate().minusMinutes(busPause);
             case "plane":
-                return edge.getStartDate().minusHours(2);
+                return edge.getStartDate().minusHours(planePause);
             default:
                 return edge.getStartDate().minusHours(1);
         }
@@ -214,15 +221,15 @@ public class Algorithm {
         switch(edge.getTransportType().toLowerCase()){
             case "bus":
             case "train":
-                return edge.getEndDate().plusHours(1).plusMinutes(30);
+                return edge.getEndDate().plusHours(1).plusMinutes(busPause);
             case "plane":
-                return edge.getEndDate().plusHours(2);
+                return edge.getEndDate().plusHours(planePause);
             default:
                 return edge.getEndDate().plusHours(1);
         }
     }
 
-    private void setDesrciptions(List<Route> routes){
+    private void setDescriptions(List<Route> routes){
         double minCost = Double.MAX_VALUE, minDuration = Double.MAX_VALUE;
         int minCostInd = 0, minDurInd = 0;
 
@@ -245,5 +252,37 @@ public class Algorithm {
             routes.get(minCostInd).setDescription("Cheapest!");
             routes.get(minDurInd).setDescription("Fastest!");
         }
+    }
+
+    public Integer getL() {
+        return l;
+    }
+
+    public void setL(Integer l) {
+        this.l = l;
+    }
+
+    public Integer getCoefsCount() {
+        return coefsCount;
+    }
+
+    public void setCoefsCount(Integer coefsCount) {
+        this.coefsCount = coefsCount;
+    }
+
+    public Integer getBusPause() {
+        return busPause;
+    }
+
+    public void setBusPause(Integer busPause) {
+        this.busPause = busPause;
+    }
+
+    public Integer getPlanePause() {
+        return planePause;
+    }
+
+    public void setPlanePause(Integer planePause) {
+        this.planePause = planePause;
     }
 }

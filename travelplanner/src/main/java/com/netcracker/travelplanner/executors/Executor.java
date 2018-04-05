@@ -5,6 +5,7 @@ import com.netcracker.travelplanner.entities.Edge;
 import com.netcracker.travelplanner.entities.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +16,12 @@ import java.util.concurrent.*;
 public class Executor implements ExecutorMan {
     private static final Logger logger = LoggerFactory.getLogger(Executor.class);
     private static final ExecutorService executorService = Executors.newFixedThreadPool(6);
+
+    @Value("${executor.sleep-time-millis}")
+    private Integer sleepTime;
+
+    @Value("${executor.timeout-minutes}")
+    private Integer timeout;
 
     @Override
     public List<Edge> execute(List<Task> tasks, ApiInterface apiInterface) {
@@ -36,7 +43,7 @@ public class Executor implements ExecutorMan {
 
         /*Отправляем  задачи на выполнение*/
         try {
-            futures = executorService.invokeAll(callables,4,TimeUnit.MINUTES);
+            futures = executorService.invokeAll(callables, 200, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             logger.error("Executor. ошибка запроса в InvokeAll");
         } catch (CancellationException e) {
@@ -49,7 +56,7 @@ public class Executor implements ExecutorMan {
 
                 while ( ! listFuture.isDone()) {
                     System.out.println("Thread sleep. Task is not complete");
-                    Thread.sleep(200);
+                    Thread.sleep(sleepTime);
                 }
 
                 edgeList.addAll(listFuture.get());
@@ -88,6 +95,20 @@ public class Executor implements ExecutorMan {
         return edgeList;
     }
 
+    public Integer getSleepTime() {
+        return sleepTime;
+    }
 
+    public void setSleepTime(Integer sleepTime) {
+        this.sleepTime = sleepTime;
+    }
+
+    public Integer getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(Integer timeout) {
+        this.timeout = timeout;
+    }
 }
 
