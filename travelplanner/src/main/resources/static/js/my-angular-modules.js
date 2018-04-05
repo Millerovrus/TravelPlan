@@ -87,11 +87,27 @@ angular.module('controllerModule')
             }
             return true;
         };
-        $scope.routesWithCostFromTo = function (records) {
-            var from = parseInt(document.getElementById('cost_from').value);
-            var to = parseInt(document.getElementById('cost_to').value);
-            return (records.cost > from && records.cost < to)
+        $scope.routesWithoutPlane = function (records) {
+            for (var i = 0; i < records.edges.length; i++){
+                if (records.edges[i].transportType === "plane"){
+                    return false;
+                }
+            }
+            return true;
         };
+        $scope.routesWithoutTrain = function (records) {
+            for (var i = 0; i < records.edges.length; i++){
+                if (records.edges[i].transportType === "train" || records.edges[i].transportType === "suburban"){
+                    return false;
+                }
+            }
+            return true;
+        };
+        // $scope.routesWithCostFromTo = function (records) {
+        //     var from = parseInt(document.getElementById('cost_from').value);
+        //     var to = parseInt(document.getElementById('cost_to').value);
+        //     return (records.cost > from && records.cost < to)
+        // };
 
         $scope.openLink = function(purchaseLink) {
             if (purchaseLink === null){
@@ -182,6 +198,7 @@ angular.module('controllerModule')
             return array;
         }
     })
+
     .controller('appController', function ($scope) {
         $scope.$on('LOAD', function () { $scope.loading = true });
         $scope.$on('UNLOAD', function () { $scope.loading = false });

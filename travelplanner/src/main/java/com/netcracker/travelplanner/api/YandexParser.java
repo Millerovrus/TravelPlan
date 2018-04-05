@@ -64,7 +64,7 @@ public class YandexParser implements ApiInterface {
                             edge.setStartDate(LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text())));
                             edge.setEndDate(LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())));
                             edge.setCurrency("RUB");
-                            edge.setNumberOfTransfers((byte) 1);
+                            edge.setNumberOfTransfers(1);
                             edge.setStartPoint(new Point(from.getName()
                                     ,from.getLatitude()
                                     ,from.getLongitude()

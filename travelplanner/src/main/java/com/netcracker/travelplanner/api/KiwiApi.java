@@ -95,7 +95,7 @@ public class KiwiApi implements ApiInterface {
                 edge.setStartDate(LocalDateTime.ofEpochSecond(l.getDTime(), 0, ZoneOffset.UTC));
                 edge.setEndDate(LocalDateTime.ofEpochSecond(l.getATime(), 0, ZoneOffset.UTC));
                 edge.setCurrency(currency);
-                edge.setNumberOfTransfers((byte) (l.getRoute().size()));
+                edge.setNumberOfTransfers(l.getRoute().size());
                 edge.setStartPoint(new Point(from.getName()
                                 ,from.getLatitude()
                                 ,from.getLongitude()

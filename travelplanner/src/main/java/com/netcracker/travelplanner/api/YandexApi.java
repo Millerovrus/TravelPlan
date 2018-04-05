@@ -70,7 +70,7 @@ public class YandexApi implements ApiInterface {
                         edge.setStartDate(LocalDateTime.parse(l.getDeparture(), DateTimeFormatter.ISO_OFFSET_DATE_TIME));
                         edge.setEndDate(LocalDateTime.parse(l.getArrival(), DateTimeFormatter.ISO_OFFSET_DATE_TIME));
                         edge.setCurrency("RUB");
-                        edge.setNumberOfTransfers((byte) 1);
+                        edge.setNumberOfTransfers(1);
                         edge.setStartPoint(new Point(from.getName()
                                 ,from.getLatitude()
                                 ,from.getLongitude()
