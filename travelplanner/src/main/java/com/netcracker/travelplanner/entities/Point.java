@@ -26,49 +26,37 @@ public class Point {
     private int id;
 
     @Column(name="name")
-    @SerializedName("name")
-    @Expose
     private String name;
 
     @Column(name="latitude")
-    @SerializedName("latitude")
-    @Expose
     private double latitude;
 
     @Column(name="longitude")
-    @SerializedName("longitude")
-    @Expose
     private double longitude;
 
     @Column(name="iata_code")
-    @SerializedName("iataCode")
-    @Expose
     private String iataCode;
 
     @Column(name="yandex_code")
-    @SerializedName("yandexCode")
-    @Expose
     private String yandexCode;
 
     @Column(name="location_code")
-    @SerializedName("locationCode")
-    @Expose
     private String locationCode;
 
 
-    @OneToMany(mappedBy = "startPoint", orphanRemoval = true)
+    @OneToMany(mappedBy = "startPoint", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Edge> edgesStart;
 
-    @OneToMany(mappedBy = "endPoint", orphanRemoval = true)
+    @OneToMany(mappedBy = "endPoint", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Edge> edgesEnd;
 
-    @OneToMany(mappedBy = "startPoint", orphanRemoval = true)
+    @OneToMany(mappedBy = "startPoint", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<TransitEdge> transitEdgesStart;
 
-    @OneToMany(mappedBy = "endPoint", orphanRemoval = true)
+    @OneToMany(mappedBy = "endPoint", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<TransitEdge> transitEdgesEnd;
 

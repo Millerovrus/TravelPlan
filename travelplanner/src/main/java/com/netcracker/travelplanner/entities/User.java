@@ -34,7 +34,7 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date registrationDate;
 
-    @Column(name="avatar", nullable = false)
+    @Column(name="avatar")
     private String avatar;
 
     @Column(nullable = false)
