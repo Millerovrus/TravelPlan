@@ -767,6 +767,8 @@ input[type='checkbox']:checked + span{
     clear: both;
     margin: auto;
     position: relative;
+    width: 128px;
+    height: 128px;
 }
 
 .user-details .user-info-block {

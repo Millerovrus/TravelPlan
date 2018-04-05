@@ -24,7 +24,6 @@ public class Airport {
     @Expose
     private String timezone;
 
-
     @SerializedName("city")
     @Expose
     private City city=null;

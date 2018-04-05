@@ -2,6 +2,8 @@ package com.netcracker.travelplanner.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,16 +19,24 @@ public class TransitEdge {
 
     @ManyToOne
     @JoinColumn(name = "start_point_id")
+    @SerializedName("startPoint")
+    @Expose
     private Point startPoint;
 
     @ManyToOne
     @JoinColumn(name = "end_point_id")
+    @SerializedName("endPoint")
+    @Expose
     private Point endPoint;
 
     @Column(name = "end_date", nullable = false)
+    /*@SerializedName("arrival")
+    @Expose*/
     private LocalDateTime arrival;
 
     @Column(name = "start_date", nullable = false)
+    /*@SerializedName("departure")
+    @Expose*/
     private LocalDateTime departure;
 
     @ManyToOne

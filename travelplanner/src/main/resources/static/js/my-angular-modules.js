@@ -15,14 +15,9 @@ angular.module('controllerModule')
         };*/
         // $scope.saved = true;
         $scope.saveRoute=function (record) {
-
-            $scope.saved=function(value) {
-                if (value == record.idRouteForView)
-                    return true;
-            };
             
             $http({
-                method: 'GET',
+                /*method: 'GET',
                 url: 'api/routes/saveroutes',
                 params: {
                     startpoint: record.startPoint,
@@ -30,11 +25,18 @@ angular.module('controllerModule')
                     cost: record.cost,
                     duration: record.duration,
                     idrouteforview: record.idRouteForView
-                }
+                }*/
+                method: 'POST',
+                url: 'api/routes/saveroutes',
+                data: record,
+                headers: {'Content-Type': 'application/json'}
             }).then(
                 function success(response, status) {
                     console.log('Route had been saved', status, response);
-                    $scope.saved=false;
+                    $scope.saved=function(value) {
+                        if (value == record.idRouteForView)
+                            return true;
+                    };
                     alert("Route had been saved :)");
 
                 },

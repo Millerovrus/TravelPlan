@@ -34,6 +34,9 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date registrationDate;
 
+    @Column(name="avatar", nullable = false)
+    private String avatar;
+
     @Column(nullable = false)
     private String password;
 
@@ -65,6 +68,14 @@ public class User implements Serializable {
                 ", RegistrationDate=" + registrationDate +
                 ", Password='" + password + '\'' +
                 '}';
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public Integer getId() {

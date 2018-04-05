@@ -1,9 +1,14 @@
 package com.netcracker.travelplanner.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -21,27 +26,45 @@ public class Edge implements Cloneable {
 
     @Column(name="creation_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    /*@SerializedName("creationDate")
+    @Expose*/
     private Date creationDate;
 
     @Column(name="transport_type", nullable = false)
+    @SerializedName("transportType")
+    @Expose
     private String transportType;
 
     @Column(nullable = false)
+    @SerializedName("duration")
+    @Expose
     private Double duration;
 
     @Column(name = "cost")
+    @SerializedName("cost")
+    @Expose
     private Double cost;
 
     @Column(name = "start_date", nullable = false)
+    //@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    /*@SerializedName("startDate")
+    @Expose*/
     private LocalDateTime startDate;
 
     @Column(name = "end_date", nullable = false)
+    /*@SerializedName("endDate")
+    @Expose*/
     private LocalDateTime endDate;
 
     @Column(name = "currency")
+    @SerializedName("currency")
+    @Expose
     private String currency;
 
     @Column(name = "edge_order")
+    @SerializedName("edgeOrder")
+    @Expose
     private Short edgeOrder;
 
     @ManyToOne
@@ -50,20 +73,31 @@ public class Edge implements Cloneable {
     private Route route;
 
     @Column(name = "number_of_transfers")
+    @SerializedName("numberOfTransfers")
+    @Expose
     private int numberOfTransfers;
 
     @ManyToOne
     @JoinColumn(name = "start_point_id")
+    @SerializedName("startPoint")
+    @Expose
     private Point startPoint;
 
     @ManyToOne
     @JoinColumn(name = "end_point_id")
+    @SerializedName("endPoint")
+    @Expose
     private Point endPoint;
 
     @OneToMany(mappedBy = "edge", cascade = CascadeType.ALL, orphanRemoval = true)
     @Column(name = "transit_edges")
+    @SerializedName("transitEdgeList")
+    @Expose
     private List<TransitEdge> transitEdgeList;
 
+    @Column(name = "purchase_link")
+    @SerializedName("purchaseLink")
+    @Expose
     private String purchaseLink;
 
     public String getPurchaseLink() {

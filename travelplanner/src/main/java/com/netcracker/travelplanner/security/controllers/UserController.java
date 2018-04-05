@@ -44,6 +44,7 @@ public class UserController {
         model.addAttribute("email", userService.findUserByEmail(email) != null);
         try {
             if (userService.findUserByEmail(email) == null) {
+                user.setAvatar("img/man-user.png");
                 //Шифрование пароля и сохрание в БД
                 userService.save(user);
                 logger.info("Registration is successful!");
@@ -81,6 +82,7 @@ public class UserController {
             model.addAttribute("lastname", user.getLastName());
             model.addAttribute("email", user.getEmail());
             model.addAttribute("birthdate", user.getBirthDate());
+            model.addAttribute("avatar", user.getAvatar());
         }
         model.addAttribute("isAuthorized", email != null);
         return "user";
