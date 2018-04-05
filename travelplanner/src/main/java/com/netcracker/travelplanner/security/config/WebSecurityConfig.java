@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/", "/signUp","/js/**","/css/**","/img/**",
                         "/fonts/**","/navbar/**","/api/**").permitAll()
-                .and().authorizeRequests().antMatchers(HttpMethod.POST, "/api/users/adduser", "/signUp").permitAll();
+                .and().authorizeRequests().antMatchers(HttpMethod.POST, "/api/users/adduser", "/signUp", "/api/**").permitAll();
 
         // If no login, it will redirect to /login page.
         http.formLogin().loginPage("/signIn").defaultSuccessUrl("/users").permitAll()

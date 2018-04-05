@@ -3,6 +3,8 @@ package com.netcracker.travelplanner.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -23,11 +25,34 @@ public class Point {
     @SequenceGenerator(name = "points_seq", sequenceName = "point_id_seq", allocationSize = 2)
     private int id;
 
+    @Column(name="name")
+    @SerializedName("name")
+    @Expose
     private String name;
+
+    @Column(name="latitude")
+    @SerializedName("latitude")
+    @Expose
     private double latitude;
+
+    @Column(name="longitude")
+    @SerializedName("longitude")
+    @Expose
     private double longitude;
+
+    @Column(name="iata_code")
+    @SerializedName("iataCode")
+    @Expose
     private String iataCode;
+
+    @Column(name="yandex_code")
+    @SerializedName("yandexCode")
+    @Expose
     private String yandexCode;
+
+    @Column(name="location_code")
+    @SerializedName("locationCode")
+    @Expose
     private String locationCode;
 
 

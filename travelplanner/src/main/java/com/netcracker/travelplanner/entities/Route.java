@@ -1,8 +1,11 @@
 package com.netcracker.travelplanner.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.DateSerializer;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.*;
@@ -25,12 +28,22 @@ public class Route implements Serializable {
 
     @Column(name="creation_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+   /* @SerializedName("creationDate")
+    @Expose*/
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSSZ")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone="GMT")
+    /*@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonSerialize(using = DateSerializer.class)*/
     private Date creationDate;
 
     @Column(name="start_point", nullable = false)
+    @SerializedName("startPoint")
+    @Expose
     private String startPoint;
 
     @Column(name="destination_point", nullable = false)
+    @SerializedName("destinationPoint")
+    @Expose
     private String destinationPoint;
 
     @Transient
@@ -40,12 +53,18 @@ public class Route implements Serializable {
     private boolean isOptimalRoute = false;
 
     @Column(name = "cost", nullable = false)
+    @SerializedName("cost")
+    @Expose
     private double cost;
 
     @Column(name = "duration", nullable = false)
+    @SerializedName("duration")
+    @Expose
     private double duration;
 
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
+    @SerializedName("edges")
+    @Expose
     private List<Edge> edges;
 
     @Transient
@@ -161,7 +180,7 @@ public class Route implements Serializable {
         this.description = "";
     }
 
-    private Route(){}
+    public Route(){}
 
     @Override
     public boolean equals(Object o) {

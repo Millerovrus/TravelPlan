@@ -76,7 +76,7 @@
                     <div class="row">
                     <div class="col-sm-3">
                         <div class="user-image">
-                            <img src="img/man-user.png" alt="user" title="${firstname} ${lastname}" class="img-circle">
+                            <img src=${avatar} alt="user" title="${firstname} ${lastname}" class="img-circle">
                         </div>
                     </div>
                     <div class="col-sm-9">
