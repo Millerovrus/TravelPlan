@@ -1,11 +1,7 @@
 package com.netcracker.travelplanner.service;
 
-import com.netcracker.travelplanner.entities.Point;
-import com.netcracker.travelplanner.entities.SearchInputParameters;
-import com.netcracker.travelplanner.entities.Task;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.netcracker.travelplanner.entities.*;
+import java.util.*;
 
 public class TaskCreatorManager {
 

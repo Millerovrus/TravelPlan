@@ -2,14 +2,12 @@ package com.netcracker.travelplanner.service;
 
 import com.netcracker.travelplanner.algorithms.Algorithm;
 import com.netcracker.travelplanner.api.KiwiApi;
-import com.netcracker.travelplanner.webParsers.WebParser;
 import com.netcracker.travelplanner.api.YandexApi;
-import com.netcracker.travelplanner.api.YandexParser;
 import com.netcracker.travelplanner.entities.*;
 import com.netcracker.travelplanner.executors.Executor;
-import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -17,6 +15,14 @@ import java.util.concurrent.*;
 
 @Service
 public class MainRouteService {
+    @Autowired
+    private Algorithm algorithm;
+
+    @Value("${route-service.threads-count}")
+    private Integer threadsCount;
+
+    @Value("${route-service.timeout-minutes}")
+    private Integer timeout;
 
     private final Logger logger = LoggerFactory.getLogger(MainRouteService.class);
 
@@ -75,7 +81,7 @@ public class MainRouteService {
     }
 
     private List<Route> getRoutes(List<Edge> edgeList, String startPoint, String endPoint, int numberOfPassengers){
-        return new Algorithm().getOptimalFoundRoutes(edgeList,startPoint,endPoint,numberOfPassengers);
+        return algorithm.getOptimalFoundRoutes(edgeList,startPoint,endPoint,numberOfPassengers);
     }
 
     public List<Route> findBestRoutes(String from
@@ -86,7 +92,7 @@ public class MainRouteService {
             ,int numberOfPassengers
             )
     {
-        ExecutorService executorService = Executors.newFixedThreadPool(3);
+        ExecutorService executorService = Executors.newFixedThreadPool(threadsCount);
 
         SearchInputParameters searchInputParameters = prepareInputData(from
                 ,to
@@ -106,4 +112,19 @@ public class MainRouteService {
 
     }
 
+    public Integer getThreadsCount() {
+        return threadsCount;
+    }
+
+    public void setThreadsCount(Integer threadsCount) {
+        this.threadsCount = threadsCount;
+    }
+
+    public Integer getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(Integer timeout) {
+        this.timeout = timeout;
+    }
 }
