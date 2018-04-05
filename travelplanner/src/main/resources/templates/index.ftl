@@ -161,28 +161,7 @@
                                                         </div>
                                                     </div>
                                                 </ul>
-                                                <div class="divider-inverse"></div>
                                             </li>
-                                            <li class="col-sm-12">
-                                                <ul>
-                                                    <li class="dropdown-header centered">Transfers</li>
-                                                    <div class="row form-check">
-                                                        <div class="col-sm-12">
-                                                            <label class="checkbox">
-                                                                <input id="fewer-transfers" type="checkbox"><span>Find routes with fewer transfers</span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </ul>
-                                            </li>
-                                            <#--<li class="col-sm-12">-->
-                                                <#--<ul>-->
-                                                    <#--<li class="dropdown-header centered">Max time for transferring</li>-->
-                                                    <#--<div class="col-sm-12 margin-offset">-->
-                                                        <#--<input id="range-slider" type="range" min="0" max="24" step="1" value="0">-->
-                                                    <#--</div>-->
-                                                <#--</ul>-->
-                                            <#--</li>-->
                                         </ul>
                                     </div>
                                 </div>
@@ -220,7 +199,8 @@
 
                                 <#--<div ng-show="loading" class="preloader"></div>-->
                                 <div class="row" ng-show="loading">
-                                    <div  class="col-sm-12 page-loader" style="">
+                                    <div class="col-xs-offset-5 col-xs-2 col-xs-offset-5">
+                                    <div  class="page-loader" style="">
                                         <div class="loader">
                                             <span class="dot dot_1"></span>
                                             <span class="dot dot_2"></span>
@@ -228,6 +208,7 @@
                                             <span class="dot dot_4"></span>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                                 <div ng-show="loaded" ng-init="optimalFilter = optimalRoutes; busFilter = allRoutes; orderByAttribute = 'cost'">
                                     <div ng-controller="mapController">
@@ -269,16 +250,30 @@
                                                                         <dt>Transport type filter<i class="plus-icon"></i></dt>
                                                                         <dd>
                                                                             <div class="content">
-                                                                                <div class="funkyradio">
-                                                                                    <div class="funkyradio-default">
-                                                                                        <input type="radio" name="radio2" id="radio3" ng-click="busFilter = routesWithoutBus"/>
-                                                                                        <label for="radio3">Without bus</label>
+                                                                                <#--<div class="funkyradio">-->
+                                                                                    <#--<div class="funkyradio-default">-->
+                                                                                        <#--<input type="radio" name="radio2" id="radio3" ng-click="busFilter = routesWithoutBus"/>-->
+                                                                                        <#--<label for="radio3">Without bus</label>-->
+                                                                                    <#--</div>-->
+                                                                                    <#--<div class="funkyradio-default">-->
+                                                                                        <#--<input type="radio" name="radio2" id="radio4" ng-click="busFilter = allRoutes"/>-->
+                                                                                        <#--<label for="radio4">With bus</label>-->
+                                                                                    <#--</div>-->
+                                                                                <#--</div>-->
+                                                                                    <div class="funkyradio">
+                                                                                        <div class="funkyradio-default">
+                                                                                            <input type="checkbox" name="checkbox" id="checkbox31" checked/>
+                                                                                            <label for="checkbox1">Bus</label>
+                                                                                        </div>
+                                                                                        <div class="funkyradio-default">
+                                                                                            <input type="checkbox" name="checkbox" id="checkbox32" checked/>
+                                                                                            <label for="checkbox1">Plane</label>
+                                                                                        </div>
+                                                                                        <div class="funkyradio-default">
+                                                                                            <input type="checkbox" name="checkbox" id="checkbox33" checked/>
+                                                                                            <label for="checkbox1">Train</label>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="funkyradio-default">
-                                                                                        <input type="radio" name="radio2" id="radio4" ng-click="busFilter = allRoutes"/>
-                                                                                        <label for="radio4">With bus</label>
-                                                                                    </div>
-                                                                                </div>
                                                                             </div>
                                                                         </dd>
                                                                     </div>

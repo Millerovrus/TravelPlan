@@ -79,11 +79,6 @@
                            name="username">
                     <input type="password" class="input pass" id="password" placeholder="Password"
                            name="password">
-                    <div class="checkbox">
-                        <label>
-                            <input id="my-check" type="checkbox"> Keep me logged-in
-                        </label>
-                    </div>
                     <button type="submit" class="inputButton">Log in</button>
 
                     <div class="bottom text-center">

@@ -593,92 +593,6 @@ html section button.dotted.thin, body section button.dotted.thin {
     }
 }
 
-/* calendar*/
-.calendar-day {
-    width: 100px;
-    min-width: 100px;
-    max-width: 100px;
-    height: 80px;
-}
-.calendar-table {
-    margin: 0 auto;
-    width: 700px;
-}
-.selected {
-    background-color: #eee;
-}
-.outside .date {
-    color: #ccc;
-}
-.timetitle {
-    white-space: nowrap;
-    text-align: right;
-}
-.event {
-    border-top: 1px solid #b2dba1;
-    border-bottom: 1px solid #b2dba1;
-    background-image: linear-gradient(to bottom, #dff0d8 0px, #c8e5bc 100%);
-    background-repeat: repeat-x;
-    color: #3c763d;
-    border-width: 1px;
-    font-size: .75em;
-    padding: 0 .75em;
-    line-height: 2em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 1px;
-}
-.event.begin {
-    border-left: 1px solid #b2dba1;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-}
-.event.end {
-    border-right: 1px solid #b2dba1;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-}
-.event.all-day {
-    border-top: 1px solid #9acfea;
-    border-bottom: 1px solid #9acfea;
-    background-image: linear-gradient(to bottom, #d9edf7 0px, #b9def0 100%);
-    background-repeat: repeat-x;
-    color: #31708f;
-    border-width: 1px;
-}
-.event.all-day.begin {
-    border-left: 1px solid #9acfea;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-}
-.event.all-day.end {
-    border-right: 1px solid #9acfea;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-}
-.event.clear {
-    background: none;
-    border: 1px solid transparent;
-}
-.table-tight > thead > tr > th,
-.table-tight > tbody > tr > th,
-.table-tight > tfoot > tr > th,
-.table-tight > thead > tr > td,
-.table-tight > tbody > tr > td,
-.table-tight > tfoot > tr > td {
-    padding-left: 0;
-    padding-right: 0;
-}
-.table-tight-vert > thead > tr > th,
-.table-tight-vert > tbody > tr > th,
-.table-tight-vert > tfoot > tr > th,
-.table-tight-vert > thead > tr > td,
-.table-tight-vert > tbody > tr > td,
-.table-tight-vert > tfoot > tr > td {
-    padding-top: 0;
-    padding-bottom: 0;
-}
 
 /*Cheapest/fastest route*/
 .route-description{
@@ -831,10 +745,10 @@ html section button.dotted.thin, body section button.dotted.thin {
     border: 1px solid #D1D3D4;
     font-weight: normal;
 }
-.funkyradio input[type="radio"]:empty{
+.funkyradio input[type="radio"]:empty, .funkyradio input[type="checkbox"]:empty{
     display: none;
 }
-.funkyradio input[type="radio"]:empty ~ label{
+.funkyradio input[type="radio"]:empty ~ label, .funkyradio input[type="checkbox"]:empty ~ label{
     position: relative;
     line-height: 2em;
     text-indent: 3.25em;
@@ -845,7 +759,7 @@ html section button.dotted.thin, body section button.dotted.thin {
     -ms-user-select: none;
     user-select: none;
 }
-.funkyradio input[type="radio"]:empty ~ label:before{
+.funkyradio input[type="radio"]:empty ~ label:before, .funkyradio input[type="checkbox"]:empty ~ label:before{
     position: absolute;
     display: block;
     top: 0;
@@ -856,27 +770,27 @@ html section button.dotted.thin, body section button.dotted.thin {
     background: #D1D3D4;
     border-radius: 3px 0 0 3px;
 }
-.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before{
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before, .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before{
     content:'\2714';
     text-indent: .9em;
     color: #2b2b2b;
 }
-.funkyradio input[type="radio"]:hover:not(:checked) ~ label{
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label, .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label{
     color: #888;
 }
-.funkyradio input[type="radio"]:checked ~ label:before{
+.funkyradio input[type="radio"]:checked ~ label:before, .funkyradio input[type="checkbox"]:checked ~ label:before{
     content:'\2714';
     text-indent: .9em;
     color: #333;
     background-color: #fff;
 }
-.funkyradio input[type="radio"]:checked ~ label{
+.funkyradio input[type="radio"]:checked ~ label, .funkyradio input[type="checkbox"]:checked ~ label{
     color: #2b2b2b;
 }
-.funkyradio input[type="radio"]:focus ~ label:before{
+.funkyradio input[type="radio"]:focus ~ label:before, .funkyradio input[type="checkbox"]:focus ~ label:before{
     box-shadow: 0 0 0 3px #999;
 }
-.funkyradio-default input[type="radio"]:checked ~ label:before {
+.funkyradio-default input[type="radio"]:checked ~ label:before, .funkyradio-default input[type="checkbox"]:checked ~ label:before {
     color: #333;
     background-color: #ccc;
 }
@@ -885,20 +799,80 @@ html section button.dotted.thin, body section button.dotted.thin {
 .page-loader{
     background:transparent;
     height: 100%;
-    left: 0;
     position: relative;
-    top: 20px;
+    top: 47px;
     width: 100%;
+    left: 0;
     z-index: 9998;
 }
 .loader {
     height: 8px;
-    margin-left: 45%;
     position: relative;
     text-align: center;
     /*top: 50%;*/
     width: 44px;
 }
+
+@media screen and (max-width: 430px){
+    .page-loader{
+        margin-left: -40px;
+    }
+}
+@media screen and (min-width: 431px) and (max-width: 570px){
+    .page-loader{
+        margin-left: -35px;
+    }
+}
+
+@media screen and (min-width: 571px)and (max-width: 650px) {
+    .page-loader{
+        margin-left: -27px;
+    }
+}
+
+@media screen and (min-width: 651px) and (max-width: 757px){
+    .page-loader{
+        margin-left: -20px;
+    }
+}
+
+@media screen and (min-width: 758px) and (max-width: 878px){
+    .page-loader{
+        margin-left: -10px;
+    }
+}
+
+@media screen and (min-width: 879px) and (max-width: 940px){
+    .page-loader{
+        margin-left: -5px;
+    }
+}
+
+@media screen and (min-width: 941px) and (max-width: 991px){
+    .page-loader{
+        margin-left: -5px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1150px){
+    .page-loader{
+        margin-left: 5px;
+    }
+}
+
+
+@media screen and (min-width: 1151px) and (max-width: 1200px){
+    .page-loader{
+        margin-left: 5px;
+    }
+}
+
+@media screen and (min-width: 1201px)  {
+    .page-loader{
+        margin-left: 25px;
+    }
+}
+
 .dot {
     background: #ccc none repeat scroll 0 0;
     border-radius: 50%;
