@@ -12,7 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class JsonDateDeserializator extends JsonDeserializer<Date>{
+public class JsonDateDeserializer extends JsonDeserializer<Date>{
 
     @Override
     public Date deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {

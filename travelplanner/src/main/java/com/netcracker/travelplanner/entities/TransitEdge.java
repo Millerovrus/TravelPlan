@@ -7,7 +7,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import javax.persistence.*;
-import java.security.AllPermission;
 import java.time.LocalDateTime;
 
 @Entity
@@ -27,22 +26,16 @@ public class TransitEdge {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "end_point_id")
-    @SerializedName("endPoint")
-    @Expose
     private Point endPoint;
 
     @Column(name = "end_date", nullable = false)
-    @SerializedName("arrival")
-    @Expose
-    @JsonSerialize(using = JsonLocalDateTimeSirializer.class)
-    @JsonDeserialize(using = JsonLocalDateTimeDeserializator.class)
+    @JsonSerialize(using = JsonLocalDateTimeSerializer.class)
+    @JsonDeserialize(using = JsonLocalDateTimeDeserializer.class)
     private LocalDateTime arrival;
 
     @Column(name = "start_date", nullable = false)
-    @SerializedName("departure")
-    @Expose
-    @JsonSerialize(using = JsonLocalDateTimeSirializer.class)
-    @JsonDeserialize(using = JsonLocalDateTimeDeserializator.class)
+    @JsonSerialize(using = JsonLocalDateTimeSerializer.class)
+    @JsonDeserialize(using = JsonLocalDateTimeDeserializer.class)
     private LocalDateTime departure;
 
     @ManyToOne

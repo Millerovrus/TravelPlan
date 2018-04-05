@@ -3,8 +3,6 @@ package com.netcracker.travelplanner.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,8 +22,8 @@ public class Edge implements Cloneable {
 
     @Column(name="creation_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonSerialize(using = CustomDateSerializer.class)
-    @JsonDeserialize(using = JsonDateDeserializator.class)
+    @JsonSerialize(using = JsonDateSerializer.class)
+    @JsonDeserialize(using = JsonDateDeserializer.class)
     private Date creationDate;
 
     @Column(name="transport_type", nullable = false)
@@ -38,13 +36,13 @@ public class Edge implements Cloneable {
     private Double cost;
 
     @Column(name = "start_date", nullable = false)
-    @JsonSerialize(using = JsonLocalDateTimeSirializer.class)
-    @JsonDeserialize(using = JsonLocalDateTimeDeserializator.class)
+    @JsonSerialize(using = JsonLocalDateTimeSerializer.class)
+    @JsonDeserialize(using = JsonLocalDateTimeDeserializer.class)
     private LocalDateTime startDate;
 
     @Column(name = "end_date", nullable = false)
-    @JsonSerialize(using = JsonLocalDateTimeSirializer.class)
-    @JsonDeserialize(using = JsonLocalDateTimeDeserializator.class)
+    @JsonSerialize(using = JsonLocalDateTimeSerializer.class)
+    @JsonDeserialize(using = JsonLocalDateTimeDeserializer.class)
     private LocalDateTime endDate;
 
     @Column(name = "currency")

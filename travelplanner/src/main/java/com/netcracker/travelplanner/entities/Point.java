@@ -26,33 +26,21 @@ public class Point {
     private int id;
 
     @Column(name="name")
-    @SerializedName("name")
-    @Expose
     private String name;
 
     @Column(name="latitude")
-    @SerializedName("latitude")
-    @Expose
     private double latitude;
 
     @Column(name="longitude")
-    @SerializedName("longitude")
-    @Expose
     private double longitude;
 
     @Column(name="iata_code")
-    @SerializedName("iataCode")
-    @Expose
     private String iataCode;
 
     @Column(name="yandex_code")
-    @SerializedName("yandexCode")
-    @Expose
     private String yandexCode;
 
     @Column(name="location_code")
-    @SerializedName("locationCode")
-    @Expose
     private String locationCode;
 
 

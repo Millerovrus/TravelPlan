@@ -1,11 +1,8 @@
 package com.netcracker.travelplanner.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.*;
-import com.netcracker.travelplanner.entities.*;
-import com.netcracker.travelplanner.repository.EdgeRepository;
-import com.netcracker.travelplanner.repository.PointRepository;
-import com.netcracker.travelplanner.repository.TransitEdgesRepository;
+import com.netcracker.travelplanner.entities.Route;
+import com.netcracker.travelplanner.entities.User;
 import com.netcracker.travelplanner.security.service.SecurityService;
 import com.netcracker.travelplanner.security.service.UserService;
 import com.netcracker.travelplanner.service.RouteRepositoryService;
@@ -14,8 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -28,12 +23,6 @@ public class RouteApiController {
     private SecurityService securityService;
     @Autowired
     private UserService userService;
-    @Autowired
-    private PointRepository pointRepository;
-    @Autowired
-    private TransitEdgesRepository transitEdgesRepository;
-    @Autowired
-    private EdgeRepository edgeRepository;
 
     /**
      * @return list of all routes
@@ -90,34 +79,22 @@ public class RouteApiController {
 
     @RequestMapping(value = "/saveroutes", method = RequestMethod.POST)
     public void saveRoute(@RequestBody String record) {
-
         Route route;
-
         logger.info("Процесс сохранения маршрута...");
         String email = securityService.findLoggedInUsername();
         if (email != null) {
             User user = userService.findUserByEmail(email);
             try {
-
-                System.out.println(record);
-
                 ObjectMapper mapper = new ObjectMapper();
-
                 route = mapper.readValue(record, Route.class);
-
-                System.out.println(route.toString());
-
                 route.getEdges().forEach(edge -> {
                     edge.setRoute(route);
                     edge.getTransitEdgeList().forEach(transitEdge -> {
                         transitEdge.setEdge(edge);
                     });
-
                 });
-
                 route.setUser(user);
                 routeRepositoryService.save(route);
-
                 logger.info("Сохранение прошло успешно!");
             } catch (Exception ex) {
                 logger.error("Процесс сохранения прерван с ошибкой: ", ex);

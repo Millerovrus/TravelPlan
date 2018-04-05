@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class JsonLocalDateTimeDeserializator extends JsonDeserializer<LocalDateTime>{
+public class JsonLocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime>{
 
     @Override
     public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
