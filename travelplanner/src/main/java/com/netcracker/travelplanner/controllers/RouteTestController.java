@@ -1,8 +1,8 @@
 package com.netcracker.travelplanner.controllers;
 
-import com.netcracker.travelplanner.service.MainRouteService;
-import com.netcracker.travelplanner.entities.*;
-import com.netcracker.travelplanner.service.*;
+import com.netcracker.travelplanner.models.entities.Route;
+import com.netcracker.travelplanner.services.MainRouteService;
+import com.netcracker.travelplanner.services.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

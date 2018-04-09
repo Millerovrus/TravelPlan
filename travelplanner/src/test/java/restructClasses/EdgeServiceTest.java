@@ -1,6 +1,6 @@
 package restructClasses;
 
-import com.netcracker.travelplanner.service.EdgeService;
+import com.netcracker.travelplanner.services.EdgeService;
 import org.junit.Test;
 
 public class EdgeServiceTest {

@@ -1,7 +1,7 @@
 package com.netcracker.travelplanner.api;
 
-import com.netcracker.travelplanner.entities.SearchInputParameters;
-import com.netcracker.travelplanner.service.PreparingDataService;
+import com.netcracker.travelplanner.models.SearchInputParameters;
+import com.netcracker.travelplanner.services.PreparingDataService;
 import com.netcracker.travelplanner.webParsers.WebParser;
 import org.junit.Test;
 

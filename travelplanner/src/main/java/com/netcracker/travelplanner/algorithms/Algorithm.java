@@ -1,9 +1,10 @@
 package com.netcracker.travelplanner.algorithms;
 
-import com.netcracker.travelplanner.entities.*;
+import com.netcracker.travelplanner.models.*;
+import com.netcracker.travelplanner.models.entities.*;
+import com.netcracker.travelplanner.services.ErrorSavingService;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -18,15 +19,19 @@ public class Algorithm {
     private List<Route> optimalFoundRoutes = new ArrayList<>();
     private static final Logger logger = LoggerFactory.getLogger(Algorithm.class);
     private final AlgorithmProperties properties;
+    private final ErrorSavingService errorSavingService;
 
     @Autowired
-    public Algorithm(AlgorithmProperties properties) {
+    public Algorithm(AlgorithmProperties properties, ErrorSavingService errorSavingService) {
         this.properties = properties;
+        this.errorSavingService = errorSavingService;
     }
 
     public List<Route> getOptimalFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint, int numberOfPassengers) {
         if (edges.isEmpty()){
-            logger.debug("Edge list is empty =(");
+            String error = "Search for edges hasn't given any results";
+            logger.debug(error);
+            errorSavingService.saveError(error, "algorithm");
             return null;
         }
         edges = edges.stream().distinct().collect(Collectors.toList());

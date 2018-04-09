@@ -1,7 +1,7 @@
 package com.netcracker.travelplanner.api;
 
-import com.netcracker.travelplanner.entities.Point;
-import com.netcracker.travelplanner.entities.Edge;
+import com.netcracker.travelplanner.models.entities.Point;
+import com.netcracker.travelplanner.models.entities.Edge;
 
 import java.time.LocalDate;
 import java.util.List;

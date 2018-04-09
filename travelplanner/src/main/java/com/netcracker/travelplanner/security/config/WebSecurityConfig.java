@@ -1,6 +1,6 @@
 package com.netcracker.travelplanner.security.config;
 
-import com.netcracker.travelplanner.security.service.UserDetailsServiceImpl;
+import com.netcracker.travelplanner.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

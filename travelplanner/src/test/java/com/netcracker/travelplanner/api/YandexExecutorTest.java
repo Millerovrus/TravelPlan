@@ -1,7 +1,7 @@
 package com.netcracker.travelplanner.api;
 
 import com.netcracker.travelplanner.TravelPlannerApplication;
-import com.netcracker.travelplanner.service.MainRouteService;
+import com.netcracker.travelplanner.services.MainRouteService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
