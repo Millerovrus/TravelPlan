@@ -1,10 +1,10 @@
 package com.netcracker.travelplanner.api;
 
 import com.google.gson.Gson;
-import com.netcracker.travelplanner.entities.Edge;
-import com.netcracker.travelplanner.entities.Point;
-import com.netcracker.travelplanner.entities.TransitEdge;
-import com.netcracker.travelplanner.entities.kiwi.KiwiFlights;
+import com.netcracker.travelplanner.models.entities.Edge;
+import com.netcracker.travelplanner.models.entities.Point;
+import com.netcracker.travelplanner.models.entities.TransitEdge;
+import com.netcracker.travelplanner.models.kiwi.KiwiFlights;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

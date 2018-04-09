@@ -1,8 +1,8 @@
 package com.netcracker.travelplanner.executors;
 
 import com.netcracker.travelplanner.api.ApiInterface;
-import com.netcracker.travelplanner.entities.Edge;
-import com.netcracker.travelplanner.entities.Task;
+import com.netcracker.travelplanner.models.entities.Edge;
+import com.netcracker.travelplanner.models.Task;
 
 import java.io.IOException;
 import java.util.List;

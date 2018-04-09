@@ -1,8 +1,10 @@
 package com.netcracker.travelplanner.algorithms;
 
-import com.netcracker.travelplanner.entities.*;
+import com.netcracker.travelplanner.models.*;
+import com.netcracker.travelplanner.models.entities.*;
+import com.netcracker.travelplanner.services.ErrorSavingService;
 import org.slf4j.*;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -16,22 +18,20 @@ import java.util.stream.Collectors;
 public class Algorithm {
     private List<Route> optimalFoundRoutes = new ArrayList<>();
     private static final Logger logger = LoggerFactory.getLogger(Algorithm.class);
+    private final AlgorithmProperties properties;
+    private final ErrorSavingService errorSavingService;
 
-    @Value("${algorithm.routes-by-coef-count}")
-    private Integer l;
-
-    @Value("${algorithm.coefs-count}")
-    private Integer coefsCount;
-
-    @Value("${algorithm.time.bus-pause-minutes}")
-    private Integer busPause;
-
-    @Value("${algorithm.time.plane-pause-hours}")
-    private Integer planePause;
+    @Autowired
+    public Algorithm(AlgorithmProperties properties, ErrorSavingService errorSavingService) {
+        this.properties = properties;
+        this.errorSavingService = errorSavingService;
+    }
 
     public List<Route> getOptimalFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint, int numberOfPassengers) {
         if (edges.isEmpty()){
-            logger.debug("Edge list is empty =(");
+            String error = "Search for edges hasn't given any results";
+            logger.debug(error);
+            errorSavingService.saveError(error, "algorithm");
             return null;
         }
         edges = edges.stream().distinct().collect(Collectors.toList());
@@ -100,15 +100,16 @@ public class Algorithm {
     }
 
     private void findOptimalRoutes(List<Route> allFoundRoutes){
-        if (allFoundRoutes.size() < 10){
+        int l = properties.getRoutesByCoefCount();
+        if (allFoundRoutes.size() < properties.getRoutesByCoefCount()){
             l = allFoundRoutes.size();
         }
 
-        Route[][] minRoutes = new Route[coefsCount][l];
+        Route[][] minRoutes = new Route[properties.getCoefsCount()][l];
         int[] counters = {0, 0, 0, 0, 0};
 
         for (Route eachFoundRoute : allFoundRoutes) {
-            for (int i = 0; i < coefsCount; i++){
+            for (int i = 0; i < properties.getCoefsCount(); i++){
                 for (int j = 0; j < l; j++){
                     if (minRoutes[i][j] == null){
                         minRoutes[i][j] = eachFoundRoute;
@@ -132,7 +133,7 @@ public class Algorithm {
 
         optimalFoundRoutes.clear();
 
-        for (int i = 0; i < coefsCount; i++){
+        for (int i = 0; i < properties.getCoefsCount(); i++){
             for (int j = 0; j < l; j++){
                 if (!optimalFoundRoutes.contains(minRoutes[i][j])){
                     optimalFoundRoutes.add(minRoutes[i][j]);
@@ -141,7 +142,7 @@ public class Algorithm {
         }
 
         for (Route route : optimalFoundRoutes) {
-            for (int i = 0; i < coefsCount; i++) {
+            for (int i = 0; i < properties.getCoefsCount(); i++) {
                 if (minRoutes[i][0].equals(route)){
                     route.setOptimalRoute(true);
                     break;
@@ -187,7 +188,7 @@ public class Algorithm {
                 && edgeFrom.getTransportType().toLowerCase().equals("plane")
                 && edgeTo.getTransportType().toLowerCase().equals("plane")
                 && edgeFrom.getEndPoint().getLocationCode().equals(edgeTo.getStartPoint().getLocationCode())
-                && edgeFrom.getEndDate().plusHours(planePause).isBefore(edgeTo.getStartDate())
+                && edgeFrom.getEndDate().plusHours(2).isBefore(edgeTo.getStartDate())
                 && edgeFrom.getEndDate().plusHours(10).isAfter(edgeTo.getStartDate())
 
                 //Если приезд и выезд с одной остановки, то состыковка в 30 минут минимум
@@ -196,7 +197,7 @@ public class Algorithm {
                 && edgeFrom.getTransportType().toLowerCase().equals("bus")
                 && edgeTo.getTransportType().toLowerCase().equals("bus")
                 && edgeFrom.getEndPoint().getLocationCode().equals(edgeTo.getStartPoint().getLocationCode())
-                && edgeFrom.getEndDate().plusMinutes(busPause).isBefore(edgeTo.getStartDate())
+                && edgeFrom.getEndDate().plusMinutes(30).isBefore(edgeTo.getStartDate())
                 && edgeFrom.getEndDate().plusHours(9).isAfter(edgeTo.getStartDate())
 
                 //В остальном если состыкуются по времени, то пропускаем, если нет, то нет
@@ -209,11 +210,11 @@ public class Algorithm {
         switch(edge.getTransportType().toLowerCase()){
             case "bus":
             case "train":
-                return edge.getStartDate().minusMinutes(busPause);
+                return edge.getStartDate().minusMinutes(properties.getBusPauseMinutes());
             case "plane":
-                return edge.getStartDate().minusHours(planePause);
+                return edge.getStartDate().minusHours(properties.getPlanePauseHours());
             default:
-                return edge.getStartDate().minusHours(1);
+                return edge.getStartDate().minusHours(properties.getDefaultPauseHours());
         }
     }
 
@@ -223,9 +224,9 @@ public class Algorithm {
         switch(edge.getTransportType().toLowerCase()){
             case "bus":
             case "train":
-                return edge.getEndDate().plusHours(1).plusMinutes(busPause);
+                return edge.getEndDate().plusHours(1).plusMinutes(30);
             case "plane":
-                return edge.getEndDate().plusHours(planePause);
+                return edge.getEndDate().plusHours(2);
             default:
                 return edge.getEndDate().plusHours(1);
         }
@@ -254,37 +255,5 @@ public class Algorithm {
             routes.get(minCostInd).setDescription("Cheapest!");
             routes.get(minDurInd).setDescription("Fastest!");
         }
-    }
-
-    public Integer getL() {
-        return l;
-    }
-
-    public void setL(Integer l) {
-        this.l = l;
-    }
-
-    public Integer getCoefsCount() {
-        return coefsCount;
-    }
-
-    public void setCoefsCount(Integer coefsCount) {
-        this.coefsCount = coefsCount;
-    }
-
-    public Integer getBusPause() {
-        return busPause;
-    }
-
-    public void setBusPause(Integer busPause) {
-        this.busPause = busPause;
-    }
-
-    public Integer getPlanePause() {
-        return planePause;
-    }
-
-    public void setPlanePause(Integer planePause) {
-        this.planePause = planePause;
     }
 }
