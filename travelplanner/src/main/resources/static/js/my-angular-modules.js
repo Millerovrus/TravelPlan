@@ -10,10 +10,6 @@ angular.module('controllerModule')
 
     .controller('myParameterController', function requestFunc($scope, $http, $window) {
 
-        /*$scope.saved=function(value) {
-            return true
-        };*/
-        // $scope.saved = true;
         $scope.saveRoute=function (record) {
             
             $http({
@@ -102,6 +98,18 @@ angular.module('controllerModule')
                 }
             }
             return true;
+        };
+
+        $scope.mainForTransportType = function (someValue) {
+            var elem = angular.element($('#checkbox31')).val();
+            // if($scope.isChecked){
+            //     $window.alert("CheckBox is checked. " );
+            // }
+            // else{
+            //     $window.alert("CheckBox is not checked.");// + $scope.isChecked.value());
+            // }
+
+            $window.alert("hello :" + elem);
         };
         // $scope.routesWithCostFromTo = function (records) {
         //     var from = parseInt(document.getElementById('cost_from').value);
