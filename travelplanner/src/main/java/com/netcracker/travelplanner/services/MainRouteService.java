@@ -2,6 +2,7 @@ package com.netcracker.travelplanner.services;
 
 import com.netcracker.travelplanner.algorithms.Algorithm;
 import com.netcracker.travelplanner.api.KiwiApi;
+import com.netcracker.travelplanner.api.UFSParser;
 import com.netcracker.travelplanner.api.YandexApi;
 import com.netcracker.travelplanner.models.*;
 import com.netcracker.travelplanner.executors.Executor;
@@ -32,10 +33,11 @@ public class MainRouteService {
 //    private YandexParser yandexParser = new YandexParser(driver);
     private KiwiApi kiwiApi = new KiwiApi();
     private YandexApi yandexApi = new YandexApi();
+    private UFSParser UFSParser = new UFSParser();
 
     private Executor executor1 = new Executor();
     private Executor executor2 = new Executor();
-//    private Executor executor3 = new Executor();
+    private Executor executor3 = new Executor();
 
     private SearchInputParameters prepareInputData(String from, String to, String latLongFrom, String latLongTo, String date, int numberOfPassengers){
         return new PreparingDataService().prepareData(from
@@ -70,6 +72,10 @@ public class MainRouteService {
 //            logger.debug("Start Thread yandexParser");
 //            edgeList.addAll(executor3.execute(taskList,yandexParser));
 //        });
+        executorService.execute( () -> {
+            logger.debug("Start Thread UFSParser");
+            edgeList.addAll(executor2.execute(taskList,UFSParser));
+        });
 
         executorService.shutdown();
 
