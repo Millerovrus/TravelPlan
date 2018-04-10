@@ -74,7 +74,7 @@ public class MainRouteService {
 //        });
         executorService.execute( () -> {
             logger.debug("Start Thread UFSParser");
-            edgeList.addAll(executor2.execute(taskList,UFSParser));
+            edgeList.addAll(executor3.execute(taskList,UFSParser));
         });
 
         executorService.shutdown();
