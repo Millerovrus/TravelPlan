@@ -35,6 +35,8 @@ public class Point {
     @Column(name="location_code")
     private String locationCode;
 
+    @Transient
+    private String russianName;
 
     @OneToMany(mappedBy = "startPoint", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
@@ -51,6 +53,22 @@ public class Point {
     @OneToMany(mappedBy = "endPoint", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<TransitEdge> transitEdgesEnd;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getRussianName() {
+        return russianName;
+    }
+
+    public void setRussianName(String russianName) {
+        this.russianName = russianName;
+    }
 
     public List<Edge> getEdgesStart() {
         return edgesStart;
@@ -137,13 +155,15 @@ public class Point {
             , double longitude
             , String iataCode
             , String yandexCode
-            , String locationCode) {
+            , String locationCode
+            , String russianName) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
         this.iataCode = iataCode;
         this.yandexCode = yandexCode;
         this.locationCode = locationCode;
+        this.russianName = russianName;
         this.edgesStart = new ArrayList<>();
         this.edgesEnd = new ArrayList<>();
         this.transitEdgesEnd = new ArrayList<>();
@@ -194,6 +214,7 @@ public class Point {
                 .append("longitude", longitude)
                 .append("iataCode", iataCode)
                 .append("yandexCode", yandexCode)
+                .append("russianName", russianName)
                 .toString();
     }
 }

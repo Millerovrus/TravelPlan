@@ -45,6 +45,8 @@ public class PreparingDataService {
 
         pointFrom.setYandexCode(EdgeService.getYandexCode(latFrom, lonFrom));
         pointTo.setYandexCode(EdgeService.getYandexCode(latTo,lonTo));
+        pointFrom.setRussianName(EdgeService.getRussianName(from));
+        pointTo.setRussianName(EdgeService.getRussianName(to));
 
         String iataCodeFrom = EdgeService.getIataCode(latFrom, lonFrom);
         String iataCodeTo = EdgeService.getIataCode(latTo, lonTo);

@@ -50,13 +50,15 @@ public class YandexApi implements ApiInterface {
                                         ,from.getLongitude()
                                         ,from.getIataCode()
                                         ,from.getYandexCode()
-                                        ,l.getFrom().getCode())
+                                        ,l.getFrom().getCode()
+                                        ,from.getRussianName())
                                 ,new Point(to.getName()
                                         ,to.getLatitude()
                                         ,to.getLongitude()
                                         ,to.getIataCode()
                                         ,to.getYandexCode()
-                                        ,l.getTo().getCode())
+                                        ,l.getTo().getCode()
+                                        ,to.getRussianName())
                                 ,LocalDateTime.parse(l.getDeparture(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
                                 ,LocalDateTime.parse(l.getArrival(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
 
@@ -76,13 +78,15 @@ public class YandexApi implements ApiInterface {
                                 ,from.getLongitude()
                                 ,from.getIataCode()
                                 ,from.getYandexCode()
-                                ,l.getFrom().getCode()));
+                                ,l.getFrom().getCode()
+                                ,from.getRussianName()));
                         edge.setEndPoint(new Point(to.getName()
                                 ,to.getLatitude()
                                 ,to.getLongitude()
                                 ,to.getIataCode()
                                 ,to.getYandexCode()
-                                ,l.getTo().getCode()));
+                                ,l.getTo().getCode()
+                                ,to.getRussianName()));
 
                         edge.setTransitEdgeList(transitEdges);
                         edge.setPurchaseLink("https://rasp.yandex.ru/search/?fromId=" +

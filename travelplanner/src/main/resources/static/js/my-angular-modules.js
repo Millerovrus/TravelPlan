@@ -9,11 +9,6 @@ angular.module('myApp',['controllerModule'])
 angular.module('controllerModule')
 
     .controller('myParameterController', function requestFunc($scope, $http, $window) {
-
-        /*$scope.saved=function(value) {
-            return true
-        };*/
-        // $scope.saved = true;
         $scope.saveRoute=function (record) {
             
             $http({

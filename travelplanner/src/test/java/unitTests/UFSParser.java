@@ -7,6 +7,7 @@ import org.jsoup.select.Elements;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 public class UFSParser {
     @Test
     public void test() throws Exception {
-        String url = "https://www.ufs-online.ru/kupit-zhd-bilety/" +
+        String url = "https://www.ufs-online.ru/en/kupit-zhd-bilety/" +
                 "Voronezh" +
                 "/" +
                 "Moscow" +
@@ -33,16 +34,16 @@ public class UFSParser {
                 System.out.println(link);
 
                 String timeFrom = record.select("span.wg-track-info__time").first().ownText();
-                System.out.println(timeFrom);
+                System.out.println(LocalTime.parse(timeFrom));
 
                 String timeTo = record.select("span.wg-track-info__time").last().ownText();
-                System.out.println(timeTo);
+                System.out.println(LocalTime.parse(timeTo));
 
                 String dateFrom = record.select("span.wg-track-info__date").first().text();
-                System.out.println(dateFrom);
+                System.out.println(dateFrom.substring(5).replace(".", ""));
 
                 String dateTo = record.select("span.wg-track-info__date").last().text();
-                System.out.println(dateTo);
+                System.out.println(dateTo.substring(5).replace(".", ""));
 
                 Elements typesEl = record.select("div.wg-wagon-type__title");
                 List<String> types = new ArrayList<>();
@@ -52,9 +53,9 @@ public class UFSParser {
                 System.out.println(types);
 
                 Elements pricesEl = record.select("span.wg-wagon-type__price").select("a");
-                List<String> prices = new ArrayList<>();
+                List<Double> prices = new ArrayList<>();
                 for (Element priceEl : pricesEl) {
-                    prices.add(priceEl.ownText());
+                    prices.add(Double.parseDouble(priceEl.ownText().replace(" ", "").replace(".", ",")));
                 }
                 System.out.println(prices);
 

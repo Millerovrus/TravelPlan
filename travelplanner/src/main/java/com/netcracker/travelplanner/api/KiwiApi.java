@@ -74,13 +74,15 @@ public class KiwiApi implements ApiInterface {
                                     ,from.getLongitude()
                                     ,from.getIataCode()
                                     ,from.getYandexCode()
-                                    ,l.getFlyFrom())
+                                    ,l.getFlyFrom()
+                                    ,from.getRussianName())
                             ,new Point(to.getName()
                                     ,to.getLatitude()
                                     ,to.getLongitude()
                                     ,to.getIataCode()
                                     ,to.getYandexCode()
-                                    ,l.getFlyTo())
+                                    ,l.getFlyTo()
+                                    ,to.getRussianName())
                             ,LocalDateTime.ofEpochSecond(l.getDTime(), 0, ZoneOffset.UTC)
                             ,LocalDateTime.ofEpochSecond(l.getATime(), 0, ZoneOffset.UTC)
 
@@ -101,13 +103,15 @@ public class KiwiApi implements ApiInterface {
                                 ,from.getLongitude()
                                 ,from.getIataCode()
                                 ,from.getYandexCode()
-                                ,l.getFlyFrom()));
+                                ,l.getFlyFrom()
+                                ,from.getRussianName()));
                 edge.setEndPoint(new Point(to.getName()
                                 ,to.getLatitude()
                                 ,to.getLongitude()
                                 ,to.getIataCode()
                                 ,to.getYandexCode()
-                                ,l.getFlyTo()));
+                                ,l.getFlyTo()
+                                ,to.getRussianName()));
 
                 edge.setTransitEdgeList(transitEdges);
                 edge.setPurchaseLink(l.getDeepLink());

@@ -3,6 +3,7 @@ package com.netcracker.travelplanner.services;
 import com.google.gson.Gson;
 import com.netcracker.travelplanner.models.entities.Point;
 import com.netcracker.travelplanner.models.googleDist.GoogleDistance;
+import com.netcracker.travelplanner.models.googleGeocode.GoogleGeocode;
 import com.netcracker.travelplanner.models.yandexCode.YandexCode;
 import com.netcracker.travelplanner.models.newKiwi.KiwiStations;
 import com.netcracker.travelplanner.models.newKiwi.MyPoint;
@@ -84,6 +85,20 @@ public class EdgeService {
         return yandexCode;
     }
 
+    public static String getRussianName(String name){
+        String url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws" +
+                "&language=ru&address=" + name.replace(" ", "%20");
+        String russianName = null;
+        Gson gson = new Gson();
+        GoogleGeocode geocode = gson.fromJson(getStreamReaderFromUrl(url), GoogleGeocode.class);
+
+        if (geocode != null){
+            russianName = geocode.getResults().get(0).getAddressComponents().get(0).getLongName();
+        }
+
+        return russianName;
+    }
+
     private static InputStreamReader getStreamReaderFromUrl(String url){
 
         InputStreamReader reader = null;
@@ -151,8 +166,9 @@ public class EdgeService {
                 , myPoint.getLat()
                 , myPoint.getLon()
                 , myPoint.getCityCode()
-                , getYandexCode(myPoint.getLat(),myPoint.getLon())
-                , "")));
+                , getYandexCode(myPoint.getLat(), myPoint.getLon())
+                , ""
+                , getRussianName(myPoint.getCityName()))));
 
         return points;
 

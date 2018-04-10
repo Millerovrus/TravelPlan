@@ -23,15 +23,15 @@ public class UFSParser implements ApiInterface {
     @Override
     public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfPassengers) {
         String url = "https://www.ufs-online.ru/en/kupit-zhd-bilety/" +
-                from.getName() +
+                from.getRussianName() +
                 "/" +
-                to.getName() +
+                to.getRussianName() +
                 "?date=" +
                 date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
 
         List<Edge> edgeList = new ArrayList<>();
 
-        if (!from.getName().equals(to.getName())) {
+        if (!from.getRussianName().equals(to.getRussianName())) {
             Document doc = null;
             Elements records = null;
             try {
@@ -61,13 +61,15 @@ public class UFSParser implements ApiInterface {
                             , from.getLongitude()
                             , from.getIataCode()
                             , from.getYandexCode()
-                            , ""));
+                            , ""
+                            , from.getRussianName()));
                     edge.setEndPoint(new Point(to.getName()
                             , to.getLatitude()
                             , to.getLongitude()
                             , to.getIataCode()
                             , to.getYandexCode()
-                            , ""));
+                            , ""
+                            , to.getRussianName()));
 
                     List<TransitEdge> transitEdges = new LinkedList<>();
                     transitEdges.add(new TransitEdge(
@@ -76,13 +78,17 @@ public class UFSParser implements ApiInterface {
                                     , from.getLongitude()
                                     , from.getIataCode()
                                     , from.getYandexCode()
-                                    , "")
+                                    , ""
+                                    , from.getRussianName()
+                            )
                             , new Point(to.getName()
-                            , to.getLatitude()
-                            , to.getLongitude()
-                            , to.getIataCode()
-                            , to.getYandexCode()
-                            , "")
+                                    , to.getLatitude()
+                                    , to.getLongitude()
+                                    , to.getIataCode()
+                                    , to.getYandexCode()
+                                    , ""
+                                    , to.getRussianName()
+                             )
                             , convertTimeAndDate(record.select("span.wg-track-info__time").first().ownText(), record.select("span.wg-track-info__date").first().text(), date)
                             , convertTimeAndDate(record.select("span.wg-track-info__time").last().ownText(), record.select("span.wg-track-info__date").last().text(), date)
 

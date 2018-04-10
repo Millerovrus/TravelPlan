@@ -51,14 +51,16 @@ public class EntitiesTest {
                 ,0.0
                 ,"VOZ"
                 ,"123"
-                ,"123");
+                ,"123"
+                ,"Воронеж");
 
         Point point2 = new Point("Moscow"
                 ,0.0
                 ,0.0
                 ,"MOV"
                 ,"321"
-                ,"321");
+                ,"321"
+                ,"Москва");
 
         TransitEdge transitEdge = new TransitEdge(point1,point2,LocalDateTime.now().plusHours(1),LocalDateTime.now());
 
