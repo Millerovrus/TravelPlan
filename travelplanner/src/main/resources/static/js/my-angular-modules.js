@@ -118,8 +118,8 @@ angular.module('controllerModule')
                         return false;
                     }
                 }
-                return true;
             }
+            return true;
         };
 
         $scope.openLink = function(purchaseLink) {
