@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 
@@ -54,6 +55,7 @@ public class UFSParser implements ApiInterface {
                     edge.setCost(Double.parseDouble(record.selectFirst("span.wg-wagon-type__price").selectFirst("a").ownText().replace(" ", "").replace(",", ".")) * (numberOfPassengers));
                     edge.setStartDate(convertTimeAndDate(record.select("span.wg-track-info__time").first().ownText(), record.select("span.wg-track-info__date").first().text(), date));
                     edge.setEndDate(convertTimeAndDate(record.select("span.wg-track-info__time").last().ownText(), record.select("span.wg-track-info__date").last().text(), date));
+                    edge.setDuration((double) ChronoUnit.SECONDS.between(edge.getStartDate(), edge.getEndDate()));
                     edge.setCurrency("RUB");
                     edge.setNumberOfTransfers(1);
                     edge.setStartPoint(new Point(from.getName()
@@ -94,7 +96,7 @@ public class UFSParser implements ApiInterface {
 
                     ));
                     edge.setTransitEdgeList(transitEdges);
-                    edge.setPurchaseLink(record.selectFirst("a.wg-ref").attr("href"));
+                    edge.setPurchaseLink(url);
                     edgeList.add(edge);
                 }
             }

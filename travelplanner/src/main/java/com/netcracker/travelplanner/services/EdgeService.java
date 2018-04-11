@@ -171,7 +171,6 @@ public class EdgeService {
                 , getRussianName(myPoint.getCityName()))));
 
         return points;
-
     }
 
     private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
