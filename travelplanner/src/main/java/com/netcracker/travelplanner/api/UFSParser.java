@@ -1,6 +1,5 @@
 package com.netcracker.travelplanner.api;
 
-
 import com.netcracker.travelplanner.models.entities.Edge;
 import com.netcracker.travelplanner.models.entities.Point;
 import com.netcracker.travelplanner.models.entities.TransitEdge;
@@ -8,6 +7,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -15,10 +16,13 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 
 public class UFSParser implements ApiInterface {
+
+    private static final Logger logger = LoggerFactory.getLogger(UFSParser.class);
 
     @Override
     public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfPassengers) {
@@ -39,9 +43,8 @@ public class UFSParser implements ApiInterface {
                         .connect(url)
                         .userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36")
                         .get();
-                records = doc.select("div.wg-train-container");
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("ошибка получения по запросу {}", url);
             }
             if (doc != null) {
                 records = doc.select("div.wg-train-container");
@@ -54,6 +57,7 @@ public class UFSParser implements ApiInterface {
                     edge.setCost(Double.parseDouble(record.selectFirst("span.wg-wagon-type__price").selectFirst("a").ownText().replace(" ", "").replace(",", ".")) * (numberOfPassengers));
                     edge.setStartDate(convertTimeAndDate(record.select("span.wg-track-info__time").first().ownText(), record.select("span.wg-track-info__date").first().text(), date));
                     edge.setEndDate(convertTimeAndDate(record.select("span.wg-track-info__time").last().ownText(), record.select("span.wg-track-info__date").last().text(), date));
+                    edge.setDuration((double) ChronoUnit.SECONDS.between(edge.getStartDate(), edge.getEndDate()));
                     edge.setCurrency("RUB");
                     edge.setNumberOfTransfers(1);
                     edge.setStartPoint(new Point(from.getName()
@@ -94,10 +98,10 @@ public class UFSParser implements ApiInterface {
 
                     ));
                     edge.setTransitEdgeList(transitEdges);
-                    edge.setPurchaseLink(record.selectFirst("a.wg-ref").attr("href"));
+                    edge.setPurchaseLink(url);
                     edgeList.add(edge);
                 }
-            }
+            } else logger.error("нет данных по запросу {}", url);
         }
         return edgeList;
     }

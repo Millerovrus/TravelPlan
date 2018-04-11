@@ -64,7 +64,7 @@ public class Route implements Serializable {
         this.idRouteForView = idRouteForView;
     }
 
-    public double getCost() {
+    public Double getCost() {
         return cost;
     }
 

@@ -93,7 +93,7 @@ public class EdgeService {
         GoogleGeocode geocode = gson.fromJson(getStreamReaderFromUrl(url), GoogleGeocode.class);
 
         if (geocode != null){
-            russianName = geocode.getResults().get(0).getAddressComponents().get(0).getLongName();
+            russianName = geocode.getResults().get(0).getAddressComponents().get(0).getLongName().replace("ё", "e");
         }
 
         return russianName;
@@ -171,7 +171,6 @@ public class EdgeService {
                 , getRussianName(myPoint.getCityName()))));
 
         return points;
-
     }
 
     private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
