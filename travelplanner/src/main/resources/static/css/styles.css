@@ -1013,3 +1013,10 @@ html section button.dotted.thin, body section button.dotted.thin {
     color: #fff;
     background-color: #6c757d;
 }
+
+/* required message*/
+.help-block{
+    color: #4d4b4b;
+    font-size: 12px;
+    font-family: Lato;
+}

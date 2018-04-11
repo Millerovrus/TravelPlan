@@ -33,6 +33,7 @@ angular.module('controllerModule')
         };
 
         $scope.sendRequestParameters=function () {
+            $scope.submitted = true;
             $scope.$emit('LOAD');
             $scope.loaded=false;
             $http({
@@ -58,6 +59,18 @@ angular.module('controllerModule')
                     alert("Something goes wrong :(");
                 });
             initMap();
+        };
+
+        /* form validation */
+        $scope.showMessage = function(input) {
+                var show = input.$invalid && (input.$dirty || input.$touched || input.$untouched);
+                return show;
+        };
+        $scope.bindingCalendar = function() {
+                        $scope.dateFrom = $('#inputDate').val();
+        };
+        $scope.showCalendarMessage = function (input) {
+              return input.$invalid && (input.$untouched || input.$dirty);
         };
 
         $scope.optimalRoutes = function(records) {

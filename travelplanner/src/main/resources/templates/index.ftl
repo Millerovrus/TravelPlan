@@ -99,19 +99,25 @@
         <div class="container-fluid">
             <div class="container">
                 <div class="formBox" id=>
-                    <form id="inputForm" autocomplete="off">
+                    <form name="myForm" id="inputForm" novalidate autocomplete="off" ng-controller="myParameterController" ng-submit="myForm.$valid && sendRequestParameters()">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="inputBox ">
                                     <div class="inputText">Departure city</div>
-                                    <input type="text" id="inputFrom" class="input" onfocus="geolocate()" placeholder="">
+                                    <input type="text" name="cityFrom" ng-model="cityFrom" id="inputFrom" class="input" onfocus="geolocate()" placeholder="" required>
+                                    <div class="help-block pull-right" ng-if="myForm.$submitted">
+                                        <div ng-show="showMessage(myForm.cityFrom)">Please enter departure city.</div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
                                 <div class="inputBox">
                                     <div class="inputText">Arrival city</div>
-                                    <input type="text" id="inputTo" class="input" onfocus="geolocate()" placeholder="">
+                                    <input type="text" id="inputTo" name="cityTo" ng-model="cityTo" class="input" onfocus="geolocate()" placeholder="" required>
+                                    <div class="help-block pull-right" ng-if="myForm.$submitted">
+                                        <div ng-show="showMessage(myForm.cityTo)">Please enter arrival city.</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +125,10 @@
                             <div class="col-sm-6">
                                 <div class="inputBox">
                                     <div class="inputText">Departure date</div>
-                                    <input type='text' class="input" id="inputDate" placeholder="">
+                                    <input type="text" class="input" name="dateFrom" ng-model="dateFrom" id="inputDate" ng-bind="bindingCalendar()" placeholder="" required>
+                                    <div class="help-block pull-right" ng-if="myForm.$submitted">
+                                        <div ng-show="showCalendarMessage(myForm.dateFrom)">Please enter departure date.</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -195,37 +204,36 @@
                         <!-- angular controller for getting routes -->
                         <div class="row" ng-controller="myParameterController">
                             <div class="col-sm-12">
-                                <input type="button" name="" ng-click="sendRequestParameters()" required class="button" value="Find route" onclick="this.parentNode.submit();">
-
+                                <input type="submit" name="" class="button" value="Find route" >
                                 <#--<div ng-show="loading" class="preloader"></div>-->
                                 <div class="row" ng-show="loading">
                                     <div class="col-xs-offset-5 col-xs-2 col-xs-offset-5">
-                                    <div  class="page-loader" style="">
-                                        <div class="loader">
-                                            <span class="dot dot_1"></span>
-                                            <span class="dot dot_2"></span>
-                                            <span class="dot dot_3"></span>
-                                            <span class="dot dot_4"></span>
+                                        <div  class="page-loader" style="">
+                                            <div class="loader">
+                                                <span class="dot dot_1"></span>
+                                                <span class="dot dot_2"></span>
+                                                <span class="dot dot_3"></span>
+                                                <span class="dot dot_4"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                </div>
                                 <div ng-show="loaded" ng-init="optimalFilter = optimalRoutes; orderByAttribute = 'cost'">
                                     <div ng-controller="mapController">
-                                            <div class="output-collapse">
-                                                <div class="container-fluid">
-                                                    <div class="row">
-                                                        <div class="col-sm-12 nomargin">
-                                                            <div class="accordion-panel">
-                                                                <div class="buttons-wrapper">
-                                                                    <i class="plus-icon"></i>
-                                                                    <div class="open-btn">
-                                                                        Open all
-                                                                    </div>
-                                                                    <div class="close-btn hidden">
-                                                                        Close all
-                                                                    </div>
+                                        <div class="output-collapse">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-12 nomargin">
+                                                        <div class="accordion-panel">
+                                                            <div class="buttons-wrapper">
+                                                                <i class="plus-icon"></i>
+                                                                <div class="open-btn">
+                                                                    Open all
                                                                 </div>
+                                                                <div class="close-btn hidden">
+                                                                    Close all
+                                                                </div>
+                                                            </div>
 
                                                             <div class="container-fluid">
                                                                 <dl class="row accordion">
@@ -296,48 +304,46 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-5">
-                                                            <div class="fancy-collapse-panel" >
-                                                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-                                                                    <div ng-repeat="record in records | filter:optimalFilter | filter:transportTypeFilter | orderObjectBy:orderByAttribute">
-                                                                        <#--<br>-->
-
-                                                                        <div class="panel panel-default" >
-                                                                            <div class="panel-heading" role="tab" id="headingOne" >
-                                                                                <h4 class="panel-title">
-                                                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
-                                                                                        <div class="route-description"><b>{{record.description}}</b></div>
-                                                                                        <div ng-repeat="item in record.edges">
-                                                                                            <div class="route-header" ng-repeat="transits in item.transitEdgeList"> {{transits.startPoint.name}} <span ng-bind-html=' item.transportType | transportTypeToIcon'></span> {{transits.endPoint.name}} </div>
-                                                                                        </div>
-                                                                                        <div class="divider-inverse"></div>
-                                                                                        <div class="json-data">
-                                                                                            <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                                            <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
-                                                                                        </div>
-                                                                                    </a>
-                                                                                </h4>
-                                                                            </div>
-                                                                            <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                                                                <div class="panel-body" ng-repeat="item in record.edges">
-                                                                                    <div ng-repeat="transits in item.transitEdgeList">
-                                                                                        <p><b>Transit:</b> {{transits.startPoint.name}} - {{transits.endPoint.name}}</p>
-                                                                                        <p><b>Departure:</b> {{transits.departure}}</p>
-                                                                                        <p><b>Arrival:</b> {{transits.arrival}}</p>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <div class="fancy-collapse-panel" >
+                                                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+                                                                <div ng-repeat="record in records | filter:optimalFilter | filter:transportTypeFilter | orderObjectBy:orderByAttribute">
+                                                                    <div class="panel panel-default" >
+                                                                        <div class="panel-heading" role="tab" id="headingOne" >
+                                                                            <h4 class="panel-title">
+                                                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
+                                                                                    <div class="route-description"><b>{{record.description}}</b></div>
+                                                                                    <div ng-repeat="item in record.edges">
+                                                                                        <div class="route-header" ng-repeat="transits in item.transitEdgeList"> {{transits.startPoint.name}} <span ng-bind-html=' item.transportType | transportTypeToIcon'></span> {{transits.endPoint.name}} </div>
                                                                                     </div>
-                                                                                    <p><b>Cost:</b> {{item.cost}} (RUB)</p>
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
-                                                                                            <section>
-                                                                                            <#if isAuthorized>
-                                                                                                <div ng-disabled="saved(record.idRouteForView)">
-                                                                                                    <button class='dotted thin' ng-click="saveRoute(record)">Save route</button>
-                                                                                                </div>
-                                                                                            </#if>
-                                                                                                <button class='dotted thin' ng-click="openLink(item.purchaseLink)">Buy ticket</button>
-                                                                                            </section>
-                                                                                        </div>
+                                                                                    <div class="divider-inverse"></div>
+                                                                                    <div class="json-data">
+                                                                                        <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                                        <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </h4>
+                                                                        </div>
+                                                                        <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                                            <div class="panel-body" ng-repeat="item in record.edges">
+                                                                                <div ng-repeat="transits in item.transitEdgeList">
+                                                                                    <p><b>Transit:</b> {{transits.startPoint.name}} - {{transits.endPoint.name}}</p>
+                                                                                    <p><b>Departure:</b> {{transits.departure}}</p>
+                                                                                    <p><b>Arrival:</b> {{transits.arrival}}</p>
+                                                                                </div>
+                                                                                <p><b>Cost:</b> {{item.cost}} (RUB)</p>
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
+                                                                                        <section>
+                                                                                        <#if isAuthorized>
+                                                                                            <div ng-disabled="saved(record.idRouteForView)">
+                                                                                                <button class='dotted thin' ng-click="saveRoute(record)">Save route</button>
+                                                                                            </div>
+                                                                                        </#if>
+                                                                                            <button class='dotted thin' ng-click="openLink(item.purchaseLink)">Buy ticket</button>
+                                                                                        </section>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -346,17 +352,26 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-7" id="map-margin">
-                                                            <div class="container-map" id="map"></div>
-                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-7" id="map-margin">
+                                                        <div class="container-map" id="map"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
-                                <script src="https://cdn.jsdelivr.net/rangeslider.js/2.3.0/rangeslider.min.js"></script>
+<script src="https://cdn.jsdelivr.net/rangeslider.js/2.3.0/rangeslider.min.js"></script>
 </body>
 </html>
