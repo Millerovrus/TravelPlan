@@ -108,6 +108,8 @@ public class Algorithm {
         Route[][] minRoutes = new Route[properties.getCoefsCount()][l];
         int[] counters = {0, 0, 0, 0, 0};
 
+        optimalFoundRoutes.clear();
+
         for (Route eachFoundRoute : allFoundRoutes) {
             for (int i = 0; i < properties.getCoefsCount(); i++){
                 for (int j = 0; j < l; j++){
@@ -129,9 +131,12 @@ public class Algorithm {
                     }
                 }
             }
+            //В конечный список маршрутов добавляем ВСЕ маршруты без пересадок
+            if (eachFoundRoute.getEdges().size() == 1 &&
+                    eachFoundRoute.getEdges().get(0).getNumberOfTransfers() == 1){
+                optimalFoundRoutes.add(eachFoundRoute);
+            }
         }
-
-        optimalFoundRoutes.clear();
 
         for (int i = 0; i < properties.getCoefsCount(); i++){
             for (int j = 0; j < l; j++){
