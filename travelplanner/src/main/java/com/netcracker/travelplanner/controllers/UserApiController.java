@@ -1,6 +1,8 @@
 package com.netcracker.travelplanner.controllers;
 
 import com.netcracker.travelplanner.entities.User;
+import com.netcracker.travelplanner.security.service.SecurityService;
+import com.netcracker.travelplanner.security.service.UserService;
 import com.netcracker.travelplanner.service.UserRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/api/users")
@@ -19,9 +23,12 @@ public class UserApiController {
     Date date;
     @Autowired
     private UserRepositoryService userRepositoryService;
-
+    @Autowired
+    private SecurityService securityService;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private UserService userService;
 
     /**
      * @return common list of users
@@ -58,29 +65,38 @@ public class UserApiController {
      * Save new user in database
      * @param firstName
      * @param lastName
-     * @param email
+     *
      * @param birthDate
-     * @param password
+     *
      * WITHOUT SPRINGSECURITY! DON'T DELETE!
      */
-    /*@RequestMapping(value = "/adduser", method = RequestMethod.POST)
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public void addUser(@RequestParam(value = "firstname", required = true) String firstName,
-                        @RequestParam(value = "lastname", required = true) String lastName,
-                        @RequestParam(value = "birthdate", required = true) String birthDate,
-                        @RequestParam(value = "email", required = true) String email,
-                        @RequestParam(value = "password", required = true) String password){
-        logger.info("Процесс регистрации нового пользователя...");
-        Date date = java.sql.Date.valueOf(birthDate);
-        try {
-            User user = new User(email, firstName, lastName, date, false, new Date(), password);
-            //Шифрование пароля
-            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-            userRepositoryService.save(user);
-            logger.info("Регистрация прошла успешно!");
-        } catch (Exception ex) {
-            logger.error("Процесс регистрации прерван с ошибкой: ", ex);
-            ex.printStackTrace();
+    @RequestMapping(value = "/changeUserData", method = RequestMethod.POST)
+    //@ResponseStatus(value = HttpStatus.CREATED)
+    public void changeUserData(
+            @RequestParam(value = "firstname", required = true) String firstName,
+            @RequestParam(value = "lastname", required = true) String lastName,
+            @RequestParam(value = "birthdate", required = true) String birthDate,
+            @RequestParam(value = "avatar", required = true) String avatar
+            /*@RequestParam(value = "email", required = true) String email,
+            @RequestParam(value = "password", required = true) String password*/){
+        logger.info("Смена данных пользователя...");
+        String email = securityService.findLoggedInUsername();
+        if (email != null) {
+            User user = userService.findUserByEmail(email);
+            try {
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                Date date = new SimpleDateFormat("dd.MM.yyyy").parse(birthDate);
+                user.setBirthDate(date);
+                user.setAvatar(avatar);
+                //Шифрование пароля
+                //user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+                userRepositoryService.save(user);
+                logger.info("Изменения прошли успешно!");
+            } catch (Exception ex) {
+                logger.error("Процесс изменения данных прерван с ошибкой: ", ex);
+                ex.printStackTrace();
+            }
         }
-    }*/
+    }
 }

@@ -10,22 +10,9 @@ angular.module('controllerModule')
 
     .controller('myParameterController', function requestFunc($scope, $http, $window) {
 
-        /*$scope.saved=function(value) {
-            return true
-        };*/
-        // $scope.saved = true;
         $scope.saveRoute=function (record) {
             
             $http({
-                /*method: 'GET',
-                url: 'api/routes/saveroutes',
-                params: {
-                    startpoint: record.startPoint,
-                    destinationpoint: record.destinationPoint,
-                    cost: record.cost,
-                    duration: record.duration,
-                    idrouteforview: record.idRouteForView
-                }*/
                 method: 'POST',
                 url: 'api/routes/saveroutes',
                 data: record,
