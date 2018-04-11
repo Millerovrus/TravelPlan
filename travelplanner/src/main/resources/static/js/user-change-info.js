@@ -15,11 +15,29 @@ angular.module('appChangeUserData',[]).controller('controllerChangeData', functi
         }).then(
             function success(response) {
                 console.log(response.data);
-                alert("Changes has been saved! Please update the page!");
+                location.reload();
             },
             function error(response, status) {
-                console.error('Changes has not been saved, Error!!!', status, response);
+                console.error(status, response);
+                alert("Changes has not been saved, Error! :(");
+            });
+    };
+    $scope.printUserRoutes=function () {
+        $scope.loaded=false;
+        $http({
+            method: 'GET',
+            url: 'api/routes/findbyuserid',
+            params: {
+                user: angular.element($('#user_id')).val()
+            }
+        }).then(
+            function success(response) {
+                $scope.records = response.data;
+                $scope.loaded=true;
+            },
+            function error(response, status) {
+                console.error('Repos error', status, response);
                 alert("Something goes wrong :(");
             });
-    }
+    };
 });

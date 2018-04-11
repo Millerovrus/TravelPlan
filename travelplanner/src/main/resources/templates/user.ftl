@@ -170,7 +170,20 @@
                         </div>
 
                         <div id="routes" class="tab-pane">
-                            <h4>Saved routes</h4>
+                            <h4>Saved routes for ${user_id}</h4>
+                            <input value="${user_id}" class="input" id="user_id"> <#--Из этой фигни берётся id текущего мужика-->
+                            <input type="button" ng-click="printUserRoutes()" required class="button" value="Show route">
+                            <div ng-show="loaded">
+                                <div ng-repeat="record in records">
+                                    <div>{{record.creationDate}}</div>
+                                    <div>{{record.startPoint}}</div>
+                                    <div>{{record.destinationPoint}}</div>
+                                    <div>{{record.cost}}</div>
+                                    <div>{{record.duration}}</div>
+                                    <div>{{record}}</div>
+                                </div>
+                            </div>
+
                         </div>
                         <div id="events" class="tab-pane">
                         <#--<div class="container theme-showcase">-->

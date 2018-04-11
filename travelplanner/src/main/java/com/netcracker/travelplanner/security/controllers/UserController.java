@@ -83,6 +83,7 @@ public class UserController {
             model.addAttribute("email", user.getEmail());
             model.addAttribute("birthdate", user.getBirthDate());
             model.addAttribute("avatar", user.getAvatar());
+            model.addAttribute("user_id", user.getId());
         }
         model.addAttribute("isAuthorized", email != null);
         return "user";
@@ -93,7 +94,7 @@ public class UserController {
         String email = securityService.findLoggedInUsername();
         if (email != null) {
             User user = userService.findUserByEmail(email);
-            model.addAttribute("id", user.getId());
+            //model.addAttribute("user_id", user.getId());
             model.addAttribute("firstname", user.getFirstName());
             model.addAttribute("lastname", user.getLastName());
         }

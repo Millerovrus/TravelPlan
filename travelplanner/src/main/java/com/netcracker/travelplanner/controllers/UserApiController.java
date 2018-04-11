@@ -61,17 +61,13 @@ public class UserApiController {
 
     /**
      * Save new user in database
-     * WITHOUT SPRINGSECURITY! DON'T DELETE!
      */
     @RequestMapping(value = "/changeUserData", method = RequestMethod.POST)
-    //@ResponseStatus(value = HttpStatus.CREATED)
     public void changeUserData(
             @RequestParam(value = "firstname", required = true) String changeFirstName,
             @RequestParam(value = "lastname", required = true) String changeLastName,
             @RequestParam(value = "birthdate", required = true) String changeBirthDate,
-            @RequestParam(value = "avatar", required = true) String changeAvatar
-            //@RequestParam(value = "email", required = true) String changeEmail
-            /*@RequestParam(value = "password", required = true) String password*/){
+            @RequestParam(value = "avatar", required = true) String changeAvatar){
         logger.info("Смена данных пользователя...");
         String email = securityService.findLoggedInUsername();
         if (email != null) {
