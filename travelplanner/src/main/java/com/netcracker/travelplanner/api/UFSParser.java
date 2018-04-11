@@ -101,7 +101,7 @@ public class UFSParser implements ApiInterface {
                     edge.setPurchaseLink(url);
                     edgeList.add(edge);
                 }
-            }
+            } else logger.error("нет данных по запросу {}", url);
         }
         return edgeList;
     }
