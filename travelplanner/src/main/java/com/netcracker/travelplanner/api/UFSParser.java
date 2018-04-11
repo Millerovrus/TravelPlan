@@ -1,6 +1,5 @@
 package com.netcracker.travelplanner.api;
 
-
 import com.netcracker.travelplanner.models.entities.Edge;
 import com.netcracker.travelplanner.models.entities.Point;
 import com.netcracker.travelplanner.models.entities.TransitEdge;
@@ -8,6 +7,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -20,6 +21,8 @@ import java.util.*;
 
 
 public class UFSParser implements ApiInterface {
+
+    private static final Logger logger = LoggerFactory.getLogger(UFSParser.class);
 
     @Override
     public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfPassengers) {
@@ -40,9 +43,8 @@ public class UFSParser implements ApiInterface {
                         .connect(url)
                         .userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36")
                         .get();
-                records = doc.select("div.wg-train-container");
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("ошибка получения по запросу {}", url);
             }
             if (doc != null) {
                 records = doc.select("div.wg-train-container");

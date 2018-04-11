@@ -62,10 +62,10 @@ public class Executor implements ExecutorMan {
                 edgeList.addAll(listFuture.get());
 
             } catch (InterruptedException e) {
-                logger.error("ошибка запроса");
+                logger.error("ошибка выполнения");
 
             } catch (ExecutionException e) {
-                logger.error("ошибка выполнения");
+                logger.error("ошибка запроса");
             }
         });
 
