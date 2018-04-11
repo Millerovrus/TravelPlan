@@ -42,7 +42,12 @@ angular.module('controllerModule')
                 });
         };
 
+        $scope.checkValidation = function () {
+
+        };
+
         $scope.sendRequestParameters=function () {
+            $scope.submitted = true;
             $scope.$emit('LOAD');
             $scope.loaded=false;
             $http({
@@ -69,6 +74,26 @@ angular.module('controllerModule')
                 });
             initMap();
         };
+
+        /* form validation */
+        $scope.showMessage = function(input) {
+            var show = input.$invalid && (input.$dirty || input.$touched || input.$untouched);
+            return show;
+        };
+
+        /* form validation */
+        // $scope.changeValidityCalendar = function () {
+        //     if(myForm.dateFrom.$touched){
+        //         myForm.dateFrom.setValidity('dateFrom', true);
+        //     }
+        // };
+        $scope.bindingCalendar = function() {
+            $scope.dateFrom = $('#inputDate').val();
+        };
+        $scope.showCalendarMessage = function (input) {
+          return input.$invalid && (input.$untouched || input.$dirty);
+        };
+
         $scope.optimalRoutes = function(records) {
             return records.optimalRoute;
         };
@@ -100,17 +125,6 @@ angular.module('controllerModule')
             return true;
         };
 
-        $scope.mainForTransportType = function (someValue) {
-            var elem = angular.element($('#checkbox31')).val();
-            // if($scope.isChecked){
-            //     $window.alert("CheckBox is checked. " );
-            // }
-            // else{
-            //     $window.alert("CheckBox is not checked.");// + $scope.isChecked.value());
-            // }
-
-            $window.alert("hello :" + elem);
-        };
         // $scope.routesWithCostFromTo = function (records) {
         //     var from = parseInt(document.getElementById('cost_from').value);
         //     var to = parseInt(document.getElementById('cost_to').value);

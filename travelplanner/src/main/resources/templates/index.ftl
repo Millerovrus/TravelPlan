@@ -99,31 +99,38 @@
         <div class="container-fluid">
             <div class="container">
                 <div class="formBox">
-                    <form name="mainForm" id="inputForm" autocomplete="off" ng-controller="myParameterController" ng-submit="sendRequestParameters()">
-                        <!-- переделать под ангуляр, чтобы сообщения о недопустимых значениях писал ангуляр-->
+                    <form name="myForm" id="inputForm" novalidate autocomplete="off" ng-controller="myParameterController" ng-submit="myForm.$valid && sendRequestParameters()">
 
                         <!-- from, to parameters-->
                         <div class="row">
                             <div class="col-sm-6">
-                                <div class="inputBox" ng-class="{ 'has-error': mainForm.cityFrom.$dirty && mainForm.cityFrom.$error.required }">
+                                <div class="inputBox">
                                     <div class="inputText">Departure city</div>
-                                    <input type="text" name="cityFrom" id="inputFrom" class="input" onfocus="geolocate()" placeholder="" required>
-                                    <p ng-show="mainForm.cityFrom.$error.required" class="help-block">Name is required</p>
+                                    <input type="text" name="cityFrom" ng-model="cityFrom" id="inputFrom" class="input" onfocus="geolocate()" placeholder="" required>
+                                    <div class="help-block pull-right" ng-if="myForm.$submitted">
+                                        <div ng-show="showMessage(myForm.cityFrom)">Please enter departure city.</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="inputBox" ng-class="{ 'has-error': mainForm.cityTo.$dirty && mainForm.cityTo.$error.required }">
+                                <div class="inputBox">
                                     <div class="inputText">Arrival city</div>
-                                    <input type="text" id="inputTo" name="cityTo" class="input" onfocus="geolocate()" placeholder="" required>
+                                    <input type="text" id="inputTo" name="cityTo" ng-model="cityTo" class="input" onfocus="geolocate()" placeholder="" required>
+                                    <div class="help-block pull-right" ng-if="myForm.$submitted">
+                                        <div ng-show="showMessage(myForm.cityTo)">Please enter arrival city.</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!-- date, more parameters-->
                         <div class="row">
                             <div class="col-sm-6">
-                                <div class="inputBox" ng-class="{ 'has-error': mainForm.dateFrom.$dirty && mainForm.dateFrom.$error.required }">
+                                <div class="inputBox">
                                     <div class="inputText">Departure date</div>
-                                    <input type='text' class="input" name="dateFrom" id="inputDate" placeholder="" required>
+                                    <input type="text" class="input" name="dateFrom" ng-model="dateFrom" id="inputDate" ng-bind="bindingCalendar()" placeholder="" required>
+                                    <div class="help-block pull-right" ng-if="myForm.$submitted">
+                                        <div ng-show="showCalendarMessage(myForm.dateFrom)">Please enter departure date.</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -200,7 +207,7 @@
                         <div class="row"
                             <div class="col-sm-12">
                                 <!-- submit button -->
-                                <input type="submit" name="" required class="button" value="Find route" ng-disabled="mainForm.$invalid"> <!--onclick="this.parentNode.submit();" -->
+                                <input type="submit" name="" class="button" value="Find route" > <!--onclick="this.parentNode.submit();" -->
                                 <#--<div ng-show="loading" class="preloader"></div>-->
                                 <div class="row" ng-show="loading">
                                     <div class="col-xs-offset-5 col-xs-2 col-xs-offset-5">
@@ -382,7 +389,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </form>
