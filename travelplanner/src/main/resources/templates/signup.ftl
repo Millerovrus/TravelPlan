@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -83,7 +83,8 @@
                     </div>
                     <input id="inputEmail" name="email" type="email" placeholder="Email address" class="input pass" required/>
                     <input id="inputPassword" name="password" type="password" placeholder="Choose a password" required class="input pass"/>
-                    <div style="margin: 0 auto"><div class="g-recaptcha" data-sitekey="6Lc9p1IUAAAAAOBwW-LE1IPih6AcW_CpDY3bsxaQ"></div></div>
+                    </br>
+                    <div align="center" class="g-recaptcha" data-sitekey="6Lc9p1IUAAAAAOBwW-LE1IPih6AcW_CpDY3bsxaQ"></div>
                     <input type="submit" value="Sign up" class="inputButton"/>
                 </form>
             </div>
