@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
     <script src="js/moment-with-locales.min.js"></script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 
@@ -82,6 +83,7 @@
                     </div>
                     <input id="inputEmail" name="email" type="email" placeholder="Email address" class="input pass" required/>
                     <input id="inputPassword" name="password" type="password" placeholder="Choose a password" required class="input pass"/>
+                    <div style="margin: 0 auto"><div class="g-recaptcha" data-sitekey="6Lc9p1IUAAAAAOBwW-LE1IPih6AcW_CpDY3bsxaQ"></div></div>
                     <input type="submit" value="Sign up" class="inputButton"/>
                 </form>
             </div>

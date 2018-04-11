@@ -1,18 +1,24 @@
 package com.netcracker.travelplanner.security.controllers;
 
 import com.netcracker.travelplanner.models.entities.User;
+import com.netcracker.travelplanner.security.services.RecaptchaService;
 import com.netcracker.travelplanner.security.services.SecurityService;
 import com.netcracker.travelplanner.security.services.UserService;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -25,6 +31,9 @@ public class UserController {
     @Autowired
     private SecurityService securityService;
 
+    @Autowired
+    private RecaptchaService recaptchaService;
+
     @RequestMapping(value = "/signUp", method = RequestMethod.GET)
     public String registration() {
         return "signup";
@@ -36,7 +45,20 @@ public class UserController {
                                 @RequestParam(value = "lastname", required = true) String lastName,
                                 @RequestParam(value = "birthdate", required = true) String birthDate,
                                 @RequestParam(value = "email", required = true) String email,
-                                @RequestParam(value = "password", required = true) String password) {
+                                @RequestParam(value = "password", required = true) String password,
+                                @RequestParam(name="g-recaptcha-response") String recaptchaResponse,
+                                HttpServletRequest request) {
+
+        String ip = request.getRemoteAddr();
+        String captchaVerifyMessage =
+                recaptchaService.verifyRecaptcha(ip, recaptchaResponse);
+
+        if ( StringUtils.isNotEmpty(captchaVerifyMessage)) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", captchaVerifyMessage);
+            return ResponseEntity.badRequest()
+                    .body(response).toString();
+        }
 
         logger.info("Process of registration new user...");
         Date date = java.sql.Date.valueOf(birthDate);

@@ -24,7 +24,7 @@ public class RouteTestController {
     @RequestMapping(value = "/get-routes/date/", method = RequestMethod.GET)
     public List<Route> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to,@RequestParam("longLatFrom") String longLatFrom, @RequestParam("longLatTo") String longLatTo, @RequestParam("date") String date, @RequestParam("numberOfPassengers") int numberOfPassengers){
 
-        logger.debug("Start finding {} - {} - {} - {}", from, to, date, numberOfPassengers);
+        logger.debug("Start finding {} - {} - {} - {} - {} - {}", from, longLatFrom, to, longLatTo, date, numberOfPassengers);
 
         return mainRouteService.findBestRoutes(from,to,longLatFrom,longLatTo,date,numberOfPassengers);
     }
