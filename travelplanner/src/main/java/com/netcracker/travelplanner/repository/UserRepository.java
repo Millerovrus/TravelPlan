@@ -1,6 +1,6 @@
 package com.netcracker.travelplanner.repository;
 
-import com.netcracker.travelplanner.entities.User;
+import com.netcracker.travelplanner.models.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,8 @@
 package com.netcracker.travelplanner.api;
 
-import com.netcracker.travelplanner.entities.Edge;
-import com.netcracker.travelplanner.entities.Point;
-import com.netcracker.travelplanner.entities.TransitEdge;
+import com.netcracker.travelplanner.models.entities.Edge;
+import com.netcracker.travelplanner.models.entities.Point;
+import com.netcracker.travelplanner.models.entities.TransitEdge;
 import com.netcracker.travelplanner.webParsers.WebParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -70,13 +70,15 @@ public class YandexParser implements ApiInterface {
                                     ,from.getLongitude()
                                     ,from.getIataCode()
                                     ,from.getYandexCode()
-                                    ,""));
+                                    ,""
+                                    ,from.getRussianName()));
                             edge.setEndPoint(new Point(to.getName()
                                     ,to.getLatitude()
                                     ,to.getLongitude()
                                     ,to.getIataCode()
                                     ,to.getYandexCode()
-                                    ,""));
+                                    ,""
+                                    ,to.getRussianName()));
 
                             List<TransitEdge> transitEdges = new LinkedList<>();
                             transitEdges.add(new TransitEdge(
@@ -85,13 +87,15 @@ public class YandexParser implements ApiInterface {
                                             ,from.getLongitude()
                                             ,from.getIataCode()
                                             ,from.getYandexCode()
-                                            ,"")
+                                            ,""
+                                            ,from.getRussianName())
                                     ,new Point(to.getName()
-                                    ,to.getLatitude()
-                                    ,to.getLongitude()
-                                    ,to.getIataCode()
-                                    ,to.getYandexCode()
-                                    ,"")
+                                            ,to.getLatitude()
+                                            ,to.getLongitude()
+                                            ,to.getIataCode()
+                                            ,to.getYandexCode()
+                                            ,""
+                                            ,to.getRussianName())
                                     ,LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text()))
                                     ,LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text()))
 

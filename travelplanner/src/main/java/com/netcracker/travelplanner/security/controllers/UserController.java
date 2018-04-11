@@ -1,8 +1,8 @@
 package com.netcracker.travelplanner.security.controllers;
 
-import com.netcracker.travelplanner.entities.User;
-import com.netcracker.travelplanner.security.service.SecurityService;
-import com.netcracker.travelplanner.security.service.UserService;
+import com.netcracker.travelplanner.models.entities.User;
+import com.netcracker.travelplanner.security.services.SecurityService;
+import com.netcracker.travelplanner.security.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -9,7 +9,6 @@ angular.module('myApp',['controllerModule'])
 angular.module('controllerModule')
 
     .controller('myParameterController', function requestFunc($scope, $http, $window) {
-
         $scope.saveRoute=function (record) {
             
             $http({
@@ -60,41 +59,54 @@ angular.module('controllerModule')
                 });
             initMap();
         };
+
         $scope.optimalRoutes = function(records) {
             return records.optimalRoute;
         };
         $scope.allRoutes = function(records) {
             return records;
         };
-        $scope.routesWithoutBus = function (records) {
+        //для того, чтобы изначально чекбоксы были выбраны
+        //ng-checked="true" работает не так как нужно
+        //checked не работает с ng-model
+        $scope.checkboxPlane = true;
+        $scope.checkboxBus = true;
+        $scope.checkboxTrain = true;
+        //переменные, содержащие текущие значения чекбоксов
+        var planeCheckboxValue = true;
+        var busCheckboxValue = true;
+        var trainCheckboxValue = true;
+        //функции, которые меняют значения чекбоксов
+        $scope.changePlaneCheckbox = function () {
+            planeCheckboxValue = !planeCheckboxValue;
+        };
+        $scope.changeTrainCheckbox = function () {
+            trainCheckboxValue = !trainCheckboxValue;
+        };
+        $scope.changeBusCheckbox = function () {
+            busCheckboxValue = !busCheckboxValue;
+        };
+        //фильтр по транспорту
+        $scope.transportTypeFilter = function (records) {
             for (var i = 0; i < records.edges.length; i++){
-                if (records.edges[i].transportType === "bus"){
-                    return false;
+                if (!planeCheckboxValue){
+                    if (records.edges[i].transportType === "plane"){
+                        return false;
+                    }
+                }
+                if (!busCheckboxValue){
+                    if (records.edges[i].transportType === "bus"){
+                        return false;
+                    }
+                }
+                if (!trainCheckboxValue){
+                    if (records.edges[i].transportType === "train" || records.edges[i].transportType === "suburban"){
+                        return false;
+                    }
                 }
             }
             return true;
         };
-        $scope.routesWithoutPlane = function (records) {
-            for (var i = 0; i < records.edges.length; i++){
-                if (records.edges[i].transportType === "plane"){
-                    return false;
-                }
-            }
-            return true;
-        };
-        $scope.routesWithoutTrain = function (records) {
-            for (var i = 0; i < records.edges.length; i++){
-                if (records.edges[i].transportType === "train" || records.edges[i].transportType === "suburban"){
-                    return false;
-                }
-            }
-            return true;
-        };
-        // $scope.routesWithCostFromTo = function (records) {
-        //     var from = parseInt(document.getElementById('cost_from').value);
-        //     var to = parseInt(document.getElementById('cost_to').value);
-        //     return (records.cost > from && records.cost < to)
-        // };
 
         $scope.openLink = function(purchaseLink) {
             if (purchaseLink === null){
@@ -131,15 +143,6 @@ angular.module('controllerModule')
             }
         };
     }])
-    .filter('localDateTimeToString', [function () {
-        return function (dateTime) {
-            return dateTime.year + '-'
-                + ('0' + dateTime.monthValue).slice(-2) + '-'
-                + ('0' + dateTime.dayOfMonth).slice(-2) + ' at '
-                + ('0' + dateTime.hour).slice(-2) + ':'
-                + ('0' + dateTime.minute).slice(-2);
-        }
-    }])
     .filter('orderObjectBy', function(){
         return function(input, attribute) {
             if (!angular.isObject(input)) return input;
@@ -152,13 +155,10 @@ angular.module('controllerModule')
             switch (attribute){
                 case 'startDate':
                     array.sort(function(a, b) {
-                        if ((a.edges[0].startDate.hour * 60 + a.edges[0].startDate.minute) > (b.edges[0].startDate.hour * 60 + b.edges[0].startDate.minute)){
-                            return 1;
-                        }
-                        if ((a.edges[0].startDate.hour * 60 + a.edges[0].startDate.minute) < (b.edges[0].startDate.hour * 60 + b.edges[0].startDate.minute)){
-                            return -1;
-                        }
-                        return 0;
+                        var startDateA = a.edges[0].startDate.replace(/:/g,'').slice(11, 17);
+                        var startDateB = b.edges[0].startDate.replace(/:/g,'').slice(11, 17);
+
+                        return startDateA - startDateB
                     });
                     break;
                 case 'transfers':

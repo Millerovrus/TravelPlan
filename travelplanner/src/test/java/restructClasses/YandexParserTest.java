@@ -1,10 +1,10 @@
 package restructClasses;
 
-import com.netcracker.travelplanner.entities.SearchInputParameters;
-import com.netcracker.travelplanner.service.PreparingDataService;
+import com.netcracker.travelplanner.models.SearchInputParameters;
+import com.netcracker.travelplanner.services.PreparingDataService;
 import com.netcracker.travelplanner.webParsers.WebParser;
 import com.netcracker.travelplanner.api.YandexParser;
-import com.netcracker.travelplanner.entities.Edge;
+import com.netcracker.travelplanner.models.entities.Edge;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 

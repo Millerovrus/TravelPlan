@@ -1,11 +1,11 @@
 package com.netcracker.travelplanner.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.netcracker.travelplanner.entities.Route;
-import com.netcracker.travelplanner.entities.User;
-import com.netcracker.travelplanner.security.service.SecurityService;
-import com.netcracker.travelplanner.security.service.UserService;
-import com.netcracker.travelplanner.service.RouteRepositoryService;
+import com.netcracker.travelplanner.models.entities.Route;
+import com.netcracker.travelplanner.models.entities.User;
+import com.netcracker.travelplanner.security.services.SecurityService;
+import com.netcracker.travelplanner.security.services.UserService;
+import com.netcracker.travelplanner.services.RouteRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

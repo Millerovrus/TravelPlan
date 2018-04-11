@@ -2,7 +2,7 @@ package integrationTests;
 
 
 import com.netcracker.travelplanner.TravelPlannerApplication;
-import com.netcracker.travelplanner.entities.*;
+import com.netcracker.travelplanner.models.entities.*;
 import com.netcracker.travelplanner.repository.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,11 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = TravelPlannerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -28,7 +26,7 @@ public class EntitiesTest {
     private PointRepository pointRepository;
 
     @Autowired
-    private TransitEdgesRepository transitEdgesRepository;
+    private TransitEdgeRepository transitEdgeRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -53,14 +51,16 @@ public class EntitiesTest {
                 ,0.0
                 ,"VOZ"
                 ,"123"
-                ,"123");
+                ,"123"
+                ,"Воронеж");
 
         Point point2 = new Point("Moscow"
                 ,0.0
                 ,0.0
                 ,"MOV"
                 ,"321"
-                ,"321");
+                ,"321"
+                ,"Москва");
 
         TransitEdge transitEdge = new TransitEdge(point1,point2,LocalDateTime.now().plusHours(1),LocalDateTime.now());
 
@@ -111,7 +111,7 @@ public class EntitiesTest {
         routeRepository.save(route);
         edgeRepository.save(edges);
         userRepository.save(user);
-        transitEdgesRepository.save(transitEdges);
+        transitEdgeRepository.save(transitEdges);
         pointRepository.save(point1);
         pointRepository.save(point2);
 
