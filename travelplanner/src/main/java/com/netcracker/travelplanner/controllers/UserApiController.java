@@ -61,32 +61,35 @@ public class UserApiController {
 
     /**
      * Save new user in database
-     * @param firstName
-     * @param lastName
-     *
-     * @param birthDate
-     *
      * WITHOUT SPRINGSECURITY! DON'T DELETE!
      */
     @RequestMapping(value = "/changeUserData", method = RequestMethod.POST)
     //@ResponseStatus(value = HttpStatus.CREATED)
     public void changeUserData(
-            @RequestParam(value = "firstname", required = true) String firstName,
-            @RequestParam(value = "lastname", required = true) String lastName,
-            @RequestParam(value = "birthdate", required = true) String birthDate,
-            @RequestParam(value = "avatar", required = true) String avatar
-            /*@RequestParam(value = "email", required = true) String email,
-            @RequestParam(value = "password", required = true) String password*/){
+            @RequestParam(value = "firstname", required = true) String changeFirstName,
+            @RequestParam(value = "lastname", required = true) String changeLastName,
+            @RequestParam(value = "birthdate", required = true) String changeBirthDate,
+            @RequestParam(value = "avatar", required = true) String changeAvatar
+            //@RequestParam(value = "email", required = true) String changeEmail
+            /*@RequestParam(value = "password", required = true) String password*/){
         logger.info("Смена данных пользователя...");
         String email = securityService.findLoggedInUsername();
         if (email != null) {
             User user = userService.findUserByEmail(email);
             try {
-                user.setFirstName(firstName);
-                user.setLastName(lastName);
-                Date date = new SimpleDateFormat("dd.MM.yyyy").parse(birthDate);
-                user.setBirthDate(date);
-                user.setAvatar(avatar);
+                if (changeFirstName != null) {
+                    user.setFirstName(changeFirstName);
+                }
+                if (changeLastName != null) {
+                    user.setLastName(changeLastName);
+                }
+                if (changeBirthDate != null) {
+                    Date date = new SimpleDateFormat("dd.MM.yyyy").parse(changeBirthDate);
+                    user.setBirthDate(date);
+                }
+                if (changeAvatar != "") {
+                    user.setAvatar(changeAvatar);
+                }
                 //Шифрование пароля
                 //user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
                 userRepositoryService.save(user);

@@ -55,4 +55,9 @@ public class SecurityServiceImpl implements SecurityService {
             logger.debug("Auto login {} successfully!", email);
         }
     }
+
+    @Override
+    public void autoLogout() {
+        SecurityContextHolder.clearContext();
+    }
 }

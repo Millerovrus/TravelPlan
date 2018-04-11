@@ -135,17 +135,17 @@
                                         <h4>Date of birth</h4>
                                         <input type="text" class="form-input" value="${birthdate}" placeholder="Birthdate" disabled id="birth-date">
                                     </div>
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12" style="display: none" id="avatar-class">
                                         <h4>Avatar</h4>
-                                        <input type="text" class="form-input" value="${avatar}" placeholder="Avatar" disabled id="avatar">
+                                        <input type="text" class="form-input" value="" placeholder="Please, insert here link to the picture..." disabled id="avatar">
                                     </div>
-                                    <div class="row">
+                                    <#--<div class="row">
                                         <div class="col-sm-11 file-input text-left">
                                             <input type="file" id="base-input" style="display: none" onchange="readURL(this);" accept="image/*" class="form-style-base">
                                             <h4 id="fake-input" style="display: none" class="upload-btn form-style-fake"><i class="fa fa-camera"></i> Upload photo</h4>
                                             <div id="file-name"><i class="fa fa-check"></i></div>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                     <div class="col-sm-12 text-center" align="center">
                                         <button class="btn custom-btn" ng-click="change()" onclick="saveEdit()" id="submit-edit" style="display: none" disabled> Save changes</button>
