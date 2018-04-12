@@ -23,7 +23,7 @@ time, mark, audio, video {
 
 body{
     background-color: #f2f2f2;
-    background: url("../img/old.jpg") no-repeat center center fixed;
+    background: url("../img/laptop.jpg") no-repeat center center fixed;
     font-family: "Lato";
     font-weight: 300;
     font-size: 16px;
@@ -60,15 +60,6 @@ p{
     text-align: center;
 }
 
-a{
-    color: #f86c37;
-}
-
-a:hover,a:focus{
-    color: #7b7b7b;
-    text-decoration: none;
-    outline: 0;
-}
 
 hr{
     display: block;
@@ -356,7 +347,7 @@ textarea{
     padding:10px;
 }
 
-.input {
+.input-sign {
     font-family: Lato;
     width: 90%;
     height: 50px;
@@ -368,14 +359,14 @@ textarea{
 
 }
 
-.input:focus {
+.input-sign:focus {
     outline: none;
     border-bottom-color: #ff7878 !important;
 }
-.input:hover {
+.input-sign:hover {
     border-bottom-color: #dcdcdc;
 }
-.input:invalid {
+.input-sign:invalid {
     box-shadow: none;
 }
 

@@ -1,4 +1,5 @@
-angular.module('appChangeUserData',[]).controller('controllerChangeData', function changeUserData($scope, $http) {
+angular.module('appChangeUserData',[])
+    .controller('controllerChangeData', function changeUserData($scope, $http, $window) {
     $scope.change = function () {
         $http({
             method: 'POST',
@@ -40,4 +41,46 @@ angular.module('appChangeUserData',[]).controller('controllerChangeData', functi
                 alert("Something goes wrong :(");
             });
     };
-});
+
+        $scope.openLink = function(purchaseLink) {
+            if (purchaseLink === null){
+                alert("Нет ссылки на покупку")
+            } else $window.open(purchaseLink);
+        };
+})
+    .filter('getMonthNumber',[function () {
+        return function (stringDate) {
+            var month;
+            if(stringDate.charAt(5)=='0'){
+                month = stringDate.charAt(6);
+            }  else{
+                month = stringDate.charAt(5)+stringDate.charAt(6);
+            }
+
+            return parseInt(month);
+        }
+    }])
+    .filter('getMonthValue',[function () {
+        return function (monthNumber) {
+            var monthNames = [ 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
+                'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC' ];
+            return monthNames[monthNumber - 1];
+        }
+    }])
+    .filter('getDayNumber',[function () {
+        return function (stringDate) {
+            var day = stringDate.charAt(8)+stringDate.charAt(9);
+            return  parseInt(day);
+        }
+    }])
+    .filter('getTimeFromDate',[function () {
+        return function (stringDate) {
+            var i;
+            var time='';
+            for(i=11; i<stringDate.length; i++){
+                time+=stringDate.charAt(i);
+            }
+            return time;
+        }
+    }])
+;

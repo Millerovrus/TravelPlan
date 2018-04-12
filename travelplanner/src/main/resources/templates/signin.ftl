@@ -22,7 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 
     <!-- my css -->
-    <link href="css/my-styles.css" rel="stylesheet">
+    <link href="css/sign-styles.css" rel="stylesheet">
 
     <!-- my scripts -->
     <!--<script src="js/my-styles.js"></script>-->
@@ -62,7 +62,7 @@
     </div>
 </div>
 <div>
-    <img src="img/imgMain.jpg"  id="sign-pic" class="background-sign-pic">
+    <#--<img src="img/imgMain.jpg"  id="sign-pic" class="background-sign-pic">-->
     <div class="container" id="sign-in-from">
         <div class="col-sm-12">
             <div id="logbox">
@@ -79,9 +79,11 @@
                            name="username">
                     <input type="password" class="input pass" id="password" placeholder="Password"
                            name="password">
-                    <button type="submit" class="inputButton">Log in</button>
+                    <div class="add-margin">
+                        <button type="submit" class="button">Log in</button>
+                    </div>
 
-                    <div class="bottom text-center">
+                    <div class="bottom text-center add-margin">
                         New here? <a href="/signUp"><b>Join Us</b></a>
                     </div>
                 </form>

@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Raleway');
+@import url(https://fonts.googleapis.com/css?family=Patrick+Hand+SC);
+
+body{
+    background-color: #f2f2f2;
+    background: url("../img/new-for-sign.jpg") no-repeat center center fixed;
+    /*position: absolute;*/
+    background-size: cover;
+    color: #2d2d2d;
+
+    font-family: "Lato";
+    font-weight: 300;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+
+    /*text smoothing*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    margin-top: 70px;
+
+    /*overflow-y: scroll;*/
+    width: 100%;
+    height: 100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: "Raleway";
+    color: #333;
+    font-weight: 300;
+}
+
+.header h1{
+    font-family: "Raleway";
+    color: #333;
+    font-size: 48px;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding: 50px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+a{
+    color: #f86c37;
+}
+
+a:hover,a:focus{
+    color: #7b7b7b;
+    text-decoration: none;
+    outline: 0;
+}
+
+p{
+    line-height: 28px;
+    margin-bottom: 25px;
+}
+
+.centered{
+    text-align: center;
+}
+
+.margin-offset{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* navbar top*/
+#navbar-collapse{
+    background-color: #2d2d2d;
+}
+
+.navbar-inverse .navbar-brand{
+    color: #fff0f5;
+    font-weight: bolder;
+    font-family: "Raleway";
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-top: -4px;
+}
+
+.navbar{
+    height: 60px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.navbar-inverse{
+    background-color: #2d2d2d;
+    border-color: #2d2d2d;
+    border-bottom: 1px rgba(0,0,0,.5) solid;
+}
+
+/*.navbar-inverse .navbar-nav > .active > a{
+    background-color: #ff7878 !important;
+}*/
+
+.navbar-text{
+    margin-top: 11px;
+    margin-bottom:-5px;
+    padding:0;
+}
+
+.navbar-inverse .navbar-nav > li > a{
+    color: #fff0f5;
+}
+
+
+/* sign up/in */
+#sign-pic{
+    opacity: 1.7;
+}
+
+#logbox {
+    border-radius: 5px;
+    padding: 10px;
+    margin: 28px auto;
+    width: 500px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+}
+
+#sign-in-from{
+    padding-top: 50px;
+}
+
+.bottom{
+    /*background-color: transparent;*/
+    border-top:1px solid #ddd;
+    clear:both;
+    width: 90%;
+    padding:10px;
+}
+
+.input {
+    font-family: Lato;
+    width: 90%;
+    height: 50px;
+    display: block;
+    margin: 0 auto 10px;
+    padding: 0 15px;
+    border: none;
+    border-bottom: 2px solid #ebebeb;
+
+}
+
+.input:focus {
+    outline: none;
+    border-bottom-color: #e97f2b !important;
+}
+.input:hover {
+    border-bottom-color: #dcdcdc;
+}
+.input:invalid {
+    box-shadow: none;
+}
+
+.pass:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+#signUp h1{
+    font-size: 34px;
+    text-align: center;
+    font-family: Raleway;
+}
+
+#signIn h1{
+    font-size: 34px;
+    text-align: center;
+    font-family: Raleway;
+}
+
+.button{
+    width: 100%;
+    height: 40px;
+    border: transparent;
+    border-radius: 5px;
+    outline: none;
+    background: #ee8341;
+    color: #f9f9f9;
+    font-family: Lato;
+    font-size: 20px;
+}
+
+
+.add-margin{
+    margin: 0 auto 10px;
+    padding: 0 15px;
+}

@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 
     <!-- my css -->
-    <link href="css/my-styles.css" rel="stylesheet">
+    <link href="css/sign-styles.css" rel="stylesheet">
 
     <!-- my scripts -->
     <script src="js/sign-styles.js"></script>
@@ -63,7 +63,7 @@
         </div>
     </div>
 
-    <img src="img/imgMain.jpg"  id="sign-pic" class="background-sign-pic">
+    <#--<img src="img/imgMain.jpg"  id="sign-pic" class="background-sign-pic">-->
     <div class="container">
         <div class="col-sm-12">
             <div id="logbox">
@@ -83,9 +83,10 @@
                     </div>
                     <input id="inputEmail" name="email" type="email" placeholder="Email address" class="input pass" required/>
                     <input id="inputPassword" name="password" type="password" placeholder="Choose a password" required class="input pass"/>
-                    </br>
-                    <div align="center" class="g-recaptcha" data-sitekey="6Lc9p1IUAAAAAOBwW-LE1IPih6AcW_CpDY3bsxaQ"></div>
-                    <input type="submit" value="Sign up" class="inputButton"/>
+                    <div align="center" class="g-recaptcha add-margin" data-sitekey="6Lc9p1IUAAAAAOBwW-LE1IPih6AcW_CpDY3bsxaQ"></div>
+                    <div class="add-margin">
+                        <input type="submit" value="Sign up" class="button"/>
+                    </div>
                 </form>
             </div>
         </div>
