@@ -20,7 +20,7 @@ public class UFSParser {
                 "/" +
                 "Moscow" +
                 "?date=" +
-                LocalDate.now().plusDays(5).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+                LocalDate.now().plusDays(2).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         System.out.println(url);
         Document doc = Jsoup
                 .connect(url)
@@ -55,9 +55,16 @@ public class UFSParser {
                 Elements pricesEl = record.select("span.wg-wagon-type__price").select("a");
                 List<Double> prices = new ArrayList<>();
                 for (Element priceEl : pricesEl) {
-                    prices.add(Double.parseDouble(priceEl.ownText().replace(" ", "").replace(".", ",")));
+                    prices.add(Double.parseDouble(priceEl.ownText().replace(" ", "").replace(",", ".")));
                 }
                 System.out.println(prices);
+
+                Elements availableSeatsEl = record.select("span.wg-wagon-type__available-seats");
+                List<Integer> availableSeats = new ArrayList<>();
+                for (Element element : availableSeatsEl) {
+                    availableSeats.add(Integer.parseInt(element.text().replaceAll("[^0-9]+", "")));
+                }
+                System.out.println("Кол-во мест " + availableSeats);
 
                 System.out.println();
             }

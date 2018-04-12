@@ -55,7 +55,7 @@ public class Executor implements ExecutorMan {
             try {
 
                 while ( ! listFuture.isDone()) {
-                    System.out.println("Thread sleep. Task is not complete");
+                    logger.error("Thread sleep. Task is not complete");
                     Thread.sleep(sleepTime);
                 }
 

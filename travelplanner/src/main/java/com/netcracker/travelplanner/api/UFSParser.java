@@ -2,6 +2,7 @@ package com.netcracker.travelplanner.api;
 
 import com.netcracker.travelplanner.models.entities.Edge;
 import com.netcracker.travelplanner.models.entities.Point;
+import com.netcracker.travelplanner.models.entities.TrainTicketsInfo;
 import com.netcracker.travelplanner.models.entities.TransitEdge;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -54,9 +55,10 @@ public class UFSParser implements ApiInterface {
                     Edge edge = new Edge();
                     edge.setCreationDate(new Date());
                     edge.setTransportType("train");
-                    edge.setCost(Double.parseDouble(record.selectFirst("span.wg-wagon-type__price").selectFirst("a").ownText().replace(" ", "").replace(",", ".")) * (numberOfPassengers));
+                    edge.setCost(0.0);
                     edge.setStartDate(convertTimeAndDate(record.select("span.wg-track-info__time").first().ownText(), record.select("span.wg-track-info__date").first().text(), date));
                     edge.setEndDate(convertTimeAndDate(record.select("span.wg-track-info__time").last().ownText(), record.select("span.wg-track-info__date").last().text(), date));
+//                    edge.setDuration(travelTimeToDuration(record.selectFirst("span.wg-track-info__travel-time").text()));
                     edge.setDuration((double) ChronoUnit.SECONDS.between(edge.getStartDate(), edge.getEndDate()));
                     edge.setCurrency("RUB");
                     edge.setNumberOfTransfers(1);
@@ -99,7 +101,44 @@ public class UFSParser implements ApiInterface {
                     ));
                     edge.setTransitEdgeList(transitEdges);
                     edge.setPurchaseLink(url);
-                    edgeList.add(edge);
+
+                    //полная инфа о ценах, типе вагона и кол-ве мест
+                    List<String> types = new ArrayList<>();
+                    for (Element typeEl : record.select("div.wg-wagon-type__title")) {
+                        types.add(typeEl.text());
+                    }
+                    List<Double> prices = new ArrayList<>();
+                    for (Element priceEl : record.select("span.wg-wagon-type__price").select("a")) {
+                        prices.add(Double.parseDouble(priceEl.ownText().replace(" ", "").replace(",", ".")));
+                    }
+                    List<Integer> availableSeats = new ArrayList<>();
+                    for (Element seats : record.select("span.wg-wagon-type__available-seats")) {
+                        availableSeats.add(Integer.parseInt(seats.text().replaceAll("[^0-9]+", "")));
+                    }
+                    List<TrainTicketsInfo> fullInfo = new ArrayList<>();
+                    for (int i = 0; i < types.size(); i++) {
+                        fullInfo.add(new TrainTicketsInfo(types.get(i), prices.get(i), availableSeats.get(i)));
+                    }
+                    edge.setTrainTicketsInfoList(fullInfo);
+
+                    //цена в зависимости от наличия мест
+                    int numOfPassengers = numberOfPassengers;
+                    for (TrainTicketsInfo TrainTicketsInfo : fullInfo) {
+                        if (numOfPassengers > TrainTicketsInfo.getAvailableSeats()) {
+                            edge.setCost(edge.getCost() + TrainTicketsInfo.getCost() * TrainTicketsInfo.getAvailableSeats());
+                            numOfPassengers -= TrainTicketsInfo.getAvailableSeats();
+                        } else {
+                            edge.setCost(edge.getCost() + TrainTicketsInfo.getCost() * numOfPassengers);
+                            numOfPassengers = 0;
+                        }
+                        if (numOfPassengers == 0){
+                            edge.setCost(Math.rint(10.0 * edge.getCost()) / 10.0);
+                            //добавление эджа происходит только если мест в поезде хватает
+                            edgeList.add(edge);
+                            break;
+                        }
+                    }
+
                 }
             } else logger.error("нет данных по запросу {}", url);
         }
@@ -112,6 +151,15 @@ public class UFSParser implements ApiInterface {
                 .appendPattern("dd MMM yyyy")
                 .toFormatter(Locale.ENGLISH);
         LocalDate formatDate = LocalDate.parse(date, formatter);
+        //парсер не возвращает год. Поэтому если запрос сделан на декабрь, а возвратился январь, то плюсуем 1 год
+        if (dateOfRequest.getMonthValue() == 12 && formatDate.getMonthValue() == 1){
+            formatDate = formatDate.plusYears(1);
+        }
         return LocalDateTime.of(formatDate, LocalTime.parse(time));
     }
+
+//    private Double travelTimeToDuration(String time){
+//        //TODO
+//        return null;
+//    }
 }

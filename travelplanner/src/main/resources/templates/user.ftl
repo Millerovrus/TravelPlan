@@ -114,11 +114,11 @@
                                         <div class="custom-form">
                                             <div class="col-sm-12">
                                                 <h4>First name</h4>
-                                                <input type="text" class="form-input" value="${firstname}" placeholder="Name" disabled id="first-name">
+                                                <input type="text" class="form-input" value="${firstname}" placeholder="Name" maxlength="50" disabled id="first-name">
                                             </div>
                                             <div class="col-sm-12">
                                                 <h4>Last name</h4>
-                                                <input type="text" class="form-input" value="${lastname}" placeholder="LastName" disabled id="last-name">
+                                                <input type="text" class="form-input" value="${lastname}" placeholder="LastName" maxlength="50" disabled id="last-name">
                                             </div>
                                             <div class="col-sm-12">
                                                 <h4>E-mail</h4>
