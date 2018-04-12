@@ -73,8 +73,8 @@
                         <div class="alert alert-danger" role="alert">Email already exists!</div>
                     </#if>
 
-                    <input id="inputFirstName" name="firstname" type="text" placeholder="First name" class="input pass" required/>
-                    <input id="inputLastName" name="lastname" type="text" placeholder="Last name" class="input pass" required/>
+                    <input id="inputFirstName" name="firstname" type="text" placeholder="First name" maxlength="50" class="input pass" required/>
+                    <input id="inputLastName" name="lastname" type="text" placeholder="Last name" maxlength="50" class="input pass" required/>
                     <div class="input-group date" id='datetimepicker1'>
                         <input id="inputBirthDate" name="birthdate" type="text"  class="input pass" placeholder="Date of birth" required/>
                         <span class="input-group-addon datepickerbutton">
