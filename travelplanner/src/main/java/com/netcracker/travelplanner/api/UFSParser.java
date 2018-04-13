@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 
@@ -37,8 +36,7 @@ public class UFSParser implements ApiInterface {
         List<Edge> edgeList = new ArrayList<>();
 
         if (!from.getRussianName().equals(to.getRussianName())) {
-            Document doc = null;
-            Elements records = null;
+            Document doc;
             try {
                 doc = Jsoup
                         .connect(url)
@@ -46,10 +44,11 @@ public class UFSParser implements ApiInterface {
                         .get();
             } catch (IOException e) {
                 logger.error("ошибка получения по запросу {}", url);
+                return edgeList;
             }
-            if (doc != null) {
-                records = doc.select("div.wg-train-container");
-            }
+
+            Elements records = doc.select("div.wg-train-container");
+
             if (records != null && records.size() > 0) {
                 for (Element record : records) {
                     Edge edge = new Edge();
@@ -58,8 +57,7 @@ public class UFSParser implements ApiInterface {
                     edge.setCost(0.0);
                     edge.setStartDate(convertTimeAndDate(record.select("span.wg-track-info__time").first().ownText(), record.select("span.wg-track-info__date").first().text(), date));
                     edge.setEndDate(convertTimeAndDate(record.select("span.wg-track-info__time").last().ownText(), record.select("span.wg-track-info__date").last().text(), date));
-//                    edge.setDuration(travelTimeToDuration(record.selectFirst("span.wg-track-info__travel-time").text()));
-                    edge.setDuration((double) ChronoUnit.SECONDS.between(edge.getStartDate(), edge.getEndDate()));
+                    edge.setDuration(travelTimeToDuration(record.selectFirst("span.wg-track-info__travel-time").text()));
                     edge.setCurrency("RUB");
                     edge.setNumberOfTransfers(1);
                     edge.setStartPoint(new Point(from.getName()
@@ -158,8 +156,27 @@ public class UFSParser implements ApiInterface {
         return LocalDateTime.of(formatDate, LocalTime.parse(time));
     }
 
-//    private Double travelTimeToDuration(String time){
-//        //TODO
-//        return null;
-//    }
+    private Double travelTimeToDuration(String travelTime){
+        List<Integer> durationList = new ArrayList<>();
+        for (String stringPart : travelTime.split(" ")) {
+            if (stringPart.matches("\\d*")){
+                durationList.add(Integer.parseInt(stringPart));
+            }
+        }
+        int duration = 0;
+        switch (durationList.size()) {
+            case 3:
+                duration = (durationList.get(0) * 86400) + (durationList.get(1) * 3600) + (durationList.get(2) * 60);
+                break;
+            case 2:
+                duration = (durationList.get(0) * 3600) + (durationList.get(1) * 60);
+                break;
+            case 1:
+                duration = (durationList.get(0) * 60);
+                break;
+            default:
+                break;
+        }
+        return (double)duration;
+    }
 }

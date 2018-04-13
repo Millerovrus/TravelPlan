@@ -66,7 +66,7 @@ public class UFSParser {
                 }
                 System.out.println("Кол-во мест " + availableSeats);
 
-                System.out.println();
+                System.out.println(record.selectFirst("span.wg-track-info__travel-time").text());
             }
         } else System.out.println("нет результатов");
     }
