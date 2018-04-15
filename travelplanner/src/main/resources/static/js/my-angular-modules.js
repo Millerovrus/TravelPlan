@@ -62,7 +62,7 @@ angular.module('controllerModule')
         /*autoscroll */
         $scope.goToLoaded = function(loaded) {
             // set the location.hash to the id of the element you wish to scroll to
-            alert(loaded);
+            // alert(loaded);
             if(loaded===true){
                 $location.hash('scroll-to');
                 $anchorScroll();
