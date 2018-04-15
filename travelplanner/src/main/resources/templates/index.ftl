@@ -206,7 +206,7 @@
                             </div>
                         </div>
                         <!-- angular controller for getting routes -->
-                        <div class="row">
+                        <div class="row" > <!--<div class="row" ng-controller="myParameterController">-->
                             <div class="col-sm-12">
                                 <input type="submit" name="" class="button" value="Find route" >
                                 <input type="button" name="" class="button"  ng-click="goToLoaded()" value="gogoog" >
@@ -336,6 +336,10 @@
                                                                         <p><b>Arrival:</b> {{transits.arrival}}</p>
                                                                     </div>
                                                                     <p><b>Cost:</b> {{item.cost}} (RUB)</p>
+                                                                    <p ng-if="item.trainTicketsInfoList != null"><b>Train tickets info:</b></p>
+                                                                    <div ng-repeat="TrainTicketsInfo in item.trainTicketsInfoList">
+                                                                        <p>{{TrainTicketsInfo.wagonType}} - {{TrainTicketsInfo.cost}} (RUB) - {{TrainTicketsInfo.availableSeats}} seats</p>
+                                                                    </div>
                                                                     <div class="row">
                                                                         <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
                                                                             <section>

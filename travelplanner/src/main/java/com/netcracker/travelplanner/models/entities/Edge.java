@@ -73,6 +73,9 @@ public class Edge implements Cloneable {
     @Column(name = "purchase_link", length = 1000)
     private String purchaseLink;
 
+    @Transient
+    private List<TrainTicketsInfo> trainTicketsInfoList;
+
     public String getPurchaseLink() {
         return purchaseLink;
     }
@@ -183,6 +186,14 @@ public class Edge implements Cloneable {
 
     public void setTransitEdgeList(List<TransitEdge> transitEdgeList) {
         this.transitEdgeList = transitEdgeList;
+    }
+
+    public List<TrainTicketsInfo> getTrainTicketsInfoList() {
+        return trainTicketsInfoList;
+    }
+
+    public void setTrainTicketsInfoList(List<TrainTicketsInfo> trainTicketsInfoList) {
+        this.trainTicketsInfoList = trainTicketsInfoList;
     }
 
     public Edge(Date creationDate

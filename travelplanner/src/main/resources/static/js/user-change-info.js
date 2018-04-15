@@ -59,6 +59,27 @@ angular.module('appChangeUserData',[])
             return parseInt(month);
         }
     }])
+    .filter('orderObjectBy', function(){
+        return function(input, attribute) {
+            if (!angular.isObject(input)) return input;
+
+            var array = [];
+            for(var objectKey in input) {
+                array.push(input[objectKey]);
+            }
+
+            if (attribute === "startDate"){
+                array.sort(function(a, b) {
+                    var startDateA = a.edges[0].startDate.replace(/-/g, "").replace(/:/g, "").replace(" ", "");
+                    var startDateB = b.edges[0].startDate.replace(/-/g, "").replace(/:/g, "").replace(" ", "");
+
+                    return startDateA - startDateB
+                });
+            }
+
+            return array;
+        }
+    })
     .filter('getMonthValue',[function () {
         return function (monthNumber) {
             var monthNames = [ 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',

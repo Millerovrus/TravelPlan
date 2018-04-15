@@ -114,11 +114,11 @@
                                         <div class="custom-form">
                                             <div class="col-sm-12">
                                                 <h4>First name</h4>
-                                                <input type="text" class="form-input" value="${firstname}" placeholder="Name" disabled id="first-name">
+                                                <input type="text" class="form-input" value="${firstname}" placeholder="Name" maxlength="50" disabled id="first-name">
                                             </div>
                                             <div class="col-sm-12">
                                                 <h4>Last name</h4>
-                                                <input type="text" class="form-input" value="${lastname}" placeholder="LastName" disabled id="last-name">
+                                                <input type="text" class="form-input" value="${lastname}" placeholder="LastName" maxlength="50" disabled id="last-name">
                                             </div>
                                             <div class="col-sm-12">
                                                 <h4>E-mail</h4>
@@ -161,14 +161,30 @@
                                         <#--</div>-->
                                     <#--</div>-->
                                 </div>
-
                                 <div id="routes" class="tab-pane">
+                                    <div class="col-sm-4 nomargin accordion">
+                                        <dt>Order routes by</dt>
+                                        <dd>
+                                            <div class="content">
+                                                <div class="funkyradio" >
+                                                    <div class="funkyradio-default">
+                                                        <input type="radio" name="radio3" id="radio9" ng-click="orderByAttribute = 'creationDate'" checked/>
+                                                        <label for="radio9">Creation date</label>
+                                                    </div>
+                                                    <div class="funkyradio-default" >
+                                                        <input type="radio" name="radio3" id="radio10" ng-click="orderByAttribute = 'startDate'"/>
+                                                        <label for="radio10">Start date</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </dd>
+                                    </div>
                                     <#--<h4>Saved routes for ${user_id}</h4>-->
                                     <!-- эту твою фигню сделала невидимой -->
                                     <input value="${user_id}" style="display: none" class="input" id="user_id"> <#--Из этой фигни берётся id текущего мужика-->
                                     <div ng-show="loaded">
                                         <!-- better calendar version-->
-                                        <div ng-repeat="record in records" data-ng-class-even="'row-striped-even'" data-ng-class-odd="'row-striped-odd'">
+                                        <div ng-repeat="record in records | orderObjectBy:orderByAttribute" data-ng-class-even="'row-striped-even'" data-ng-class-odd="'row-striped-odd'">
                                             <div>
                                                 <div class="row">
                                                     <div class="col-sm-2 text-right pull-left">

@@ -166,7 +166,7 @@ public class EdgeService {
                 , myPoint.getLat()
                 , myPoint.getLon()
                 , myPoint.getCityCode()
-                , getYandexCode(myPoint.getLat(), myPoint.getLon())
+                , ""
                 , ""
                 , getRussianName(myPoint.getCityName()))));
 
