@@ -7,10 +7,8 @@ angular.module('myApp',['controllerModule'])
         };
     });
 angular.module('controllerModule')
-
-    .controller('myParameterController', function requestFunc($scope, $http, $window) {
+    .controller('myParameterController', function requestFunc($scope, $http, $window,  $location, $anchorScroll) {
         $scope.saveRoute=function (record) {
-            
             $http({
                 method: 'POST',
                 url: 'api/routes/saveroutes',
@@ -45,21 +43,45 @@ angular.module('controllerModule')
                      longLatFrom: angular.element($('#latit_longit_from')).val(),
                      longLatTo: angular.element($('#latit_longit_to')).val(),
                      date: angular.element($('#inputDate')).val(),
-                     numberOfPassengers: angular.element($('#spin-passengers')).val()
+                     numberOfPassengers: angular.element($('#adults-number')).val()
                 }
             }).then(
                 function success(response) {
                     $scope.records = response.data;
-                    $scope.loaded=true;
                     $scope.$emit('UNLOAD');
+                    $scope.loaded=true;
                 },
                 function error(response, status) {
                     console.error('Repos error', status, response);
                     $scope.$emit('UNLOAD');
                     alert("Something goes wrong :(");
                 });
-            initMap();
+            initMap;
         };
+
+        /*autoscroll */
+        $scope.goToLoaded = function(loaded) {
+            // set the location.hash to the id of the element you wish to scroll to
+            alert(loaded);
+            if(loaded===true){
+                $location.hash('scroll-to');
+                $anchorScroll();
+            }
+        };
+
+        $scope.$watch('loaded', function (newValue, oldValue, $scope) {
+            if(newValue===true && oldValue === false){
+                $scope.$evalAsync(function() {
+                    $scope.goToLoaded();
+                    alert(newValue);
+                });
+                // $scope.$apply(function() {
+                //     $location.hash('scroll-to');
+                //     $anchorScroll();
+                // });
+            }
+        });
+
 
         /* form validation */
         $scope.showMessage = function(input) {
@@ -205,9 +227,7 @@ angular.module('controllerModule')
     })
     .controller('mapController', function ($scope) {
         $scope.setMap = function (record) {
-
                 resetMap();
-
             $('.panel').on('shown.bs.collapse', function () {
                 setMap(record);
             });

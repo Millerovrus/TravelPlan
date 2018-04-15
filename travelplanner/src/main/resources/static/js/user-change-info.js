@@ -56,7 +56,6 @@ angular.module('appChangeUserData',[])
             }  else{
                 month = stringDate.charAt(5)+stringDate.charAt(6);
             }
-
             return parseInt(month);
         }
     }])

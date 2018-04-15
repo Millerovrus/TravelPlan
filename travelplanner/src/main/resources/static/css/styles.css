@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Raleway');
 @import url(https://fonts.googleapis.com/css?family=Patrick+Hand+SC);
+@import url(https://fonts.googleapis.com/css?family=Quicksand:300,400,700);
 
 body{
     background-color: #f2f2f2;
@@ -109,7 +110,7 @@ p{
 #travel-header-row h1{
     margin-top: 33px;
     text-align: center;
-    font-size: 52px;
+    font-size: 60px;
     color: #2b2b2b;
     margin-bottom: 7px;
     z-index: 0;
@@ -154,17 +155,11 @@ p{
     }
 }
 
-/* preloader */
-/*.preloader {*/
-    /*padding: 50px;*/
-    /*background: url('../img/Preloader_5.gif') no-repeat 50% 50% transparent;*/
-/*}*/
-
 /* parameter menu*/
 .formBox{
     margin-top: 50px;
     padding: 50px;
-    background: rgba(204, 204, 204, 0.5);
+    background: rgba(182, 182, 182, 0.6);
     border-radius: 2px;
 }
 
@@ -241,12 +236,14 @@ a.inputText{
 
 .mega-dropdown-menu {
     margin-top: 1px;
-    padding: 20px 0px;
-    width: 100%;
+    padding: 10px 0px;
+    /*width: 100%;*/
     box-shadow: none;
     -webkit-box-shadow: none;
     width: 100%;
     border-radius: 2px;
+    /*left: 50%;*/
+    /*float: right;*/
 }
 
 .mega-dropdown-menu > li > ul {
@@ -279,7 +276,7 @@ a.inputText{
 .mega-dropdown-menu .dropdown-header {
     color: #2b2b2b;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 300;
 }
 
 .mega-dropdown-menu form {
@@ -614,26 +611,12 @@ html section button.dotted.thin, body section button.dotted.thin {
     background-color: transparent;
 }
 
-
-/* button filter*/
-.caption .action {
-    margin-bottom: 1rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
-    font-size: 14px;
-    font-family: Raleway;
-    font-weight: bold;
-    border-radius: 10px;
-}
-
-.caption .action:focus{
-    border-radius: 10px;
-    /*border-color: #e96227;*/
-    box-shadow: 0 0 6px #e97f2b;
-    outline: none !important;
-}
-
 /* panel for filters*/
+.label-header{
+    font-family: Raleway;
+    font-size: 18px;
+    font-weight: 300;
+}
 .accordion-panel {
     font-family: Lato;
     margin: 0;
@@ -641,32 +624,33 @@ html section button.dotted.thin, body section button.dotted.thin {
     /*max-width: 560px;*/
 }
 .accordion-panel .accordion {
-    padding-top: 20px;
+    padding-top: 10px;
 }
 .accordion-panel .accordion dt {
     display: block;
     padding: 5px;
-    background: #f4f4f4;
+    background: rgb(163, 163, 163);
     color: #2b2b2b;
     cursor: pointer;
     position: relative;
     user-select: none;
+    border-radius: 5px;
 }
 .accordion-panel .accordion dd {
     height: 0;
     overflow: hidden;
     transition: height .35s ease-out;
     margin-left: 0;
-    margin-bottom: 10px;
-    background: #fff;
-    border-radius: 2px;
+    margin-bottom: 5px;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
 }
 .accordion-panel .accordion .content {
     padding: 10px;
     overflow: auto;
     width: 100%;
-    height: 200px;
-    border: 1px #ccc solid;
+    height: auto;
+    border: /*1px #ccc solid*/ none;
 }
 
 .accordion-panel .plus-icon {
@@ -680,9 +664,9 @@ html section button.dotted.thin, body section button.dotted.thin {
     top: 50%;
     margin-top: -8px;
 }
-.accordion-panel dt{
-    border: 1px #CCC solid;
-}
+/*.accordion-panel dt{*/
+    /*border: 1px #CCC solid;*/
+/*}*/
 .accordion-panel .plus-icon:before,
 .accordion-panel .plus-icon:after {
     content: '';
@@ -743,6 +727,7 @@ html section button.dotted.thin, body section button.dotted.thin {
 }
 
  /* radio */
+
 .funkyradio div {
     clear: both;
     /*margin: 0 50px;*/
@@ -750,7 +735,7 @@ html section button.dotted.thin, body section button.dotted.thin {
 }
 .funkyradio label {
     /*min-width: 400px;*/
-    width: 100%;
+    width: 90%;
     border-radius: 3px;
     border: 1px solid #D1D3D4;
     font-weight: normal;
@@ -805,174 +790,29 @@ html section button.dotted.thin, body section button.dotted.thin {
     background-color: #ccc;
 }
 
-/*loader*/
-.page-loader{
-    background:transparent;
-    height: 100%;
-    position: relative;
-    top: 47px;
-    width: 100%;
-    left: 0;
-    z-index: 9998;
-}
-.loader {
-    height: 8px;
-    position: relative;
-    text-align: center;
-    /*top: 50%;*/
-    width: 44px;
-}
-
-@media screen and (max-width: 430px){
-    .page-loader{
-        margin-left: -40px;
-    }
-}
-@media screen and (min-width: 431px) and (max-width: 570px){
-    .page-loader{
-        margin-left: -35px;
-    }
-}
-
-@media screen and (min-width: 571px)and (max-width: 650px) {
-    .page-loader{
-        margin-left: -27px;
-    }
-}
-
-@media screen and (min-width: 651px) and (max-width: 757px){
-    .page-loader{
-        margin-left: -20px;
-    }
-}
-
-@media screen and (min-width: 758px) and (max-width: 878px){
-    .page-loader{
-        margin-left: -10px;
-    }
-}
-
-@media screen and (min-width: 879px) and (max-width: 940px){
-    .page-loader{
-        margin-left: -5px;
-    }
-}
-
-@media screen and (min-width: 941px) and (max-width: 991px){
-    .page-loader{
-        margin-left: -5px;
-    }
-}
-
-@media screen and (min-width: 992px) and (max-width: 1150px){
-    .page-loader{
-        margin-left: 5px;
-    }
-}
-
-
-@media screen and (min-width: 1151px) and (max-width: 1200px){
-    .page-loader{
-        margin-left: 5px;
-    }
-}
-
-@media screen and (min-width: 1201px)  {
-    .page-loader{
-        margin-left: 25px;
-    }
-}
-
-.dot {
-    background: #ccc none repeat scroll 0 0;
-    border-radius: 50%;
-    display: inline-block;
-    height: 20px;
-    position: absolute;
-    width: 20px;
-}
-.dot_1 {
-    animation: 1.5s linear 0s normal none infinite running;
-    animation-name: animateDot1;
-    background: #f26f29 none repeat scroll 0 0;
-    left: 24px;
-}.dot_2 {
-     animation: 1.5s linear 0.5s normal none infinite running;
-     animation-name:animateDot2;
-     background: #ffffff none repeat scroll 0 0;
-     left: 48px;
- }.dot_3 {
-       animation: 1.5s linear 0s normal none infinite running;
-       animation-name: animateDot3;
-       background: #ffffff none repeat scroll 0 0;
-       left: 24px;
-  }.dot_4 {
-       animation: 1.5s linear 0.5s normal none infinite running;
-       animation-name: animateDot4;
-       background: #ffffff none repeat scroll 0 0;
-       left: 48px;
-   }
-@keyframes animateDot1 {
-    0% {
-        transform: rotate(0deg) translateX(-24px);
-    }
-    25% {
-        transform: rotate(180deg) translateX(-24px);
-    }
-    75% {
-        transform: rotate(180deg) translateX(-24px);
-    }
-    100% {
-        transform: rotate(360deg) translateX(-24px);
-    }
-}
-@keyframes animateDot2 {
-    0% {
-        transform: rotate(0deg) translateX(-24px);
-    }
-    25% {
-        transform: rotate(-180deg) translateX(-24px);
-    }
-    75% {
-        transform: rotate(-180deg) translateX(-24px);
-    }
-    100% {
-        transform: rotate(-360deg) translateX(-24px);
-    }
-}
-@keyframes animateDot3 {
-    0% {
-        transform: rotate(0deg) translateX(24px);
-    }
-    25% {
-        transform: rotate(180deg) translateX(24px);
-    }
-    75% {
-        transform: rotate(180deg) translateX(24px);
-    }
-    100% {
-        transform: rotate(360deg) translateX(24px);
-    }
-}
-@keyframes animateDot4 {
-    0% {
-        transform: rotate(0deg) translateX(24px);
-    }
-    25% {
-        transform: rotate(-180deg) translateX(24px);
-    }
-    75% {
-        transform: rotate(-180deg) translateX(24px);
-    }
-    100% {
-        transform: rotate(-360deg) translateX(24px);
-    }
-}
-
 /* required message*/
 .help-block{
     color: #4d4b4b;
     font-size: 12px;
     font-family: Lato;
 }
+
+/* for margin elements */
+.margin-set{
+    margin-right: 30px;
+    margin-top: 7px;
+}
+
+.margin-left{
+    margin-left: 15px;
+}
+
+/* routes output*/
+.routes-box{
+    margin-top: 70px;
+    padding: 10px;
+    background: rgba(182, 182, 182, 0.6);
+    border-radius: 2px;
+}
+
 
