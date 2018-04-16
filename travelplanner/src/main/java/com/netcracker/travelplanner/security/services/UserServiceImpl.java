@@ -1,6 +1,7 @@
 package com.netcracker.travelplanner.security.services;
 
 import com.netcracker.travelplanner.models.entities.User;
+import static com.netcracker.travelplanner.security.crypto.AesCrypt.*;
 import com.netcracker.travelplanner.services.UserRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,6 +27,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
+        user.setFirstName(encrypt(user.getFirstName()));
+        user.setLastName(encrypt(user.getLastName()));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepositoryService.save(user);
     }

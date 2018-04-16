@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import static com.netcracker.travelplanner.security.crypto.AesCrypt.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -74,10 +75,10 @@ public class UserApiController {
             User user = userService.findUserByEmail(email);
             try {
                 if (changeFirstName != null) {
-                    user.setFirstName(changeFirstName);
+                    user.setFirstName(encrypt(changeFirstName));
                 }
                 if (changeLastName != null) {
-                    user.setLastName(changeLastName);
+                    user.setLastName(encrypt(changeLastName));
                 }
                 if (changeBirthDate != null) {
                     Date date = new SimpleDateFormat("dd.MM.yyyy").parse(changeBirthDate);
