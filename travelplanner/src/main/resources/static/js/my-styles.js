@@ -27,22 +27,29 @@ $(function () {
 });
 
 /* spinner + -*/
-$(function () {
-    $("input[name='spinner-passengers']").TouchSpin({
-        min: 1,
-        max: 9,
-        step: 1,
-        verticalupclass: 'fas fa-plus'
-    });
-});
-
-/*
-$(function(){
-    $("#accordion1").accordion({
-        collapsible: true,
-        active: false
-    });
-});*/
+// $(function () {
+//     $("input[name='spinner-adults']").TouchSpin({
+//         min: 1,
+//         max: 9,
+//         step: 1
+//         // buttondown_class: "btn button-spin",
+//         // buttonup_class: "btn button-spin",
+//         // verticalupclass: 'glyphicon glyphicon-chevron-up',
+//         // verticaldownclass: 'glyphicon glyphicon-chevron-down'
+//     });
+// });
+//
+// $(function () {
+//     $("input[name='spinner-children']").TouchSpin({
+//         min: 0,
+//         max: 5,
+//         step: 1
+//         // buttondown_class: "btn button-spin",
+//         // buttonup_class: "btn button-spin",
+//         // verticalupclass: 'glyphicon glyphicon-chevron-up',
+//         // verticaldownclass: 'glyphicon glyphicon-chevron-down'
+//     });
+// });
 
 /*fix map*/
 $(function(){
@@ -52,9 +59,6 @@ $(function(){
         zIndex: 0
     });
 });
-/* todo to fix limit in div without jumping out from container after limit */
-
-
 /* user information */
 
 $('input[id=base-input]').change(function() {
@@ -84,32 +88,6 @@ $(function () {
     $(".input").focus(function() {
         $(this).parent().addClass("focus");
     })
-});
-
-/* slider */
-$(document).ready(function() {
-
-    var $element = $('input[type="range"]');
-    var $handle;
-
-    $element.rangeslider({
-        polyfill: false,
-        onInit: function() {
-            $handle = $('.rangeslider__handle', this.$range);
-            updateHandle($handle[0], this.value);
-            $("#amount-label").html('<span class="pricing__dollar">€</span>' + this.value);
-        }
-    }).on('input', function() {
-        updateHandle($handle[0], this.value);
-        $("#amount-label").html('<span class="pricing__dollar">€</span>' + this.value);
-    });
-
-    function updateHandle(el, val) {
-        el.textContent = val;
-    }
-
-    $('input[type="range"]').rangeslider();
-
 });
 
 /*accordion */
@@ -196,3 +174,74 @@ $(document).ready(function() {
     openCloseItem();
 });
 
+/* spinner + - */
+$(document).ready(function(){
+    $("#num-picker-adults").dpNumberPicker({
+        min: 1, // Minimum value.
+        max: 7, // Maximum value.
+        value: 1, // Initial value
+        step: 1, // Incremental/decremental step on up/down change.
+        format: false,
+        editable: true,
+        addText: "+",
+        subText: "-",
+        formatter: function(val){return val;},
+        beforeIncrease: function(){},
+        afterIncrease: function(){},
+        beforeDecrease: function(){},
+        afterDecrease: function(){},
+        beforeChange: function(){},
+        afterChange: function(){},
+        onMin: function(){},
+        onMax: function(){}
+})});
+
+$(document).ready(function(){
+    $("#num-picker-children").dpNumberPicker({
+        min: 0, // Minimum value.
+        max: 5, // Maximum value.
+        value: 0, // Initial value
+        step: 1, // Incremental/decremental step on up/down change.
+        format: false,
+        editable: true,
+        addText: "+",
+        subText: "-",
+        formatter: function(val){return val;},
+        beforeIncrease: function(){},
+        afterIncrease: function(){},
+        beforeDecrease: function(){},
+        afterDecrease: function(){},
+        beforeChange: function(){},
+        afterChange: function(){},
+        onMin: function(){},
+        onMax: function(){}
+    })});
+
+$(document).ready(function(){
+    $("#num-picker-infants").dpNumberPicker({
+        min: 0, // Minimum value.
+        max: 5, // Maximum value.
+        value: 0, // Initial value
+        step: 1, // Incremental/decremental step on up/down change.
+        format: false,
+        editable: true,
+        addText: "+",
+        subText: "-",
+        formatter: function(val){return val;},
+        beforeIncrease: function(){},
+        afterIncrease: function(){},
+        beforeDecrease: function(){},
+        afterDecrease: function(){},
+        beforeChange: function(){},
+        afterChange: function(){},
+        onMin: function(){},
+        onMax: function(){}
+    })});
+
+
+/* test */
+function getValue() {
+    var valuee = document.getElementById('testval').value;
+    alert(valuee);
+
+}

@@ -40,9 +40,15 @@
 
     <!-- my css -->
     <link href="css/styles.css" rel="stylesheet">
+    <link href="css/loader.css" rel="stylesheet">
     <!--<link href="css/sign-in-style.css" rel="stylesheet">-->
+
     <!-- my scripts -->
     <script src="js/my-styles.js"></script>
+
+    <!-- -->
+    <script src="js/jquery.dpNumberPicker.js"></script>
+    <link href="css/jquery.dpNumberPicker-holoLight.css" rel="stylesheet">
 
     <!-- js styles for accordion with filters-->
 <#--<script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script>-->
@@ -91,15 +97,16 @@
             <div id="travel-header-row" class="col-sm-12">
                 <h1>Start your journey right now</h1>
             </div>
+
         </div>
     </div>
 
     <!-- parameter menu-->
     <div class="col-sm-12">
         <div class="container-fluid">
-            <div class="container">
-                <div class="formBox" id=>
-                    <form name="myForm" id="inputForm" novalidate autocomplete="off" ng-controller="myParameterController" ng-submit="myForm.$valid && sendRequestParameters()">
+            <form name="myForm" id="inputForm" novalidate autocomplete="off" ng-controller="myParameterController" ng-submit="myForm.$valid && sendRequestParameters()">
+                <div class="container">
+                    <div class="formBox">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="inputBox ">
@@ -134,42 +141,39 @@
                             <div class="col-sm-6">
                                 <div class="inputBox">
                                     <div class="input dropdown-toggle " id="test">
-                                        <a href="#" class=" inputText" data-toggle="dropdown">More parameters<span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
+                                        <a href="#" class=" inputText" data-toggle="dropdown">Passengers<span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
                                         <ul class="dropdown-menu mega-dropdown-menu row">
                                             <li class="col-sm-12">
-                                                <ul>
-                                                    <li class="dropdown-header centered">Passengers</li>
-                                                    <div class="drop-passengers">
-                                                        <div class="spinner-inline">
-                                                            <div class="col-sm-6">
-                                                                <input id="spin-passengers" class="spinner text-center" type="text" value="1" name="spinner-passengers">
-                                                            </div>
-                                                        </div>
+                                                <div class="row">
+                                                    <label for="num-picker-adults" class="text-center margin-left">
+                                                        <span class="dropdown-header">Adults</span>
+                                                    </label>
+                                                    <div id="num-picker-adults" class="dp-numberPicker pull-right margin-set">
+                                                        <div class="dp-numberPicker-sub"><i class="fa fa-minus"></i></div>
+                                                        <input type="text" id="adults-number" class="dp-numberPicker-input" value="1">
+                                                        <div class="dp-numberPicker-add"><i class="fa fa-plus"></i></div>
                                                     </div>
-                                                </ul>
-                                                <div class="divider-inverse"></div>
-                                            </li>
-                                            <li class="col-sm-12">
-                                                <ul>
-                                                    <li class="dropdown-header centered">Type of transport</li>
-                                                    <div class="row form-check">
-                                                        <div class="col-sm-4">
-                                                            <label class="checkbox">
-                                                                <input id="need-plane" type="checkbox" checked><span>Plane</span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="checkbox">
-                                                                <input id="need-bus" type="checkbox" checked><span>Bus</span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <label class="checkbox">
-                                                                <input id="need-train" type="checkbox" checked><span>Train</span>
-                                                            </label>
-                                                        </div>
+                                                </div>
+                                                <div class="row">
+                                                    <label for="num-picker-children" class="text-center margin-left">
+                                                        <span class="dropdown-header">Children</span>
+                                                    </label>
+                                                    <div id="num-picker-children" class="dp-numberPicker pull-right margin-set">
+                                                        <div class="dp-numberPicker-sub"><i class="fa fa-minus"></i></div>
+                                                        <input type="text" id="children-number" class="dp-numberPicker-input" value="0">
+                                                        <div class="dp-numberPicker-add"><i class="fa fa-plus"></i></div>
                                                     </div>
-                                                </ul>
+                                                </div>
+                                                <div class="row">
+                                                    <label for="num-picker-infants" class="text-center margin-left">
+                                                        <span class="dropdown-header">Infants</span>
+                                                    </label>
+                                                    <div id="num-picker-infants" class="dp-numberPicker pull-right margin-set">
+                                                        <div class="dp-numberPicker-sub"><i class="fa fa-minus"></i></div>
+                                                        <input type="text" id="infants-number" class="dp-numberPicker-input" value="0">
+                                                        <div class="dp-numberPicker-add"><i class="fa fa-plus"></i></div>
+                                                    </div>
+                                                </div>
                                             </li>
                                         </ul>
                                     </div>
@@ -202,175 +206,170 @@
                             </div>
                         </div>
                         <!-- angular controller for getting routes -->
-                        <div class="row" ng-controller="myParameterController">
+                        <div class="row" > <!--<div class="row" ng-controller="myParameterController">-->
                             <div class="col-sm-12">
                                 <input type="submit" name="" class="button" value="Find route" >
-                                <#--<div ng-show="loading" class="preloader"></div>-->
-                                <div class="row" ng-show="loading">
-                                    <div class="col-xs-offset-5 col-xs-2 col-xs-offset-5">
-                                        <div  class="page-loader" style="">
-                                            <div class="loader">
-                                                <span class="dot dot_1"></span>
-                                                <span class="dot dot_2"></span>
-                                                <span class="dot dot_3"></span>
-                                                <span class="dot dot_4"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div ng-show="loaded" ng-init="optimalFilter = optimalRoutes; orderByAttribute = 'cost'">
-                                    <div ng-controller="mapController">
-                                        <div class="output-collapse">
-                                            <div class="container-fluid">
-                                                <div class="row">
-                                                    <div class="col-sm-12 nomargin">
-                                                        <div class="accordion-panel">
-                                                            <div class="buttons-wrapper">
-                                                                <i class="plus-icon"></i>
-                                                                <div class="open-btn">
-                                                                    Open all
-                                                                </div>
-                                                                <div class="close-btn hidden">
-                                                                    Close all
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="container-fluid">
-                                                                <dl class="row accordion">
-                                                                    <div class="col-sm-4 nomargin accordion">
-                                                                        <dt>Show filter<i class="plus-icon"></i></dt>
-                                                                        <dd>
-                                                                            <div class="content">
-                                                                                <div class="funkyradio">
-                                                                                    <div class="funkyradio-default">
-                                                                                        <input type="radio" name="radio1" id="radio1" ng-click="optimalFilter = optimalRoutes" checked/>
-                                                                                        <label for="radio1">Optimal routes</label>
-                                                                                    </div>
-                                                                                    <div class="funkyradio-default">
-                                                                                        <input type="radio" name="radio1" id="radio2" ng-click="optimalFilter = allRoutes"/>
-                                                                                        <label for="radio2">All routes</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </dd>
-                                                                    </div>
-                                                                    <div class="col-sm-4 nomargin accordion">
-                                                                        <dt>Transport type filter<i class="plus-icon"></i></dt>
-                                                                        <dd>
-                                                                            <div class="content">
-                                                                                    <div class="funkyradio">
-                                                                                        <div class="funkyradio-default">
-                                                                                            <input type="checkbox" name="checkbox" id="checkboxPlane" ng-model="checkboxPlane" ng-change="changePlaneCheckbox()"/>
-                                                                                            <label for="checkboxPlane">Plane</label>
-                                                                                        </div>
-                                                                                        <div class="funkyradio-default">
-                                                                                            <input type="checkbox" name="checkbox" id="checkboxBus" ng-model="checkboxBus" ng-change="changeBusCheckbox()"/>
-                                                                                            <label for="checkboxBus">Bus</label>
-                                                                                        </div>
-                                                                                        <div class="funkyradio-default">
-                                                                                            <input type="checkbox" name="checkbox" id="checkboxTrain" ng-model="checkboxTrain" ng-change="changeTrainCheckbox()"/>
-                                                                                            <label for="checkboxTrain">Train</label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                            </div>
-                                                                        </dd>
-                                                                    </div>
-                                                                    <div class="col-sm-4 nomargin accordion">
-                                                                        <dt>Order routes by<i class="plus-icon"></i></dt>
-                                                                        <dd>
-                                                                            <div class="content">
-                                                                                <div class="funkyradio" >
-                                                                                    <div class="funkyradio-default" >
-                                                                                        <input type="radio" name="radio3" id="radio5" ng-click="orderByAttribute = 'cost'" checked/>
-                                                                                        <label for="radio5">Cost</label>
-                                                                                    </div>
-                                                                                    <div class="funkyradio-default">
-                                                                                        <input type="radio" name="radio3" id="radio6" ng-click="orderByAttribute = 'duration'"/>
-                                                                                        <label for="radio6">Duration</label>
-                                                                                    </div>
-                                                                                    <div class="funkyradio-default">
-                                                                                        <input type="radio" name="radio3" id="radio7" ng-click="orderByAttribute = 'startDate'"/>
-                                                                                        <label for="radio7">Departure time</label>
-                                                                                    </div>
-                                                                                    <div class="funkyradio-default">
-                                                                                        <input type="radio" name="radio3" id="radio8" ng-click="orderByAttribute = 'transfers'"/>
-                                                                                        <label for="radio8">Transfers quantity</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </dd>
-                                                                    </div>
-                                                                </dl>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-5">
-                                                        <div class="fancy-collapse-panel" >
-                                                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-                                                                <div ng-repeat="record in records | filter:optimalFilter | filter:transportTypeFilter | orderObjectBy:orderByAttribute">
-                                                                    <div class="panel panel-default" >
-                                                                        <div class="panel-heading" role="tab" id="headingOne" >
-                                                                            <h4 class="panel-title">
-                                                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
-                                                                                    <div class="route-description"><b>{{record.description}}</b></div>
-                                                                                    <div ng-repeat="item in record.edges">
-                                                                                        <div class="route-header" ng-repeat="transits in item.transitEdgeList"> {{transits.startPoint.name}} <span ng-bind-html=' item.transportType | transportTypeToIcon'></span> {{transits.endPoint.name}} </div>
-                                                                                    </div>
-                                                                                    <div class="divider-inverse"></div>
-                                                                                    <div class="json-data">
-                                                                                        <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
-                                                                                        <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
-                                                                                    </div>
-                                                                                </a>
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                                                            <div class="panel-body" ng-repeat="item in record.edges">
-                                                                                <div ng-repeat="transits in item.transitEdgeList">
-                                                                                    <p><b>Transit:</b> {{transits.startPoint.name}} - {{transits.endPoint.name}}</p>
-                                                                                    <p><b>Departure:</b> {{transits.departure}}</p>
-                                                                                    <p><b>Arrival:</b> {{transits.arrival}}</p>
-                                                                                </div>
-                                                                                <p><b>Cost:</b> {{item.cost}} (RUB)</p>
-
-                                                                                <p ng-if="item.trainTicketsInfoList != null"><b>Train tickets info:</b></p>
-                                                                                <div ng-repeat="TrainTicketsInfo in item.trainTicketsInfoList">
-                                                                                    <p>{{TrainTicketsInfo.wagonType}} - {{TrainTicketsInfo.cost}} (RUB) - {{TrainTicketsInfo.availableSeats}} seats</p>
-                                                                                </div>
-                                                                                <div class="row">
-                                                                                    <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
-                                                                                        <section>
-                                                                                        <#if isAuthorized>
-                                                                                            <div ng-disabled="saved(record.idRouteForView)">
-                                                                                                <button class='dotted thin' ng-click="saveRoute(record)">Save route</button>
-                                                                                            </div>
-                                                                                        </#if>
-                                                                                            <button class='dotted thin' ng-click="openLink(item.purchaseLink)">Buy ticket</button>
-                                                                                        </section>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-7" id="map-margin">
-                                                        <div class="container-map" id="map"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <input type="button" name="" class="button"  ng-click="goToLoaded()" value="gogoog" >
+                            </div>
+                        </div>
+                        <div class="row" ng-show="loading">
+                            <div class="col-sm-12 loader-margin">
+                                <div class="banter-loader">
+                                    <div class="banter-loader__box"></div>
+                                    <div class="banter-loader__box"></div>
+                                    <div class="banter-loader__box"></div>
+                                    <div class="banter-loader__box"></div>
+                                    <div class="banter-loader__box"></div>
+                                    <div class="banter-loader__box"></div>
+                                    <div class="banter-loader__box"></div>
+                                    <div class="banter-loader__box"></div>
+                                    <div class="banter-loader__box"></div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+
+                <div class="container-fluid" id="scroll-to">
+                    <div ng-show="loaded" ng-init="optimalFilter = optimalRoutes; orderByAttribute = 'cost'" ng-model="loaded" ng-change="goToLoaded(loaded)">
+                        <div class="routes-box">
+                            <div ng-controller="mapController">
+                                <div class="output-collapse" >
+                                    <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!-- filters -->
+                                            <div class="accordion-panel">
+                                                <dl class="accordion" >
+                                                    <dt class="label-header">Routes filter <i class="plus-icon"></i></dt>
+                                                    <dd>
+                                                        <div class="content">
+                                                            <div class="col-sm-4">
+                                                                <div class="label-header text-left">
+                                                                    <h4>Show routes</h4>
+                                                                </div>
+                                                                <div class="funkyradio">
+                                                                    <div class="funkyradio-default">
+                                                                        <input type="radio" name="radio1" id="radio1" ng-click="optimalFilter = optimalRoutes" checked/>
+                                                                        <label for="radio1" >Optimal routes</label>
+                                                                    </div>
+                                                                    <div class="funkyradio-default">
+                                                                        <input type="radio" name="radio1" id="radio2" ng-click="optimalFilter = allRoutes"/>
+                                                                        <label for="radio2">All routes</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div class="label-header text-left">
+                                                                    <h4>Transport type</h4>
+                                                                </div>
+                                                                <div class="funkyradio">
+                                                                    <div class="funkyradio-default">
+                                                                        <input type="checkbox" name="checkbox" id="checkboxPlane" ng-model="checkboxPlane" ng-change="changePlaneCheckbox()"/>
+                                                                        <label for="checkboxPlane">Plane</label>
+                                                                    </div>
+                                                                    <div class="funkyradio-default">
+                                                                        <input type="checkbox" name="checkbox" id="checkboxBus" ng-model="checkboxBus" ng-change="changeBusCheckbox()"/>
+                                                                        <label for="checkboxBus">Bus</label>
+                                                                    </div>
+                                                                    <div class="funkyradio-default">
+                                                                        <input type="checkbox" name="checkbox" id="checkboxTrain" ng-model="checkboxTrain" ng-change="changeTrainCheckbox()"/>
+                                                                        <label for="checkboxTrain">Train</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div class="laabel-header text-left">
+                                                                    <h4>Order by</h4>
+                                                                </div>
+                                                                <div class="funkyradio" >
+                                                                    <div class="funkyradio-default" >
+                                                                        <input type="radio" name="radio3" id="radio5" ng-click="orderByAttribute = 'cost'" checked/>
+                                                                        <label for="radio5">Cost</label>
+                                                                    </div>
+                                                                    <div class="funkyradio-default">
+                                                                        <input type="radio" name="radio3" id="radio6" ng-click="orderByAttribute = 'duration'"/>
+                                                                        <label for="radio6">Duration</label>
+                                                                    </div>
+                                                                    <div class="funkyradio-default">
+                                                                        <input type="radio" name="radio3" id="radio7" ng-click="orderByAttribute = 'startDate'"/>
+                                                                        <label for="radio7">Departure time</label>
+                                                                    </div>
+                                                                    <div class="funkyradio-default">
+                                                                        <input type="radio" name="radio3" id="radio8" ng-click="orderByAttribute = 'transfers'"/>
+                                                                        <label for="radio8">Transfers quantity</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="fancy-collapse-panel" >
+                                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+                                                    <div ng-repeat="record in records | filter:optimalFilter | filter:transportTypeFilter | orderObjectBy:orderByAttribute">
+                                                        <div class="panel panel-default" >
+                                                            <div class="panel-heading" role="tab" id="headingOne" >
+                                                                <h4 class="panel-title">
+                                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href=#id-for-view-{{record.idRouteForView}} ng-click="setMap(record.edges)" aria-expanded="false" aria-controls=id-for-view-{{record.idRouteForView}}>
+                                                                        <div class="route-description"><b>{{record.description}}</b></div>
+                                                                        <div ng-repeat="item in record.edges">
+                                                                            <div class="route-header" ng-repeat="transits in item.transitEdgeList"> {{transits.startPoint.name}} <span ng-bind-html=' item.transportType | transportTypeToIcon'></span> {{transits.endPoint.name}} </div>
+                                                                        </div>
+                                                                        <div class="divider-inverse"></div>
+                                                                        <div class="json-data">
+                                                                            <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
+                                                                            <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
+                                                                        </div>
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                                <div class="panel-body" ng-repeat="item in record.edges">
+                                                                    <div ng-repeat="transits in item.transitEdgeList">
+                                                                        <p><b>Transit:</b> {{transits.startPoint.name}} - {{transits.endPoint.name}}</p>
+                                                                        <p><b>Departure:</b> {{transits.departure}}</p>
+                                                                        <p><b>Arrival:</b> {{transits.arrival}}</p>
+                                                                    </div>
+                                                                    <p><b>Cost:</b> {{item.cost}} (RUB)</p>
+                                                                    <p ng-if="item.trainTicketsInfoList != null"><b>Train tickets info:</b></p>
+                                                                    <div ng-repeat="TrainTicketsInfo in item.trainTicketsInfoList">
+                                                                        <p>{{TrainTicketsInfo.wagonType}} - {{TrainTicketsInfo.cost}} (RUB) - {{TrainTicketsInfo.availableSeats}} seats</p>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
+                                                                            <section>
+                                                                            <#if isAuthorized>
+                                                                                <div ng-disabled="saved(record.idRouteForView)">
+                                                                                    <button class='dotted thin' ng-click="saveRoute(record)">Save route</button>
+                                                                                </div>
+                                                                            </#if>
+                                                                                <button class='dotted thin' ng-click="openLink(item.purchaseLink)">Buy ticket</button>
+                                                                            </section>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6" id="map-margin">
+                                            <div class="container-map" id="map"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
