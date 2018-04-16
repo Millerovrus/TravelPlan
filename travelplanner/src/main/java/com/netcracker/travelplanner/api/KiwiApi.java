@@ -22,7 +22,7 @@ import java.util.List;
 public class KiwiApi implements ApiInterface {
 
     @Override
-    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfPassengers) {
+    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren, int numberOfInfants) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String url =
@@ -34,8 +34,12 @@ public class KiwiApi implements ApiInterface {
                         date.format(formatter) +
                         "&dateTo=" +
                         date.format(formatter) +
-                        "&passengers=" +
-                        numberOfPassengers +
+                        "&adults=" +
+                        numberOfAdults +
+                        "&children=" +
+                        numberOfChildren +
+                        "&infants=" +
+                        numberOfInfants +
                         "&partner=picky&partner_market=us&curr=RUB";
         List<Edge> edgeList = new ArrayList<>();
 

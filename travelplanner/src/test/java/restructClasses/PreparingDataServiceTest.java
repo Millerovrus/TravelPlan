@@ -11,7 +11,7 @@ public class PreparingDataServiceTest {
         PreparingDataService preparingDataService = new PreparingDataService();
 
 
-        SearchInputParameters searchInputParameters = preparingDataService.prepareData("Voronezh", "Sochi", "(51.6754966, 39.20888230000003)","(43.602446, 39.730276)","2018-03-15", 1);
+        SearchInputParameters searchInputParameters = preparingDataService.prepareData("Voronezh", "Sochi", "(51.6754966, 39.20888230000003)","(43.602446, 39.730276)","2018-03-15", 1, 0, 0);
 
 
 //        SearchInputParameters searchInputParameters = preparingDataService.prepareData("Voronezh", "Kursk", "(51.6754966, 39.20888230000003)","(51.7091957, 36.15622410000003)","2018-03-15");

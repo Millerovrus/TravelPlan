@@ -21,7 +21,9 @@ public class TaskCreatorManager {
         tasks.add(new Task(searchInputParameters.getFrom()
                 ,searchInputParameters.getTo()
                 ,searchInputParameters.getDeparture()
-                ,searchInputParameters.getNumberOfPassengers()));
+                ,searchInputParameters.getNumberOfAdults()
+                ,searchInputParameters.getNumberOfChildren()
+                ,searchInputParameters.getNumberOfInfants()));
 
         if (searchInputParameters.isGlobalRoute()) {
         /* рейсы рядом с точкой отправления */
@@ -29,18 +31,24 @@ public class TaskCreatorManager {
                 tasks.add(new Task(searchInputParameters.getFrom()
                         ,point
                         ,searchInputParameters.getDeparture()
-                        ,searchInputParameters.getNumberOfPassengers()));
+                        ,searchInputParameters.getNumberOfAdults()
+                        ,searchInputParameters.getNumberOfChildren()
+                        ,searchInputParameters.getNumberOfInfants()));
 
                 /* из начальной точки в окружение конечной*/
                 tasks.add(new Task(point
                         ,searchInputParameters.getTo()
                         ,searchInputParameters.getDeparture()
-                        ,searchInputParameters.getNumberOfPassengers()));
+                        ,searchInputParameters.getNumberOfAdults()
+                        ,searchInputParameters.getNumberOfChildren()
+                        ,searchInputParameters.getNumberOfInfants()));
 
                 tasks.add(new Task(point
                         ,searchInputParameters.getTo()
                         ,searchInputParameters.getDeparture().plusDays(1)
-                        ,searchInputParameters.getNumberOfPassengers()));
+                        ,searchInputParameters.getNumberOfAdults()
+                        ,searchInputParameters.getNumberOfChildren()
+                        ,searchInputParameters.getNumberOfInfants()));
             }
 
         /* рядом с точкой прибытия */
@@ -48,17 +56,23 @@ public class TaskCreatorManager {
                 tasks.add(new Task(point
                         ,searchInputParameters.getTo()
                         ,searchInputParameters.getDeparture()
-                        ,searchInputParameters.getNumberOfPassengers()));
+                        ,searchInputParameters.getNumberOfAdults()
+                        ,searchInputParameters.getNumberOfChildren()
+                        ,searchInputParameters.getNumberOfInfants()));
 
                 tasks.add(new Task(point
                         ,searchInputParameters.getTo()
                         ,searchInputParameters.getDeparture().plusDays(1)
-                        ,searchInputParameters.getNumberOfPassengers()));
+                        ,searchInputParameters.getNumberOfAdults()
+                        ,searchInputParameters.getNumberOfChildren()
+                        ,searchInputParameters.getNumberOfInfants()));
 
                 tasks.add(new Task(point
                         ,searchInputParameters.getTo()
                         ,searchInputParameters.getDeparture().plusDays(2)
-                        ,searchInputParameters.getNumberOfPassengers()));
+                        ,searchInputParameters.getNumberOfAdults()
+                        ,searchInputParameters.getNumberOfChildren()
+                        ,searchInputParameters.getNumberOfInfants()));
             }
 
         /* перебор между всеми точками */
@@ -67,12 +81,16 @@ public class TaskCreatorManager {
                     tasks.add(new Task(pointFrom
                             ,pointTo
                             ,searchInputParameters.getDeparture()
-                            ,searchInputParameters.getNumberOfPassengers()));
+                            ,searchInputParameters.getNumberOfAdults()
+                            ,searchInputParameters.getNumberOfChildren()
+                            ,searchInputParameters.getNumberOfInfants()));
 
                     tasks.add(new Task(pointFrom
                             ,pointTo
                             ,searchInputParameters.getDeparture().plusDays(1)
-                            ,searchInputParameters.getNumberOfPassengers()));
+                            ,searchInputParameters.getNumberOfAdults()
+                            ,searchInputParameters.getNumberOfChildren()
+                            ,searchInputParameters.getNumberOfInfants()));
                 }
             }
 

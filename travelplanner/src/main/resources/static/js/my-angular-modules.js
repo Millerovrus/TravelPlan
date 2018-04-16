@@ -43,7 +43,9 @@ angular.module('controllerModule')
                      longLatFrom: angular.element($('#latit_longit_from')).val(),
                      longLatTo: angular.element($('#latit_longit_to')).val(),
                      date: angular.element($('#inputDate')).val(),
-                     numberOfPassengers: angular.element($('#adults-number')).val()
+                     numberOfAdults: angular.element($('#adults-number')).val(),
+                     numberOfChildren: angular.element($('#children-number')).val(),
+                     numberOfInfants: angular.element($('#infants-number')).val()
                 }
             }).then(
                 function success(response) {
@@ -60,13 +62,11 @@ angular.module('controllerModule')
         };
 
         /*autoscroll */
-        $scope.goToLoaded = function(loaded) {
+        $scope.goToLoaded = function() {
             // set the location.hash to the id of the element you wish to scroll to
             // alert(loaded);
-            if(loaded===true){
-                $location.hash('scroll-to');
-                $anchorScroll();
-            }
+            $location.hash('scroll-to');
+            $anchorScroll();
         };
 
         $scope.$watch('loaded', function (newValue, oldValue, $scope) {

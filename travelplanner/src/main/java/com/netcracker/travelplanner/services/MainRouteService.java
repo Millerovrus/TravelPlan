@@ -39,13 +39,15 @@ public class MainRouteService {
     private Executor executor2 = new Executor();
     private Executor executor3 = new Executor();
 
-    private SearchInputParameters prepareInputData(String from, String to, String latLongFrom, String latLongTo, String date, int numberOfPassengers){
+    private SearchInputParameters prepareInputData(String from, String to, String latLongFrom, String latLongTo, String date, int numberOfAdults, int numberOfChildren, int numberOfInfants){
         return new PreparingDataService().prepareData(from
                 ,to
                 ,latLongFrom
                 ,latLongTo
                 ,date
-                ,numberOfPassengers);
+                ,numberOfAdults
+                ,numberOfChildren
+                ,numberOfInfants);
     }
 
     private List<Task> getTasks(SearchInputParameters searchInputParameters){
@@ -97,7 +99,9 @@ public class MainRouteService {
             ,String latLongFrom
             ,String latLongTo
             ,String date
-            ,int numberOfPassengers
+            ,int numberOfAdults
+            ,int numberOfChildren
+            ,int numberOfInfants
             )
     {
         ExecutorService executorService = Executors.newFixedThreadPool(threadsCount);
@@ -107,7 +111,9 @@ public class MainRouteService {
                 ,latLongFrom
                 ,latLongTo
                 ,date
-                ,numberOfPassengers);
+                ,numberOfAdults
+                ,numberOfChildren
+                ,numberOfInfants);
 
         List<Task> taskList = getTasks(searchInputParameters);
 
@@ -116,7 +122,7 @@ public class MainRouteService {
         return getRoutes(edgeList
                 ,searchInputParameters.getFrom().getName()
                 ,searchInputParameters.getTo().getName()
-                ,searchInputParameters.getNumberOfPassengers());
+                ,searchInputParameters.getNumberOfAdults() + searchInputParameters.getNumberOfChildren() + searchInputParameters.getNumberOfInfants());
 
     }
 

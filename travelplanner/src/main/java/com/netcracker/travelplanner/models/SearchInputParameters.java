@@ -15,7 +15,9 @@ public class SearchInputParameters {
     private boolean isGlobalRoute;
     private List<Point> citiesFrom;
     private List<Point> citiesTo;
-    private int numberOfPassengers;
+    private int numberOfAdults;
+    private int numberOfChildren;
+    private int numberOfInfants;
 
     public SearchInputParameters() {
     }
@@ -76,12 +78,28 @@ public class SearchInputParameters {
         this.citiesTo = citiesTo;
     }
 
-    public int getNumberOfPassengers() {
-        return numberOfPassengers;
+    public int getNumberOfAdults() {
+        return numberOfAdults;
     }
 
-    public void setNumberOfPassengers(int numberOfPassengers) {
-        this.numberOfPassengers = numberOfPassengers;
+    public void setNumberOfAdults(int numberOfAdults) {
+        this.numberOfAdults = numberOfAdults;
+    }
+
+    public int getNumberOfChildren() {
+        return numberOfChildren;
+    }
+
+    public void setNumberOfChildren(int numberOfChildren) {
+        this.numberOfChildren = numberOfChildren;
+    }
+
+    public int getNumberOfInfants() {
+        return numberOfInfants;
+    }
+
+    public void setNumberOfInfants(int numberOfInfants) {
+        this.numberOfInfants = numberOfInfants;
     }
 
     @Override
@@ -94,7 +112,9 @@ public class SearchInputParameters {
                 .append("isGlobalRoute", isGlobalRoute)
                 .append("citiesFrom", citiesFrom)
                 .append("citiesTo", citiesTo)
-                .append("numberOfPassengers", numberOfPassengers)
+                .append("numberOfAdults", numberOfAdults)
+                .append("numberOfChildren", numberOfChildren)
+                .append("numberOfInfants", numberOfInfants)
                 .toString();
     }
 }

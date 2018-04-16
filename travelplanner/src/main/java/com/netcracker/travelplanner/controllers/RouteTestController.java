@@ -22,11 +22,18 @@ public class RouteTestController {
     private static final Logger logger = LoggerFactory.getLogger(RouteTestController.class);
 
     @RequestMapping(value = "/get-routes/date/", method = RequestMethod.GET)
-    public List<Route> getEdgeFromTo(@RequestParam("from") String from, @RequestParam("to") String to,@RequestParam("longLatFrom") String longLatFrom, @RequestParam("longLatTo") String longLatTo, @RequestParam("date") String date, @RequestParam("numberOfPassengers") int numberOfPassengers){
+    public List<Route> getEdgeFromTo(@RequestParam("from") String from
+            , @RequestParam("to") String to
+            , @RequestParam("longLatFrom") String longLatFrom
+            , @RequestParam("longLatTo") String longLatTo
+            , @RequestParam("date") String date
+            , @RequestParam("numberOfAdults") int numberOfAdults
+            , @RequestParam("numberOfChildren") int numberOfChildren
+            , @RequestParam("numberOfInfants") int numberOfInfants){
 
-        logger.debug("Start finding {} - {} - {} - {} - {} - {}", from, longLatFrom, to, longLatTo, date, numberOfPassengers);
+        logger.debug("Start finding {} - {} - {} - {} - {} - {} - {} - {}", from, longLatFrom, to, longLatTo, date, numberOfAdults, numberOfChildren, numberOfInfants);
 
-        return mainRouteService.findBestRoutes(from,to,longLatFrom,longLatTo,date,numberOfPassengers);
+        return mainRouteService.findBestRoutes(from, to, longLatFrom, longLatTo, date, numberOfAdults, numberOfChildren, numberOfInfants);
     }
 
     @RequestMapping(value = "/get-routes/", method = RequestMethod.GET)

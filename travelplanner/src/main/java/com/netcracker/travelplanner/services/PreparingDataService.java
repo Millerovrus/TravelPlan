@@ -18,7 +18,9 @@ public class PreparingDataService {
             , String latLongFrom
             , String latLongTo
             , String date
-            , int numberOfPassengers){
+            , int numberOfAdults
+            , int numberOfChildren
+            , int numberOfInfants){
 
         SearchInputParameters searchInputParameters = new SearchInputParameters();
 
@@ -100,7 +102,9 @@ public class PreparingDataService {
 
         searchInputParameters.setFrom(pointFrom);
         searchInputParameters.setTo(pointTo);
-        searchInputParameters.setNumberOfPassengers(numberOfPassengers);
+        searchInputParameters.setNumberOfAdults(numberOfAdults);
+        searchInputParameters.setNumberOfChildren(numberOfChildren);
+        searchInputParameters.setNumberOfInfants(numberOfInfants);
 
         return searchInputParameters;
     }

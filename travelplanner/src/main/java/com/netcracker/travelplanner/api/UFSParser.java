@@ -25,7 +25,7 @@ public class UFSParser implements ApiInterface {
     private static final Logger logger = LoggerFactory.getLogger(UFSParser.class);
 
     @Override
-    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfPassengers) {
+    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren, int numberOfInfants) {
         String url = "https://www.ufs-online.ru/en/kupit-zhd-bilety/" +
                 from.getRussianName() +
                 "/" +
@@ -120,7 +120,7 @@ public class UFSParser implements ApiInterface {
                     edge.setTrainTicketsInfoList(fullInfo);
 
                     //цена в зависимости от наличия мест
-                    int numOfPassengers = numberOfPassengers;
+                    int numOfPassengers = numberOfAdults + numberOfChildren;
                     for (TrainTicketsInfo TrainTicketsInfo : fullInfo) {
                         if (numOfPassengers > TrainTicketsInfo.getAvailableSeats()) {
                             edge.setCost(edge.getCost() + TrainTicketsInfo.getCost() * TrainTicketsInfo.getAvailableSeats());

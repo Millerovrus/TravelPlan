@@ -231,7 +231,7 @@
                 </div>
 
                 <div class="container-fluid" id="scroll-to">
-                    <div ng-show="loaded" ng-init="optimalFilter = optimalRoutes; orderByAttribute = 'cost'" ng-model="loaded" ng-change="goToLoaded(loaded)">
+                    <div ng-show="loaded" ng-init="optimalFilter = optimalRoutes; orderByAttribute = 'cost'" ng-model="loaded" ng-change="goToLoaded()">
                         <div class="routes-box">
                             <div ng-controller="mapController">
                                 <div class="output-collapse" >
