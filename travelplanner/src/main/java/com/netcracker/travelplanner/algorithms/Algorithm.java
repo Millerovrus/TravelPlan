@@ -165,15 +165,20 @@ public class Algorithm {
             Route route = new Route(new Date()
                     , foundEdges.get(0).getStartPoint().getName()
                     , foundEdges.get(foundEdges.size() - 1).getEndPoint().getName()
-                    , ChronoUnit.SECONDS.between(foundEdges.get(0).getStartDate(), foundEdges.get(foundEdges.size()-1).getEndDate())
                     , idRouteForView++);
             short order = 1;
+            double duration = 0.0;
             for (Edge edge : foundEdges) {
                 edge.setEdgeOrder(order++);
                 edge.setRoute(route);
                 route.getEdges().add(edge);
                 route.setCost(route.getCost() + edge.getCost());
+                duration += edge.getDuration();
             }
+            for (int i = 0; i < foundEdges.size() - 1; i++) {
+                duration += ChronoUnit.SECONDS.between(foundEdges.get(i).getEndDate(), foundEdges.get(i+1).getStartDate());
+            }
+            route.setDuration(duration);
             route.getWeights().add(route.getDuration() / 72 + route.getCost() / numberOfPassengers);
             route.getWeights().add(route.getDuration() / 9 + route.getCost() / numberOfPassengers);
             route.getWeights().add(route.getDuration() / 4 + route.getCost() / numberOfPassengers);

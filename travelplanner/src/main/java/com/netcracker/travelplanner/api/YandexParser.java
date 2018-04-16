@@ -71,14 +71,16 @@ public class YandexParser implements ApiInterface {
                                     ,from.getIataCode()
                                     ,from.getYandexCode()
                                     ,""
-                                    ,from.getRussianName()));
+                                    ,from.getRussianName()
+                                    ,from.getTimezone()));
                             edge.setEndPoint(new Point(to.getName()
                                     ,to.getLatitude()
                                     ,to.getLongitude()
                                     ,to.getIataCode()
                                     ,to.getYandexCode()
                                     ,""
-                                    ,to.getRussianName()));
+                                    ,to.getRussianName()
+                                    ,to.getTimezone()));
 
                             List<TransitEdge> transitEdges = new LinkedList<>();
                             transitEdges.add(new TransitEdge(
@@ -88,14 +90,16 @@ public class YandexParser implements ApiInterface {
                                             ,from.getIataCode()
                                             ,from.getYandexCode()
                                             ,""
-                                            ,from.getRussianName())
+                                            ,from.getRussianName()
+                                            ,from.getTimezone())
                                     ,new Point(to.getName()
                                             ,to.getLatitude()
                                             ,to.getLongitude()
                                             ,to.getIataCode()
                                             ,to.getYandexCode()
                                             ,""
-                                            ,to.getRussianName())
+                                            ,to.getRussianName()
+                                            ,to.getTimezone())
                                     ,LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text())).plusSeconds(splStr(element.getElementsByClass("SearchSegment__duration").first().text()))
                                     ,LocalDateTime.of(LocalDate.now(), convertTime(element.selectFirst("div.SearchSegment__dateTime.Time_important").getElementsByClass("SearchSegment__time").first().text()))
 

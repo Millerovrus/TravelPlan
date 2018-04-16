@@ -79,14 +79,16 @@ public class KiwiApi implements ApiInterface {
                                     ,from.getIataCode()
                                     ,from.getYandexCode()
                                     ,l.getFlyFrom()
-                                    ,from.getRussianName())
+                                    ,from.getRussianName()
+                                    ,from.getTimezone())
                             ,new Point(to.getName()
                                     ,to.getLatitude()
                                     ,to.getLongitude()
                                     ,to.getIataCode()
                                     ,to.getYandexCode()
                                     ,l.getFlyTo()
-                                    ,to.getRussianName())
+                                    ,to.getRussianName()
+                                    ,to.getTimezone())
                             ,LocalDateTime.ofEpochSecond(l.getDTime(), 0, ZoneOffset.UTC)
                             ,LocalDateTime.ofEpochSecond(l.getATime(), 0, ZoneOffset.UTC)
 
@@ -108,14 +110,16 @@ public class KiwiApi implements ApiInterface {
                                 ,from.getIataCode()
                                 ,from.getYandexCode()
                                 ,l.getFlyFrom()
-                                ,from.getRussianName()));
+                                ,from.getRussianName()
+                                ,from.getTimezone()));
                 edge.setEndPoint(new Point(to.getName()
                                 ,to.getLatitude()
                                 ,to.getLongitude()
                                 ,to.getIataCode()
                                 ,to.getYandexCode()
                                 ,l.getFlyTo()
-                                ,to.getRussianName()));
+                                ,to.getRussianName()
+                                ,to.getTimezone()));
 
                 edge.setTransitEdgeList(transitEdges);
                 edge.setPurchaseLink(l.getDeepLink());

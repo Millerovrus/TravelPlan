@@ -152,11 +152,10 @@ public class Route implements Serializable {
         this.description = description;
     }
 
-    public Route(Date creationDate, String startPoint, String destinationPoint, double duration, int idRouteForView) {
+    public Route(Date creationDate, String startPoint, String destinationPoint, int idRouteForView) {
         this.creationDate = creationDate;
         this.startPoint = startPoint;
         this.destinationPoint = destinationPoint;
-        this.duration = duration;
         this.idRouteForView = idRouteForView;
         this.edges = new LinkedList<>();
         this.weights = new ArrayList<>();

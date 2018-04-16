@@ -45,10 +45,12 @@ public class PreparingDataService {
 
         searchInputParameters.setDeparture(LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE));
 
-        pointFrom.setYandexCode(EdgeService.getYandexCode(latFrom, lonFrom));
-        pointTo.setYandexCode(EdgeService.getYandexCode(latTo,lonTo));
+        pointFrom.setYandexCode("");
+        pointTo.setYandexCode("");
         pointFrom.setRussianName(EdgeService.getRussianName(from));
         pointTo.setRussianName(EdgeService.getRussianName(to));
+        pointFrom.setTimezone(EdgeService.getTimezone(latFrom, lonFrom));
+        pointTo.setTimezone(EdgeService.getTimezone(latTo, lonTo));
 
         String iataCodeFrom = EdgeService.getIataCode(latFrom, lonFrom);
         String iataCodeTo = EdgeService.getIataCode(latTo, lonTo);
@@ -108,5 +110,4 @@ public class PreparingDataService {
 
         return searchInputParameters;
     }
-
 }
