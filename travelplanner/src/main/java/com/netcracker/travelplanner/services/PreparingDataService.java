@@ -1,5 +1,6 @@
 package com.netcracker.travelplanner.services;
 
+import com.netcracker.travelplanner.models.IataCodeAndTimezone;
 import com.netcracker.travelplanner.models.entities.Point;
 import com.netcracker.travelplanner.models.SearchInputParameters;
 import org.slf4j.Logger;
@@ -49,21 +50,20 @@ public class PreparingDataService {
         pointTo.setYandexCode("");
         pointFrom.setRussianName(EdgeService.getRussianName(from));
         pointTo.setRussianName(EdgeService.getRussianName(to));
-        pointFrom.setTimezone(EdgeService.getTimezone(latFrom, lonFrom));
-        pointTo.setTimezone(EdgeService.getTimezone(latTo, lonTo));
+        IataCodeAndTimezone iataCodeAndTimezoneFrom = EdgeService.getIataCodeAndTimezone(latFrom, lonFrom);
+        IataCodeAndTimezone iataCodeAndTimezoneTo = EdgeService.getIataCodeAndTimezone(latTo, lonTo);
 
-        String iataCodeFrom = EdgeService.getIataCode(latFrom, lonFrom);
-        String iataCodeTo = EdgeService.getIataCode(latTo, lonTo);
-
-        pointFrom.setIataCode(iataCodeFrom);
-        pointTo.setIataCode(iataCodeTo);
+        pointFrom.setIataCode(iataCodeAndTimezoneFrom.getIataCode());
+        pointTo.setIataCode(iataCodeAndTimezoneTo.getIataCode());
+        pointFrom.setTimezone(iataCodeAndTimezoneFrom.getTimezone());
+        pointTo.setTimezone(iataCodeAndTimezoneTo.getTimezone());
 
         if(EdgeService.isGlobalRoute(latFrom,lonFrom,latTo,lonTo)){
 
             searchInputParameters.setGlobalRoute(true);
 
-            List<Point> citiesFrom = EdgeService.getCities(iataCodeFrom, latFrom, lonFrom);
-            List<Point> citiesTo = EdgeService.getCities(iataCodeTo, latTo, lonTo);
+            List<Point> citiesFrom = EdgeService.getCities(iataCodeAndTimezoneFrom.getIataCode(), latFrom, lonFrom);
+            List<Point> citiesTo = EdgeService.getCities(iataCodeAndTimezoneTo.getIataCode(), latTo, lonTo);
             int citiesToSize = citiesTo.size();
 
             //удаляем одинаковые города из списков, если они есть
@@ -97,8 +97,7 @@ public class PreparingDataService {
             searchInputParameters.setCitiesFrom(citiesFrom);
             searchInputParameters.setCitiesTo(citiesTo);
 
-        }
-        else {
+        } else {
             searchInputParameters.setGlobalRoute(false);
         }
 

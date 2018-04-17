@@ -29,10 +29,8 @@ public class EdgeServiceTest {
     }
 
     @Test
-    public void getIataCode() throws Exception {
-
-
-        System.out.println(EdgeService.getIataCode(55.972399,37.411645));
+    public void getIataCodeAndTimezone() throws Exception {
+        System.out.println(EdgeService.getIataCodeAndTimezone(55.972399,37.411645));
     }
 
     @Test

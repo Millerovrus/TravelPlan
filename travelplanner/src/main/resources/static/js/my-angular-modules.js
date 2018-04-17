@@ -18,7 +18,7 @@ angular.module('controllerModule')
                 function success(response, status) {
                     console.log('Route had been saved', status, response);
                     $scope.saved=function(value) {
-                        if (value == record.idRouteForView)
+                        if (value === record.idRouteForView)
                             return true;
                     };
                     alert("Route had been saved :)");
@@ -29,7 +29,6 @@ angular.module('controllerModule')
                     alert("Routes hadn't been save :(");
                 });
         };
-
         $scope.sendRequestParameters=function () {
             $scope.submitted = true;
             $scope.$emit('LOAD');
@@ -52,13 +51,13 @@ angular.module('controllerModule')
                     $scope.records = response.data;
                     $scope.$emit('UNLOAD');
                     $scope.loaded=true;
+                    initMap();
                 },
                 function error(response, status) {
                     console.error('Repos error', status, response);
                     $scope.$emit('UNLOAD');
                     alert("Something goes wrong :(");
                 });
-            initMap;
         };
 
         /*autoscroll */
@@ -85,14 +84,14 @@ angular.module('controllerModule')
 
         /* form validation */
         $scope.showMessage = function(input) {
-                var show = input.$invalid && (input.$dirty || input.$touched || input.$untouched);
-                return show;
+            var show = input.$invalid && (input.$dirty || input.$touched || input.$untouched);
+            return show;
         };
         $scope.bindingCalendar = function() {
-                        $scope.dateFrom = $('#inputDate').val();
+            $scope.dateFrom = $('#inputDate').val();
         };
         $scope.showCalendarMessage = function (input) {
-              return input.$invalid && (input.$untouched || input.$dirty);
+            return input.$invalid && (input.$untouched || input.$dirty);
         };
 
         $scope.optimalRoutes = function(records) {
