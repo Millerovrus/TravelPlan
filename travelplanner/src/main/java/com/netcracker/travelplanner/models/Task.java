@@ -9,13 +9,17 @@ public class Task {
     private Point from;
     private Point to;
     private LocalDate date;
-    private int numberOfPassengers;
+    private int numberOfAdults;
+    private int numberOfChildren;
+    private int numberOfInfants;
 
-    public Task(Point from, Point to, LocalDate date, int numberOfPassengers) {
+    public Task(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren, int numberOfInfants) {
         this.from = from;
         this.to = to;
         this.date = date;
-        this.numberOfPassengers = numberOfPassengers;
+        this.numberOfAdults = numberOfAdults;
+        this.numberOfChildren = numberOfChildren;
+        this.numberOfInfants = numberOfInfants;
     }
 
     public Point getFrom() {
@@ -42,12 +46,28 @@ public class Task {
         this.date = date;
     }
 
-    public int getNumberOfPassengers() {
-        return numberOfPassengers;
+    public int getNumberOfAdults() {
+        return numberOfAdults;
     }
 
-    public void setNumberOfPassengers(int numberOfPassengers) {
-        this.numberOfPassengers = numberOfPassengers;
+    public void setNumberOfAdults(int numberOfAdults) {
+        this.numberOfAdults = numberOfAdults;
+    }
+
+    public int getNumberOfChildren() {
+        return numberOfChildren;
+    }
+
+    public void setNumberOfChildren(int numberOfChildren) {
+        this.numberOfChildren = numberOfChildren;
+    }
+
+    public int getNumberOfInfants() {
+        return numberOfInfants;
+    }
+
+    public void setNumberOfInfants(int numberOfInfants) {
+        this.numberOfInfants = numberOfInfants;
     }
 
     @Override
@@ -56,7 +76,9 @@ public class Task {
                 .append("from", from)
                 .append("to", to)
                 .append("date", date)
-                .append("numberOfPassengers", numberOfPassengers)
+                .append("numberOfAdults", numberOfAdults)
+                .append("numberOfChildren", numberOfChildren)
+                .append("numberOfInfants", numberOfInfants)
                 .toString();
     }
 }

@@ -12,9 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.*;
@@ -25,7 +23,7 @@ public class UFSParser implements ApiInterface {
     private static final Logger logger = LoggerFactory.getLogger(UFSParser.class);
 
     @Override
-    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfPassengers) {
+    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren, int numberOfInfants) {
         String url = "https://www.ufs-online.ru/en/kupit-zhd-bilety/" +
                 from.getRussianName() +
                 "/" +
@@ -55,25 +53,47 @@ public class UFSParser implements ApiInterface {
                     edge.setCreationDate(new Date());
                     edge.setTransportType("train");
                     edge.setCost(0.0);
-                    edge.setStartDate(convertTimeAndDate(record.select("span.wg-track-info__time").first().ownText(), record.select("span.wg-track-info__date").first().text(), date));
-                    edge.setEndDate(convertTimeAndDate(record.select("span.wg-track-info__time").last().ownText(), record.select("span.wg-track-info__date").last().text(), date));
                     edge.setDuration(travelTimeToDuration(record.selectFirst("span.wg-track-info__travel-time").text()));
                     edge.setCurrency("RUB");
                     edge.setNumberOfTransfers(1);
+
+                    //учитываем таймзоны
+                    Element timeElementFrom = record.select("span.wg-track-info__time").first();
+                    LocalDateTime localDateTimeFrom = convertTimeAndDate(timeElementFrom.ownText(), record.select("span.wg-track-info__date").first().text(), date);
+
+                    if (timeElementFrom.text().contains("Seats")){
+                        edge.setStartDate(localDateTimeFrom);
+                    } else {
+                        ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTimeFrom, ZoneId.of("Europe/Moscow"));
+                        edge.setStartDate(zonedDateTime.withZoneSameInstant(ZoneId.of(from.getTimezone())).toLocalDateTime());
+                    }
+
+                    Element timeElementTo = record.select("span.wg-track-info__time").last();
+                    LocalDateTime localDateTimeTo = convertTimeAndDate(timeElementTo.ownText(), record.select("span.wg-track-info__date").last().text(), date);
+
+                    if (timeElementTo.text().contains("Seats")){
+                        edge.setEndDate(localDateTimeTo);
+                    } else {
+                        ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTimeTo, ZoneId.of("Europe/Moscow"));
+                        edge.setEndDate(zonedDateTime.withZoneSameInstant(ZoneId.of(to.getTimezone())).toLocalDateTime());
+                    }
+
                     edge.setStartPoint(new Point(from.getName()
                             , from.getLatitude()
                             , from.getLongitude()
                             , from.getIataCode()
                             , from.getYandexCode()
                             , ""
-                            , from.getRussianName()));
+                            , from.getRussianName()
+                            , from.getTimezone()));
                     edge.setEndPoint(new Point(to.getName()
                             , to.getLatitude()
                             , to.getLongitude()
                             , to.getIataCode()
                             , to.getYandexCode()
                             , ""
-                            , to.getRussianName()));
+                            , to.getRussianName()
+                            , to.getTimezone()));
 
                     List<TransitEdge> transitEdges = new LinkedList<>();
                     transitEdges.add(new TransitEdge(
@@ -84,6 +104,7 @@ public class UFSParser implements ApiInterface {
                                     , from.getYandexCode()
                                     , ""
                                     , from.getRussianName()
+                                    , from.getTimezone()
                             )
                             , new Point(to.getName()
                                     , to.getLatitude()
@@ -92,9 +113,10 @@ public class UFSParser implements ApiInterface {
                                     , to.getYandexCode()
                                     , ""
                                     , to.getRussianName()
+                                    , to.getTimezone()
                              )
-                            , convertTimeAndDate(record.select("span.wg-track-info__time").first().ownText(), record.select("span.wg-track-info__date").first().text(), date)
-                            , convertTimeAndDate(record.select("span.wg-track-info__time").last().ownText(), record.select("span.wg-track-info__date").last().text(), date)
+                            , edge.getStartDate()
+                            , edge.getEndDate()
 
                     ));
                     edge.setTransitEdgeList(transitEdges);
@@ -120,7 +142,7 @@ public class UFSParser implements ApiInterface {
                     edge.setTrainTicketsInfoList(fullInfo);
 
                     //цена в зависимости от наличия мест
-                    int numOfPassengers = numberOfPassengers;
+                    int numOfPassengers = numberOfAdults + numberOfChildren;
                     for (TrainTicketsInfo TrainTicketsInfo : fullInfo) {
                         if (numOfPassengers > TrainTicketsInfo.getAvailableSeats()) {
                             edge.setCost(edge.getCost() + TrainTicketsInfo.getCost() * TrainTicketsInfo.getAvailableSeats());

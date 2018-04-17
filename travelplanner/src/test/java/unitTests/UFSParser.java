@@ -36,6 +36,10 @@ public class UFSParser {
                 String timeFrom = record.select("span.wg-track-info__time").first().ownText();
                 System.out.println(LocalTime.parse(timeFrom));
 
+                if(record.select("span.wg-track-info__time").first().text().contains("Moscow time")){
+                    System.out.println("MSK");
+                }
+
                 String timeTo = record.select("span.wg-track-info__time").last().ownText();
                 System.out.println(LocalTime.parse(timeTo));
 

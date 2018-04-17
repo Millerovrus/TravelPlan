@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import static com.netcracker.travelplanner.security.crypto.AesCrypt.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -67,7 +68,7 @@ public class UserController {
         try {
             if (userService.findUserByEmail(email) == null) {
                 user.setAvatar("img/man-user.png");
-                //Шифрование пароля и сохрание в БД
+                //Хэширование пароля, шифрование данных и сохрание в БД
                 userService.save(user);
                 logger.info("Registration is successful!");
                 securityService.autologin(email, password);
@@ -100,8 +101,8 @@ public class UserController {
 
         if (email != null) {
             User user = userService.findUserByEmail(email);
-            model.addAttribute("firstname", user.getFirstName());
-            model.addAttribute("lastname", user.getLastName());
+            model.addAttribute("firstname", decrypt(user.getFirstName()));
+            model.addAttribute("lastname", decrypt(user.getLastName()));
             model.addAttribute("email", user.getEmail());
             model.addAttribute("birthdate", user.getBirthDate());
             model.addAttribute("avatar", user.getAvatar());
@@ -117,8 +118,8 @@ public class UserController {
         if (email != null) {
             User user = userService.findUserByEmail(email);
             //model.addAttribute("user_id", user.getId());
-            model.addAttribute("firstname", user.getFirstName());
-            model.addAttribute("lastname", user.getLastName());
+            model.addAttribute("firstname", decrypt(user.getFirstName()));
+            model.addAttribute("lastname", decrypt(user.getLastName()));
         }
         model.addAttribute("isAuthorized", email != null);
         return "index";

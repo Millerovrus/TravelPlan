@@ -38,6 +38,9 @@ public class Point {
     @Transient
     private String russianName;
 
+    @Transient
+    private String timezone;
+
     @OneToMany(mappedBy = "startPoint", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Edge> edgesStart;
@@ -150,13 +153,22 @@ public class Point {
         this.yandexCode = yandexCode;
     }
 
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
     public Point(String name
             , double latitude
             , double longitude
             , String iataCode
             , String yandexCode
             , String locationCode
-            , String russianName) {
+            , String russianName
+            , String timezone) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -164,6 +176,7 @@ public class Point {
         this.yandexCode = yandexCode;
         this.locationCode = locationCode;
         this.russianName = russianName;
+        this.timezone = timezone;
         this.edgesStart = new ArrayList<>();
         this.edgesEnd = new ArrayList<>();
         this.transitEdgesEnd = new ArrayList<>();
@@ -215,6 +228,7 @@ public class Point {
                 .append("iataCode", iataCode)
                 .append("yandexCode", yandexCode)
                 .append("russianName", russianName)
+                .append("timezone", timezone)
                 .toString();
     }
 }

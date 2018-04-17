@@ -22,7 +22,7 @@ import java.util.List;
 public class KiwiApi implements ApiInterface {
 
     @Override
-    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfPassengers) {
+    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren, int numberOfInfants) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String url =
@@ -34,8 +34,12 @@ public class KiwiApi implements ApiInterface {
                         date.format(formatter) +
                         "&dateTo=" +
                         date.format(formatter) +
-                        "&passengers=" +
-                        numberOfPassengers +
+                        "&adults=" +
+                        numberOfAdults +
+                        "&children=" +
+                        numberOfChildren +
+                        "&infants=" +
+                        numberOfInfants +
                         "&partner=picky&partner_market=us&curr=RUB";
         List<Edge> edgeList = new ArrayList<>();
 
@@ -75,14 +79,16 @@ public class KiwiApi implements ApiInterface {
                                     ,from.getIataCode()
                                     ,from.getYandexCode()
                                     ,l.getFlyFrom()
-                                    ,from.getRussianName())
+                                    ,from.getRussianName()
+                                    ,from.getTimezone())
                             ,new Point(to.getName()
                                     ,to.getLatitude()
                                     ,to.getLongitude()
                                     ,to.getIataCode()
                                     ,to.getYandexCode()
                                     ,l.getFlyTo()
-                                    ,to.getRussianName())
+                                    ,to.getRussianName()
+                                    ,to.getTimezone())
                             ,LocalDateTime.ofEpochSecond(l.getDTime(), 0, ZoneOffset.UTC)
                             ,LocalDateTime.ofEpochSecond(l.getATime(), 0, ZoneOffset.UTC)
 
@@ -104,14 +110,16 @@ public class KiwiApi implements ApiInterface {
                                 ,from.getIataCode()
                                 ,from.getYandexCode()
                                 ,l.getFlyFrom()
-                                ,from.getRussianName()));
+                                ,from.getRussianName()
+                                ,from.getTimezone()));
                 edge.setEndPoint(new Point(to.getName()
                                 ,to.getLatitude()
                                 ,to.getLongitude()
                                 ,to.getIataCode()
                                 ,to.getYandexCode()
                                 ,l.getFlyTo()
-                                ,to.getRussianName()));
+                                ,to.getRussianName()
+                                ,to.getTimezone()));
 
                 edge.setTransitEdgeList(transitEdges);
                 edge.setPurchaseLink(l.getDeepLink());

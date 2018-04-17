@@ -1,6 +1,7 @@
 package com.netcracker.travelplanner.services;
 
 import com.google.gson.Gson;
+import com.netcracker.travelplanner.models.IataCodeAndTimezone;
 import com.netcracker.travelplanner.models.entities.Point;
 import com.netcracker.travelplanner.models.googleDist.GoogleDistance;
 import com.netcracker.travelplanner.models.googleGeocode.GoogleGeocode;
@@ -19,27 +20,26 @@ import java.util.stream.Collectors;
 
 public class EdgeService {
 
-    public static String getIataCode(double latitude, double longitude){
+    public static IataCodeAndTimezone getIataCodeAndTimezone(double latitude, double longitude){
 
         String query = "https://api.skypicker.com/locations/?type=radius&" +
                 "lat=" +
                 latitude +
                 "&lon=" +
                 longitude +
-                "&radius=50&locale=en-US&location_types=city&limit=2&sort=rank";
+                "&radius=100&locale=en-US&location_types=city&sort=rank";
 
-        String iataCityCode = "no Iata Code";
-
+        String iataCityCode = null;
+        String timezone = null;
         Gson gson = new Gson();
-
         KiwiStations kiwiStations = gson.fromJson(getStreamReaderFromUrl(query), KiwiStations.class);
 
-        if(kiwiStations!=null) {
+        if(kiwiStations != null) {
             iataCityCode = kiwiStations.getLocations().get(0).getCode();
+            timezone = kiwiStations.getLocations().get(0).getTimezone();
         }
 
-        return iataCityCode;
-
+        return new IataCodeAndTimezone(iataCityCode, timezone);
     }
 
     public static boolean isGlobalRoute(double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo){
@@ -66,12 +66,13 @@ public class EdgeService {
         return false;
     }
 
+    @Deprecated
     public static String getYandexCode(double latitude, double longitude){
 
         String url = "https://api.rasp.yandex.net/v3.0/nearest_settlement/?apikey=64d2c4dc-e05a-4574-b51a-bdc03b2bc8a3&format=json&lat=" +
                 latitude + "&lng=" + longitude + "&distance=50";
 
-        String yandexCode = "no Yandex Code";
+        String yandexCode = null;
 
         Gson gson = new Gson();
 
@@ -168,7 +169,8 @@ public class EdgeService {
                 , myPoint.getCityCode()
                 , ""
                 , ""
-                , getRussianName(myPoint.getCityName()))));
+                , getRussianName(myPoint.getCityName())
+                , myPoint.getTimezone())));
 
         return points;
     }

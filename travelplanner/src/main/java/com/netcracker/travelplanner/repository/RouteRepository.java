@@ -13,4 +13,7 @@ public interface RouteRepository extends JpaRepository<Route, Integer> {
     List<Route> findByStartPointIsOrDestinationPointIs(String s, String d);
     List<Route> findByUserId(int id);
     List<Route> findByStartPointIsAndDestinationPointIsAndCreationDateIs(String s, String d, Date date);
+
+    @Override
+    List<Route> findAll();
 }

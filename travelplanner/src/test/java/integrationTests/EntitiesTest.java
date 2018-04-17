@@ -52,7 +52,8 @@ public class EntitiesTest {
                 ,"VOZ"
                 ,"123"
                 ,"123"
-                ,"Воронеж");
+                ,"Воронеж"
+                , "America\\/Los_Angeles");
 
         Point point2 = new Point("Moscow"
                 ,0.0
@@ -60,7 +61,8 @@ public class EntitiesTest {
                 ,"MOV"
                 ,"321"
                 ,"321"
-                ,"Москва");
+                ,"Москва"
+                , "America\\/Los_Angeles");
 
         TransitEdge transitEdge = new TransitEdge(point1,point2,LocalDateTime.now().plusHours(1),LocalDateTime.now());
 
@@ -101,7 +103,6 @@ public class EntitiesTest {
         Route route = new Route(new Date()
                 ,"vor"
                 ,"mosc"
-                ,1.0
                 ,123);
 
         edge.setRoute(route);

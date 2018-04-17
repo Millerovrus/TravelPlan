@@ -21,7 +21,7 @@ import java.util.List;
 public class YandexApi implements ApiInterface {
 
     @Override
-    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfPassengers) {
+    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren, int numberOfInfants) {
 
         Date dateNow = new Date();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -51,14 +51,16 @@ public class YandexApi implements ApiInterface {
                                         ,from.getIataCode()
                                         ,from.getYandexCode()
                                         ,l.getFrom().getCode()
-                                        ,from.getRussianName())
+                                        ,from.getRussianName()
+                                        ,from.getTimezone())
                                 ,new Point(to.getName()
                                         ,to.getLatitude()
                                         ,to.getLongitude()
                                         ,to.getIataCode()
                                         ,to.getYandexCode()
                                         ,l.getTo().getCode()
-                                        ,to.getRussianName())
+                                        ,to.getRussianName()
+                                        ,to.getTimezone())
                                 ,LocalDateTime.parse(l.getDeparture(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
                                 ,LocalDateTime.parse(l.getArrival(), DateTimeFormatter.ISO_OFFSET_DATE_TIME)
 
@@ -68,7 +70,7 @@ public class YandexApi implements ApiInterface {
                         edge.setCreationDate(dateNow);
                         edge.setTransportType(l.getThread().getTransportType());
                         edge.setDuration(l.getDuration());
-                        edge.setCost(((double) l.getTicketsInfo().getPlaces().get(0).getPrice().getWhole()) * (numberOfPassengers));
+                        edge.setCost(((double) l.getTicketsInfo().getPlaces().get(0).getPrice().getWhole()) * (numberOfAdults + numberOfChildren));
                         edge.setStartDate(LocalDateTime.parse(l.getDeparture(), DateTimeFormatter.ISO_OFFSET_DATE_TIME));
                         edge.setEndDate(LocalDateTime.parse(l.getArrival(), DateTimeFormatter.ISO_OFFSET_DATE_TIME));
                         edge.setCurrency("RUB");
@@ -79,14 +81,16 @@ public class YandexApi implements ApiInterface {
                                 ,from.getIataCode()
                                 ,from.getYandexCode()
                                 ,l.getFrom().getCode()
-                                ,from.getRussianName()));
+                                ,from.getRussianName()
+                                ,from.getTimezone()));
                         edge.setEndPoint(new Point(to.getName()
                                 ,to.getLatitude()
                                 ,to.getLongitude()
                                 ,to.getIataCode()
                                 ,to.getYandexCode()
                                 ,l.getTo().getCode()
-                                ,to.getRussianName()));
+                                ,to.getRussianName()
+                                ,to.getTimezone()));
 
                         edge.setTransitEdgeList(transitEdges);
                         edge.setPurchaseLink("https://rasp.yandex.ru/search/?fromId=" +
