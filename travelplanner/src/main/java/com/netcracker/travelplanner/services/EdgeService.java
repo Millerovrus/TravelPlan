@@ -27,9 +27,9 @@ public class EdgeService {
                 latitude +
                 "&lon=" +
                 longitude +
-                "&radius=50&locale=en-US&location_types=city&limit=2&sort=rank";
+                "&radius=100&locale=en-US&location_types=city&sort=rank";
 
-        String iataCityCode = "no Iata Code";
+        String iataCityCode = null;
 
         Gson gson = new Gson();
 
