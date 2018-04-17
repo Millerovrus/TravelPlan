@@ -245,3 +245,8 @@ function getValue() {
     alert(valuee);
 
 }
+
+
+function scrollToTo() {
+    $(window).scrollTo(0, $('#scroll-to').offset().top);
+}

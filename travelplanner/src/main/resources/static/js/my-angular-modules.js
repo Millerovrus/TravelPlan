@@ -1,5 +1,5 @@
 
-angular.module('controllerModule',['ngSanitize']);
+angular.module('controllerModule',['ngSanitize','duScroll']);
 angular.module('myApp',['controllerModule'])
     .directive('myNavbar', function () {
         return {
@@ -7,7 +7,7 @@ angular.module('myApp',['controllerModule'])
         };
     });
 angular.module('controllerModule')
-    .controller('myParameterController', function requestFunc($scope, $http, $window,  $location, $anchorScroll) {
+    .controller('myParameterController', function requestFunc($scope, $http, $window,  $location, $anchorScroll, $document, $timeout) {
         $scope.saveRoute=function (record) {
             $http({
                 method: 'POST',
@@ -50,38 +50,35 @@ angular.module('controllerModule')
                     $scope.records = response.data;
                     $scope.$emit('UNLOAD');
                     $scope.loaded=true;
+                    // $scope.goToLoaded();
                 },
                 function error(response, status) {
                     console.error('Repos error', status, response);
                     $scope.$emit('UNLOAD');
                     alert("Something goes wrong :(");
-                });
+                }).finally(function () {
+                    $scope.goToLoaded();
+                // $document.duScrollToElementAnimated(angular.element(document.getElementById('scroll-to')));
+            });
             initMap;
         };
 
         /*autoscroll */
-        $scope.goToLoaded = function(loaded) {
+        $scope.goToLoaded = function() {
             // set the location.hash to the id of the element you wish to scroll to
-            // alert(loaded);
-            if(loaded===true){
-                $location.hash('scroll-to');
-                $anchorScroll();
-            }
+            // works fine, not animated
+            // $timeout(function (){
+            //     $location.hash('scroll-to');
+            //     $anchorScroll();
+            //     $location.hash('');
+            //     $location.replace();
+            // });
+
+            // animated scroll
+            $timeout(function(){
+                $document.duScrollToElementAnimated(angular.element(document.getElementById('scroll-to')));
+            });
         };
-
-        $scope.$watch('loaded', function (newValue, oldValue, $scope) {
-            if(newValue===true && oldValue === false){
-                $scope.$evalAsync(function() {
-                    $scope.goToLoaded();
-                    alert(newValue);
-                });
-                // $scope.$apply(function() {
-                //     $location.hash('scroll-to');
-                //     $anchorScroll();
-                // });
-            }
-        });
-
 
         /* form validation */
         $scope.showMessage = function(input) {

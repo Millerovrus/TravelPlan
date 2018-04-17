@@ -27,6 +27,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="js/my-angular-modules.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
+    <script src="js/angular-scroll.js"></script>
     <!-- bootstrap select -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-select.min.js"></script>
@@ -209,7 +210,6 @@
                         <div class="row" > <!--<div class="row" ng-controller="myParameterController">-->
                             <div class="col-sm-12">
                                 <input type="submit" name="" class="button" value="Find route" >
-                                <input type="button" name="" class="button"  ng-click="goToLoaded()" value="gogoog" >
                             </div>
                         </div>
                         <div class="row" ng-show="loading">
@@ -231,7 +231,7 @@
                 </div>
 
                 <div class="container-fluid" id="scroll-to">
-                    <div ng-show="loaded" ng-init="optimalFilter = optimalRoutes; orderByAttribute = 'cost'" ng-model="loaded" ng-change="goToLoaded(loaded)">
+                    <div ng-show="loaded" id="loaded" ng-init="optimalFilter = optimalRoutes; orderByAttribute = 'cost'">
                         <div class="routes-box">
                             <div ng-controller="mapController">
                                 <div class="output-collapse" >
