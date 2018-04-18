@@ -16,4 +16,7 @@ public interface RouteRepository extends JpaRepository<Route, Integer> {
 
     @Override
     List<Route> findAll();
+
+    @Override
+    void delete(Integer integer);
 }

@@ -103,5 +103,14 @@ public class RouteApiController {
         }
     }
 
+    /**
+     * Delete route by id
+     * @param id
+     */
+    @RequestMapping(value = "/deletebyid", method = RequestMethod.GET)
+    public void deleteRouteById(@RequestParam(value = "id", required = true) Integer id) {
+        logger.info("Удаление маршрута с id: {}", id);
+        routeRepositoryService.deleteById(id);
+    }
 }
 

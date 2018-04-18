@@ -82,6 +82,14 @@ public class RouteRepositoryService {
     }
 
     /**
+     * Delete route by ID
+     * @param id
+     */
+    public void deleteById(int id) {
+        routeRepository.delete(id);
+    }
+
+    /**
      * delete all models managed by repository
      */
     public void deleteAll() {
