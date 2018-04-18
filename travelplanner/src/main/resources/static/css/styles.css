@@ -368,83 +368,83 @@ input[type='checkbox']:checked + span{
 }
 
 /* slider */
-.rangeslider,
-.rangeslider__fill {
-    display: block;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-}
-.rangeslider {
-    background: #e6e6e6;
-    position: relative;
-}
-.rangeslider--horizontal {
-    height: 1px;
-    width: 100%;
-}
-.rangeslider--disabled {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
-    opacity: 0.4;
-}
-.rangeslider__fill {
-    background: #e96227;
-    position: absolute;
-}
-.rangeslider--horizontal .rangeslider__fill {
-    top: 0;
-    height: 100%;
-}
-.rangeslider__handle {
-    background: #e96227;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    width: 5.2em;
-    height: 2.2em;
-    position: absolute;
-    -moz-border-radius: 22px;
-    -webkit-border-radius: 22px;
-    border-radius: 22px;
-    line-height: 2.2em;
-    text-align: center;
-}
-.rangeslider__handle:before {
-    font-family: 'Glyphicons Halflings';
-    content: "\e079";
-    font-size: 11px;
-    opacity: 0.5;
-    margin: 0 3px;
-    color: #fff;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 5px;
-    bottom: 0;
-}
-.rangeslider__handle:after {
-    font-family: 'Glyphicons Halflings';
-    content: "\e080";
-    font-size: 11px;
-    opacity: 0.5;
-    margin: 0 3px;
-    color: #fff;
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 5px;
-    bottom: 0;
-}
-.rangeslider--horizontal .rangeslider__handle {
-    top: -15px;
-    touch-action: pan-y;
-    -ms-touch-action: pan-y;
-}
-input[type="range"]:focus + .rangeslider .rangeslider__handle {
-    -moz-box-shadow: 0 0 8px rgba(183, 73, 40, 0.9);
-    -webkit-box-shadow: 0 0 8px rgba(183, 73, 40, 0.9);
-    box-shadow: 0 0 8px rgba(183, 73, 40, 0.9);
-}
+/*.rangeslider,*/
+/*.rangeslider__fill {*/
+    /*display: block;*/
+    /*-moz-border-radius: 10px;*/
+    /*-webkit-border-radius: 10px;*/
+    /*border-radius: 10px;*/
+/*}*/
+/*.rangeslider {*/
+    /*background: #e6e6e6;*/
+    /*position: relative;*/
+/*}*/
+/*.rangeslider--horizontal {*/
+    /*height: 1px;*/
+    /*width: 100%;*/
+/*}*/
+/*.rangeslider--disabled {*/
+    /*filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);*/
+    /*opacity: 0.4;*/
+/*}*/
+/*.rangeslider__fill {*/
+    /*background: #e96227;*/
+    /*position: absolute;*/
+/*}*/
+/*.rangeslider--horizontal .rangeslider__fill {*/
+    /*top: 0;*/
+    /*height: 100%;*/
+/*}*/
+/*.rangeslider__handle {*/
+    /*background: #e96227;*/
+    /*color: #FFFFFF;*/
+    /*cursor: pointer;*/
+    /*display: inline-block;*/
+    /*width: 5.2em;*/
+    /*height: 2.2em;*/
+    /*position: absolute;*/
+    /*-moz-border-radius: 22px;*/
+    /*-webkit-border-radius: 22px;*/
+    /*border-radius: 22px;*/
+    /*line-height: 2.2em;*/
+    /*text-align: center;*/
+/*}*/
+/*.rangeslider__handle:before {*/
+    /*font-family: 'Glyphicons Halflings';*/
+    /*content: "\e079";*/
+    /*font-size: 11px;*/
+    /*opacity: 0.5;*/
+    /*margin: 0 3px;*/
+    /*color: #fff;*/
+    /*display: block;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 5px;*/
+    /*bottom: 0;*/
+/*}*/
+/*.rangeslider__handle:after {*/
+    /*font-family: 'Glyphicons Halflings';*/
+    /*content: "\e080";*/
+    /*font-size: 11px;*/
+    /*opacity: 0.5;*/
+    /*margin: 0 3px;*/
+    /*color: #fff;*/
+    /*display: block;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*right: 5px;*/
+    /*bottom: 0;*/
+/*}*/
+/*.rangeslider--horizontal .rangeslider__handle {*/
+    /*top: -15px;*/
+    /*touch-action: pan-y;*/
+    /*-ms-touch-action: pan-y;*/
+/*}*/
+/*input[type="range"]:focus + .rangeslider .rangeslider__handle {*/
+    /*-moz-box-shadow: 0 0 8px rgba(183, 73, 40, 0.9);*/
+    /*-webkit-box-shadow: 0 0 8px rgba(183, 73, 40, 0.9);*/
+    /*box-shadow: 0 0 8px rgba(183, 73, 40, 0.9);*/
+/*}*/
 
 /* collapse */
 .fancy-collapse-panel .panel-default > .panel-heading {
@@ -810,7 +810,7 @@ html section button.dotted.thin, body section button.dotted.thin {
 
 /* routes output*/
 .routes-box{
-    margin-top: 70px;
+    margin-top: 40px;
     padding: 10px;
     background: rgba(182, 182, 182, 0.6);
     border-radius: 2px;

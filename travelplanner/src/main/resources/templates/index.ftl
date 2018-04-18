@@ -21,8 +21,8 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
     <!-- bootstrap touchspin -->
-    <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.css" />
-    <script src="js/jquery.bootstrap-touchspin.js"></script>
+    <#--<link rel="stylesheet" href="css/jquery.bootstrap-touchspin.css" />-->
+    <#--<script src="js/jquery.bootstrap-touchspin.js"></script>-->
     <!--angular-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="js/my-angular-modules.js"></script>
@@ -47,17 +47,9 @@
     <!-- my scripts -->
     <script src="js/my-styles.js"></script>
 
-    <!-- -->
+    <!--spinner + - -->
     <script src="js/jquery.dpNumberPicker.js"></script>
     <link href="css/jquery.dpNumberPicker-holoLight.css" rel="stylesheet">
-
-    <!-- js styles for accordion with filters-->
-<#--<script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script>-->
-<#--<script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script>-->
-<#--<script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script>-->
-<#--<link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />-->
-<#--<link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />-->
-<#--<link rel="canonical" href="https://codepen.io/carlosdelreal/pen/XXQZVQ?limit=all&page=28&q=Accordion" />-->
 
     <!-- map -->
     <script src="js/google-map.js"></script>
@@ -106,7 +98,6 @@
     <div class="col-sm-12">
         <div class="container-fluid">
             <form name="myForm" id="inputForm" novalidate autocomplete="off"  ng-controller="myParameterController" ng-submit="myForm.$valid && sendRequestParameters()">
-                <#--ng-keypress="checkIfEnterKeyWasPressed($event)"-->
                 <div class="container">
                     <div class="formBox">
                         <div class="row">
@@ -239,11 +230,11 @@
                             <div ng-controller="mapController">
                                 <div class="output-collapse" >
                                     <div class="container-fluid">
-                                    <div class="row">
+                                        <div class="row">
                                         <div class="col-sm-12">
                                             <!-- filters -->
                                             <div class="accordion-panel">
-                                                <dl class="accordion" >
+                                                <dl class="accordion">
                                                     <dt class="label-header">Routes filter <i class="plus-icon"></i></dt>
                                                     <dd>
                                                         <div class="content">
@@ -310,7 +301,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                        <div class="row">
                                         <div class="col-sm-6">
                                             <div class="fancy-collapse-panel" >
                                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
@@ -377,7 +368,7 @@
                                             <div class="container-map" id="map"></div>
                                         </div>
                                     </div>
-                                </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -23,6 +23,7 @@ angular.module('appChangeUserData',[])
                 alert("Changes has not been saved, Error! :(");
             });
     };
+
     $scope.printUserRoutes=function () {
         $scope.loaded=false;
         $http({
@@ -42,11 +43,32 @@ angular.module('appChangeUserData',[])
             });
     };
 
-        $scope.openLink = function(purchaseLink) {
-            if (purchaseLink === null){
-                alert("Нет ссылки на покупку")
-            } else $window.open(purchaseLink);
-        };
+    $scope.deleteSavedRoute = function (input) {
+        // alert(angular.element($('#route_id')).val() + input);
+        $http({
+            method: 'GET',
+            url: 'api/routes/deletebyid',
+            params: {
+                id: input
+            }
+        }).then(
+            function success(response) {
+                $scope.records = response.data;
+                $scope.loaded = true;
+                $scope.printUserRoutes();
+                // $location.path('#routes').reload();
+            },
+            function error(response, status) {
+                console.error('Repos error', status, response);
+                alert("Something goes wrong :(");
+            });
+    };
+
+    $scope.openLink = function(purchaseLink) {
+        if (purchaseLink === null){
+            alert("Нет ссылки на покупку")
+        } else $window.open(purchaseLink);
+    };
 })
     .filter('getMonthNumber',[function () {
         return function (stringDate) {

@@ -39,7 +39,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
 
     <!-- my scripts -->
-    <script src="js/my-styles.js"></script>
+    <#--<script src="js/my-styles.js"></script>-->
     <script src="js/user-change-info.js"></script>
 
     <!-- my css -->
@@ -151,72 +151,86 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <#--<div class="panel panel-default">-->
-                                        <#--<div class="panel-body">-->
-                                            <#--<div class="box box-info">-->
-                                                <#--<div class="box-body">-->
-
-                                                <#--</div>-->
-                                            <#--</div>-->
-                                        <#--</div>-->
-                                    <#--</div>-->
                                 </div>
+
                                 <div id="routes" class="tab-pane">
-                                    <div class="col-sm-4 nomargin accordion">
-                                        <dt>Order routes by</dt>
-                                        <dd>
-                                            <div class="content">
-                                                <div class="funkyradio" >
-                                                    <div class="funkyradio-default">
-                                                        <input type="radio" name="radio3" id="radio9" ng-click="orderByAttribute = 'creationDate'" checked/>
-                                                        <label for="radio9">Creation date</label>
-                                                    </div>
-                                                    <div class="funkyradio-default" >
-                                                        <input type="radio" name="radio3" id="radio10" ng-click="orderByAttribute = 'startDate'"/>
-                                                        <label for="radio10">Start date</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </dd>
-                                    </div>
                                     <#--<h4>Saved routes for ${user_id}</h4>-->
                                     <!-- эту твою фигню сделала невидимой -->
                                     <input value="${user_id}" style="display: none" class="input" id="user_id"> <#--Из этой фигни берётся id текущего мужика-->
+
                                     <div ng-show="loaded">
-                                        <!-- better calendar version-->
-                                        <div ng-repeat="record in records | orderObjectBy:orderByAttribute" data-ng-class-even="'row-striped-even'" data-ng-class-odd="'row-striped-odd'">
-                                            <div>
-                                                <div class="row">
-                                                    <div class="col-sm-2 text-right pull-left">
-                                                        <h1 class="display-4"><span class="badge badge-secondary">{{record.edges[0].startDate | getDayNumber}}</span></h1>
-                                                        <h2 class="header-text">{{record.edges[0].startDate | getMonthNumber | getMonthValue}}</h2>
-                                                    </div>
-                                                    <div class="col-sm-10">
-                                                        <h3 class="text-uppercase header-text"><b> {{record.startPoint}} - {{record.destinationPoint}} </b></h3>
-                                                        <ul class="list-inline">
-                                                            <#--<li class="list-inline-item"><span class="glyphicons glyphicons-coins" aria-hidden="true"></span> {{record.cost}} RUB</li>-->
-                                                            <li class="list-inline-item"><i class="fa fa-tag" aria-hidden="true"></i> {{record.cost}} RUB</li>
-                                                            <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> {{record.edges[0].startDate | getTimeFromDate}}</li>
-                                                            <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> {{record.startPoint}} </li>
-                                                        </ul>
-                                                        <#--<br>-->
-                                                        <div ng-repeat="item in record.edges">
-                                                            <div ng-repeat="transit in item.transitEdgeList">
-                                                                <p>
-                                                                    <b class="font-weight">Transit:</b> {{transit.startPoint.name}} - {{transit.endPoint.name}} <br>
-                                                                    <b class="font-weight">Transport type:</b> {{item.transportType}} <br>
-                                                                    <b class="font-weight">Departure date:</b> {{transit.departure | getDayNumber}}  {{transit.departure | getMonthNumber | getMonthValue}} at {{transit.departure | getTimeFromDate}}<br>
-                                                                    <b class="font-weight">Arrival date:</b> {{transit.arrival | getDayNumber}}  {{transit.arrival | getMonthNumber | getMonthValue}} at {{transit.arrival | getTimeFromDate}} <br>
-                                                                    <b class="font-weight">Cost:</b> {{item.cost}} RUB
-                                                                    <div class="add-margin user-but">
-                                                                        <button type="submit" class="button" ng-click="openLink(item.purchaseLink)">Tickets</button>
-                                                                    </div>
-                                                                </p>
+
+                                        <div class="container-fluid" >
+                                            <div class="row" ng-if="records.length===0">
+                                                <h4 class="text-center">There are no saved routes yet.</h4>
+                                            </div>
+                                            <div class="row" ng-if="records.length!==0">
+                                                <div class="col-sm-12">
+                                                    <div class="content">
+                                                        <div class="col-sm-6">
+                                                            <div class="funkyradio">
+                                                                <div class="funkyradio-default">
+                                                                    <input type="radio" name="radio3" id="radio9" ng-click="orderByAttribute = 'creationDate'" checked/>
+                                                                    <label for="radio9">Route creation date</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="funkyradio">
+                                                                <div class="funkyradio-default">
+                                                                    <input type="radio" name="radio3" id="radio10" ng-click="orderByAttribute = 'startDate'"/>
+                                                                    <label for="radio10">Travel start date</label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <br>
+                                            </div>
+                                        </div>
+                                        <!-- better calendar version-->
+                                        <div class="container-fluid">
+                                            <div ng-repeat="record in records | orderObjectBy:orderByAttribute" data-ng-class-even="'row-striped-even'" data-ng-class-odd="'row-striped-odd'">
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-sm-2 text-right pull-left">
+                                                            <h1 class="display-4"><span class="badge badge-secondary">{{record.edges[0].startDate | getDayNumber}}</span></h1>
+                                                            <h2 class="header-text">{{record.edges[0].startDate | getMonthNumber | getMonthValue}}</h2>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <h3 class="text-uppercase header-text"><b> {{record.startPoint}} - {{record.destinationPoint}} </b></h3>
+                                                            <ul class="list-inline">
+                                                            <#--<li class="list-inline-item"><span class="glyphicons glyphicons-coins" aria-hidden="true"></span> {{record.cost}} RUB</li>-->
+                                                                <li class="list-inline-item"><i class="fa fa-tag" aria-hidden="true"></i> {{record.cost}} RUB</li>
+                                                                <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> {{record.edges[0].startDate | getTimeFromDate}}</li>
+                                                                <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> {{record.startPoint}} </li>
+                                                            </ul>
+                                                        <#--<br>-->
+                                                            <div ng-repeat="item in record.edges">
+                                                                <div ng-repeat="transit in item.transitEdgeList">
+                                                                    <p>
+                                                                        <b class="font-weight">Transit:</b> {{transit.startPoint.name}} - {{transit.endPoint.name}} <br>
+                                                                        <b class="font-weight">Transport type:</b> {{item.transportType}} <br>
+                                                                        <b class="font-weight">Departure date:</b> {{transit.departure | getDayNumber}}  {{transit.departure | getMonthNumber | getMonthValue}} at {{transit.departure | getTimeFromDate}}<br>
+                                                                        <b class="font-weight">Arrival date:</b> {{transit.arrival | getDayNumber}}  {{transit.arrival | getMonthNumber | getMonthValue}} at {{transit.arrival | getTimeFromDate}} <br>
+                                                                        <b class="font-weight">Cost:</b> {{item.cost}} RUB
+                                                                        <#--<b class="font-weight">ID:</b> {{record.id}}-->
+                                                                    <div class="add-margin user-but">
+                                                                        <button type="submit" class="button" ng-click="openLink(item.purchaseLink)">Tickets</button>
+                                                                    </div>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <input class="input" id="route_id" style="display: none" value="{{record.id}}">
+                                                            <div class="btn-group pull-right">
+                                                                <a  href="#"  class="btn btn-inverse button-del" ng-click="deleteSavedRoute(record.id)"><i class="fa fa-trash"></i></a>
+                                                                <#--style="background-color: rgba(45,45, 45, 0.5); color: #fff"-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
