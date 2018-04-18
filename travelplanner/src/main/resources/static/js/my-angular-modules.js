@@ -32,6 +32,10 @@ angular.module('controllerModule')
 
         $scope.sendRequestParameters=function () {
             $scope.submitted = true;
+            if (!$scope.myForm.$valid)
+            {
+                $event.preventDefault();
+            }
             $scope.$emit('LOAD');
             $scope.loaded=false;
             $http({
@@ -82,6 +86,16 @@ angular.module('controllerModule')
         };
 
         /* form validation */
+        $scope.checkIfEnterKeyWasPressed = function(event) {
+            // var keyCode = $event.which || $event.keyCode;
+            if (event.charCode === 13) {
+                // Do that thing you finally wanted to do
+                event.preventDefault(); // Doesn't work at all
+                window.stop(); // Works in all browsers but IE...
+                document.execCommand('Stop'); // Works in IE
+                return false; // Don't even know why it's here. Does nothing.
+            }
+        };
         $scope.showMessage = function(input) {
             var show = input.$invalid && (input.$dirty || input.$touched || input.$untouched);
             return show;
@@ -89,6 +103,22 @@ angular.module('controllerModule')
         $scope.bindingCalendar = function() {
             $scope.dateFrom = $('#inputDate').val();
         };
+        $scope.showMessageToHidden = function (input) {
+            $scope.inpTo = $('#inputToHidden').val();
+            $scope.cityTo = $('#inputTo').val();
+            if ($scope.inpTo.length === 0 && $scope.cityTo.length !== 0)
+                return input.$invalid && (input.$dirty || input.$untouched);
+        };
+        $scope.showMessageFromHidden = function (input) {
+            $scope.inpFrom = $('#inputFromHidden').val();
+            $scope.cityFrom = $('#inputFrom').val();
+            if ($scope.inpFrom.length === 0 && $scope.cityFrom.length !== 0)
+                return input.$invalid && (input.$dirty || input.$untouched);
+        };
+        // $scope.showAlert = function () {
+        //     $scope.inpTo = $('#inputToHidden').val();
+        //     alert($scope.inpTo + $scope.inpTo.length);
+        // };
         $scope.showCalendarMessage = function (input) {
             return input.$invalid && (input.$untouched || input.$dirty);
         };
@@ -145,6 +175,7 @@ angular.module('controllerModule')
             if (purchaseLink === null){
                 alert("Нет ссылки на покупку")
             } else $window.open(purchaseLink);
+            return false;
         };
 
     })

@@ -105,16 +105,18 @@
     <!-- parameter menu-->
     <div class="col-sm-12">
         <div class="container-fluid">
-            <form name="myForm" id="inputForm" novalidate autocomplete="off" ng-controller="myParameterController" ng-submit="myForm.$valid && sendRequestParameters()">
+            <form name="myForm" id="inputForm" novalidate autocomplete="off"  ng-controller="myParameterController" ng-submit="myForm.$valid && sendRequestParameters()">
+                <#--ng-keypress="checkIfEnterKeyWasPressed($event)"-->
                 <div class="container">
                     <div class="formBox">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="inputBox ">
                                     <div class="inputText">Departure city</div>
-                                    <input type="text" name="cityFrom" ng-model="cityFrom" id="inputFrom" class="input" onfocus="geolocate()" placeholder="" required>
+                                    <input type="text" name="cityFrom" ng-model="cityFrom"  id="inputFrom" class="input" onfocus="geolocate()" placeholder="" required>
                                     <div class="help-block pull-right" ng-if="myForm.$submitted">
                                         <div ng-show="showMessage(myForm.cityFrom)">Please enter departure city.</div>
+                                        <div ng-show="showMessageFromHidden(myForm.inpFrom)">Please enter correct name of departure city</div>
                                     </div>
                                 </div>
                             </div>
@@ -125,6 +127,7 @@
                                     <input type="text" id="inputTo" name="cityTo" ng-model="cityTo" class="input" onfocus="geolocate()" placeholder="" required>
                                     <div class="help-block pull-right" ng-if="myForm.$submitted">
                                         <div ng-show="showMessage(myForm.cityTo)">Please enter arrival city.</div>
+                                        <div ng-show="showMessageToHidden(myForm.inpTo)">Please enter correct name of arrival city.</div>
                                     </div>
                                 </div>
                             </div>
@@ -197,19 +200,19 @@
                         <div class="row" ng-show="false">
                             <div class="col-sm-4">
                                 <div class="inputBox ">
-                                    <input type="text" class="input" id="inputFromHidden">
+                                    <input type="text" ng-model="inpFrom" name="inpFrom" class="input" id="inputFromHidden" required>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="inputBox ">
-                                    <input type="text" class="input" id="inputToHidden">
+                                    <input type="text" class="input" ng-model="inpTo" name="inpTo" id="inputToHidden" required>
                                 </div>
                             </div>
                         </div>
                         <!-- angular controller for getting routes -->
                         <div class="row" > <!--<div class="row" ng-controller="myParameterController">-->
                             <div class="col-sm-12">
-                                <input type="submit" name="" class="button" value="Find route" >
+                                <input type="submit" name="" class="button"  ng-keypress="checkIfEnterKeyWasPressed($event)" value="Find route">
                             </div>
                         </div>
                         <div class="row" ng-show="loading">
@@ -342,14 +345,25 @@
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
-                                                                            <section>
-                                                                            <#if isAuthorized>
-                                                                                <div ng-disabled="saved(record.idRouteForView)">
-                                                                                    <button class='dotted thin' ng-click="saveRoute(record)">Save route</button>
-                                                                                </div>
-                                                                            </#if>
-                                                                                <button class='dotted thin' ng-click="openLink(item.purchaseLink)">Buy ticket</button>
-                                                                            </section>
+                                                                            <#--<section>-->
+                                                                            <div class="row">
+                                                                                <form >
+                                                                                    <#if isAuthorized>
+                                                                                        <div ng-hide="saved(record.idRouteForView)" ng-keypress="checkIfEnterKeyWasPressed($event)">
+                                                                                        <#--<button class='dotted thin' ng-click="saveRoute(record)">Save route</button>-->
+                                                                                            <input type="button" ng-click="saveRoute(record)" class="button" value="Save route">
+                                                                                        </div>
+                                                                                    </#if>
+                                                                                </form>
+                                                                            </div>
+                                                                            <br>
+                                                                            <div class="row">
+                                                                                <form ng-click="openLink(item.purchaseLink)" ng-keypress="checkIfEnterKeyWasPressed($event)">
+                                                                                <#--<button class='dotted thin' ng-click="openLink(item.purchaseLink)">Buy ticket</button>-->
+                                                                                    <input type="button" class="button" value="Buy ticket">
+                                                                                </form>
+                                                                            </div>
+                                                                            <#--</section>-->
                                                                         </div>
                                                                     </div>
                                                                 </div>
