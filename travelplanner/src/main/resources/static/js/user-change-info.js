@@ -97,8 +97,9 @@ angular.module('appChangeUserData',[])
 
                     return startDateA - startDateB
                 });
+            } else {
+                return array.reverse()
             }
-
             return array;
         }
     })

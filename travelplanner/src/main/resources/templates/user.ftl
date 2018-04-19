@@ -164,7 +164,7 @@
                                             <div class="row" ng-if="records.length===0">
                                                 <h4 class="text-center">There are no saved routes yet.</h4>
                                             </div>
-                                            <div class="row" ng-if="records.length!==0">
+                                            <div class="row" ng-show="records.length!==0">
                                                 <div class="col-sm-12">
                                                     <div class="content">
                                                         <div class="col-sm-6">
