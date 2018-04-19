@@ -164,29 +164,36 @@
                                             <div class="row" ng-if="records.length===0">
                                                 <h4 class="text-center">There are no saved routes yet.</h4>
                                             </div>
-                                            <div class="row" ng-show="records.length!==0">
-                                                <div class="col-sm-12">
-                                                    <div class="content">
-                                                        <div class="col-sm-6">
-                                                            <div class="funkyradio">
-                                                                <div class="funkyradio-default">
-                                                                    <input type="radio" name="radio3" id="radio9" ng-click="orderByAttribute = 'creationDate'" checked/>
-                                                                    <label for="radio9">Route creation date</label>
+                                            <div class="row-striped" ng-show="records.length!==0">
+                                                <div class="row">
+                                                    <h4 style="margin-left: 20px; margin-top: 10px;">Order routes by</h4>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="content">
+                                                            <div class="col-sm-6">
+                                                                <div class="funkyradio">
+                                                                    <div class="funkyradio-default">
+                                                                        <input type="radio" name="radio3" id="radio9" ng-click="orderByAttribute = 'creationDate'" checked/>
+                                                                        <label for="radio9">Route creation date</label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="funkyradio">
-                                                                <div class="funkyradio-default">
-                                                                    <input type="radio" name="radio3" id="radio10" ng-click="orderByAttribute = 'startDate'"/>
-                                                                    <label for="radio10">Travel start date</label>
+                                                            <div class="col-sm-6">
+                                                                <div class="funkyradio">
+                                                                    <div class="funkyradio-default">
+                                                                        <input type="radio" name="radio3" id="radio10" ng-click="orderByAttribute = 'startDate'"/>
+                                                                        <label for="radio10">Travel start date</label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
+                                        <br>
                                         <!-- better calendar version-->
                                         <div class="container-fluid">
                                             <div ng-repeat="record in records | orderObjectBy:orderByAttribute" data-ng-class-even="'row-striped-even'" data-ng-class-odd="'row-striped-odd'">

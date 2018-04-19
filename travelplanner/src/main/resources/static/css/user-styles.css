@@ -374,6 +374,10 @@ input[type="text"]:disabled{
     border-left: 4px #efefef solid;
 }
 
+.row-striped{
+    background-color: rgba(239,239,239, 0.2);
+    border-radius: 2px;
+}
 .row-striped-even, .row-striped-odd {
     border-left: 4px #000000 solid;
 }
