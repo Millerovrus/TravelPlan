@@ -21,18 +21,13 @@ public class IntegrationError {
     @Column(length = 500)
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
     public IntegrationError() {
     }
 
-    public IntegrationError(String moduleTitle, Date time, String description, User user) {
+    public IntegrationError(String moduleTitle, Date time, String description) {
         this.moduleTitle = moduleTitle;
         this.time = time;
         this.description = description;
-        this.user = user;
     }
 
     public String getModuleTitle() {
@@ -57,14 +52,6 @@ public class IntegrationError {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     @Override

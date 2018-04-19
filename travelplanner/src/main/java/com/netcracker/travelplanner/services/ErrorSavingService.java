@@ -29,7 +29,7 @@ public class ErrorSavingService {
 
         if (email != null) {
             User user = userService.findByEmail(email);
-            repository.save(new IntegrationError(moduleTitle, new Date(), description, user));
+            repository.save(new IntegrationError(moduleTitle, new Date(), description));
         }
     }
 }

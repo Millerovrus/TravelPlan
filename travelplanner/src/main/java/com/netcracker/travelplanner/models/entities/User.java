@@ -17,10 +17,10 @@ public class User implements Serializable {
 
     private String email;
 
-    @Column(name="first_name", length = 50, nullable = false)
+    @Column(name="first_name", length = 200, nullable = false)
     private String firstName;
 
-    @Column(name="last_name", length = 50, nullable = false)
+    @Column(name="last_name", length = 200, nullable = false)
     private String lastName;
 
     @Column(name="birth_date")
@@ -37,15 +37,12 @@ public class User implements Serializable {
     @Column(name="avatar", length = 1000)
     private String avatar;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 200)
     private String password;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true)
     @JsonManagedReference
     private Set<Route> routes;
-
-    @OneToMany(mappedBy = "user")
-    private Set<IntegrationError> integrationErrors;
 
     public User(String email,String firstName, String lastName, Date birthDate, boolean isAdmin, Date registrationDate, String password) {
         this.email = email;
@@ -56,7 +53,6 @@ public class User implements Serializable {
         this.registrationDate = registrationDate;
         this.password = password;
         routes = new HashSet<>();
-        integrationErrors = new HashSet<>();
     }
 
     private User() {};
@@ -72,14 +68,6 @@ public class User implements Serializable {
                 ", RegistrationDate=" + registrationDate +
                 ", Password='" + password + '\'' +
                 '}';
-    }
-
-    public Set<IntegrationError> getIntegrationErrors() {
-        return integrationErrors;
-    }
-
-    public void setIntegrationErrors(Set<IntegrationError> integrationErrors) {
-        this.integrationErrors = integrationErrors;
     }
 
     public String getAvatar() {

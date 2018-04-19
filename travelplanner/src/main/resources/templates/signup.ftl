@@ -81,8 +81,8 @@
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                     </div>
-                    <input id="inputEmail" name="email" type="email" placeholder="Email address" class="input pass" required/>
-                    <input id="inputPassword" name="password" type="password" placeholder="Choose a password" required class="input pass"/>
+                    <input id="inputEmail" name="email" type="email" placeholder="Email address" maxlength="255" class="input pass" required/>
+                    <input id="inputPassword" name="password" type="password" placeholder="Choose a password" maxlength="255" required class="input pass"/>
                     <div align="center" class="g-recaptcha add-margin" data-sitekey="6Lc9p1IUAAAAAOBwW-LE1IPih6AcW_CpDY3bsxaQ"></div>
                     <div class="add-margin">
                         <input type="submit" value="Sign up" class="button"/>

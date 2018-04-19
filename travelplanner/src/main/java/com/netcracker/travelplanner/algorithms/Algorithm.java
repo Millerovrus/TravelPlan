@@ -234,11 +234,11 @@ public class Algorithm {
         switch(edge.getTransportType().toLowerCase()){
             case "bus":
             case "train":
-                return edge.getEndDate().plusHours(1).plusMinutes(30);
+                return edge.getEndDate().plusHours(properties.getDefaultPauseHours()).plusMinutes(properties.getBusPauseMinutes());
             case "plane":
-                return edge.getEndDate().plusHours(2);
+                return edge.getEndDate().plusHours(properties.getPlanePauseHours());
             default:
-                return edge.getEndDate().plusHours(1);
+                return edge.getEndDate().plusHours(properties.getDefaultPauseHours());
         }
     }
 

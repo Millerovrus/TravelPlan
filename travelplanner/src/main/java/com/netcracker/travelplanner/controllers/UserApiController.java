@@ -20,14 +20,18 @@ import java.util.List;
 public class UserApiController {
     private static final Logger logger = LoggerFactory.getLogger(UserApiController.class);
     Date date;
+    private final UserRepositoryService userRepositoryService;
+    private final SecurityService securityService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserService userService;
+
     @Autowired
-    private UserRepositoryService userRepositoryService;
-    @Autowired
-    private SecurityService securityService;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-    @Autowired
-    private UserService userService;
+    public UserApiController(UserRepositoryService userRepositoryService, SecurityService securityService, BCryptPasswordEncoder bCryptPasswordEncoder, UserService userService) {
+        this.userRepositoryService = userRepositoryService;
+        this.securityService = securityService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.userService = userService;
+    }
 
     /**
      * @return common list of users
@@ -84,11 +88,10 @@ public class UserApiController {
                     Date date = new SimpleDateFormat("dd.MM.yyyy").parse(changeBirthDate);
                     user.setBirthDate(date);
                 }
-                if (changeAvatar != "") {
+                if (userService.checkImageURL(changeAvatar)) {
                     user.setAvatar(changeAvatar);
                 }
-                //Шифрование пароля
-                //user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
                 userRepositoryService.save(user);
                 logger.info("Изменения прошли успешно!");
             } catch (Exception ex) {

@@ -14,11 +14,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserRepositoryService userRepositoryService;
+    private final UserRepositoryService userRepositoryService;
+
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    public UserServiceImpl(UserRepositoryService userRepositoryService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userRepositoryService = userRepositoryService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @Override
     public User findUserByEmail(String email) {
@@ -31,5 +35,19 @@ public class UserServiceImpl implements UserService {
         user.setLastName(encrypt(user.getLastName()));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepositoryService.save(user);
+    }
+
+    @Override
+    public boolean checkImageURL(String URL) {
+        String[] suffixes = {".jpg", ".png", ".gif", ".jpeg", ".bmp", ".webp", ".svg"};
+
+        for (String suffix :
+                suffixes) {
+            if (URL.endsWith(suffix)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
