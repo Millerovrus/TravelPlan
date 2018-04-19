@@ -32,6 +32,15 @@ angular.module('controllerModule')
 
         $scope.sendRequestParameters=function () {
             $scope.submitted = true;
+
+            /* */
+            $scope.latLongFrom=$('#latit_longit_from').val();
+            $scope.latLongTo=$('#latit_longit_to').val();
+            $scope.dateFrom=$('#inputDate').val();
+            $scope.childrenNum=$('#children-number').val();
+            $scope.infantsNum=$('#infants-number').val();
+            $scope.adultsNum=$('#adults-number').val();
+
             if (!$scope.myForm.$valid)
             {
                 $event.preventDefault();
@@ -42,14 +51,14 @@ angular.module('controllerModule')
                 method: 'GET',
                 url: 'api/rest/get-routes/date/',
                  params: {
-                     from: angular.element($('#inputFromHidden')).val(),
-                     to: angular.element($('#inputToHidden')).val(),
-                     longLatFrom: angular.element($('#latit_longit_from')).val(),
-                     longLatTo: angular.element($('#latit_longit_to')).val(),
-                     date: angular.element($('#inputDate')).val(),
-                     numberOfAdults: angular.element($('#adults-number')).val(),
-                     numberOfChildren: angular.element($('#children-number')).val(),
-                     numberOfInfants: angular.element($('#infants-number')).val()
+                     from: $scope.inpFrom,
+                     to: $scope.inpTo,
+                     longLatFrom: $scope.latLongFrom,
+                     longLatTo: $scope.latLongTo,
+                     date: $scope.dateFrom,
+                     numberOfAdults: $scope.adultsNum,
+                     numberOfChildren: $scope.childrenNum,
+                     numberOfInfants: $scope.infantsNum
                 }
             }).then(
                 function success(response) {
