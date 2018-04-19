@@ -104,7 +104,7 @@
                             <div class="col-sm-6">
                                 <div class="inputBox">
                                     <div class="inputText label-input-param" id="departure-label">Departure city</div>
-                                    <input type="text" name="cityFrom" ng-model="cityFrom"  id="inputFrom" class="input" onfocus="geolocate()" placeholder="" required>
+                                    <input type="text" name="cityFrom" ng-model="cityFrom"  id="inputFrom" class="input" onfocus="geolocate(); clearFrom()" placeholder="" required>
                                     <div class="help-block pull-right" ng-if="myForm.$submitted">
                                         <div ng-show="showMessage(myForm.cityFrom)">Please enter departure city.</div>
                                         <div ng-show="showMessageFromHidden(myForm.inpFrom)">Please enter correct name of departure city</div>
@@ -118,8 +118,8 @@
                             <div class="col-sm-6">
                                 <div class="inputBox">
                                     <div class="inputText label-input-param" id="arrival-label">Arrival city</div>
-                                    <#--ng-keypress="checkIfEnterKeyWasPressed($event)"-->
-                                    <input type="text" id="inputTo" name="cityTo"  ng-model="cityTo" class="input" onfocus="geolocate()" placeholder="" required>
+                                <#--ng-keypress="checkIfEnterKeyWasPressed($event)"-->
+                                    <input type="text" id="inputTo" name="cityTo"  ng-model="cityTo" class="input" onfocus="geolocate(); clearTo()" placeholder="" required>
                                     <div class="help-block pull-right" ng-if="myForm.$submitted">
                                         <div ng-show="showMessage(myForm.cityTo)">Please enter arrival city.</div>
                                         <div ng-show="showMessageToHidden(myForm.inpTo)">Please enter correct name of arrival city.</div>
