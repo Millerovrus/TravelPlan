@@ -31,7 +31,7 @@ public class Algorithm {
         if (edges.isEmpty()){
             String error = "Search for edges hasn't given any results";
             logger.debug(error);
-            errorSavingService.saveError(error, "algorithm");
+            errorSavingService.saveError(new IntegrationError(error, new Date(), "algorithm"));
             return null;
         }
         edges = edges.stream().distinct().collect(Collectors.toList());

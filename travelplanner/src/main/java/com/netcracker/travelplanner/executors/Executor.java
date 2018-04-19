@@ -1,6 +1,7 @@
 package com.netcracker.travelplanner.executors;
 
 import com.netcracker.travelplanner.api.ApiInterface;
+import com.netcracker.travelplanner.model.entities.IntegrationError;
 import com.netcracker.travelplanner.model.exceptions.APIException;
 import com.netcracker.travelplanner.model.entities.Edge;
 import com.netcracker.travelplanner.model.Task;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -41,6 +43,7 @@ public class Executor implements ExecutorMan {
         List<Edge> edgeList = new ArrayList<>();
 
         /*Формируем задачи для  выполнения из АПИ. передаем в метод findEdgesFromTo параметры запроса из сущности Task*/
+        List<IntegrationError> errors = new ArrayList<>();
 
         for (Task task :
                 tasks) {
@@ -59,8 +62,9 @@ public class Executor implements ExecutorMan {
                 if (e.getCause() != null){
                     description.append(e.getCause().getMessage());
                 }
-                errorSavingService.saveError(description.toString(), apiInterface.getClass().getName());
+                errors.add(new IntegrationError(description.toString(), new Date(), apiInterface.getClass().getName()));
             }
+
             if (edges != null && edges.size() > 0){
                 List<Edge> finalEdges = edges;
                 callables.add(() -> finalEdges);
@@ -86,9 +90,12 @@ public class Executor implements ExecutorMan {
 
                 edgeList.addAll(listFuture.get());
             } catch (InterruptedException | ExecutionException ex){
-                errorSavingService.saveError(ex.getMessage(), "Executor");
+                errors.add(new IntegrationError(ex.getMessage(), new Date(), "Executor"));
             }
         });
+
+        errorSavingService.saveErrors(errors);
+
         return edgeList;
     }
 }

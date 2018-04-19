@@ -5,6 +5,7 @@ import com.netcracker.travelplanner.api.*;
 import com.netcracker.travelplanner.model.*;
 import com.netcracker.travelplanner.executors.Executor;
 import com.netcracker.travelplanner.model.entities.Edge;
+import com.netcracker.travelplanner.model.entities.IntegrationError;
 import com.netcracker.travelplanner.model.entities.Route;
 import com.netcracker.travelplanner.model.exceptions.KiwiIATACodeException;
 import org.slf4j.Logger;
@@ -60,7 +61,7 @@ public class MainRouteService {
             if (e.getCause() != null){
                 description += e.getCause().getMessage();
             }
-            errorSavingService.saveError(description, "EdgeService");
+            errorSavingService.saveError(new IntegrationError(description, new Date(), "EdgeService"));
         }
         return parameters;
     }
@@ -99,7 +100,7 @@ public class MainRouteService {
         try {
             executorService.awaitTermination(6, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            errorSavingService.saveError(new IntegrationError(e.getMessage(), new Date(), "ExecutorService"));
         }
 
         return edgeList;
