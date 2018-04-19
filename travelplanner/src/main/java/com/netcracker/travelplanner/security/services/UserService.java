@@ -1,6 +1,6 @@
 package com.netcracker.travelplanner.security.services;
 
-import com.netcracker.travelplanner.models.entities.User;
+import com.netcracker.travelplanner.model.entities.User;
 
 public interface UserService {
 

@@ -1,6 +1,6 @@
 package com.netcracker.travelplanner.controllers;
 
-import com.netcracker.travelplanner.models.entities.Edge;
+import com.netcracker.travelplanner.model.entities.Edge;
 import com.netcracker.travelplanner.services.EdgeRepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,6 +1,6 @@
 package com.netcracker.travelplanner.security.services;
 
-import com.netcracker.travelplanner.models.entities.User;
+import com.netcracker.travelplanner.model.entities.User;
 import static com.netcracker.travelplanner.security.crypto.AesCrypt.*;
 import com.netcracker.travelplanner.services.UserRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;

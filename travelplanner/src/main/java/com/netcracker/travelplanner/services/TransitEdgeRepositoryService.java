@@ -1,6 +1,6 @@
 package com.netcracker.travelplanner.services;
 
-import com.netcracker.travelplanner.models.entities.TransitEdge;
+import com.netcracker.travelplanner.model.entities.TransitEdge;
 import com.netcracker.travelplanner.repository.TransitEdgeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,10 +1,11 @@
 package com.netcracker.travelplanner.api;
 
 import com.google.gson.Gson;
-import com.netcracker.travelplanner.models.entities.Edge;
-import com.netcracker.travelplanner.models.entities.Point;
-import com.netcracker.travelplanner.models.entities.TransitEdge;
-import com.netcracker.travelplanner.models.kiwi.KiwiFlights;
+import com.netcracker.travelplanner.model.exceptions.KiwiException;
+import com.netcracker.travelplanner.model.entities.Edge;
+import com.netcracker.travelplanner.model.entities.Point;
+import com.netcracker.travelplanner.model.entities.TransitEdge;
+import com.netcracker.travelplanner.model.kiwi.KiwiFlights;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,7 +23,7 @@ import java.util.List;
 public class KiwiApi implements ApiInterface {
 
     @Override
-    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren, int numberOfInfants) {
+    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren, int numberOfInfants) throws KiwiException {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String url =
@@ -131,7 +132,7 @@ public class KiwiApi implements ApiInterface {
         return edgeList;
     }
 
-    private KiwiFlights getKiwiFlightsFromUrl(String urlQueryString) {
+    private KiwiFlights getKiwiFlightsFromUrl(String urlQueryString) throws KiwiException {
 
         KiwiFlights kiwiFlights = null;
 
@@ -153,7 +154,7 @@ public class KiwiApi implements ApiInterface {
             kiwiFlights = gson.fromJson(reader, KiwiFlights.class);
 
         } catch (IOException ex) {
-            ex.printStackTrace();
+            throw new KiwiException(ex);
         }
 
         return kiwiFlights;

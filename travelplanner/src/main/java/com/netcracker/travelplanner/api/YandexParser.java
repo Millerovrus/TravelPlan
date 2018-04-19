@@ -1,8 +1,8 @@
 package com.netcracker.travelplanner.api;
 
-import com.netcracker.travelplanner.models.entities.Edge;
-import com.netcracker.travelplanner.models.entities.Point;
-import com.netcracker.travelplanner.models.entities.TransitEdge;
+import com.netcracker.travelplanner.model.entities.Edge;
+import com.netcracker.travelplanner.model.entities.Point;
+import com.netcracker.travelplanner.model.entities.TransitEdge;
 import com.netcracker.travelplanner.webParsers.WebParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

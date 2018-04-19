@@ -1,13 +1,15 @@
 package com.netcracker.travelplanner.executors;
 
 import com.netcracker.travelplanner.api.ApiInterface;
-import com.netcracker.travelplanner.models.entities.Edge;
-import com.netcracker.travelplanner.models.Task;
+import com.netcracker.travelplanner.model.exceptions.APIException;
+import com.netcracker.travelplanner.model.entities.Edge;
+import com.netcracker.travelplanner.model.Task;
+import com.netcracker.travelplanner.services.ErrorSavingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -16,12 +18,18 @@ import java.util.concurrent.*;
 public class Executor implements ExecutorMan {
     private static final Logger logger = LoggerFactory.getLogger(Executor.class);
     private static final ExecutorService executorService = Executors.newFixedThreadPool(6);
+    private final ErrorSavingService errorSavingService;
 
     @Value("${executor.sleep-time-millis}")
     private Integer sleepTime;
 
     @Value("${executor.timeout-minutes}")
     private Integer timeout;
+
+    @Autowired
+    public Executor(ErrorSavingService errorSavingService) {
+        this.errorSavingService = errorSavingService;
+    }
 
     @Override
     public List<Edge> execute(List<Task> tasks, ApiInterface apiInterface) {
@@ -33,15 +41,31 @@ public class Executor implements ExecutorMan {
         List<Edge> edgeList = new ArrayList<>();
 
         /*Формируем задачи для  выполнения из АПИ. передаем в метод findEdgesFromTo параметры запроса из сущности Task*/
-        tasks.forEach(task ->
-                callables.add(() ->
-                        apiInterface.findEdgesFromTo(task.getFrom()
-                                , task.getTo()
-                                , task.getDate()
-                                , task.getNumberOfAdults()
-                                , task.getNumberOfChildren()
-                                , task.getNumberOfInfants()))
-        );
+
+        for (Task task :
+                tasks) {
+            List<Edge> edges = new ArrayList<>();
+            try {
+                edges = apiInterface.findEdgesFromTo(task.getFrom()
+                        , task.getTo()
+                        , task.getDate()
+                        , task.getNumberOfAdults()
+                        , task.getNumberOfChildren()
+                        , task.getNumberOfInfants());
+            } catch (APIException e) {
+                StringBuilder description = new StringBuilder();
+                description.append(e.getMessage());
+
+                if (e.getCause() != null){
+                    description.append(e.getCause().getMessage());
+                }
+                errorSavingService.saveError(description.toString(), apiInterface.getClass().getName());
+            }
+            if (edges != null && edges.size() > 0){
+                List<Edge> finalEdges = edges;
+                callables.add(() -> finalEdges);
+            }
+        }
 
         /*Отправляем  задачи на выполнение*/
         try {
@@ -55,61 +79,17 @@ public class Executor implements ExecutorMan {
         /*Обрабатываем результат выполнения задач*/
         futures.forEach(listFuture -> {
             try {
-
                 while ( ! listFuture.isDone()) {
                     logger.error("Thread sleep. Task is not complete");
                     Thread.sleep(sleepTime);
                 }
 
                 edgeList.addAll(listFuture.get());
-
-            } catch (InterruptedException e) {
-                logger.error("ошибка выполнения");
-
-            } catch (ExecutionException e) {
-                logger.error("ошибка запроса");
+            } catch (InterruptedException | ExecutionException ex){
+                errorSavingService.saveError(ex.getMessage(), "Executor");
             }
         });
-
-        /*Для теста. запись в файлы полученных эджей*/
-//        logger.debug("edges from " + this.toString());
-//
-//        try (FileWriter writer = new FileWriter(new File("test" + this.toString() + ".txt"))) {
-//            edgeList.forEach(edge -> {
-//                try {
-//                    writer.write(edge.getStartPoint() + " "
-//                            + edge.getDestinationPoint() + " "
-//                            + edge.getTransportType() + " "
-//                            + edge.getCost() + " "
-//                            + edge.getDuration() +" "
-//                            + edge.getStartDate().toString()+" "
-//                            + edge.getEndDate().toString()
-//                            +"\n");
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            });
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//
-//        }
         return edgeList;
-    }
-
-    public Integer getSleepTime() {
-        return sleepTime;
-    }
-
-    public void setSleepTime(Integer sleepTime) {
-        this.sleepTime = sleepTime;
-    }
-
-    public Integer getTimeout() {
-        return timeout;
-    }
-
-    public void setTimeout(Integer timeout) {
-        this.timeout = timeout;
     }
 }
 

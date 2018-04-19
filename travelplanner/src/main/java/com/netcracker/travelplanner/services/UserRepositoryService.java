@@ -1,6 +1,6 @@
 package com.netcracker.travelplanner.services;
 
-import com.netcracker.travelplanner.models.entities.User;
+import com.netcracker.travelplanner.model.entities.User;
 import com.netcracker.travelplanner.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,7 +56,7 @@ public class UserRepositoryService{
     }
 
     /**
-     * delete all models managed by repository
+     * delete all model managed by repository
      */
     public void deleteAll() {
         userRepository.deleteAll();

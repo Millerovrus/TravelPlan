@@ -1,25 +1,23 @@
 package com.netcracker.travelplanner.services;
 
 import com.netcracker.travelplanner.algorithms.Algorithm;
-import com.netcracker.travelplanner.api.KiwiApi;
-import com.netcracker.travelplanner.api.UFSParser;
-import com.netcracker.travelplanner.api.YandexApi;
-import com.netcracker.travelplanner.models.*;
+import com.netcracker.travelplanner.api.*;
+import com.netcracker.travelplanner.model.*;
 import com.netcracker.travelplanner.executors.Executor;
-import com.netcracker.travelplanner.models.entities.Edge;
-import com.netcracker.travelplanner.models.entities.Route;
+import com.netcracker.travelplanner.model.entities.Edge;
+import com.netcracker.travelplanner.model.entities.Route;
+import com.netcracker.travelplanner.model.exceptions.KiwiIATACodeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 import java.util.concurrent.*;
 
 @Service
 public class MainRouteService {
-    @Autowired
-    private Algorithm algorithm;
+    private final Algorithm algorithm;
+    private final ErrorSavingService errorSavingService;
 
     @Value("${route-service.threads-count}")
     private Integer threadsCount;
@@ -29,25 +27,42 @@ public class MainRouteService {
 
     private final Logger logger = LoggerFactory.getLogger(MainRouteService.class);
 
-//    private WebDriver driver = WebParser.getDriver();
-//    private YandexParser yandexParser = new YandexParser(driver);
     private KiwiApi kiwiApi = new KiwiApi();
     private YandexApi yandexApi = new YandexApi();
     private UFSParser UFSParser = new UFSParser();
 
-    private Executor executor1 = new Executor();
-    private Executor executor2 = new Executor();
-    private Executor executor3 = new Executor();
+    private final Executor executor1;
+    private final Executor executor2;
+    private final Executor executor3;
+
+    @Autowired
+    public MainRouteService(Algorithm algorithm, Executor executor1, Executor executor2, Executor executor3, ErrorSavingService errorSavingService) {
+        this.algorithm = algorithm;
+        this.executor1 = executor1;
+        this.executor2 = executor2;
+        this.executor3 = executor3;
+        this.errorSavingService = errorSavingService;
+    }
 
     private SearchInputParameters prepareInputData(String from, String to, String latLongFrom, String latLongTo, String date, int numberOfAdults, int numberOfChildren, int numberOfInfants){
-        return new PreparingDataService().prepareData(from
-                ,to
-                ,latLongFrom
-                ,latLongTo
-                ,date
-                ,numberOfAdults
-                ,numberOfChildren
-                ,numberOfInfants);
+        SearchInputParameters parameters = null;
+        try {
+            parameters = new PreparingDataService().prepareData(from
+                    ,to
+                    ,latLongFrom
+                    ,latLongTo
+                    ,date
+                    ,numberOfAdults
+                    ,numberOfChildren
+                    ,numberOfInfants);
+        } catch (KiwiIATACodeException e) {
+            String description = e.getMessage();
+            if (e.getCause() != null){
+                description += e.getCause().getMessage();
+            }
+            errorSavingService.saveError(description, "EdgeService");
+        }
+        return parameters;
     }
 
     private List<Task> getTasks(SearchInputParameters searchInputParameters){
@@ -123,22 +138,5 @@ public class MainRouteService {
                 ,searchInputParameters.getFrom().getName()
                 ,searchInputParameters.getTo().getName()
                 ,searchInputParameters.getNumberOfAdults() + searchInputParameters.getNumberOfChildren() + searchInputParameters.getNumberOfInfants());
-
-    }
-
-    public Integer getThreadsCount() {
-        return threadsCount;
-    }
-
-    public void setThreadsCount(Integer threadsCount) {
-        this.threadsCount = threadsCount;
-    }
-
-    public Integer getTimeout() {
-        return timeout;
-    }
-
-    public void setTimeout(Integer timeout) {
-        this.timeout = timeout;
     }
 }

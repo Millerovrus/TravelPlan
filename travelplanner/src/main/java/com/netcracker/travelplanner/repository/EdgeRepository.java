@@ -3,7 +3,7 @@ package com.netcracker.travelplanner.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
-import com.netcracker.travelplanner.models.entities.Edge;
+import com.netcracker.travelplanner.model.entities.Edge;
 
 import java.util.List;
 

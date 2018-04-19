@@ -259,7 +259,7 @@
   }
 
 
-  // List of HTML models for escaping.
+  // List of HTML model for escaping.
   var escapeMap = {
     '&': '&amp;',
     '<': '&lt;',

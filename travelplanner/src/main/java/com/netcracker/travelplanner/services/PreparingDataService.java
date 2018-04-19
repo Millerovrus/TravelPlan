@@ -1,8 +1,9 @@
 package com.netcracker.travelplanner.services;
 
-import com.netcracker.travelplanner.models.IataCodeAndTimezone;
-import com.netcracker.travelplanner.models.entities.Point;
-import com.netcracker.travelplanner.models.SearchInputParameters;
+import com.netcracker.travelplanner.model.IataCodeAndTimezone;
+import com.netcracker.travelplanner.model.entities.Point;
+import com.netcracker.travelplanner.model.SearchInputParameters;
+import com.netcracker.travelplanner.model.exceptions.KiwiIATACodeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ public class PreparingDataService {
             , String date
             , int numberOfAdults
             , int numberOfChildren
-            , int numberOfInfants){
+            , int numberOfInfants) throws KiwiIATACodeException {
 
         SearchInputParameters searchInputParameters = new SearchInputParameters();
 

@@ -1,13 +1,13 @@
 package com.netcracker.travelplanner.services;
 
 import com.google.gson.Gson;
-import com.netcracker.travelplanner.models.IataCodeAndTimezone;
-import com.netcracker.travelplanner.models.entities.Point;
-import com.netcracker.travelplanner.models.googleDist.GoogleDistance;
-import com.netcracker.travelplanner.models.googleGeocode.GoogleGeocode;
-import com.netcracker.travelplanner.models.yandexCode.YandexCode;
-import com.netcracker.travelplanner.models.newKiwi.KiwiStations;
-import com.netcracker.travelplanner.models.newKiwi.MyPoint;
+import com.netcracker.travelplanner.model.IataCodeAndTimezone;
+import com.netcracker.travelplanner.model.entities.Point;
+import com.netcracker.travelplanner.model.exceptions.KiwiIATACodeException;
+import com.netcracker.travelplanner.model.googleDist.GoogleDistance;
+import com.netcracker.travelplanner.model.googleGeocode.GoogleGeocode;
+import com.netcracker.travelplanner.model.yandexCode.YandexCode;
+import com.netcracker.travelplanner.model.newKiwi.*;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class EdgeService {
 
-    public static IataCodeAndTimezone getIataCodeAndTimezone(double latitude, double longitude){
+    public static IataCodeAndTimezone getIataCodeAndTimezone(double latitude, double longitude) throws KiwiIATACodeException {
 
         String query = "https://api.skypicker.com/locations/?type=radius&" +
                 "lat=" +
@@ -32,11 +32,18 @@ public class EdgeService {
         String iataCityCode = null;
         String timezone = null;
         Gson gson = new Gson();
-        KiwiStations kiwiStations = gson.fromJson(getStreamReaderFromUrl(query), KiwiStations.class);
-
-        if(kiwiStations != null) {
+        KiwiStations kiwiStations = null;
+        try {
+            kiwiStations = gson.fromJson(getStreamReaderFromUrl(query), KiwiStations.class);
+        }catch (Exception ex){
+            throw new KiwiIATACodeException(ex);
+        }
+        if(kiwiStations != null && kiwiStations.getLocations() != null && kiwiStations.getLocations().size() > 0) {
             iataCityCode = kiwiStations.getLocations().get(0).getCode();
             timezone = kiwiStations.getLocations().get(0).getTimezone();
+        }
+        else {
+            throw new KiwiIATACodeException();
         }
 
         return new IataCodeAndTimezone(iataCityCode, timezone);

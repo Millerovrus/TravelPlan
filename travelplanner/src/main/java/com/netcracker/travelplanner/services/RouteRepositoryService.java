@@ -1,6 +1,6 @@
 package com.netcracker.travelplanner.services;
 
-import com.netcracker.travelplanner.models.entities.Route;
+import com.netcracker.travelplanner.model.entities.Route;
 import com.netcracker.travelplanner.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,8 +10,12 @@ import java.util.List;
 
 @Service
 public class RouteRepositoryService {
+    private final RouteRepository routeRepository;
+
     @Autowired
-    private RouteRepository routeRepository;
+    public RouteRepositoryService(RouteRepository routeRepository) {
+        this.routeRepository = routeRepository;
+    }
 
     /**
      * add route in database
@@ -90,7 +94,7 @@ public class RouteRepositoryService {
     }
 
     /**
-     * delete all models managed by repository
+     * delete all model managed by repository
      */
     public void deleteAll() {
         routeRepository.deleteAll();

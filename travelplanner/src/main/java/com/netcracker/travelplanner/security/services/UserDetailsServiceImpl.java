@@ -1,7 +1,7 @@
 package com.netcracker.travelplanner.security.services;
 
 
-import com.netcracker.travelplanner.models.entities.User;
+import com.netcracker.travelplanner.model.entities.User;
 import com.netcracker.travelplanner.security.domen.Roles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

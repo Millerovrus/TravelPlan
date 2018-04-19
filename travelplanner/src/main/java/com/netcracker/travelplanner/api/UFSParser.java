@@ -1,9 +1,11 @@
 package com.netcracker.travelplanner.api;
 
-import com.netcracker.travelplanner.models.entities.Edge;
-import com.netcracker.travelplanner.models.entities.Point;
-import com.netcracker.travelplanner.models.entities.TrainTicketsInfo;
-import com.netcracker.travelplanner.models.entities.TransitEdge;
+import com.netcracker.travelplanner.model.exceptions.UFSIOException;
+import com.netcracker.travelplanner.model.exceptions.UFSNoDataException;
+import com.netcracker.travelplanner.model.entities.Edge;
+import com.netcracker.travelplanner.model.entities.Point;
+import com.netcracker.travelplanner.model.entities.TrainTicketsInfo;
+import com.netcracker.travelplanner.model.entities.TransitEdge;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -23,7 +25,7 @@ public class UFSParser implements ApiInterface {
     private static final Logger logger = LoggerFactory.getLogger(UFSParser.class);
 
     @Override
-    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren, int numberOfInfants) {
+    public List<Edge> findEdgesFromTo(Point from, Point to, LocalDate date, int numberOfAdults, int numberOfChildren, int numberOfInfants) throws UFSNoDataException, UFSIOException {
         String url = "https://www.ufs-online.ru/en/kupit-zhd-bilety/" +
                 from.getRussianName() +
                 "/" +
@@ -42,7 +44,7 @@ public class UFSParser implements ApiInterface {
                         .get();
             } catch (IOException e) {
                 logger.error("ошибка получения по запросу {}", url);
-                return edgeList;
+                throw new UFSIOException(e);
             }
 
             Elements records = doc.select("div.wg-train-container");
@@ -160,7 +162,10 @@ public class UFSParser implements ApiInterface {
                     }
 
                 }
-            } else logger.error("нет данных по запросу {}", url);
+            } else {
+                logger.error("нет данных по запросу {}", url);
+                throw new UFSNoDataException();
+            }
         }
         return edgeList;
     }

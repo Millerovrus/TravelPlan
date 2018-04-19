@@ -4,7 +4,7 @@ package com.netcracker.travelplanner.services;
 import com.netcracker.travelplanner.repository.EdgeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.netcracker.travelplanner.models.entities.Edge;
+import com.netcracker.travelplanner.model.entities.Edge;
 
 import java.util.List;
 
@@ -77,7 +77,7 @@ public class EdgeRepositoryService {
     }
 
     /**
-     * delete all models managed by repository
+     * delete all model managed by repository
      */
     public void deleteAll() {
         edgeRepository.deleteAll();

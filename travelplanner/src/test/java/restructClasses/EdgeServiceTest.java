@@ -1,5 +1,6 @@
 package restructClasses;
 
+import com.netcracker.travelplanner.model.exceptions.KiwiIATACodeException;
 import com.netcracker.travelplanner.services.EdgeService;
 import org.junit.Test;
 
@@ -30,7 +31,11 @@ public class EdgeServiceTest {
 
     @Test
     public void getIataCodeAndTimezone() throws Exception {
-        System.out.println(EdgeService.getIataCodeAndTimezone(55.972399,37.411645));
+        try {
+            System.out.println(EdgeService.getIataCodeAndTimezone(55.972399,37.411645));
+        } catch (KiwiIATACodeException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test

@@ -2,7 +2,7 @@ package integrationTests;
 
 
 import com.netcracker.travelplanner.TravelPlannerApplication;
-import com.netcracker.travelplanner.models.entities.*;
+import com.netcracker.travelplanner.model.entities.*;
 import com.netcracker.travelplanner.repository.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,8 +1,8 @@
 package com.netcracker.travelplanner.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.netcracker.travelplanner.models.entities.Route;
-import com.netcracker.travelplanner.models.entities.User;
+import com.netcracker.travelplanner.model.entities.Route;
+import com.netcracker.travelplanner.model.entities.User;
 import com.netcracker.travelplanner.security.services.SecurityService;
 import com.netcracker.travelplanner.security.services.UserService;
 import com.netcracker.travelplanner.services.RouteRepositoryService;

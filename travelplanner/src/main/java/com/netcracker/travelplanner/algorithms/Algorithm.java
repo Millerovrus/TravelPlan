@@ -1,7 +1,7 @@
 package com.netcracker.travelplanner.algorithms;
 
-import com.netcracker.travelplanner.models.*;
-import com.netcracker.travelplanner.models.entities.*;
+import com.netcracker.travelplanner.model.*;
+import com.netcracker.travelplanner.model.entities.*;
 import com.netcracker.travelplanner.services.ErrorSavingService;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.netcracker.travelplanner.services;
 
-import com.netcracker.travelplanner.models.*;
-import com.netcracker.travelplanner.models.entities.Point;
+import com.netcracker.travelplanner.model.*;
+import com.netcracker.travelplanner.model.entities.Point;
 
 import java.util.*;
 
@@ -14,9 +14,11 @@ public class TaskCreatorManager {
     }
 
     public List<Task> getTasks(){
-
         List<Task> tasks = new ArrayList<>();
 
+        if (searchInputParameters == null){
+            return null;
+        }
         /* прямой рейс */
         tasks.add(new Task(searchInputParameters.getFrom()
                 ,searchInputParameters.getTo()

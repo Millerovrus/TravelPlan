@@ -1,6 +1,6 @@
 package com.netcracker.travelplanner.security.controllers;
 
-import com.netcracker.travelplanner.models.entities.User;
+import com.netcracker.travelplanner.model.entities.User;
 import com.netcracker.travelplanner.security.services.RecaptchaService;
 import com.netcracker.travelplanner.security.services.SecurityService;
 import com.netcracker.travelplanner.security.services.UserService;

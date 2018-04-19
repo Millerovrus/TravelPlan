@@ -1,6 +1,6 @@
 package com.netcracker.travelplanner.controllers;
 
-import com.netcracker.travelplanner.models.entities.Route;
+import com.netcracker.travelplanner.model.entities.Route;
 import com.netcracker.travelplanner.services.MainRouteService;
 import com.netcracker.travelplanner.services.*;
 import org.slf4j.Logger;
