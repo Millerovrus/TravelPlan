@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = TravelPlannerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringBootTest(classes = TravelPlannerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class EntitiesTest {
 
     @Autowired
@@ -35,7 +35,7 @@ public class EntitiesTest {
     private RouteRepository routeRepository;
 
 
-    @Test
+//    @Test
     public void writeEntitiesToDb(){
 
         User user = new User("m@m.com"

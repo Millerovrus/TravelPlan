@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UFSParser {
-    @Test
+//    @Test
     public void test() throws Exception {
         String url = "https://www.ufs-online.ru/en/kupit-zhd-bilety/" +
                 "Voronezh" +

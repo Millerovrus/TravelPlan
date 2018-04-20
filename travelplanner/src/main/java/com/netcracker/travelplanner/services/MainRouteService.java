@@ -17,8 +17,12 @@ import java.util.concurrent.*;
 
 @Service
 public class MainRouteService {
-    private final Algorithm algorithm;
-    private final ErrorSavingService errorSavingService;
+
+    @Autowired
+    private  Algorithm algorithm;
+
+    @Autowired
+    private ErrorRepositoryService errorRepositoryService;
 
     @Value("${route-service.threads-count}")
     private Integer threadsCount;
@@ -32,20 +36,19 @@ public class MainRouteService {
     private YandexApi yandexApi = new YandexApi();
     private UFSParser UFSParser = new UFSParser();
 
-    private final Executor executor1;
-    private final Executor executor2;
-    private final Executor executor3;
+    private Executor executor1 = new Executor();
+    private Executor executor2 = new Executor();
+    private Executor executor3 = new Executor();
 
-    @Autowired
-    public MainRouteService(Algorithm algorithm, Executor executor1, Executor executor2, Executor executor3, ErrorSavingService errorSavingService) {
-        this.algorithm = algorithm;
-        this.executor1 = executor1;
-        this.executor2 = executor2;
-        this.executor3 = executor3;
-        this.errorSavingService = errorSavingService;
-    }
+    private SearchInputParameters prepareInputData(String from
+            , String to
+            , String latLongFrom
+            , String latLongTo
+            , String date
+            , int numberOfAdults
+            , int numberOfChildren
+            , int numberOfInfants){
 
-    private SearchInputParameters prepareInputData(String from, String to, String latLongFrom, String latLongTo, String date, int numberOfAdults, int numberOfChildren, int numberOfInfants){
         SearchInputParameters parameters = null;
         try {
             parameters = new PreparingDataService().prepareData(from
@@ -61,7 +64,7 @@ public class MainRouteService {
             if (e.getCause() != null){
                 description += e.getCause().getMessage();
             }
-            errorSavingService.saveError(new IntegrationError(description, new Date(), "EdgeService"));
+            errorRepositoryService.saveError(new IntegrationError(description, new Date(), "EdgeService"));
         }
         return parameters;
     }
@@ -71,6 +74,10 @@ public class MainRouteService {
     }
 
     private List<Edge> getAllEdges(ExecutorService executorService, List<Task> taskList){
+
+        executor1.setErrorRepositoryService(errorRepositoryService);
+        executor2.setErrorRepositoryService(errorRepositoryService);
+        executor3.setErrorRepositoryService(errorRepositoryService);
 
         List<Edge> edgeList  = Collections.synchronizedList(new ArrayList<>());
 
@@ -86,10 +93,6 @@ public class MainRouteService {
         });
 
 
-//        executorService.execute( () ->{
-//            logger.debug("Start Thread yandexParser");
-//            edgeList.addAll(executor3.execute(taskList,yandexParser));
-//        });
         executorService.execute( () -> {
             logger.debug("Start Thread UFSParser");
             edgeList.addAll(executor3.execute(taskList,UFSParser));
@@ -100,13 +103,14 @@ public class MainRouteService {
         try {
             executorService.awaitTermination(6, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
-            errorSavingService.saveError(new IntegrationError(e.getMessage(), new Date(), "ExecutorService"));
+            errorRepositoryService.saveError(new IntegrationError(e.getMessage(), new Date(), "ExecutorService"));
         }
 
         return edgeList;
     }
 
     private List<Route> getRoutes(List<Edge> edgeList, String startPoint, String endPoint, int numberOfPassengers){
+        algorithm.setErrorRepositoryService(errorRepositoryService);
         return algorithm.getOptimalFoundRoutes(edgeList,startPoint,endPoint,numberOfPassengers);
     }
 

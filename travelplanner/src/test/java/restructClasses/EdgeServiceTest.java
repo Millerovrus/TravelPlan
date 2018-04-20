@@ -5,7 +5,7 @@ import com.netcracker.travelplanner.services.EdgeService;
 import org.junit.Test;
 
 public class EdgeServiceTest {
-    @Test
+//    @Test
     public void getCities() throws Exception {
 
         EdgeService
@@ -13,13 +13,13 @@ public class EdgeServiceTest {
                 .forEach(myPoint -> System.out.println(myPoint.toString()));
     }
 
-    @Test
+//    @Test
     public void getYandexCode() throws Exception {
 
         System.out.println(EdgeService.getYandexCode(53.55,9.99));
     }
 
-    @Test
+//    @Test
     public void isGlobalRoute() throws Exception {
 
         //лондон - берлин
@@ -29,7 +29,7 @@ public class EdgeServiceTest {
         System.out.println(EdgeService.isGlobalRoute(51.6754,39.2088,55.755826,37.617299));
     }
 
-    @Test
+//    @Test
     public void getIataCodeAndTimezone() throws Exception {
         try {
             System.out.println(EdgeService.getIataCodeAndTimezone(55.972399,37.411645));
@@ -38,7 +38,7 @@ public class EdgeServiceTest {
         }
     }
 
-    @Test
+//    @Test
     public void ggg(){
 
         String s = "(12.3434,111.5454)";
