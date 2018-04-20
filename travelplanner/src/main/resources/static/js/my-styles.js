@@ -65,6 +65,7 @@ $('input[id=base-input]').change(function() {
     $('#fake-input').val($(this).val().replace("C:\\", ""));
 });
 
+/*avatar?*/
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -87,6 +88,18 @@ jQuery(document).on('click', '.mega-dropdown', function(e) {
 $(function () {
     $(".input").focus(function() {
         $(this).parent().addClass("focus");
+    });
+    $("#departure-label").click(function() {
+        $(this).parent().addClass("focus");
+        document.getElementById('inputFrom').focus();
+    });
+    $("#arrival-label").click(function() {
+        $(this).parent().addClass("focus");
+        document.getElementById('inputTo').focus();
+    });
+    $("#date-label").click(function() {
+        $(this).parent().addClass("focus");
+        document.getElementById('inputDate').focus();
     })
 });
 
@@ -178,7 +191,7 @@ $(document).ready(function() {
 $(document).ready(function(){
     $("#num-picker-adults").dpNumberPicker({
         min: 1, // Minimum value.
-        max: 7, // Maximum value.
+        max: 5, // Maximum value.
         value: 1, // Initial value
         step: 1, // Incremental/decremental step on up/down change.
         format: false,
@@ -199,7 +212,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     $("#num-picker-children").dpNumberPicker({
         min: 0, // Minimum value.
-        max: 5, // Maximum value.
+        max: 2, // Maximum value.
         value: 0, // Initial value
         step: 1, // Incremental/decremental step on up/down change.
         format: false,
@@ -220,7 +233,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     $("#num-picker-infants").dpNumberPicker({
         min: 0, // Minimum value.
-        max: 5, // Maximum value.
+        max: 2, // Maximum value.
         value: 0, // Initial value
         step: 1, // Incremental/decremental step on up/down change.
         format: false,

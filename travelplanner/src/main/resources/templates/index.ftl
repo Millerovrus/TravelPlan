@@ -102,11 +102,14 @@
                     <div class="formBox">
                         <div class="row">
                             <div class="col-sm-6">
-                                <div class="inputBox ">
-                                    <div class="inputText">Departure city</div>
-                                    <input type="text" name="cityFrom" ng-model="cityFrom"  id="inputFrom" class="input" onfocus="geolocate()" placeholder="" required>
+                                <div class="inputBox">
+                                    <div class="inputText label-input-param" id="departure-label">Departure city</div>
+                                    <input type="text" name="cityFrom" ng-model="cityFrom"  id="inputFrom" class="input" onfocus="geolocate(); clearFrom()" placeholder="" required>
                                     <div class="help-block pull-right" ng-if="myForm.$submitted">
                                         <div ng-show="showMessage(myForm.cityFrom)">Please enter departure city.</div>
+                                        <div ng-show="showMessageFromHidden(myForm.inpFrom)">Please enter correct name of departure city</div>
+                                    </div>
+                                    <div class="help-block pull-right" ng-if="myForm.$submitted">
                                         <div ng-show="showMessageFromHidden(myForm.inpFrom)">Please enter correct name of departure city</div>
                                     </div>
                                 </div>
@@ -114,8 +117,9 @@
 
                             <div class="col-sm-6">
                                 <div class="inputBox">
-                                    <div class="inputText">Arrival city</div>
-                                    <input type="text" id="inputTo" name="cityTo" ng-model="cityTo" class="input" onfocus="geolocate()" placeholder="" required>
+                                    <div class="inputText label-input-param" id="arrival-label">Arrival city</div>
+                                <#--ng-keypress="checkIfEnterKeyWasPressed($event)"-->
+                                    <input type="text" id="inputTo" name="cityTo"  ng-model="cityTo" class="input" onfocus="geolocate(); clearTo()" placeholder="" required>
                                     <div class="help-block pull-right" ng-if="myForm.$submitted">
                                         <div ng-show="showMessage(myForm.cityTo)">Please enter arrival city.</div>
                                         <div ng-show="showMessageToHidden(myForm.inpTo)">Please enter correct name of arrival city.</div>
@@ -126,7 +130,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="inputBox">
-                                    <div class="inputText">Departure date</div>
+                                    <div class="inputText label-input-param" id="date-label">Departure date</div>
                                     <input type="text" class="input" name="dateFrom" ng-model="dateFrom" id="inputDate" ng-bind="bindingCalendar()" placeholder="" required>
                                     <div class="help-block pull-right" ng-if="myForm.$submitted">
                                         <div ng-show="showCalendarMessage(myForm.dateFrom)">Please enter departure date.</div>
@@ -145,7 +149,7 @@
                                                     </label>
                                                     <div id="num-picker-adults" class="dp-numberPicker pull-right margin-set">
                                                         <div class="dp-numberPicker-sub"><i class="fa fa-minus"></i></div>
-                                                        <input type="text" id="adults-number" class="dp-numberPicker-input" value="1">
+                                                        <input type="text" ng-model="adultsNum" id="adults-number" class="dp-numberPicker-input" ng-init="adultsNum = 1">
                                                         <div class="dp-numberPicker-add"><i class="fa fa-plus"></i></div>
                                                     </div>
                                                 </div>
@@ -155,7 +159,7 @@
                                                     </label>
                                                     <div id="num-picker-children" class="dp-numberPicker pull-right margin-set">
                                                         <div class="dp-numberPicker-sub"><i class="fa fa-minus"></i></div>
-                                                        <input type="text" id="children-number" class="dp-numberPicker-input" value="0">
+                                                        <input type="text" ng-model="childrenNum" id="children-number" class="dp-numberPicker-input" ng-init="childrenNum = 0">
                                                         <div class="dp-numberPicker-add"><i class="fa fa-plus"></i></div>
                                                     </div>
                                                 </div>
@@ -165,7 +169,7 @@
                                                     </label>
                                                     <div id="num-picker-infants" class="dp-numberPicker pull-right margin-set">
                                                         <div class="dp-numberPicker-sub"><i class="fa fa-minus"></i></div>
-                                                        <input type="text" id="infants-number" class="dp-numberPicker-input" value="0">
+                                                        <input type="text" ng-model="infantsNum" id="infants-number" class="dp-numberPicker-input" ng-init="infantsNum = 0">
                                                         <div class="dp-numberPicker-add"><i class="fa fa-plus"></i></div>
                                                     </div>
                                                 </div>
@@ -179,12 +183,12 @@
                         <div class="row" ng-show="false">
                             <div class="col-sm-4">
                                 <div class="inputBox ">
-                                    <input type="text" class="input" id="latit_longit_from">
+                                    <input type="text" ng-model="latLongFrom" class="input" id="latit_longit_from">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="inputBox ">
-                                    <input type="text" class="input" id="latit_longit_to">
+                                    <input type="text" ng-model="latLongTo" class="input" id="latit_longit_to">
                                 </div>
                             </div>
                         </div>

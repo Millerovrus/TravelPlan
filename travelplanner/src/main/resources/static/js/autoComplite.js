@@ -1,40 +1,36 @@
 
-var autocomplete1, autocomplete2;
+var autocompleteFrom, autocompleteTo;
 
 var componentForm = {
     locality: 'long_name'
-    // administrative_area_level_1: 'short_name'
 };
 
 function initAutocompleteFields() {
     // Create the autocomplete object, restricting the search to geographical
     // location types.
-    autocomplete1 = new google.maps.places.Autocomplete(
-        /** @type {!HTMLInputElement} */(document.getElementById('inputFrom')),
-        {types: ['(cities)']});
+    autocompleteFrom = new google.maps.places.Autocomplete(
+        document.getElementById('inputFrom'),
+        {types: ['(cities)']}
+    );
     // When the user selects an address from the dropdown, populate the address
-    autocomplete2 = new google.maps.places.Autocomplete(
+    autocompleteTo = new google.maps.places.Autocomplete(
         document.getElementById('inputTo'),
-        {types: ['(cities)']});
+        {types: ['(cities)']}
+    );
 
-    // fields in the form.
-
-    autocomplete1.addListener('place_changed', fillInAddress);
-    autocomplete2.addListener('place_changed', fillInAddress1);
-
+    autocompleteFrom.addListener('place_changed', fillInAddressFrom);
+    autocompleteTo.addListener('place_changed', fillInAddressTo);
 }
 
-function fillInAddress() {
+function fillInAddressFrom() {
     // Get the place details from the autocomplete object.
-    var place = autocomplete1.getPlace();
+    var place = autocompleteFrom.getPlace();
 
     document.getElementById('latit_longit_from').value = '';
     document.getElementById('latit_longit_from').disabled = false;
 
     var temp = place.geometry.location;
     document.getElementById('latit_longit_from').value = temp;
-
-
 
     for (var i = 0; i < place.address_components.length; i++) {
         var addressType = place.address_components[i].types[0];
@@ -45,12 +41,11 @@ function fillInAddress() {
     }
 
 }
-function fillInAddress1() {
+function fillInAddressTo() {
     // Get the place details from the autocomplete object.
-    var place = autocomplete2.getPlace();
+    var place = autocompleteTo.getPlace();
 
     document.getElementById('latit_longit_to').value = '';
-    document.getElementById('latit_longit_to').disabled = false;
 
     var temp = place.geometry.location;
     document.getElementById('latit_longit_to').value = temp;
@@ -79,8 +74,21 @@ function geolocate() {
                 center: geolocation,
                 radius: position.coords.accuracy
             });
-            autocomplete1.setBounds(circle.getBounds());
+            autocompleteFrom.setBounds(circle.getBounds());
+            autocompleteTo.setBounds(circle.getBounds());
         });
     }
+}
+
+function clearFrom() {
+    document.getElementById('latit_longit_from').value = '';
+    document.getElementById('inputFromHidden').value = '';
+    document.getElementById('inputFrom').value = '';
+}
+
+function clearTo() {
+    document.getElementById('latit_longit_to').value = '';
+    document.getElementById('inputToHidden').value = '';
+    document.getElementById('inputTo').value = '';
 }
 

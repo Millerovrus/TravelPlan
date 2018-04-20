@@ -248,12 +248,11 @@ public class Algorithm {
         int minCostInd = 0, minDurInd = 0;
 
         for (int i = 0; i < routes.size(); i++){
-            if (routes.get(i).getCost() < minCost){
+            if (routes.get(i).isOptimalRoute() && routes.get(i).getCost() < minCost){
                 minCost = routes.get(i).getCost();
                 minCostInd = i;
             }
-
-            if (routes.get(i).getDuration() < minDuration){
+            if (routes.get(i).isOptimalRoute() && routes.get(i).getDuration() < minDuration){
                 minDuration = routes.get(i).getDuration();
                 minDurInd = i;
             }
@@ -261,8 +260,7 @@ public class Algorithm {
 
         if (minCostInd == minDurInd){
             routes.get(minCostInd).setDescription("Cheapest & fastest!");
-        }
-        else{
+        } else {
             routes.get(minCostInd).setDescription("Cheapest!");
             routes.get(minDurInd).setDescription("Fastest!");
         }
