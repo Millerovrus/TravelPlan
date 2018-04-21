@@ -32,7 +32,7 @@ public class EdgeServiceTest {
 //    @Test
     public void getIataCodeAndTimezone() throws Exception {
         try {
-            System.out.println(EdgeService.getIataCodeAndTimezone(55.972399,37.411645));
+            System.out.println(EdgeService.getIataCodeAndTimezone(55.972399,37.411645, ""));
         } catch (KiwiIATACodeException e) {
             e.printStackTrace();
         }

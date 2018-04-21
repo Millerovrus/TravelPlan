@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class EdgeService {
 
-    public static IataCodeAndTimezone getIataCodeAndTimezone(double latitude, double longitude) throws KiwiIATACodeException {
+    public static IataCodeAndTimezone getIataCodeAndTimezone(double latitude, double longitude, String name) throws KiwiIATACodeException {
 
         String query = "https://api.skypicker.com/locations/?type=radius&" +
                 "lat=" +
@@ -35,12 +35,20 @@ public class EdgeService {
         KiwiStations kiwiStations = null;
         try {
             kiwiStations = gson.fromJson(getStreamReaderFromUrl(query), KiwiStations.class);
-        }catch (Exception ex){
+        } catch (Exception ex){
             throw new KiwiIATACodeException(ex);
         }
         if(kiwiStations != null && kiwiStations.getLocations() != null && kiwiStations.getLocations().size() > 0) {
-            iataCityCode = kiwiStations.getLocations().get(0).getCode();
-            timezone = kiwiStations.getLocations().get(0).getTimezone();
+            for (Airport airport : kiwiStations.getLocations()) {
+                if (airport.getName().equals(name)){
+                    iataCityCode = airport.getCode();
+                    timezone = airport.getTimezone();
+                }
+            }
+            if (iataCityCode == null){
+                iataCityCode = kiwiStations.getLocations().get(0).getCode();
+                timezone = kiwiStations.getLocations().get(0).getTimezone();
+            }
         }
         else {
             throw new KiwiIATACodeException();
@@ -96,6 +104,9 @@ public class EdgeService {
     public static String getRussianName(String name){
         String url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws" +
                 "&language=ru&address=" + name.replace(" ", "%20");
+
+        System.out.println(url);
+
         String russianName = null;
         Gson gson = new Gson();
         GoogleGeocode geocode = gson.fromJson(getStreamReaderFromUrl(url), GoogleGeocode.class);
