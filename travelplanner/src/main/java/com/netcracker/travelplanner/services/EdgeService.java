@@ -105,8 +105,6 @@ public class EdgeService {
         String url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws" +
                 "&language=ru&address=" + name.replace(" ", "%20");
 
-        System.out.println(url);
-
         String russianName = null;
         Gson gson = new Gson();
         GoogleGeocode geocode = gson.fromJson(getStreamReaderFromUrl(url), GoogleGeocode.class);

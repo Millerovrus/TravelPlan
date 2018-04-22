@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.netcracker.travelplanner.model.*;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.*;
@@ -167,25 +169,43 @@ public class Route implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+
+        if (!(o instanceof Route)) return false;
 
         Route route = (Route) o;
 
-        if (id != route.id) return false;
-        if (Double.compare(route.cost, cost) != 0) return false;
-        if (Double.compare(route.duration, duration) != 0) return false;
-        if (idRouteForView != route.idRouteForView) return false;
-        if (user != null ? !user.equals(route.user) : route.user != null) return false;
-        if (!creationDate.equals(route.creationDate)) return false;
-        if (!startPoint.equals(route.startPoint)) return false;
-        if (!destinationPoint.equals(route.destinationPoint)) return false;
-        if (!weights.equals(route.weights)) return false;
-        return edges.equals(route.edges);
+        return new EqualsBuilder()
+                .append(id, route.id)
+                .append(isOptimalRoute, route.isOptimalRoute)
+                .append(cost, route.cost)
+                .append(duration, route.duration)
+                .append(idRouteForView, route.idRouteForView)
+                .append(user, route.user)
+                .append(creationDate, route.creationDate)
+                .append(startPoint, route.startPoint)
+                .append(destinationPoint, route.destinationPoint)
+                .append(weights, route.weights)
+                .append(edges, route.edges)
+                .append(description, route.description)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(user)
+                .append(creationDate)
+                .append(startPoint)
+                .append(destinationPoint)
+                .append(weights)
+                .append(isOptimalRoute)
+                .append(cost)
+                .append(duration)
+                .append(edges)
+                .append(idRouteForView)
+                .append(description)
+                .toHashCode();
     }
 
     @Override

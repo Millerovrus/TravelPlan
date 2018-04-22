@@ -6,6 +6,7 @@ import com.netcracker.travelplanner.services.ErrorRepositoryService;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -21,7 +22,7 @@ public class Algorithm {
     private static final Logger logger = LoggerFactory.getLogger(Algorithm.class);
 
     @Autowired
-    private  AlgorithmProperties properties;
+    private AlgorithmProperties properties;
 
     public void setErrorRepositoryService(ErrorRepositoryService errorRepositoryService) {
         this.errorRepositoryService = errorRepositoryService;
@@ -173,7 +174,7 @@ public class Algorithm {
                 edge.setEdgeOrder(order++);
                 edge.setRoute(route);
                 route.getEdges().add(edge);
-                route.setCost(route.getCost() + edge.getCost());
+                route.setCost(BigDecimal.valueOf(route.getCost()).add(BigDecimal.valueOf(edge.getCost())).doubleValue());
                 duration += edge.getDuration();
             }
             for (int i = 0; i < foundEdges.size() - 1; i++) {
