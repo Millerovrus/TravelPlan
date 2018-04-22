@@ -37,8 +37,18 @@
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
     <script src="js/moment-with-locales.min.js"></script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
+   <#--recaptcha V2-->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+    <script type="text/javascript">
+        function callback(){
+            if($('#g-recaptcha-response').val().length !== 0){
+                console.log("The user has already solved the captcha, now you can submit your form.");
+                return true;}
+            else {
+                window.alert("I'm recaptcha. Touch me, please!")
+                return false;}
+        }
+    </script>
 </head>
 
 <body>
@@ -67,7 +77,7 @@
     <div class="container">
         <div class="col-sm-12">
             <div id="logbox">
-                <form id="signUp" action="" method="post">
+                <form id="signUp" action="" method="post" onsubmit="return callback();">
                     <h1>Create an Account</h1>
                     <#if email??>
                         <div class="alert alert-danger" role="alert">Email already exists!</div>
@@ -83,13 +93,20 @@
                     </div>
                     <input id="inputEmail" name="email" type="email" placeholder="Email address" maxlength="255" class="input pass" required/>
                     <input id="inputPassword" name="password" type="password" placeholder="Choose a password" maxlength="255" required class="input pass"/>
+
+                <#--amazon key captcha-->
+                <#--<div align="center" class="g-recaptcha add-margin" data-sitekey="6Ldyj1IUAAAAAKFVX7twbmYLIArlJWsqQll0IShp"></div>-->
+
                     <div align="center" class="g-recaptcha add-margin" data-sitekey="6Lc9p1IUAAAAAOBwW-LE1IPih6AcW_CpDY3bsxaQ"></div>
                     <div class="add-margin">
                         <input type="submit" value="Sign up" class="button"/>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
+
+
 </body>
 </html>
