@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -147,14 +148,13 @@ public class UFSParser implements ApiInterface {
                     int numOfPassengers = numberOfAdults + numberOfChildren;
                     for (TrainTicketsInfo TrainTicketsInfo : fullInfo) {
                         if (numOfPassengers > TrainTicketsInfo.getAvailableSeats()) {
-                            edge.setCost(edge.getCost() + TrainTicketsInfo.getCost() * TrainTicketsInfo.getAvailableSeats());
+                            edge.setCost(BigDecimal.valueOf(edge.getCost()).add(BigDecimal.valueOf(TrainTicketsInfo.getCost()).multiply(BigDecimal.valueOf(TrainTicketsInfo.getAvailableSeats()))).doubleValue());
                             numOfPassengers -= TrainTicketsInfo.getAvailableSeats();
                         } else {
-                            edge.setCost(edge.getCost() + TrainTicketsInfo.getCost() * numOfPassengers);
+                            edge.setCost(BigDecimal.valueOf(edge.getCost()).add(BigDecimal.valueOf(TrainTicketsInfo.getCost()).multiply(BigDecimal.valueOf(numOfPassengers))).doubleValue());
                             numOfPassengers = 0;
                         }
                         if (numOfPassengers == 0){
-                            edge.setCost(Math.rint(10.0 * edge.getCost()) / 10.0);
                             //добавление эджа происходит только если мест в поезде хватает
                             edgeList.add(edge);
                             break;

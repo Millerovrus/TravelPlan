@@ -101,16 +101,18 @@
                 <div class="container">
                     <div class="formBox">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-5">
                                 <div class="inputBox">
                                     <div class="inputText label-input-param" id="departure-label">Departure city</div>
-                                    <input type="text" name="cityFrom" ng-model="cityFrom"  id="inputFrom" class="input" onfocus="geolocate()" placeholder="" required>
+                                    <input type="text" name="cityFrom" ng-model="cityFrom"  id="inputFrom" class="input" onfocus="geolocate(); clearFrom()" placeholder="" required>
                                     <div class="help-block pull-right" ng-if="myForm.$submitted">
                                         <div ng-show="showMessage(myForm.cityFrom)">Please enter or select departure city.</div>
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-sm-1">
+                                <input type="button" value="SWAP" ng-click="swapFromTo()">
+                            </div>
                             <div class="col-sm-6">
                                 <div class="inputBox">
                                     <div class="inputText label-input-param" id="arrival-label">Arrival city</div>

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class YandexParserTest {
 
-    @Test
+//    @Test
     public void tetet(){
         PreparingDataService preparingDataService = new PreparingDataService();
 

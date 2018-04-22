@@ -6,7 +6,7 @@ import com.netcracker.travelplanner.services.PreparingDataService;
 import org.junit.Test;
 
 public class PreparingDataServiceTest {
-    @Test
+//    @Test
     public void prepareData() throws Exception {
 
         PreparingDataService preparingDataService = new PreparingDataService();

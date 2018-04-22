@@ -10,12 +10,9 @@ import java.util.List;
 
 @Service
 public class RouteRepositoryService {
-    private final RouteRepository routeRepository;
 
     @Autowired
-    public RouteRepositoryService(RouteRepository routeRepository) {
-        this.routeRepository = routeRepository;
-    }
+    private RouteRepository routeRepository;
 
     /**
      * add route in database

@@ -191,7 +191,7 @@ function createLine(from, to, type) {
                 rotation: 0
             };
             var ratio = (parseFloat(google.maps.geometry.spherical.computeHeading(from, to)) + 180);
-            if (ratio > 315 && ratio <= 45){
+            if (ratio > 315 || ratio <= 45){
                 lineSymbol.rotation = 0;
             } else {
                 if (ratio > 45 && ratio <= 135) {
@@ -220,7 +220,7 @@ function createLine(from, to, type) {
                 rotation: 0
             };
             ratio = (parseFloat(google.maps.geometry.spherical.computeHeading(from, to)) + 180);
-            if (ratio > 315 && ratio <= 45){
+            if (ratio > 315 || ratio <= 45){
                 lineSymbol.rotation = 0;
             } else {
                 if (ratio > 45 && ratio <= 135) {

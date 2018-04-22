@@ -2,10 +2,11 @@ package com.netcracker.travelplanner.algorithms;
 
 import com.netcracker.travelplanner.model.*;
 import com.netcracker.travelplanner.model.entities.*;
-import com.netcracker.travelplanner.services.ErrorSavingService;
+import com.netcracker.travelplanner.services.ErrorRepositoryService;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -16,22 +17,23 @@ import java.util.stream.Collectors;
  */
 @Service
 public class Algorithm {
+
     private List<Route> optimalFoundRoutes = new ArrayList<>();
     private static final Logger logger = LoggerFactory.getLogger(Algorithm.class);
-    private final AlgorithmProperties properties;
-    private final ErrorSavingService errorSavingService;
 
     @Autowired
-    public Algorithm(AlgorithmProperties properties, ErrorSavingService errorSavingService) {
-        this.properties = properties;
-        this.errorSavingService = errorSavingService;
+    private AlgorithmProperties properties;
+
+    public void setErrorRepositoryService(ErrorRepositoryService errorRepositoryService) {
+        this.errorRepositoryService = errorRepositoryService;
     }
+    private  ErrorRepositoryService errorRepositoryService;
 
     public List<Route> getOptimalFoundRoutes(List<Edge> edges, String startPoint, String destinationPoint, int numberOfPassengers) {
         if (edges.isEmpty()){
             String error = "Search for edges hasn't given any results";
             logger.debug(error);
-            errorSavingService.saveError(new IntegrationError(error, new Date(), "algorithm"));
+            errorRepositoryService.saveError(new IntegrationError(error, new Date(), "algorithm"));
             return null;
         }
         edges = edges.stream().distinct().collect(Collectors.toList());
@@ -172,7 +174,7 @@ public class Algorithm {
                 edge.setEdgeOrder(order++);
                 edge.setRoute(route);
                 route.getEdges().add(edge);
-                route.setCost(route.getCost() + edge.getCost());
+                route.setCost(BigDecimal.valueOf(route.getCost()).add(BigDecimal.valueOf(edge.getCost())).doubleValue());
                 duration += edge.getDuration();
             }
             for (int i = 0; i < foundEdges.size() - 1; i++) {

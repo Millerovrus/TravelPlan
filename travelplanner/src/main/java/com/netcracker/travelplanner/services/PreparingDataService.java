@@ -51,8 +51,8 @@ public class PreparingDataService {
         pointTo.setYandexCode("");
         pointFrom.setRussianName(EdgeService.getRussianName(from));
         pointTo.setRussianName(EdgeService.getRussianName(to));
-        IataCodeAndTimezone iataCodeAndTimezoneFrom = EdgeService.getIataCodeAndTimezone(latFrom, lonFrom);
-        IataCodeAndTimezone iataCodeAndTimezoneTo = EdgeService.getIataCodeAndTimezone(latTo, lonTo);
+        IataCodeAndTimezone iataCodeAndTimezoneFrom = EdgeService.getIataCodeAndTimezone(latFrom, lonFrom, from);
+        IataCodeAndTimezone iataCodeAndTimezoneTo = EdgeService.getIataCodeAndTimezone(latTo, lonTo, to);
 
         pointFrom.setIataCode(iataCodeAndTimezoneFrom.getIataCode());
         pointTo.setIataCode(iataCodeAndTimezoneTo.getIataCode());

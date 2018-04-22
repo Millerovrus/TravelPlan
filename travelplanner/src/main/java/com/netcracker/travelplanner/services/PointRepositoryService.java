@@ -7,12 +7,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PointRepositoryService {
-    private final PointRepository pointRepository;
 
     @Autowired
-    public PointRepositoryService(PointRepository pointRepository) {
-        this.pointRepository = pointRepository;
-    }
+    private PointRepository pointRepository;
 
     public void save(Point point){
         pointRepository.save(point);

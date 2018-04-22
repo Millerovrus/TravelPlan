@@ -9,7 +9,7 @@ import org.junit.Test;
 public class ApiServiceManagerTest {
 
 
-    @Test
+//    @Test
     public void found(){
 
         YandexParser parser = new YandexParser(WebParser.getDriver());

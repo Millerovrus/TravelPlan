@@ -6,13 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ErrorSavingService {
-    private final IntegrationErrorRepository repository;
+public class ErrorRepositoryService {
 
     @Autowired
-    public ErrorSavingService(IntegrationErrorRepository repository) {
-        this.repository = repository;
-    }
+    private IntegrationErrorRepository repository;
+
 
     //в описание пишем понятное описание ошибки, можно много символов, в модуллТайтл название класса, в котором ошибка выскочила
     public void saveError(IntegrationError error) {

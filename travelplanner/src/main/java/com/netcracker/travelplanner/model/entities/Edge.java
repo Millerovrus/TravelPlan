@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.netcracker.travelplanner.model.*;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -224,43 +227,74 @@ public class Edge implements Cloneable {
 
     @Override
     public String toString() {
-        return "Edge{" +
-                "creationDate=" + creationDate +
-                ", transportType='" + transportType + '\'' +
-                ", duration=" + duration +
-                ", cost=" + cost +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", currency='" + currency + '\'' +
-                ", edgeOrder=" + edgeOrder +
-                ", numberOfTransfers=" + numberOfTransfers +
-                ", startPoint=" + startPoint +
-                ", endPoint=" + endPoint +
-                ", transitEdgeList=" + transitEdgeList +
-                '}';
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("creationDate", creationDate)
+                .append("transportType", transportType)
+                .append("duration", duration)
+                .append("cost", cost)
+                .append("startDate", startDate)
+                .append("endDate", endDate)
+                .append("currency", currency)
+                .append("edgeOrder", edgeOrder)
+                .append("route", route)
+                .append("numberOfTransfers", numberOfTransfers)
+                .append("startPoint", startPoint)
+                .append("endPoint", endPoint)
+                .append("transitEdgeList", transitEdgeList)
+                .append("purchaseLink", purchaseLink)
+                .append("trainTicketsInfoList", trainTicketsInfoList)
+                .toString();
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+
+        if (!(o instanceof Edge)) return false;
+
         Edge edge = (Edge) o;
-        return numberOfTransfers == edge.numberOfTransfers &&
-                Objects.equals(transportType, edge.transportType) &&
-                Objects.equals(duration, edge.duration) &&
-                Objects.equals(cost, edge.cost) &&
-                Objects.equals(startDate, edge.startDate) &&
-                Objects.equals(endDate, edge.endDate) &&
-                Objects.equals(currency, edge.currency) &&
-                Objects.equals(edgeOrder, edge.edgeOrder) &&
-                Objects.equals(startPoint, edge.startPoint) &&
-                Objects.equals(endPoint, edge.endPoint);
+
+        return new EqualsBuilder()
+                .append(id, edge.id)
+                .append(numberOfTransfers, edge.numberOfTransfers)
+                .append(creationDate, edge.creationDate)
+                .append(transportType, edge.transportType)
+                .append(duration, edge.duration)
+                .append(cost, edge.cost)
+                .append(startDate, edge.startDate)
+                .append(endDate, edge.endDate)
+                .append(currency, edge.currency)
+                .append(edgeOrder, edge.edgeOrder)
+                .append(route, edge.route)
+                .append(startPoint, edge.startPoint)
+                .append(endPoint, edge.endPoint)
+                .append(transitEdgeList, edge.transitEdgeList)
+                .append(purchaseLink, edge.purchaseLink)
+                .append(trainTicketsInfoList, edge.trainTicketsInfoList)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(transportType, duration, cost, startDate, endDate, currency, edgeOrder, numberOfTransfers, startPoint, endPoint);
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(creationDate)
+                .append(transportType)
+                .append(duration)
+                .append(cost)
+                .append(startDate)
+                .append(endDate)
+                .append(currency)
+                .append(edgeOrder)
+                .append(route)
+                .append(numberOfTransfers)
+                .append(startPoint)
+                .append(endPoint)
+                .append(transitEdgeList)
+                .append(purchaseLink)
+                .append(trainTicketsInfoList)
+                .toHashCode();
     }
 
     @Override
