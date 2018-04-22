@@ -8,6 +8,7 @@ angular.module('myApp',['controllerModule'])
     });
 angular.module('controllerModule')
     .controller('myParameterController', function requestFunc($scope, $http, $window,  $location, $anchorScroll, $document, $timeout) {
+
         $scope.saveRoute=function (record) {
             $http({
                 method: 'POST',
@@ -32,14 +33,6 @@ angular.module('controllerModule')
 
         $scope.sendRequestParameters=function () {
             $scope.submitted = true;
-
-            /* */
-            $scope.latLongFrom=$('#latit_longit_from').val();
-            $scope.latLongTo=$('#latit_longit_to').val();
-            $scope.dateFrom=$('#inputDate').val();
-            $scope.childrenNum=$('#children-number').val();
-            $scope.infantsNum=$('#infants-number').val();
-            $scope.adultsNum=$('#adults-number').val();
 
             if (!$scope.myForm.$valid)
             {
@@ -110,24 +103,8 @@ angular.module('controllerModule')
             return show;
         };
         $scope.bindingCalendar = function() {
-            $scope.dateFrom = $('#inputDate').val();
+            $scope.dateFrom = $('#inputDate').val(); ///?
         };
-        $scope.showMessageToHidden = function (input) {
-            $scope.inpTo = $('#inputToHidden').val();
-            $scope.cityTo = $('#inputTo').val();
-            if ($scope.inpTo.length === 0 && $scope.cityTo.length !== 0)
-                return input.$invalid && (input.$dirty || input.$untouched);
-        };
-        $scope.showMessageFromHidden = function (input) {
-            $scope.inpFrom = $('#inputFromHidden').val();
-            $scope.cityFrom = $('#inputFrom').val();
-            if ($scope.inpFrom.length === 0 && $scope.cityFrom.length !== 0)
-                return input.$invalid && (input.$dirty || input.$untouched);
-        };
-        // $scope.showAlert = function () {
-        //     $scope.inpTo = $('#inputToHidden').val();
-        //     alert($scope.inpTo + $scope.inpTo.length);
-        // };
         $scope.showCalendarMessage = function (input) {
             return input.$invalid && (input.$untouched || input.$dirty);
         };

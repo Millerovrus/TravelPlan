@@ -106,11 +106,7 @@
                                     <div class="inputText label-input-param" id="departure-label">Departure city</div>
                                     <input type="text" name="cityFrom" ng-model="cityFrom"  id="inputFrom" class="input" onfocus="geolocate()" placeholder="" required>
                                     <div class="help-block pull-right" ng-if="myForm.$submitted">
-                                        <div ng-show="showMessage(myForm.cityFrom)">Please enter departure city.</div>
-                                        <div ng-show="showMessageFromHidden(myForm.inpFrom)">Please enter correct name of departure city</div>
-                                    </div>
-                                    <div class="help-block pull-right" ng-if="myForm.$submitted">
-                                        <div ng-show="showMessageFromHidden(myForm.inpFrom)">Please enter correct name of departure city</div>
+                                        <div ng-show="showMessage(myForm.cityFrom)">Please enter or select departure city.</div>
                                     </div>
                                 </div>
                             </div>
@@ -118,11 +114,9 @@
                             <div class="col-sm-6">
                                 <div class="inputBox">
                                     <div class="inputText label-input-param" id="arrival-label">Arrival city</div>
-                                    <#--ng-keypress="checkIfEnterKeyWasPressed($event)"-->
                                     <input type="text" id="inputTo" name="cityTo"  ng-model="cityTo" class="input" onfocus="geolocate()" placeholder="" required>
-                                    <div class="help-block pull-right" ng-if="myForm.$submitted">
-                                        <div ng-show="showMessage(myForm.cityTo)">Please enter arrival city.</div>
-                                        <div ng-show="showMessageToHidden(myForm.inpTo)">Please enter correct name of arrival city.</div>
+                                    <div ng-if="myForm.$submitted" class="help-block pull-right">
+                                        <div ng-show="showMessage(myForm.cityTo)">Please enter or select arrival city.</div>
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +127,7 @@
                                     <div class="inputText label-input-param" id="date-label">Departure date</div>
                                     <input type="text" class="input" name="dateFrom" ng-model="dateFrom" id="inputDate" ng-bind="bindingCalendar()" placeholder="" required>
                                     <div class="help-block pull-right" ng-if="myForm.$submitted">
-                                        <div ng-show="showCalendarMessage(myForm.dateFrom)">Please enter departure date.</div>
+                                        <div ng-show="showCalendarMessage(myForm.dateFrom)">Please enter or select departure date.</div>
                                     </div>
                                 </div>
                             </div>
