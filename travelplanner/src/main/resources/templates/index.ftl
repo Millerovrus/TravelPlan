@@ -244,11 +244,11 @@
                                                                     </div>
                                                                     <div class="funkyradio">
                                                                         <div class="funkyradio-default">
-                                                                            <input type="radio" ng-model="filterModel.optimalAttribute" value="optimal" name="radio1" id="radio1"/>
+                                                                            <input type="radio" ng-model="filterModel.optimal" ng-value="true" name="radio1" id="radio1"/>
                                                                             <label for="radio1">Optimal routes</label>
                                                                         </div>
                                                                         <div class="funkyradio-default">
-                                                                            <input type="radio" ng-model="filterModel.optimalAttribute" value="all" name="radio2" id="radio2"/>
+                                                                            <input type="radio" ng-model="filterModel.optimal" ng-value="false" name="radio2" id="radio2"/>
                                                                             <label for="radio2">All routes</label>
                                                                         </div>
                                                                     </div>

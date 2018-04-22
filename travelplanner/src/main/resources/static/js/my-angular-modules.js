@@ -64,7 +64,7 @@ angular.module('controllerModule')
                         plane : true,
                         bus : true,
                         train : true,
-                        optimalAttribute : 'optimal',
+                        optimal : true,
                         orderByAttribute : 'cost'
                     };
                 },
@@ -130,7 +130,7 @@ angular.module('controllerModule')
         };
 
         $scope.optimalFilter = function (records) {
-            if ($scope.filterModel.optimalAttribute === "optimal"){
+            if ($scope.filterModel.optimal){
                 return records.optimalRoute;
             }
             return records;
