@@ -58,6 +58,15 @@ angular.module('controllerModule')
                     $scope.$emit('UNLOAD');
                     $scope.loaded=true;
                     initMap();
+
+                    //инициализируем значения фильтров
+                    $scope.filterModel = {
+                        plane : true,
+                        bus : true,
+                        train : true,
+                        optimalAttribute : 'optimal',
+                        orderByAttribute : 'cost'
+                    };
                 },
                 function error(response, status) {
                     console.error('Repos error', status, response);
@@ -70,15 +79,6 @@ angular.module('controllerModule')
 
         /*autoscroll */
         $scope.goToLoaded = function() {
-            // set the location.hash to the id of the element you wish to scroll to
-            // works fine, not animated
-            // $timeout(function (){
-            //     $location.hash('scroll-to');
-            //     $anchorScroll();
-            //     $location.hash('');
-            //     $location.replace();
-            // });
-
             // animated scroll
             $timeout(function(){
                 $document.duScrollToElementAnimated(angular.element(document.getElementById('scroll-to')));
@@ -107,52 +107,33 @@ angular.module('controllerModule')
             return input.$invalid && (input.$untouched || input.$dirty);
         };
 
-        $scope.optimalRoutes = function(records) {
-            return records.optimalRoute;
-        };
-        $scope.allRoutes = function(records) {
-            return records;
-        };
-        //для того, чтобы изначально чекбоксы были выбраны
-        //ng-checked="true" работает не так как нужно
-        //checked не работает с ng-model
-        $scope.checkboxPlane = true;
-        $scope.checkboxBus = true;
-        $scope.checkboxTrain = true;
-        //переменные, содержащие текущие значения чекбоксов
-        var planeCheckboxValue = true;
-        var busCheckboxValue = true;
-        var trainCheckboxValue = true;
-        //функции, которые меняют значения чекбоксов
-        $scope.changePlaneCheckbox = function () {
-            planeCheckboxValue = !planeCheckboxValue;
-        };
-        $scope.changeTrainCheckbox = function () {
-            trainCheckboxValue = !trainCheckboxValue;
-        };
-        $scope.changeBusCheckbox = function () {
-            busCheckboxValue = !busCheckboxValue;
-        };
         //фильтр по транспорту
         $scope.transportTypeFilter = function (records) {
             for (var i = 0; i < records.edges.length; i++){
-                if (!planeCheckboxValue){
+                if (!$scope.filterModel.plane){
                     if (records.edges[i].transportType === "plane"){
                         return false;
                     }
                 }
-                if (!busCheckboxValue){
+                if (!$scope.filterModel.bus){
                     if (records.edges[i].transportType === "bus"){
                         return false;
                     }
                 }
-                if (!trainCheckboxValue){
+                if (!$scope.filterModel.train){
                     if (records.edges[i].transportType === "train" || records.edges[i].transportType === "suburban"){
                         return false;
                     }
                 }
             }
             return true;
+        };
+
+        $scope.optimalFilter = function (records) {
+            if ($scope.filterModel.optimalAttribute === "optimal"){
+                return records.optimalRoute;
+            }
+            return records;
         };
 
         $scope.openLink = function(purchaseLink) {
@@ -169,7 +150,7 @@ angular.module('controllerModule')
 
             $scope.cityFrom = $('#inputTo').val();
             $scope.cityTo = tempCity;
-            $scope.inpFrom = $('#inputToHidden').val();;
+            $scope.inpFrom = $('#inputToHidden').val();
             $scope.inpTo = tempInp;
             $scope.latLongFrom = $('#latit_longit_to').val();
             $scope.latLongTo = tempLatLong;
