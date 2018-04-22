@@ -816,4 +816,52 @@ html section button.dotted.thin, body section button.dotted.thin {
     border-radius: 2px;
 }
 
+/* swap button*/
+.swap-button{
+    margin-top: 0;
+    margin-bottom: 10px;
+    margin-left: 35%;
+    width: 45px;
+    height: 45px;
+}
 
+@media screen and (max-width: 767px){
+    .swap-button{
+        margin-top: -15px;
+        margin-bottom: 10px;
+        margin-left: 45%;
+        width: 45px;
+        height: 45px;
+    }
+
+}
+
+
+@media screen and (max-width: 911px) and (min-width: 768px){
+    .swap-button{
+        margin-top: 0;
+        margin-bottom: 10px;
+        margin-left: 25%;
+        width: 45px;
+        height: 45px;
+    }
+
+}
+
+@media screen and (max-width: 1125px) and (min-width: 912px){
+    .swap-button{
+        margin-top: 0;
+        margin-bottom: 10px;
+        margin-left: 30%;
+        width: 45px;
+        height: 45px;
+    }
+}
+@media screen and (min-width: 768px){
+    .style-for-swap{
+        width: 110%;
+    }
+    .swap-margin{
+        margin-left: -40px;
+    }
+}

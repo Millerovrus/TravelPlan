@@ -102,7 +102,7 @@
                     <div class="formBox">
                         <div class="row">
                             <div class="col-sm-5">
-                                <div class="inputBox">
+                                <div class="inputBox style-for-swap">
                                     <div class="inputText label-input-param" id="departure-label">Departure city</div>
                                     <input type="text" name="cityFrom" ng-model="cityFrom"  id="inputFrom" class="input" onfocus="geolocate(); clearFrom()" placeholder="" required>
                                     <div class="help-block pull-right" ng-if="myForm.$submitted">
@@ -110,13 +110,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-1">
-                                <input type="button" value="SWAP" ng-click="swapFromTo()">
+                            <div class="col-sm-2">
+                                <button type="button" class="button swap-button" ng-click="swapFromTo()"><i class="fa fa-retweet"></i></i></button>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="inputBox">
+                            <div class="col-sm-5">
+                                <div class="inputBox swap-margin">
                                     <div class="inputText label-input-param" id="arrival-label">Arrival city</div>
-                                    <input type="text" id="inputTo" name="cityTo"  ng-model="cityTo" class="input" onfocus="geolocate()" placeholder="" required>
+                                    <input type="text" id="inputTo" name="cityTo"  ng-model="cityTo" class="input" onfocus="geolocate(); clearTo()" placeholder="" required>
                                     <div ng-if="myForm.$submitted" class="help-block pull-right">
                                         <div ng-show="showMessage(myForm.cityTo)">Please enter or select arrival city.</div>
                                     </div>
