@@ -137,7 +137,7 @@
                                     <div class="inputText label-input-param" id="date-label">Departure date</div>
                                     <input type="text" class="input" name="dateFrom" ng-model="dateFrom" id="inputDate" ng-bind="bindingCalendar()" placeholder="" required>
                                     <div class="help-block pull-right" ng-if="myForm.$submitted">
-                                        <div ng-show="showCalendarMessage(myForm.dateFrom)">Please enter or select departure date.</div>
+                                        <div ng-show="showCalendarMessage(myForm.dateFrom)">Please select departure date.</div>
                                     </div>
                                 </div>
                             </div>
@@ -184,7 +184,7 @@
                             </div>
                         </div>
                         <!-- autocomplete -->
-                        <div class="row" ng-show="true">
+                        <div class="row" ng-show="false">
                             <div class="col-sm-4">
                                 <div class="inputBox ">
                                     <input type="text" ng-model="latLongFrom" class="input" id="latit_longit_from">
@@ -196,7 +196,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" ng-show="true">
+                        <div class="row" ng-show="false">
                             <div class="col-sm-4">
                                 <div class="inputBox ">
                                     <input type="text" ng-model="inpFrom" name="inpFrom" class="input" id="inputFromHidden" required>
