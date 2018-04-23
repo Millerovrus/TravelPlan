@@ -58,6 +58,15 @@ angular.module('controllerModule')
                     $scope.$emit('UNLOAD');
                     $scope.loaded=true;
                     initMap();
+
+                    //инициализируем значения фильтров
+                    $scope.filterModel = {
+                        plane : true,
+                        bus : true,
+                        train : true,
+                        optimal : true,
+                        orderByAttribute : 'cost'
+                    };
                 },
                 function error(response, status) {
                     console.error('Repos error', status, response);
@@ -151,23 +160,30 @@ angular.module('controllerModule')
         //фильтр по транспорту
         $scope.transportTypeFilter = function (records) {
             for (var i = 0; i < records.edges.length; i++){
-                if (!planeCheckboxValue){
+                if (!$scope.filterModel.plane){
                     if (records.edges[i].transportType === "plane"){
                         return false;
                     }
                 }
-                if (!busCheckboxValue){
+                if (!$scope.filterModel.bus){
                     if (records.edges[i].transportType === "bus"){
                         return false;
                     }
                 }
-                if (!trainCheckboxValue){
+                if (!$scope.filterModel.train){
                     if (records.edges[i].transportType === "train" || records.edges[i].transportType === "suburban"){
                         return false;
                     }
                 }
             }
             return true;
+        };
+
+        $scope.optimalFilter = function (records) {
+            if ($scope.filterModel.optimal){
+                return records.optimalRoute;
+            }
+            return records;
         };
 
         $scope.openLink = function(purchaseLink) {
@@ -184,7 +200,7 @@ angular.module('controllerModule')
 
             $scope.cityFrom = $('#inputTo').val();
             $scope.cityTo = tempCity;
-            $scope.inpFrom = $('#inputToHidden').val();;
+            $scope.inpFrom = $('#inputToHidden').val();
             $scope.inpTo = tempInp;
             $scope.latLongFrom = $('#latit_longit_to').val();
             $scope.latLongTo = tempLatLong;

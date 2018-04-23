@@ -211,7 +211,7 @@
                         <!-- angular controller for getting routes -->
                         <div class="row" > <!--<div class="row" ng-controller="myParameterController">-->
                             <div class="col-sm-12">
-                                <input type="submit" name="" class="button"  ng-keypress="checkIfEnterKeyWasPressed($event)" value="Find route">
+                                <input type="submit" name="" class="button" ng-keypress="checkIfEnterKeyWasPressed($event)" value="Find route">
                             </div>
                         </div>
                         <div class="row" ng-show="loading">
@@ -233,7 +233,7 @@
                 </div>
 
                 <div class="container-fluid" id="scroll-to">
-                    <div ng-show="loaded" id="loaded" ng-init="optimalFilter = optimalRoutes; orderByAttribute = 'cost'">
+                    <div ng-show="loaded" id="loaded">
                         <div class="routes-box">
                             <div ng-controller="mapController">
                                 <div class="output-collapse" >
@@ -252,11 +252,11 @@
                                                                     </div>
                                                                     <div class="funkyradio">
                                                                         <div class="funkyradio-default">
-                                                                            <input type="radio" name="radio1" id="radio1" ng-click="optimalFilter = optimalRoutes" checked/>
-                                                                            <label for="radio1" >Optimal routes</label>
+                                                                            <input type="radio" ng-model="filterModel.optimal" ng-value="true" name="radio1" id="radio1"/>
+                                                                            <label for="radio1">Optimal routes</label>
                                                                         </div>
                                                                         <div class="funkyradio-default">
-                                                                            <input type="radio" name="radio1" id="radio2" ng-click="optimalFilter = allRoutes"/>
+                                                                            <input type="radio" ng-model="filterModel.optimal" ng-value="false" name="radio2" id="radio2"/>
                                                                             <label for="radio2">All routes</label>
                                                                         </div>
                                                                     </div>
@@ -267,15 +267,15 @@
                                                                     </div>
                                                                     <div class="funkyradio">
                                                                         <div class="funkyradio-default">
-                                                                            <input type="checkbox" name="checkbox" id="checkboxPlane" ng-model="checkboxPlane" ng-change="changePlaneCheckbox()"/>
+                                                                            <input type="checkbox" name="checkbox" id="checkboxPlane" ng-model="filterModel.plane"/>
                                                                             <label for="checkboxPlane">Plane</label>
                                                                         </div>
                                                                         <div class="funkyradio-default">
-                                                                            <input type="checkbox" name="checkbox" id="checkboxBus" ng-model="checkboxBus" ng-change="changeBusCheckbox()"/>
+                                                                            <input type="checkbox" name="checkbox" id="checkboxBus" ng-model="filterModel.bus"/>
                                                                             <label for="checkboxBus">Bus</label>
                                                                         </div>
                                                                         <div class="funkyradio-default">
-                                                                            <input type="checkbox" name="checkbox" id="checkboxTrain" ng-model="checkboxTrain" ng-change="changeTrainCheckbox()"/>
+                                                                            <input type="checkbox" name="checkbox" id="checkboxTrain" ng-model="filterModel.train"/>
                                                                             <label for="checkboxTrain">Train</label>
                                                                         </div>
                                                                     </div>
@@ -286,19 +286,19 @@
                                                                     </div>
                                                                     <div class="funkyradio" >
                                                                         <div class="funkyradio-default" >
-                                                                            <input type="radio" name="radio3" id="radio5" ng-click="orderByAttribute = 'cost'" checked/>
+                                                                            <input type="radio" ng-model="filterModel.orderByAttribute" value="cost" name="radio3" id="radio5"/>
                                                                             <label for="radio5">Cost</label>
                                                                         </div>
                                                                         <div class="funkyradio-default">
-                                                                            <input type="radio" name="radio3" id="radio6" ng-click="orderByAttribute = 'duration'"/>
+                                                                            <input type="radio" ng-model="filterModel.orderByAttribute" value="duration" name="radio3" id="radio6"/>
                                                                             <label for="radio6">Duration</label>
                                                                         </div>
                                                                         <div class="funkyradio-default">
-                                                                            <input type="radio" name="radio3" id="radio7" ng-click="orderByAttribute = 'startDate'"/>
+                                                                            <input type="radio" ng-model="filterModel.orderByAttribute" value="startDate" name="radio3" id="radio7"/>
                                                                             <label for="radio7">Departure time</label>
                                                                         </div>
                                                                         <div class="funkyradio-default">
-                                                                            <input type="radio" name="radio3" id="radio8" ng-click="orderByAttribute = 'transfers'"/>
+                                                                            <input type="radio" ng-model="filterModel.orderByAttribute" value="transfers" name="radio3" id="radio8"/>
                                                                             <label for="radio8">Transfers quantity</label>
                                                                         </div>
                                                                     </div>
@@ -313,7 +313,7 @@
                                             <div class="col-sm-6">
                                                 <div class="fancy-collapse-panel" >
                                                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-                                                        <div ng-repeat="record in records | filter:optimalFilter | filter:transportTypeFilter | orderObjectBy:orderByAttribute">
+                                                        <div ng-repeat="record in records | filter:optimalFilter | filter:transportTypeFilter | orderObjectBy:filterModel.orderByAttribute">
                                                             <div class="panel panel-default" >
                                                                 <div class="panel-heading" role="tab" id="headingOne" >
                                                                     <h4 class="panel-title">
