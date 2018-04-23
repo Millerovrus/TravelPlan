@@ -100,6 +100,20 @@ angular.module('controllerModule')
             var show = input.$invalid && (input.$dirty || input.$touched || input.$untouched);
             return show;
         };
+        $scope.testHiddenDataFrom = function () {
+            $timeout(function () {
+                $scope.inpFrom = $('#inputFromHidden').val();
+                $scope.cityFrom = $('#inputFrom').val();
+            });
+            return $scope.inpFrom==='' && $scope.cityFrom!=='';
+        };
+        $scope.testHiddenDataTo = function () {
+            $timeout(function () {
+                $scope.inpTo = $('#inputToHidden').val();
+                $scope.cityTo = $('#inputTo').val();
+            });
+            return $scope.inpTo==='' && $scope.cityTo!=='';
+        };
         $scope.bindingCalendar = function() {
             $scope.dateFrom = $('#inputDate').val(); ///?
         };
@@ -107,6 +121,7 @@ angular.module('controllerModule')
             return input.$invalid && (input.$untouched || input.$dirty);
         };
 
+        /* filters */
         $scope.optimalRoutes = function(records) {
             return records.optimalRoute;
         };

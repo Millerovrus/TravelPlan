@@ -102,11 +102,15 @@
                     <div class="formBox">
                         <div class="row">
                             <div class="col-sm-5">
-                                <div class="inputBox style-for-swap">
+                                <div class="inputBox" ng-class="{true: 'error'}[myForm.cityFrom.$error.required]">
                                     <div class="inputText label-input-param" id="departure-label">Departure city</div>
                                     <input type="text" name="cityFrom" ng-model="cityFrom"  id="inputFrom" class="input" onfocus="geolocate(); clearFrom()" placeholder="" required>
-                                    <div class="help-block pull-right" ng-if="myForm.$submitted">
-                                        <div ng-show="showMessage(myForm.cityFrom)">Please enter or select departure city.</div>
+                                    <#--<div class="help-block pull-right" ng-if="myForm.$submitted">-->
+                                        <#--<div ng-show="showMessage(myForm.cityFrom)">Please enter or select departure city.</div>-->
+                                    <#--</div>-->
+                                    <div class="help-block pull-right">
+                                        <div ng-show="myForm.$submitted && myForm.cityFrom.$error.required">Please enter departure city.</div>
+                                        <div ng-show="myForm.cityFrom.$dirty && testHiddenDataFrom()">Please enter correctly departure city.</div>
                                     </div>
                                 </div>
                             </div>
@@ -114,11 +118,15 @@
                                 <button type="button" class="button swap-button" ng-click="swapFromTo()"><i class="fa fa-retweet"></i></i></button>
                             </div>
                             <div class="col-sm-5">
-                                <div class="inputBox swap-margin">
+                                <div class="inputBox" ng-class="{true: 'error'}[myForm.cityTo.$error.required]">
                                     <div class="inputText label-input-param" id="arrival-label">Arrival city</div>
                                     <input type="text" id="inputTo" name="cityTo"  ng-model="cityTo" class="input" onfocus="geolocate(); clearTo()" placeholder="" required>
-                                    <div ng-if="myForm.$submitted" class="help-block pull-right">
-                                        <div ng-show="showMessage(myForm.cityTo)">Please enter or select arrival city.</div>
+                                    <#--<div ng-if="myForm.$submitted" class="help-block pull-right">-->
+                                        <#--<div ng-show="showMessage(myForm.cityTo)">Please enter or select arrival city.</div>-->
+                                    <#--</div>-->
+                                    <div class="help-block pull-right">
+                                        <div ng-show="myForm.$submitted && myForm.cityTo.$error.required">Please enter arrival city.</div>
+                                        <div ng-show="myForm.cityTo.$dirty && testHiddenDataTo()">Please enter correctly arrival city.</div>
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +184,7 @@
                             </div>
                         </div>
                         <!-- autocomplete -->
-                        <div class="row" ng-show="false">
+                        <div class="row" ng-show="true">
                             <div class="col-sm-4">
                                 <div class="inputBox ">
                                     <input type="text" ng-model="latLongFrom" class="input" id="latit_longit_from">
@@ -188,7 +196,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" ng-show="false">
+                        <div class="row" ng-show="true">
                             <div class="col-sm-4">
                                 <div class="inputBox ">
                                     <input type="text" ng-model="inpFrom" name="inpFrom" class="input" id="inputFromHidden" required>
