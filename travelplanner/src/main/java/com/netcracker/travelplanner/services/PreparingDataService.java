@@ -47,8 +47,6 @@ public class PreparingDataService {
 
         searchInputParameters.setDeparture(LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE));
 
-        pointFrom.setYandexCode("");
-        pointTo.setYandexCode("");
         pointFrom.setRussianName(EdgeService.getRussianName(from));
         pointTo.setRussianName(EdgeService.getRussianName(to));
         IataCodeAndTimezone iataCodeAndTimezoneFrom = EdgeService.getIataCodeAndTimezone(latFrom, lonFrom, from);

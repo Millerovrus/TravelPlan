@@ -6,8 +6,7 @@ import com.netcracker.travelplanner.model.entities.Point;
 import com.netcracker.travelplanner.model.exceptions.KiwiIATACodeException;
 import com.netcracker.travelplanner.model.googleDist.GoogleDistance;
 import com.netcracker.travelplanner.model.googleGeocode.GoogleGeocode;
-import com.netcracker.travelplanner.model.yandexCode.YandexCode;
-import com.netcracker.travelplanner.model.newKiwi.*;
+import com.netcracker.travelplanner.model.kiwiLocations.*;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -70,35 +69,15 @@ public class EdgeService {
         GoogleDistance googleDistance = gson.fromJson(getStreamReaderFromUrl(url), GoogleDistance.class);
 
         if(googleDistance!=null){
-            if(googleDistance.getRows().get(0).getElements().get(0).getStatus().equals("ZERO_RESULTS")){
+            if(googleDistance.getFirstElement().getStatus().equals("ZERO_RESULTS")){
                 return true;
             }
 
-            int distance =  googleDistance.getRows().get(0).getElements().get(0).getDistance().getValue();
+            int distance =  googleDistance.getFirstElement().getDistance().getValue();
             return distance >= 600000;
         }
 
         return false;
-    }
-
-    @Deprecated
-    public static String getYandexCode(double latitude, double longitude){
-
-        String url = "https://api.rasp.yandex.net/v3.0/nearest_settlement/?apikey=64d2c4dc-e05a-4574-b51a-bdc03b2bc8a3&format=json&lat=" +
-                latitude + "&lng=" + longitude + "&distance=50";
-
-        String yandexCode = null;
-
-        Gson gson = new Gson();
-
-        YandexCode code = gson.fromJson(getStreamReaderFromUrl(url), YandexCode.class);
-
-        if(code!=null){
-
-            yandexCode =  code.getCode();
-        }
-
-        return yandexCode;
     }
 
     public static String getRussianName(String name){
@@ -150,44 +129,57 @@ public class EdgeService {
 
         Gson gson = new Gson();
 
-        List<MyPoint> myPointList = new ArrayList<>();
-
         KiwiStations kiwiStations = gson.fromJson(getStreamReaderFromUrl(url), KiwiStations.class);
 
-        kiwiStations.getLocations()
-                .stream()
-                .filter(loc->loc.getType().equals("airport"))
-                .forEach(location -> myPointList.add(new MyPoint(
-                        location.getId()
-                        ,location.getCode()
-                        ,location.getName()
-                        ,location.getTimezone()
-                        ,location.getType()
-                        ,location.getLocation().getLat()
-                        ,location.getLocation().getLon()
-                        ,location.getCity().getCountry().getName()
-                        ,location.getCity().getCountry().getCode()
-                        ,location.getCity().getName()
-                        ,location.getCity().getCode())));
+        List<Airport> airports = kiwiStations.getLocations();
 
-        List<MyPoint> list =  myPointList
+        //узнаем страну города
+        String country = null;
+        for (Airport airport : airports) {
+            if (airport.getCityCode().equals(iataCode)){
+                country = airport.getCountryName();
+                break;
+            }
+        }
+
+        //удаляем одинаковые города(если в городе несколько аэропортов)
+        List<Airport> locationList =  airports
                 .stream()
                 .filter(a -> !a.getCityCode().equals(iataCode))
-                .filter(distinctByKey(MyPoint::getCityCode))
-                .limit(5)
+                .filter(distinctByKey(Airport::getCityCode))
                 .collect(Collectors.toList());
 
         List<Point> points = new ArrayList<>();
-
-        list.forEach(myPoint -> points.add(new Point(myPoint.getCityName()
-                , myPoint.getLat()
-                , myPoint.getLon()
-                , myPoint.getCityCode()
-                , ""
-                , ""
-                , getRussianName(myPoint.getCityName())
-                , myPoint.getTimezone())));
-
+        //в первую очередь добавляем города из страны
+        for (Airport location : locationList) {
+            if (location.getCountryName().equals(country)){
+                if (points.size() < 5) {
+                    points.add(new Point(location.getCityName()
+                            , location.getLocation().getLat()
+                            , location.getLocation().getLon()
+                            , location.getCityCode()
+                            , ""
+                            , getRussianName(location.getCityName())
+                            , location.getTimezone()));
+                } else break;
+            }
+        }
+        //добиваем до 5 городов
+        if (points.size() < 5){
+            for (Airport location : locationList) {
+                if (!location.getCountryName().equals(country)) {
+                    if (points.size() < 5) {
+                        points.add(new Point(location.getCityName()
+                                , location.getLocation().getLat()
+                                , location.getLocation().getLon()
+                                , location.getCityCode()
+                                , ""
+                                , getRussianName(location.getCityName())
+                                , location.getTimezone()));
+                    } else break;
+                }
+            }
+        }
         return points;
     }
 

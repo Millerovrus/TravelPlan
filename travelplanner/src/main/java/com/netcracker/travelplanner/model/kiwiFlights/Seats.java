@@ -1,5 +1,5 @@
 
-package com.netcracker.travelplanner.model.kiwi;
+package com.netcracker.travelplanner.model.kiwiFlights;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

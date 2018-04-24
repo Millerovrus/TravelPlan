@@ -212,7 +212,7 @@
                         <!-- angular controller for getting routes -->
                         <div class="row" > <!--<div class="row" ng-controller="myParameterController">-->
                             <div class="col-sm-12">
-                                <input type="submit" name="" class="button" ng-keypress="checkIfEnterKeyWasPressed($event)" value="Find route">
+                                <input type="submit" name="" class="button" ng-disabled="loading" ng-keypress="checkIfEnterKeyWasPressed($event)" value="Find route">
                             </div>
                         </div>
                         <div class="row" ng-show="loading">

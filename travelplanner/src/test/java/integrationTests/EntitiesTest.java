@@ -51,7 +51,6 @@ public class EntitiesTest {
                 ,0.0
                 ,"VOZ"
                 ,"123"
-                ,"123"
                 ,"Воронеж"
                 , "America\\/Los_Angeles");
 
@@ -59,7 +58,6 @@ public class EntitiesTest {
                 ,0.0
                 ,0.0
                 ,"MOV"
-                ,"321"
                 ,"321"
                 ,"Москва"
                 , "America\\/Los_Angeles");

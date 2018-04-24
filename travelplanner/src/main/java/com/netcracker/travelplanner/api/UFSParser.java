@@ -85,7 +85,6 @@ public class UFSParser implements ApiInterface {
                             , from.getLatitude()
                             , from.getLongitude()
                             , from.getIataCode()
-                            , from.getYandexCode()
                             , ""
                             , from.getRussianName()
                             , from.getTimezone()));
@@ -93,7 +92,6 @@ public class UFSParser implements ApiInterface {
                             , to.getLatitude()
                             , to.getLongitude()
                             , to.getIataCode()
-                            , to.getYandexCode()
                             , ""
                             , to.getRussianName()
                             , to.getTimezone()));
@@ -104,7 +102,6 @@ public class UFSParser implements ApiInterface {
                                     , from.getLatitude()
                                     , from.getLongitude()
                                     , from.getIataCode()
-                                    , from.getYandexCode()
                                     , ""
                                     , from.getRussianName()
                                     , from.getTimezone()
@@ -113,7 +110,6 @@ public class UFSParser implements ApiInterface {
                                     , to.getLatitude()
                                     , to.getLongitude()
                                     , to.getIataCode()
-                                    , to.getYandexCode()
                                     , ""
                                     , to.getRussianName()
                                     , to.getTimezone()

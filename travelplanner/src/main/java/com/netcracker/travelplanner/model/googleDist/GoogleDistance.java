@@ -53,4 +53,7 @@ public class GoogleDistance {
         this.status = status;
     }
 
+    public Element getFirstElement(){
+        return rows.get(0).getElements().get(0);
+    }
 }

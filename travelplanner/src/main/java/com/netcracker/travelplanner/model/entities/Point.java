@@ -29,9 +29,6 @@ public class Point {
     @Column(name="iata_code")
     private String iataCode;
 
-    @Column(name="yandex_code")
-    private String yandexCode;
-
     @Column(name="location_code")
     private String locationCode;
 
@@ -145,14 +142,6 @@ public class Point {
         this.iataCode = iataCode;
     }
 
-    public String getYandexCode() {
-        return yandexCode;
-    }
-
-    public void setYandexCode(String yandexCode) {
-        this.yandexCode = yandexCode;
-    }
-
     public String getTimezone() {
         return timezone;
     }
@@ -165,7 +154,6 @@ public class Point {
             , double latitude
             , double longitude
             , String iataCode
-            , String yandexCode
             , String locationCode
             , String russianName
             , String timezone) {
@@ -173,7 +161,6 @@ public class Point {
         this.latitude = latitude;
         this.longitude = longitude;
         this.iataCode = iataCode;
-        this.yandexCode = yandexCode;
         this.locationCode = locationCode;
         this.russianName = russianName;
         this.timezone = timezone;
@@ -226,7 +213,6 @@ public class Point {
                 .append("latitude", latitude)
                 .append("longitude", longitude)
                 .append("iataCode", iataCode)
-                .append("yandexCode", yandexCode)
                 .append("russianName", russianName)
                 .append("timezone", timezone)
                 .toString();
