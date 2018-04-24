@@ -23,7 +23,7 @@
     <link href="css/sign-styles.css" rel="stylesheet">
 
     <!-- my scripts -->
-    <script src="js/sign-styles.js"></script>
+    <script src="js/sign-user-styles.js"></script>
 
     <!--angular-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
@@ -85,18 +85,11 @@
 
                     <input id="inputFirstName" name="firstname" type="text" placeholder="First name" maxlength="50" class="input pass" required/>
                     <input id="inputLastName" name="lastname" type="text" placeholder="Last name" maxlength="50" class="input pass" required/>
-                    <div class="input-group date" id='datetimepicker1'>
-                        <input id="inputBirthDate" name="birthdate" type="text"  class="input pass" placeholder="Date of birth" required/>
-                        <span class="input-group-addon datepickerbutton">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                    </div>
+                    <input id="inputBirthDate" name="birthdate" type="text" class="input pass" placeholder="Date of birth" required/>
                     <input id="inputEmail" name="email" type="email" placeholder="Email address" maxlength="255" class="input pass" required/>
                     <input id="inputPassword" name="password" type="password" placeholder="Choose a password" maxlength="255" required class="input pass"/>
-
                 <#--amazon key captcha-->
                 <#--<div align="center" class="g-recaptcha add-margin" data-sitekey="6Ldyj1IUAAAAAKFVX7twbmYLIArlJWsqQll0IShp"></div>-->
-
                     <div align="center" class="g-recaptcha add-margin" data-sitekey="6Lc9p1IUAAAAAOBwW-LE1IPih6AcW_CpDY3bsxaQ"></div>
                     <div class="add-margin">
                         <input type="submit" value="Sign up" class="button"/>

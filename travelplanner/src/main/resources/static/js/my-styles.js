@@ -1,21 +1,28 @@
 
 /* datetimepicker */
-$(function () {
-    $('#datetimepicker1').datetimepicker({
-        locale: 'en',
-        stepping: 10,
-        minDate: new Date(),
-        format: 'YYYY-MM-DD'
-    });
-});
+// $(function () {
+//     $('#datetimepicker1').datetimepicker({
+//         locale: 'en',
+//         stepping: 10,
+//         minDate: new Date(),
+//         format: 'YYYY-MM-DD',
+//         widgetPositioning: {
+//             horizontal: 'right',
+//             vertical: 'bottom'
+//         }
+//     });
+// });
 
 $(function () {
     $('#inputDate').datetimepicker({
-        // orientation: "auto",
         locale: 'en',
         stepping: 10,
         minDate: new Date(),
-        format: 'YYYY-MM-DD'
+        format: 'YYYY-MM-DD',
+        widgetPositioning: {
+            horizontal: 'right',
+            vertical: 'bottom'
+        }
     });
 });
 

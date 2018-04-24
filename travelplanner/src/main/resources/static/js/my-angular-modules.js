@@ -110,16 +110,18 @@ angular.module('controllerModule')
             return show;
         };
         $scope.testHiddenDataFrom = function () {
-            $timeout(function () {
+            $scope.timer1 = $timeout(function () {
                 $scope.inpFrom = $('#inputFromHidden').val();
                 $scope.cityFrom = $('#inputFrom').val();
+                $timeout.cancel($scope.timer1);
             });
             return $scope.inpFrom==='' && $scope.cityFrom!=='';
         };
         $scope.testHiddenDataTo = function () {
-            $timeout(function () {
+            $scope.timer2 = $timeout(function () {
                 $scope.inpTo = $('#inputToHidden').val();
                 $scope.cityTo = $('#inputTo').val();
+                $timeout.cancel($scope.timer2);
             });
             return $scope.inpTo==='' && $scope.cityTo!=='';
         };

@@ -85,7 +85,7 @@ public class UserApiController {
                     user.setLastName(encrypt(changeLastName));
                 }
                 if (changeBirthDate != null) {
-                    Date date = new SimpleDateFormat("dd.MM.yyyy").parse(changeBirthDate);
+                    Date date = new SimpleDateFormat("yyyy-MM-dd").parse(changeBirthDate);
                     user.setBirthDate(date);
                 }
                 if (userService.checkImageURL(changeAvatar)) {

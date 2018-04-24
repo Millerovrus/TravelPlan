@@ -53,7 +53,7 @@
 
     <!-- map -->
     <script src="js/google-map.js"></script>
-    <script src="js/autoComplite.js"></script>
+    <script src="js/autoComplete.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap&language=en&libraries=geometry,places"></script>
 </head>
 
@@ -116,6 +116,7 @@
                             </div>
                             <div class="col-sm-2">
                                 <button type="button" class="button swap-button" ng-click="swapFromTo()"><i class="fa fa-retweet"></i></i></button>
+                                <#--<span>{{myForm.inpTo.$valid}}, {{myForm.inpFrom.$valid}}</span>-->
                             </div>
                             <div class="col-sm-5">
                                 <div class="inputBox" ng-class="{true: 'error'}[myForm.cityTo.$error.required]">
@@ -198,7 +199,7 @@
                         </div>
                         <div class="row" ng-show="false">
                             <div class="col-sm-4">
-                                <div class="inputBox ">
+                                <div class="inputBox">
                                     <input type="text" ng-model="inpFrom" name="inpFrom" class="input" id="inputFromHidden" required>
                                 </div>
                             </div>
@@ -388,7 +389,5 @@
 
 </div>
 
-
-<script src="https://cdn.jsdelivr.net/rangeslider.js/2.3.0/rangeslider.min.js"></script>
 </body>
 </html>

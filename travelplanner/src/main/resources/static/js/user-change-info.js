@@ -24,6 +24,7 @@ angular.module('appChangeUserData',[])
             });
     };
 
+
     $scope.printUserRoutes=function () {
         $scope.loaded=false;
         $http({
@@ -68,6 +69,66 @@ angular.module('appChangeUserData',[])
         if (purchaseLink === null){
             alert("Нет ссылки на покупку")
         } else $window.open(purchaseLink);
+    };
+
+    $scope.checkIfEnterKeyWasPressed = function(event) {
+        // var keyCode = $event.which || $event.keyCode;
+        if (event.charCode === 13) {
+            // Do that thing you finally wanted to do
+            event.preventDefault(); // Doesn't work at all
+            window.stop(); // Works in all browsers but IE...
+            document.execCommand('Stop'); // Works in IE
+            return false; // Don't even know why it's here. Does nothing.
+        }
+    };
+
+    $scope.checkme = $('#checker22');
+    $scope.userName = $('#first-name');
+    $scope.userBirth = $('#birth-date');
+    $scope.userAvatar = $('#avatar');
+    $scope.userAvatarClass = $('#avatar-class');
+    $scope.userLastName = $('#last-name');
+    $scope.editHeader = $('#edit-header');
+    $scope.userSend = $('#submit-edit');
+    $scope.fileName = $('#file-name');
+
+    $scope.enableEdit = function () {
+        if($scope.checkme.is(':checked')){
+            $scope.userSend.prop('disabled', false);
+            $scope.userName.prop('disabled', false);
+            $scope.userBirth.prop('disabled', false);
+            $scope.userAvatar.prop('disabled', false);
+            $scope.userAvatar.css('display', 'block');
+            $scope.userAvatarClass.css('display', 'block');
+            $scope.userLastName.prop('disabled', false);
+            $scope.editHeader.css('display', 'none');
+            $scope.userSend.css('display', 'block');
+        }
+        else{
+            $scope.userSend.prop('disabled', true);
+            $scope.userName.prop('disabled', true);
+            $scope.userBirth.prop('disabled', true);
+            $scope.userAvatar.prop('disabled', true);
+            $scope.userAvatar.css('display', 'none');
+            $scope.userAvatarClass.css('display', 'none');
+            $scope.userLastName.prop('disabled', true);
+            $scope.userSend.css('display', 'none');
+        }
+    };
+    $scope.saveEdit = function () {
+        $scope.userSend.prop('disabled', true);
+        $scope.userName.prop('disabled', true);
+        $scope.userBirth.prop('disabled', true);
+        $scope.userAvatar.prop('disabled', true);
+        $scope.userAvatar.css('display', 'none');
+        $scope.userAvatarClass.css('display', 'none');
+        $scope.userLastName.prop('disabled', true);
+        $scope.editHeader.css('display', 'block');
+        $scope.checkme.attr('checked', false);
+        $scope.userSend.css('display', 'none');
+        $scope.fileName.css('display', 'none');
+
+        $scope.change();
     };
 })
     .filter('getMonthNumber',[function () {

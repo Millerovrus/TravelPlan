@@ -41,6 +41,7 @@
     <!-- my scripts -->
     <#--<script src="js/my-styles.js"></script>-->
     <script src="js/user-change-info.js"></script>
+    <script src="js/sign-user-styles.js"></script>
 
     <!-- my css -->
     <link href="css/user-styles.css" rel="stylesheet">
@@ -48,8 +49,8 @@
 
 </head>
 <body>
-
     <div ng-controller="controllerChangeData">
+        <#--nav menu-->
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -73,10 +74,12 @@
             </div>
         </div>
 
+        <#--user panel-->
         <div class="container" id="container-user-general-panel">
             <div class="row">
                 <div class="col-sm-offset-1 col-sm-10 col-sm-offset-1 user-details">
                     <div class="user-info-block">
+                        <#--user info + image-->
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="user-image">
@@ -91,6 +94,7 @@
                             </div>
                         </div>
 
+                        <#--panel-->
                         <div class="container navigation">
                             <div class="row" id="row-user-panel">
                                 <ul >
@@ -107,31 +111,45 @@
                                 </ul>
                             </div>
                         </div>
+                        <#--content for panel-->
                         <div class="user-body">
                             <div class="tab-content">
                                 <div id="information" class="tab-pane active">
-                                    <div class="container-fluid" id="container-user">
-                                        <div class="custom-form">
-                                            <div class="col-sm-12">
-                                                <h4>First name</h4>
-                                                <input type="text" class="form-input" value="${firstname}" placeholder="Name" maxlength="50" disabled id="first-name">
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <h4>Last name</h4>
-                                                <input type="text" class="form-input" value="${lastname}" placeholder="LastName" maxlength="50" disabled id="last-name">
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <h4>E-mail</h4>
-                                                <input type="text" class="form-input" value="${email}" placeholder="Email ID" disabled id="user-email">
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <h4>Date of birth</h4>
-                                                <input type="text" class="form-input" value="${birthdate}" placeholder="Birthdate" disabled id="birth-date">
-                                            </div>
-                                            <div class="col-sm-12" style="display: none" id="avatar-class">
-                                                <h4>Avatar</h4>
-                                                <input type="text" class="form-input" value="" placeholder="Please, insert here link to the picture..." disabled id="avatar">
-                                            </div>
+                                    <div class="container-fluid" id="container-user" >
+                                        <#--ng-submit="userForm.$valid && change()"-->
+                                        <form name="userForm" novalidate ng-submit="userForm.$valid && saveEdit()">
+                                            <div class="custom-form">
+                                                <div class="col-sm-12">
+                                                    <h4>First name</h4>
+                                                    <input type="text" class="form-input" value="${firstname}" placeholder="Name" maxlength="50" disabled id="first-name">
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <h4>Last name</h4>
+                                                    <input type="text" class="form-input" value="${lastname}" placeholder="LastName" maxlength="50" disabled id="last-name">
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <h4>E-mail</h4>
+                                                    <input type="text" class="form-input" value="${email}" placeholder="Email ID" disabled id="user-email">
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <h4>Date of birth</h4>
+                                                    <input type="text"  class="form-input" value="${birthdate}" placeholder="Birthdate" disabled id="birth-date">
+                                                </div>
+                                                <div class="col-sm-12" style="display: none" id="avatar-class">
+                                                    <h4>Avatar</h4>
+                                                    <input type="text"
+                                                           class="form-input"
+                                                           ng-pattern="/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?(\w+.(jpg|png|gif|jpeg|JPEG|JPG))/"
+                                                           value=""
+                                                           ng-model="avatarModel"
+                                                           name="avatarModel"
+                                                           placeholder="Please, insert here link to the picture..."
+                                                           disabled
+                                                           id="avatar">
+                                                    <div class="help-block pull-right">
+                                                        <div ng-show="userForm.avatarModel.$dirty && userForm.avatarModel.$error.pattern">The format of photo should be .jpg/.jpeg/.png/.gif!</div>
+                                                    </div>
+                                                </div>
                                             <#--<div class="row">
                                                 <div class="col-sm-11 file-input text-left">
                                                     <input type="file" id="base-input" style="display: none" onchange="readURL(this);" accept="image/*" class="form-style-base">
@@ -139,27 +157,26 @@
                                                     <div id="file-name"><i class="fa fa-check"></i></div>
                                                 </div>
                                             </div>-->
-
-                                            <div class="col-sm-12 text-center" align="center">
-                                                <button class="btn custom-btn" ng-click="change()" onclick="saveEdit()" id="submit-edit" style="display: none" disabled> Save changes</button>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <div class="edit-section">
-                                                    <h4 id="edit-header" class="text-right"><span class="glyphicon glyphicon-edit"></span> Edit Profile</h4>
-                                                    <input type="checkbox" onclick="enableEdit()" class="form-control" id="checker22" value="0">
+                                                <div class="col-sm-12 text-center" align="center">
+                                                    <button type="submit" ng-keypress="checkIfEnterKeyWasPressed($event)" class="btn custom-btn" id="submit-edit" style="display: none" disabled> Save changes</button>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="edit-section">
+                                                        <h4 id="edit-header" class="text-right"><span class="glyphicon glyphicon-edit"></span> Edit Profile</h4>
+                                                        <input type="checkbox" ng-click="enableEdit()" ng-keypress="checkIfEnterKeyWasPressed($event)" class="form-control" id="checker22">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
 
+                                <#--saved routes-->
                                 <div id="routes" class="tab-pane">
                                     <#--<h4>Saved routes for ${user_id}</h4>-->
                                     <!-- эту твою фигню сделала невидимой -->
                                     <input value="${user_id}" style="display: none" class="input" id="user_id"> <#--Из этой фигни берётся id текущего мужика-->
-
                                     <div ng-show="loaded">
-
                                         <div class="container-fluid" >
                                             <div class="row" ng-if="records.length===0">
                                                 <h4 class="text-center">There are no saved routes yet.</h4>
@@ -251,9 +268,7 @@
     </div>
 
 <!-- не трогать, не переносить в head!!!!!!! -->
-<script src="js/user-info.js"></script>
-
-
+<#--<script src="js/user-info.js"></script>-->
 <#--<div>-->
 <#--<button type="button" onclick="location.href='/logout'">Logout</button>-->
 <#--</div>-->
