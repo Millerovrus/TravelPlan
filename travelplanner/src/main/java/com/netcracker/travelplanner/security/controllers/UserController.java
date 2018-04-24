@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import static com.netcracker.travelplanner.security.crypto.AesCrypt.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -98,13 +99,13 @@ public class UserController {
 
         String email = securityService.findLoggedInUsername();
         //model.addAttribute("email", email);
-
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         if (email != null) {
             User user = userService.findUserByEmail(email);
             model.addAttribute("firstname", decrypt(user.getFirstName()));
             model.addAttribute("lastname", decrypt(user.getLastName()));
             model.addAttribute("email", user.getEmail());
-            model.addAttribute("birthdate", user.getBirthDate());
+            model.addAttribute("birthdate", format.format(user.getBirthDate()));
             model.addAttribute("avatar", user.getAvatar());
             model.addAttribute("user_id", user.getId());
         }
