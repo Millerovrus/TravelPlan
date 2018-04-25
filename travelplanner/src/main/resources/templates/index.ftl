@@ -145,7 +145,7 @@
                             <div class="col-sm-6">
                                 <div class="inputBox">
                                     <div class="input dropdown-toggle " id="test">
-                                        <a href="#" class="inputText" data-toggle="dropdown"><span ng-bind="passengersNum"></span> passengers<span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
+                                        <a href="#" class="inputText" data-toggle="dropdown"><span ng-bind="passengersText"></span><span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
                                         <ul class="dropdown-menu mega-dropdown-menu row">
                                             <li class="col-sm-12">
                                                 <div class="row">
@@ -154,7 +154,7 @@
                                                     </label>
                                                     <div id="num-picker-adults" class="dp-numberPicker pull-right margin-set">
                                                         <div class="dp-numberPicker-sub" ng-click="getNumberOfPassengers()"><i class="fa fa-minus"></i></div>
-                                                        <input type="text" ng-model="adultsNum" id="adults-number" class="dp-numberPicker-input" ng-init="adultsNum = 1; passengersNum = 1">
+                                                        <input type="text" ng-model="adultsNum" id="adults-number" class="dp-numberPicker-input" ng-init="adultsNum = 1; passengersText = '1 passenger'">
                                                         <div class="dp-numberPicker-add" ng-click="getNumberOfPassengers()"><i class="fa fa-plus"></i></div>
                                                     </div>
                                                 </div>

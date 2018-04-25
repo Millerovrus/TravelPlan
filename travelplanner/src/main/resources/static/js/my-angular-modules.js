@@ -210,7 +210,12 @@ angular.module('controllerModule')
 
         $scope.getNumberOfPassengers = function () {
             var timer = $timeout(function () {
-                $scope.passengersNum = parseInt($('#adults-number').val()) + parseInt($('#children-number').val()) + parseInt($('#infants-number').val());
+                $scope.passengersText = parseInt($('#adults-number').val()) + parseInt($('#children-number').val()) + parseInt($('#infants-number').val());
+                if ($scope.passengersText === 1){
+                    $scope.passengersText += " passenger"
+                } else {
+                    $scope.passengersText += " passengers"
+                }
                 $timeout.cancel(timer);
             });
         }
