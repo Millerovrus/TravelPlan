@@ -73,7 +73,7 @@ public class Edge implements Cloneable {
     @Column(name = "transit_edges")
     private List<TransitEdge> transitEdgeList;
 
-    @Column(name = "purchase_link", length = 1000)
+    @Column(name = "purchase_link", length = 2000)
     private String purchaseLink;
 
     @Transient
