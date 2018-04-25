@@ -19,19 +19,19 @@ import java.util.List;
 //@SpringBootTest(classes = TravelPlannerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class EntitiesTest {
 
-    @Autowired
+//    @Autowired
     private EdgeRepository edgeRepository;
 
-    @Autowired
+//    @Autowired
     private PointRepository pointRepository;
 
-    @Autowired
+//    @Autowired
     private TransitEdgeRepository transitEdgeRepository;
 
-    @Autowired
+//    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
+//    @Autowired
     private RouteRepository routeRepository;
 
 

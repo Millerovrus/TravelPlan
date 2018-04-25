@@ -16,12 +16,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
 
-@Service
+//@Service
 public class Executor implements ExecutorMan {
 
     private static final Logger logger = LoggerFactory.getLogger(Executor.class);
 
-    private static final ExecutorService executorService = Executors.newFixedThreadPool(6);
+    private ExecutorService executorService = Executors.newFixedThreadPool(6);
 
     public void setErrorRepositoryService(ErrorRepositoryService errorRepositoryService) {
         this.errorRepositoryService = errorRepositoryService;
