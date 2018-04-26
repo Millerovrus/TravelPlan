@@ -203,7 +203,7 @@ angular.module('controllerModule')
 
         $scope.openLink = function(purchaseLink) {
             if (purchaseLink === null){
-                alert("Нет ссылки на покупку")
+                alert("Нет ссылки на покупку");
             } else $window.open(purchaseLink);
             return false;
         };
