@@ -237,6 +237,7 @@
                                                                         <b class="font-weight">Departure date:</b> {{transit.departure | getDayNumber}}  {{transit.departure | getMonthNumber | getMonthValue}} at {{transit.departure | getTimeFromDate}}<br>
                                                                         <b class="font-weight">Arrival date:</b> {{transit.arrival | getDayNumber}}  {{transit.arrival | getMonthNumber | getMonthValue}} at {{transit.arrival | getTimeFromDate}} <br><br>
                                                                     </div>
+                                                                    <b class="font-weight">Passengers:</b> {{record.numberOfPassengers}} <br>
                                                                     <b class="font-weight">Cost:</b> {{item.cost}} RUB <br><br>
                                                                     <div class="add-margin user-but">
                                                                         <button type="submit" class="button" ng-click="openLink(item.purchaseLink)">Tickets</button>

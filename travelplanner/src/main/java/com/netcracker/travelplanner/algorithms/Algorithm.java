@@ -180,6 +180,7 @@ public class Algorithm {
             for (int i = 0; i < foundEdges.size() - 1; i++) {
                 duration += ChronoUnit.SECONDS.between(foundEdges.get(i).getEndDate(), foundEdges.get(i+1).getStartDate());
             }
+            route.setNumberOfPassengers(numberOfPassengers);
             route.setDuration(duration);
             route.getWeights().add(route.getDuration() / 72 + route.getCost() / numberOfPassengers);
             route.getWeights().add(route.getDuration() / 9 + route.getCost() / numberOfPassengers);
