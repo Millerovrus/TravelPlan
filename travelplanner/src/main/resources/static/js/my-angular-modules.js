@@ -219,6 +219,18 @@ angular.module('controllerModule')
             $scope.inpTo = tempInp;
             $scope.latLongFrom = $('#latit_longit_to').val();
             $scope.latLongTo = tempLatLong;
+        };
+
+        $scope.getNumberOfPassengers = function () {
+            var timer = $timeout(function () {
+                $scope.passengersText = parseInt($('#adults-number').val()) + parseInt($('#children-number').val()) + parseInt($('#infants-number').val());
+                if ($scope.passengersText === 1){
+                    $scope.passengersText += " passenger"
+                } else {
+                    $scope.passengersText += " passengers"
+                }
+                $timeout.cancel(timer);
+            });
         }
 
     })

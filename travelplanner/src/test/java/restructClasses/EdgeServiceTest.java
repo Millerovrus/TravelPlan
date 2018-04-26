@@ -14,12 +14,6 @@ public class EdgeServiceTest {
     }
 
 //    @Test
-    public void getYandexCode() throws Exception {
-
-        System.out.println(EdgeService.getYandexCode(53.55,9.99));
-    }
-
-//    @Test
     public void isGlobalRoute() throws Exception {
 
         //лондон - берлин

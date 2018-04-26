@@ -1,11 +1,13 @@
 
-package com.netcracker.travelplanner.model.newKiwi;
+package com.netcracker.travelplanner.model.kiwiLocations;
+
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Country {
+public class City {
+
 
     @SerializedName("id")
     @Expose
@@ -14,13 +16,15 @@ public class Country {
     @SerializedName("name")
     @Expose
     private String name;
-//    @SerializedName("slug")
-//    @Expose
-//    private String slug;
 
     @SerializedName("code")
     @Expose
     private String code;
+
+    @SerializedName("country")
+    @Expose
+    private Country country;
+
 
 
     public String getId() {
@@ -39,14 +43,6 @@ public class Country {
         this.name = name;
     }
 
-//    public String getSlug() {
-//        return slug;
-//    }
-//
-//    public void setSlug(String slug) {
-//        this.slug = slug;
-//    }
-
     public String getCode() {
         return code;
     }
@@ -54,5 +50,15 @@ public class Country {
     public void setCode(String code) {
         this.code = code;
     }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+
 
 }

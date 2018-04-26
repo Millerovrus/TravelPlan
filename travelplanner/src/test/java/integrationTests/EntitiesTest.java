@@ -19,19 +19,19 @@ import java.util.List;
 //@SpringBootTest(classes = TravelPlannerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class EntitiesTest {
 
-    @Autowired
+//    @Autowired
     private EdgeRepository edgeRepository;
 
-    @Autowired
+//    @Autowired
     private PointRepository pointRepository;
 
-    @Autowired
+//    @Autowired
     private TransitEdgeRepository transitEdgeRepository;
 
-    @Autowired
+//    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
+//    @Autowired
     private RouteRepository routeRepository;
 
 
@@ -51,7 +51,6 @@ public class EntitiesTest {
                 ,0.0
                 ,"VOZ"
                 ,"123"
-                ,"123"
                 ,"Воронеж"
                 , "America\\/Los_Angeles");
 
@@ -59,7 +58,6 @@ public class EntitiesTest {
                 ,0.0
                 ,0.0
                 ,"MOV"
-                ,"321"
                 ,"321"
                 ,"Москва"
                 , "America\\/Los_Angeles");

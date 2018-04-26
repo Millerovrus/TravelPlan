@@ -5,7 +5,7 @@ import com.netcracker.travelplanner.model.exceptions.KiwiException;
 import com.netcracker.travelplanner.model.entities.Edge;
 import com.netcracker.travelplanner.model.entities.Point;
 import com.netcracker.travelplanner.model.entities.TransitEdge;
-import com.netcracker.travelplanner.model.kiwi.KiwiFlights;
+import com.netcracker.travelplanner.model.kiwiFlights.KiwiFlights;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -78,7 +78,6 @@ public class KiwiApi implements ApiInterface {
                                     ,from.getLatitude()
                                     ,from.getLongitude()
                                     ,from.getIataCode()
-                                    ,from.getYandexCode()
                                     ,l.getFlyFrom()
                                     ,from.getRussianName()
                                     ,from.getTimezone())
@@ -86,7 +85,6 @@ public class KiwiApi implements ApiInterface {
                                     ,to.getLatitude()
                                     ,to.getLongitude()
                                     ,to.getIataCode()
-                                    ,to.getYandexCode()
                                     ,l.getFlyTo()
                                     ,to.getRussianName()
                                     ,to.getTimezone())
@@ -109,7 +107,6 @@ public class KiwiApi implements ApiInterface {
                                 ,from.getLatitude()
                                 ,from.getLongitude()
                                 ,from.getIataCode()
-                                ,from.getYandexCode()
                                 ,l.getFlyFrom()
                                 ,from.getRussianName()
                                 ,from.getTimezone()));
@@ -117,7 +114,6 @@ public class KiwiApi implements ApiInterface {
                                 ,to.getLatitude()
                                 ,to.getLongitude()
                                 ,to.getIataCode()
-                                ,to.getYandexCode()
                                 ,l.getFlyTo()
                                 ,to.getRussianName()
                                 ,to.getTimezone()));

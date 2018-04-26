@@ -49,7 +49,6 @@ public class YandexApi implements ApiInterface {
                                         ,from.getLatitude()
                                         ,from.getLongitude()
                                         ,from.getIataCode()
-                                        ,from.getYandexCode()
                                         ,l.getFrom().getCode()
                                         ,from.getRussianName()
                                         ,from.getTimezone())
@@ -57,7 +56,6 @@ public class YandexApi implements ApiInterface {
                                         ,to.getLatitude()
                                         ,to.getLongitude()
                                         ,to.getIataCode()
-                                        ,to.getYandexCode()
                                         ,l.getTo().getCode()
                                         ,to.getRussianName()
                                         ,to.getTimezone())
@@ -79,7 +77,6 @@ public class YandexApi implements ApiInterface {
                                 ,from.getLatitude()
                                 ,from.getLongitude()
                                 ,from.getIataCode()
-                                ,from.getYandexCode()
                                 ,l.getFrom().getCode()
                                 ,from.getRussianName()
                                 ,from.getTimezone()));
@@ -87,7 +84,6 @@ public class YandexApi implements ApiInterface {
                                 ,to.getLatitude()
                                 ,to.getLongitude()
                                 ,to.getIataCode()
-                                ,to.getYandexCode()
                                 ,l.getTo().getCode()
                                 ,to.getRussianName()
                                 ,to.getTimezone()));

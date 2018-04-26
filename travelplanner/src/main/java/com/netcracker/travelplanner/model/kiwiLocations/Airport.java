@@ -1,12 +1,10 @@
 
-package com.netcracker.travelplanner.model.newKiwi;
+package com.netcracker.travelplanner.model.kiwiLocations;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-
 public class Airport {
-
 
     @SerializedName("id")
     @Expose
@@ -105,4 +103,15 @@ public class Airport {
         this.type = type;
     }
 
+    public String getCityCode(){
+        return city.getCode();
+    }
+
+    public String getCountryName(){
+        return city.getCountry().getName();
+    }
+
+    public String getCityName(){
+        return city.getName();
+    }
 }
