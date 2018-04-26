@@ -1,3 +1,5 @@
+// можно удалить весь файл
+
 var checkme = document.getElementById('checker22');
 var userName = document.getElementById('first-name');
 var userPhone = document.getElementById('birth-date');

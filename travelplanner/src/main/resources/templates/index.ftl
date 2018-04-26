@@ -116,15 +116,11 @@
                             </div>
                             <div class="col-sm-2">
                                 <button type="button" class="button swap-button" ng-click="swapFromTo()"><i class="fa fa-retweet"></i></i></button>
-                                <#--<span>{{myForm.inpTo.$valid}}, {{myForm.inpFrom.$valid}}</span>-->
                             </div>
                             <div class="col-sm-5">
                                 <div class="inputBox" ng-class="{true: 'error'}[myForm.cityTo.$error.required]">
                                     <div class="inputText label-input-param" id="arrival-label">Arrival city</div>
                                     <input type="text" id="inputTo" name="cityTo"  ng-model="cityTo" class="input" onfocus="geolocate(); clearTo()" placeholder="" required>
-                                    <#--<div ng-if="myForm.$submitted" class="help-block pull-right">-->
-                                        <#--<div ng-show="showMessage(myForm.cityTo)">Please enter or select arrival city.</div>-->
-                                    <#--</div>-->
                                     <div class="help-block pull-right">
                                         <div ng-show="myForm.$submitted && myForm.cityTo.$error.required">Please enter arrival city.</div>
                                         <div ng-show="myForm.cityTo.$dirty && testHiddenDataTo()">Please enter correctly arrival city.</div>
@@ -332,38 +328,44 @@
                                                                     </h4>
                                                                 </div>
                                                                 <div id=id-for-view-{{record.idRouteForView}} class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                                                    <div class="panel-body" ng-repeat="item in record.edges">
-                                                                        <div ng-repeat="transits in item.transitEdgeList">
-                                                                            <p><b>Transit:</b> {{transits.startPoint.name}} - {{transits.endPoint.name}}</p>
-                                                                            <p><b>Departure:</b> {{transits.departure}}</p>
-                                                                            <p><b>Arrival:</b> {{transits.arrival}}</p>
-                                                                        </div>
-                                                                        <p><b>Cost:</b> {{item.cost}} (RUB)</p>
-                                                                        <p ng-if="item.trainTicketsInfoList != null"><b>Train tickets info:</b></p>
-                                                                        <div ng-repeat="TrainTicketsInfo in item.trainTicketsInfoList">
-                                                                            <p>{{TrainTicketsInfo.wagonType}} - {{TrainTicketsInfo.cost}} (RUB) - {{TrainTicketsInfo.availableSeats}} seats</p>
+                                                                    <div class="panel-body">
+                                                                        <div ng-repeat="item in record.edges">
+                                                                            <div ng-repeat="transits in item.transitEdgeList">
+                                                                                <p><b>Transit:</b> {{transits.startPoint.name}} - {{transits.endPoint.name}}</p>
+                                                                                <p><b>Departure:</b> {{transits.departure}}</p>
+                                                                                <p><b>Arrival:</b> {{transits.arrival}}</p>
+                                                                            </div>
+                                                                            <p><b>Cost:</b> {{item.cost}} (RUB)</p>
+                                                                            <p ng-if="item.trainTicketsInfoList != null"><b>Train tickets info:</b></p>
+                                                                            <div ng-repeat="TrainTicketsInfo in item.trainTicketsInfoList">
+                                                                                <p>{{TrainTicketsInfo.wagonType}} - {{TrainTicketsInfo.cost}} (RUB) - {{TrainTicketsInfo.availableSeats}} seats</p>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
+                                                                                    <div class="row">
+                                                                                        <form ng-click="openLink(item.purchaseLink)" ng-keypress="checkIfEnterKeyWasPressed($event)">
+                                                                                            <input type="button" class="button" value="Buy ticket">
+                                                                                        </form>
+                                                                                    </div>
+                                                                                    <br>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
-                                                                            <#--<section>-->
-                                                                                <div class="row">
+                                                                                 <div class="row">
                                                                                     <form >
                                                                                     <#if isAuthorized>
                                                                                         <div ng-hide="saved(record.idRouteForView)" ng-keypress="checkIfEnterKeyWasPressed($event)">
-                                                                                        <#--<button class='dotted thin' ng-click="saveRoute(record)">Save route</button>-->
                                                                                             <input type="button" ng-click="saveRoute(record)" class="button" value="Save route">
                                                                                         </div>
+                                                                                        <#--<div ng-hide="chechIfSaved(record.idRouteForView)" ng-keypress="checkIfEnterKeyWasPressed($event)">-->
+                                                                                            <#--<input type="button" ng-click="saveRoute(record)" class="button" value="Save route">-->
+                                                                                        <#--</div>-->
+                                                                                        <#--<div>:: {{savedRouteIds}}</div>-->
                                                                                     </#if>
                                                                                     </form>
                                                                                 </div>
-                                                                                <br>
-                                                                                <div class="row">
-                                                                                    <form ng-click="openLink(item.purchaseLink)" ng-keypress="checkIfEnterKeyWasPressed($event)">
-                                                                                    <#--<button class='dotted thin' ng-click="openLink(item.purchaseLink)">Buy ticket</button>-->
-                                                                                        <input type="button" class="button" value="Buy ticket">
-                                                                                    </form>
-                                                                                </div>
-                                                                            <#--</section>-->
                                                                             </div>
                                                                         </div>
                                                                     </div>

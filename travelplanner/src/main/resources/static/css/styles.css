@@ -160,7 +160,7 @@ p{
     margin-top: 50px;
     padding: 50px;
     background: rgba(182, 182, 182, 0.6);
-    border-radius: 2px;
+    border-radius: 5px;
 }
 
 .inputBox{
@@ -812,8 +812,8 @@ html section button.dotted.thin, body section button.dotted.thin {
 .routes-box{
     margin-top: 40px;
     padding: 10px;
-    background: rgba(182, 182, 182, 0.6);
-    border-radius: 2px;
+    background: rgba(182, 182, 182, 0.8);
+    border-radius: 5px;
 }
 
 /* swap button*/

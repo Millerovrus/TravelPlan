@@ -18,10 +18,21 @@ angular.module('controllerModule')
             }).then(
                 function success(response, status) {
                     console.log('Route had been saved', status, response);
+                    /* */
                     $scope.saved=function(value) {
                         if (value === record.idRouteForView)
                             return true;
                     };
+                    /* */
+                    // $scope.savedRouteIds = [];
+                    // $scope.chechIfSaved = function (data) {
+                    //     if($scope.savedRouteIds.includes(data))
+                    //         return false;
+                    //     else {
+                    //         $scope.savedRouteIds.push(data);
+                    //         return true;
+                    //     }
+                    // };
                     alert("Route had been saved :)");
 
                 },
@@ -76,6 +87,8 @@ angular.module('controllerModule')
                 $scope.goToLoaded();
             });
         };
+
+
 
         /*autoscroll */
         $scope.goToLoaded = function() {

@@ -266,13 +266,5 @@
             </div>
         </div>
     </div>
-
-<!-- не трогать, не переносить в head!!!!!!! -->
-<#--<script src="js/user-info.js"></script>-->
-<#--<div>-->
-<#--<button type="button" onclick="location.href='/logout'">Logout</button>-->
-<#--</div>-->
-
-
 </body>
 </html>
