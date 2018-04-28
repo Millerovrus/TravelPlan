@@ -240,7 +240,7 @@
                                                                     <b class="font-weight">Passengers:</b> {{record.numberOfPassengers}} <br>
                                                                     <b class="font-weight">Cost:</b> {{item.cost}} RUB <br><br>
                                                                     <div class="add-margin user-but">
-                                                                        <button type="submit" class="button" ng-click="openLink(item.purchaseLink)">Tickets</button>
+                                                                        <button type="submit" class="button" ng-click="openLink(item)">Tickets</button>
                                                                     </div>
                                                                 </p>
                                                             </div>
@@ -248,7 +248,7 @@
                                                         <div class="col-sm-2">
                                                             <input class="input" id="route_id" style="display: none" value="{{record.id}}">
                                                             <div class="btn-group pull-right">
-                                                                <a  href="#"  class="btn btn-inverse button-del" ng-click="deleteSavedRoute(record.id)"><i class="fa fa-trash"></i></a>
+                                                                <a href="#"  class="btn btn-inverse button-del" ng-click="deleteSavedRoute(record.id)"><i class="fa fa-trash"></i></a>
                                                                 <#--style="background-color: rgba(45,45, 45, 0.5); color: #fff"-->
                                                             </div>
                                                         </div>

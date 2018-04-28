@@ -44,8 +44,7 @@ angular.module('appChangeUserData',[])
             });
     };
 
-    $scope.deleteSavedRoute = function (input) {
-        // alert(angular.element($('#route_id')).val() + input);
+    $scope.deleteSavedRoute = function(input) {
         $http({
             method: 'GET',
             url: 'api/routes/deletebyid',
@@ -57,7 +56,6 @@ angular.module('appChangeUserData',[])
                 $scope.records = response.data;
                 $scope.loaded = true;
                 $scope.printUserRoutes();
-                // $location.path('#routes').reload();
             },
             function error(response, status) {
                 console.error('Repos error', status, response);
@@ -65,11 +63,15 @@ angular.module('appChangeUserData',[])
             });
     };
 
-    $scope.openLink = function(purchaseLink) {
-        if (purchaseLink === null){
-            alert("Нет ссылки на покупку")
-        } else $window.open(purchaseLink);
-    };
+        $scope.openLink = function(item) {
+            var date = item.startDate.replace(/-/g, '/');
+            if (item.purchaseLink === null){
+                alert("Нет ссылки на покупку");
+            } else
+            if(new Date(date).getTime() < Date.now()){
+                alert("Ссылка на покупку недействительна")
+            } else $window.open(item.purchaseLink);
+        };
 
     $scope.checkIfEnterKeyWasPressed = function(event) {
         // var keyCode = $event.which || $event.keyCode;

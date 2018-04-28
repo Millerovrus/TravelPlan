@@ -343,8 +343,8 @@
                                                                             <div class="row">
                                                                                 <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 centered">
                                                                                     <div class="row">
-                                                                                        <form ng-click="openLink(item.purchaseLink)" ng-keypress="checkIfEnterKeyWasPressed($event)">
-                                                                                            <input type="button" class="button" value="Buy ticket">
+                                                                                        <form ng-keypress="checkIfEnterKeyWasPressed($event)">
+                                                                                            <input type="button" class="button" ng-click="openLink(item)" value="Buy ticket">
                                                                                         </form>
                                                                                     </div>
                                                                                     <br>
