@@ -110,7 +110,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-2">
-                                <button type="button"  class="button swap-button" ng-click="swapFromTo()"><i class="fas fa-exchange-alt"></i></button>
+                                <button type="button"  class="swap-button" ng-click="swapFromTo()"><i class="fas fa-exchange-alt"></i></button>
                             </div>
                             <div class="col-sm-5">
                                 <div class="inputBox" ng-class="{true: 'error'}[myForm.cityTo.$error.required]">
@@ -236,7 +236,7 @@
                                                 <div class="accordion-panel">
                                                     <dl class="accordion">
                                                         <dt class="label-header">Routes filter <i class="plus-icon"></i></dt>
-                                                        <dd style="height: auto">
+                                                        <dd>
                                                             <div class="content">
                                                                 <div class="col-sm-4">
                                                                     <div class="label-header text-left">

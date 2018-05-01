@@ -634,8 +634,8 @@ html section button.dotted.thin, body section button.dotted.thin {
 .accordion-panel .accordion dt {
     display: block;
     padding: 5px;
-    background: #d5d5d5;
-    color: #2b2b2b;
+    background-color: #ee8341; /* ? opacity ?  */
+    color: #fff;
     font-weight: 300;
     cursor: pointer;
     position: relative;
@@ -676,7 +676,7 @@ html section button.dotted.thin, body section button.dotted.thin {
 .accordion-panel .plus-icon:before,
 .accordion-panel .plus-icon:after {
     content: '';
-    background: #2b2b2b;
+    background: #fff;
     position: absolute;
 }
 .accordion-panel .plus-icon:before {
@@ -713,6 +713,7 @@ html section button.dotted.thin, body section button.dotted.thin {
     margin-top: -10px;
     width: 90px;
 }
+
 .accordion-panel .buttons-wrapper {
     margin: 10px;
     position: relative;
@@ -826,8 +827,9 @@ html section button.dotted.thin, body section button.dotted.thin {
     margin-top: 0;
     margin-bottom: 10px;
     margin-left: 35%;
-    width: 45px;
-    height: 45px;
+    background-color: transparent;
+    width: auto;
+    height: auto;
 }
 
 @media screen and (max-width: 767px){
