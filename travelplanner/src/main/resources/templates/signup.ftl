@@ -52,6 +52,9 @@
                 return false;}
         }
     </script>
+    <script>
+        element.addEventListener('input',function(){this.value=this.value.toLowerCase()});​
+    </script>
 </head>
 
 <body>
@@ -92,7 +95,7 @@
                     <input id="inputFirstName" name="firstname" type="text" placeholder="First name" maxlength="50" class="input pass" required/>
                     <input id="inputLastName" name="lastname" type="text" placeholder="Last name" maxlength="50" class="input pass" required/>
                     <input id="inputBirthDate" name="birthdate" type="text" class="input pass" placeholder="Date of birth" required/>
-                    <input id="inputEmail" name="email" type="email" placeholder="Email address" maxlength="255" class="input pass" required/>
+                    <input id="inputEmail" name="email" type="email" oninput="this.value=this.value.toLowerCase()" placeholder="Email address" maxlength="255" class="input pass" required/>
                     <input id="inputPassword" name="password" type="password" placeholder="Choose a password" maxlength="255" required class="input pass"/>
                 <#--amazon key captcha-->
                 <#--<div align="center" class="g-recaptcha add-margin" data-sitekey="6Ldyj1IUAAAAAKFVX7twbmYLIArlJWsqQll0IShp"></div>-->

@@ -60,7 +60,7 @@ public class RouteRepositoryService {
      * @param id - user id
      * @return list of routes by user_id
      */
-    public  List<Route> findByUserId(int id){
+    public List<Route> findByUserId(int id){
         return routeRepository.findByUserId(id);
     }
 

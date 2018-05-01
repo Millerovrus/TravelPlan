@@ -676,7 +676,7 @@ html section button.dotted.thin, body section button.dotted.thin {
 .accordion-panel .plus-icon:before,
 .accordion-panel .plus-icon:after {
     content: '';
-    background: #e97f2b;
+    background: #2b2b2b;
     position: absolute;
 }
 .accordion-panel .plus-icon:before {

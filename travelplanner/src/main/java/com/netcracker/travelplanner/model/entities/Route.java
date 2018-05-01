@@ -50,6 +50,9 @@ public class Route implements Serializable {
     @Column(name = "duration", nullable = false)
     private double duration;
 
+    @Column(name= "passengers", nullable = false)
+    private int numberOfPassengers;
+
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Edge> edges;
 
@@ -57,6 +60,14 @@ public class Route implements Serializable {
 
     @Transient
     private String description;
+
+    public int getNumberOfPassengers() {
+        return numberOfPassengers;
+    }
+
+    public void setNumberOfPassengers(int numberOfPassengers) {
+        this.numberOfPassengers = numberOfPassengers;
+    }
 
     public int getIdRouteForView() {
         return idRouteForView;

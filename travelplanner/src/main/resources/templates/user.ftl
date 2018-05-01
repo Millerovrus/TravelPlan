@@ -233,25 +233,25 @@
                                                             </ul>
                                                         <#--<br>-->
                                                             <div ng-repeat="item in record.edges">
-                                                                <div ng-repeat="transit in item.transitEdgeList">
-                                                                    <p>
+                                                                <p>
+                                                                    <div ng-repeat="transit in item.transitEdgeList">
                                                                         <b class="font-weight">Transit:</b> {{transit.startPoint.name}} - {{transit.endPoint.name}} <br>
                                                                         <b class="font-weight">Transport type:</b> {{item.transportType}} <br>
                                                                         <b class="font-weight">Departure date:</b> {{transit.departure | getDayNumber}}  {{transit.departure | getMonthNumber | getMonthValue}} at {{transit.departure | getTimeFromDate}}<br>
-                                                                        <b class="font-weight">Arrival date:</b> {{transit.arrival | getDayNumber}}  {{transit.arrival | getMonthNumber | getMonthValue}} at {{transit.arrival | getTimeFromDate}} <br>
-                                                                        <b class="font-weight">Cost:</b> {{item.cost}} RUB
-                                                                        <#--<b class="font-weight">ID:</b> {{record.id}}-->
-                                                                    <div class="add-margin user-but">
-                                                                        <button type="submit" class="button" ng-click="openLink(item.purchaseLink)">Tickets</button>
+                                                                        <b class="font-weight">Arrival date:</b> {{transit.arrival | getDayNumber}}  {{transit.arrival | getMonthNumber | getMonthValue}} at {{transit.arrival | getTimeFromDate}} <br><br>
                                                                     </div>
-                                                                    </p>
-                                                                </div>
+                                                                    <b class="font-weight">Passengers:</b> {{record.numberOfPassengers}} <br>
+                                                                    <b class="font-weight">Cost:</b> {{item.cost}} RUB <br><br>
+                                                                    <div class="add-margin user-but">
+                                                                        <button type="submit" class="button" ng-click="openLink(item)">Tickets</button>
+                                                                    </div>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-2">
                                                             <input class="input" id="route_id" style="display: none" value="{{record.id}}">
                                                             <div class="btn-group pull-right">
-                                                                <a  href="#"  class="btn btn-inverse button-del" ng-click="deleteSavedRoute(record.id)"><i class="fa fa-trash"></i></a>
+                                                                <a href="#"  class="btn btn-inverse button-del" ng-click="deleteSavedRoute(record.id)"><i class="fa fa-trash"></i></a>
                                                                 <#--style="background-color: rgba(45,45, 45, 0.5); color: #fff"-->
                                                             </div>
                                                         </div>

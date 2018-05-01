@@ -69,7 +69,6 @@ angular.module('controllerModule')
                     $scope.$emit('UNLOAD');
                     $scope.loaded=true;
                     initMap();
-
                     //инициализируем значения фильтров
                     $scope.filterModel = {
                         plane : true,
@@ -83,24 +82,16 @@ angular.module('controllerModule')
                     console.error('Repos error', status, response);
                     $scope.$emit('UNLOAD');
                     alert("Something goes wrong :(");
-                }).finally(function () {
-                $scope.goToLoaded();
-            });
+                })
+                .finally(function () {
+                    $scope.goToLoaded();
+                });
         };
 
 
 
         /*autoscroll */
         $scope.goToLoaded = function() {
-            // set the location.hash to the id of the element you wish to scroll to
-            // works fine, not animated
-            // $timeout(function (){
-            //     $location.hash('scroll-to');
-            //     $anchorScroll();
-            //     $location.hash('');
-            //     $location.replace();
-            // });
-
             // animated scroll
             $timeout(function(){
                 $document.duScrollToElementAnimated(angular.element(document.getElementById('scroll-to')));
@@ -146,33 +137,6 @@ angular.module('controllerModule')
         };
 
         /* filters */
-        $scope.optimalRoutes = function(records) {
-            return records.optimalRoute;
-        };
-        $scope.allRoutes = function(records) {
-            return records;
-        };
-        //для того, чтобы изначально чекбоксы были выбраны
-        //ng-checked="true" работает не так как нужно
-        //checked не работает с ng-model
-        $scope.checkboxPlane = true;
-        $scope.checkboxBus = true;
-        $scope.checkboxTrain = true;
-        //переменные, содержащие текущие значения чекбоксов
-        var planeCheckboxValue = true;
-        var busCheckboxValue = true;
-        var trainCheckboxValue = true;
-        //функции, которые меняют значения чекбоксов
-        $scope.changePlaneCheckbox = function () {
-            planeCheckboxValue = !planeCheckboxValue;
-        };
-        $scope.changeTrainCheckbox = function () {
-            trainCheckboxValue = !trainCheckboxValue;
-        };
-        $scope.changeBusCheckbox = function () {
-            busCheckboxValue = !busCheckboxValue;
-        };
-        //фильтр по транспорту
         $scope.transportTypeFilter = function (records) {
             for (var i = 0; i < records.edges.length; i++){
                 if (!$scope.filterModel.plane){
@@ -201,11 +165,14 @@ angular.module('controllerModule')
             return records;
         };
 
-        $scope.openLink = function(purchaseLink) {
-            if (purchaseLink === null){
-                alert("Нет ссылки на покупку")
-            } else $window.open(purchaseLink);
-            return false;
+        $scope.openLink = function(item) {
+            var date = item.startDate.replace(/-/g, '/');
+            if (item.purchaseLink === null){
+                alert("Нет ссылки на покупку");
+            } else
+                if(new Date(date).getTime() < Date.now()){
+                    alert("Ссылка на покупку недействительна");
+                } else $window.open(item.purchaseLink);
         };
 
         $scope.swapFromTo = function () {
@@ -277,7 +244,7 @@ angular.module('controllerModule')
                         var startDateA = a.edges[0].startDate.replace(/:/g,'').slice(11, 17);
                         var startDateB = b.edges[0].startDate.replace(/:/g,'').slice(11, 17);
 
-                        return startDateA - startDateB
+                        return startDateA - startDateB;
                     });
                     break;
                 case 'transfers':
@@ -306,8 +273,8 @@ angular.module('controllerModule')
     })
 
     .controller('appController', function ($scope) {
-        $scope.$on('LOAD', function () { $scope.loading = true });
-        $scope.$on('UNLOAD', function () { $scope.loading = false });
+        $scope.$on('LOAD', function () { $scope.loading = true; });
+        $scope.$on('UNLOAD', function () { $scope.loading = false; });
     })
     .controller('mapController', function ($scope) {
         $scope.setMap = function (record) {

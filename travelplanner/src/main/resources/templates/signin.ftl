@@ -39,6 +39,9 @@
     <!-- my css -->
     <link href="css/sign-styles.css" rel="stylesheet">
 
+    <script>
+        element.addEventListener('input',function(){this.value=this.value.toLowerCase()});​
+    </script>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -77,7 +80,7 @@
                     <#if error>
                     <div class="alert alert-danger" role="alert">Invalid E-mail or Password!</div>
                     </#if>
-                    <input type="text" class="input pass" id="username" placeholder="E-mail"
+                    <input type="text" class="input pass" id="username" oninput="this.value=this.value.toLowerCase()" placeholder="E-mail"
                            name="username">
                     <input type="password" class="input pass" id="password" placeholder="Password"
                            name="password">
