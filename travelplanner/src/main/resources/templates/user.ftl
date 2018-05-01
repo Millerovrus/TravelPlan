@@ -6,27 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Profile</title>
+    <link rel="shortcut icon" type="image/png" href="../img/darth-vader-fav.png"/>
     <!-- Bootstrap, fonts -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-select.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" crossorigin="anonymous">
+    <script src="js/html5shiv.min.js"></script> <!-- ver 3.7.3 -->
+    <script src="js/respond.min.js"></script> <!-- ver 1.4.2 -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script> <!-- version 1.13.1-->
+    <script src="js/jquery-ui.min.js"></script> <!-- ver 1.10.3 -->
 
     <!-- bootstrap select -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-select.min.js"></script>
 
     <!-- bootstrap touchspin -->
-    <link rel="stylesheet" href="css/jquery.bootstrap-touchspin.css" />
-    <script src="js/jquery.bootstrap-touchspin.js"></script>
+    <#--<link rel="stylesheet" href="css/jquery.bootstrap-touchspin.css" />-->
+    <#--<script src="js/jquery.bootstrap-touchspin.js"></script>-->
 
     <!-- bootstrap datetimepicker -->
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.css" />
@@ -35,11 +36,10 @@
     <script src="js/bootstrap-datetimepicker.min.js"></script>
 
     <!--angular-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
+    <script src="js/angular.min.js"></script> <!-- version 1.4.3 -->
+    <script type="text/javascript" src="js/angular-sanitize.min.js"></script> <!-- version 1.4.8 -->
 
     <!-- my scripts -->
-    <#--<script src="js/my-styles.js"></script>-->
     <script src="js/user-change-info.js"></script>
     <script src="js/sign-user-styles.js"></script>
 
@@ -59,7 +59,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/"><i class="fa fa-ravelry" aria-hidden="true"></i>Travel planner</a>
+                    <div style="margin-top: 5px;">
+                        <img src="../img/vader-icon.png" class="pull-left" style="margin-right: 5px; margin-top: 5px;" aria-hidden="true">
+                        <a class="navbar-brand" href="/">Smarth Wayder</a>
+                    </div>
                 </div>
                 <div class="navbar-collapse collapse"  id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">

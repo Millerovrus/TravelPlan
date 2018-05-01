@@ -159,57 +159,59 @@ p{
 .formBox{
     margin-top: 50px;
     padding: 50px;
-    background: rgba(182, 182, 182, 0.6);
+    background: rgba(107, 107, 107, 0.7);
     border-radius: 5px;
 }
 
 .inputBox{
     position: relative;
-    box-sizing: border-box;
-    margin-bottom: 25px;
-    color: #333;
+    /*box-sizing: border-box;*/
+    margin-bottom: 30px;
+    color: #fff;
 }
 
 .inputBox .inputText{
     position: absolute;
-    margin-left: 5px;
-    margin-top: -1px;
+    margin-top: 5px;
     font-size: 18px;
-    line-height: 45px;
+    line-height: 35px;
     transition: .5s;
     z-index: 1;
     font-family: Lato;
-    color: #2b2b2b;
+    color: #fff;
+    letter-spacing: 1px;
 }
 
 .inputBox .input {
     position: relative;
     width: 100%;
-    height: 45px;
-    background: #fff;
-    border: 1px solid #f2f2f2;
-    outline: none;
+    height: 35px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #f2f2f2;
     font-size: 18px;
-    border-radius: 2px;
+    outline: none !important;
+    /*border-radius: 2px;*/
 }
 
 .focus .inputText{
-    transform: translateY(-35px);
+    transform: translateY(-30px);
     font-size: 16px;
     opacity: 1;
-    color: #2b2b2b;
+    color: #fff;
 }
 
 .inputBox .input:focus{
     /*border: 2px solid #e97f2b;*/
-    box-shadow: 0 0 6px #e97f2b;
+    /*box-shadow: 0 0 6px #e97f2b;*/
+    outline: none;
 }
 
-.input.dropdown-toggle:active, .input.open.dropdown-toggle {
-     background:#FFF !important;
-     color:#2b2b2b !important;
+.input.dropdown-toggle:active, .input.open.dropdown-toggle { /* /////////////////////////////////////////////////////////////////// */
+     background-color:transparent !important;
+     color:#fff !important;
      /*border: 2px solid #e97f2b !important;*/
-     box-shadow: 0 0 6px #e97f2b !important;
+     /*box-shadow: 0 0 6px #e97f2b !important;*/
 }
 
 a.inputText{
@@ -242,6 +244,7 @@ a.inputText{
     -webkit-box-shadow: none;
     width: 100%;
     border-radius: 2px;
+    background-color: #6b6b6b;
     /*left: 50%;*/
     /*float: right;*/
 }
@@ -261,7 +264,7 @@ a.inputText{
     clear: both;
     font-weight: normal;
     line-height: 1.428571429;
-    color: #999;
+    color: #6b6b6b;
     white-space: normal;
 }
 
@@ -269,12 +272,12 @@ a.inputText{
 .mega-dropdown-menu > li ul > li > a:hover,
 .mega-dropdown-menu > li ul > li > a:focus {
     text-decoration: none;
-    color: #444;
-    background-color: #f5f5f5;
+    color: #fff;
+    background-color: #6b6b6b;
 }
 
 .mega-dropdown-menu .dropdown-header {
-    color: #2b2b2b;
+    color: #fff;
     font-size: 18px;
     font-weight: 300;
 }
@@ -288,14 +291,14 @@ a.inputText{
 }
 
 .input a{
-    color: #2b2b2b;
+    color: #fff;
     outline: none !important;
 }
 
 .input a:hover,
 .input a:focus{
 text-decoration: none;
-color: #2b2b2b;
+color: #fff;
 }
 
 /* touchspin*/
@@ -337,10 +340,10 @@ color: #2b2b2b;
 
 /* divider*/
 .divider-inverse{
-    border-bottom: 1px solid #ccc;
-    padding-top: 5px;
+    border-bottom: 1px solid #7b7b7b;
+    padding-top: 2px;
     padding-bottom: 5px;
-    width: 98%;
+    width: 96%;
 }
 
 /* checkbox*/
@@ -463,19 +466,21 @@ input[type='checkbox']:checked + span{
     border-radius: 0;
 }
 .fancy-collapse-panel .panel-heading a:after {
-    font-family: "FontAwesome";
-    content: "\f147";
+    font-family: 'Font Awesome\ 5 Free';
+    content: "\f146";
     position: absolute;
     right: 20px;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 900;
     top: 50%;
     line-height: 1;
     margin-top: -10px;
 
 }
 .fancy-collapse-panel .panel-heading a.collapsed:after {
-    content:"\f196";
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+    content:"\f0fe";
 }
 .panel-body{
     background-color: #fff;
@@ -615,7 +620,7 @@ html section button.dotted.thin, body section button.dotted.thin {
 .label-header{
     font-family: Raleway;
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 500;
 }
 .accordion-panel {
     font-family: Lato;
@@ -629,9 +634,9 @@ html section button.dotted.thin, body section button.dotted.thin {
 .accordion-panel .accordion dt {
     display: block;
     padding: 5px;
-    background: rgb(163, 163, 163);
+    background: #d5d5d5;
     color: #2b2b2b;
-    font-weight: 500; /*//////////// make bolder?*/
+    font-weight: 300;
     cursor: pointer;
     position: relative;
     user-select: none;
@@ -833,9 +838,7 @@ html section button.dotted.thin, body section button.dotted.thin {
         width: 45px;
         height: 45px;
     }
-
 }
-
 
 @media screen and (max-width: 911px) and (min-width: 768px){
     .swap-button{
@@ -845,7 +848,6 @@ html section button.dotted.thin, body section button.dotted.thin {
         width: 45px;
         height: 45px;
     }
-
 }
 
 @media screen and (max-width: 1125px) and (min-width: 912px){
@@ -864,4 +866,25 @@ html section button.dotted.thin, body section button.dotted.thin {
     .swap-margin{
         margin-left: -40px;
     }
+}
+/* */
+.help-block{
+    color: #ccc;
+    font-family: Lato;
+    margin-top: -2px;
+    margin-bottom: 3px;
+}
+.dp-numberPicker-input{
+    background-color: transparent;
+    color: #fff;
+}
+.dp-numberPicker-add, .dp-numberPicker-sub{
+    background-color: transparent;
+}
+.dp-numberPicker-sub.disabled, .dp-numberPicker-add.disabled{
+    background-color: transparent;
+    color: #ccc;
+}
+.bootstrap-datetimepicker-widget.usetwentyfour{
+    color: #2b2b2b;
 }

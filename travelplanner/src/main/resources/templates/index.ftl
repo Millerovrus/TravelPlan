@@ -5,29 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Travel Planner</title>
+    <title>Smarth Wayder</title>
+    <link rel="shortcut icon" type="image/png" href="../img/darth-vader-fav.png"/>
     <!-- Bootstrap, fonts -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-select.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" crossorigin="anonymous">
+    <script src="js/html5shiv.min.js"></script> <!-- ver 3.7.3 -->
+    <script src="js/respond.min.js"></script> <!-- ver 1.4.2 -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script> <!-- version 1.13.1-->
+    <script src="js/jquery-ui.min.js"></script> <!-- ver 1.10.3 -->
 
-    <!-- bootstrap touchspin -->
-<#--<link rel="stylesheet" href="css/jquery.bootstrap-touchspin.css" />-->
-<#--<script src="js/jquery.bootstrap-touchspin.js"></script>-->
     <!--angular-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script src="js/my-angular-modules.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
+    <script src="js/angular.min.js"></script> <!-- version 1.4.3 -->
+    <script type="text/javascript" src="js/angular-sanitize.min.js"></script> <!-- version 1.4.8 -->
     <script src="js/angular-scroll.js"></script>
+    <script src="js/my-angular-modules.js"></script>
     <!-- bootstrap select -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-select.min.js"></script>
@@ -38,15 +34,6 @@
     <script src="js/bootstrap-datetimepicker.min.js"></script>
     <!-- bootstrap fix to -->
     <script src="js/jquery-scrolltofixed.js"></script>
-
-    <!-- my css -->
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/loader.css" rel="stylesheet">
-    <!--<link href="css/sign-in-style.css" rel="stylesheet">-->
-
-    <!-- my scripts -->
-    <script src="js/my-styles.js"></script>
-
     <!--spinner + - -->
     <script src="js/jquery.dpNumberPicker.js"></script>
     <link href="css/jquery.dpNumberPicker-holoLight.css" rel="stylesheet">
@@ -55,6 +42,14 @@
     <script src="js/google-map.js"></script>
     <script src="js/autoComplete.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpOm2tBurzyefOG_hBFEXQIkLbkZpSvws&callback=initMap&language=en&libraries=geometry,places"></script>
+
+    <!-- my css -->
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/loader.css" rel="stylesheet">
+    <!--<link href="css/sign-in-style.css" rel="stylesheet">-->
+
+    <!-- my scripts -->
+    <script src="js/my-styles.js"></script>
 </head>
 
 <body ng-controller="appController" onload="initAutocompleteFields()">
@@ -71,7 +66,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><i class="fa fa-ravelry" aria-hidden="true"></i>Travel planner</a>
+            <div style="margin-top: 5px;">
+                <img src="../img/vader-icon.png" class="pull-left" style="margin-right: 5px; margin-top: 5px;" aria-hidden="true">
+                <a class="navbar-brand" href="/">Smarth Wayder</a>
+            </div>
+            <#--<a class="navbar-brand" href="/"><i class="fas fa-ravelry" aria-hidden="true"></i>Travel planner</a>-->
         </div>
         <div class="navbar-collapse collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -90,7 +89,6 @@
             <div id="travel-header-row" class="col-sm-12">
                 <h1>Start your journey right now</h1>
             </div>
-
         </div>
     </div>
 
@@ -105,40 +103,37 @@
                                 <div class="inputBox" ng-class="{true: 'error'}[myForm.cityFrom.$error.required]">
                                     <div class="inputText label-input-param" id="departure-label">Departure city</div>
                                     <input type="text" name="cityFrom" ng-model="cityFrom"  id="inputFrom" class="input" onfocus="geolocate(); clearFrom()" placeholder="" required>
-                                    <#--<div class="help-block pull-right" ng-if="myForm.$submitted">-->
-                                        <#--<div ng-show="showMessage(myForm.cityFrom)">Please enter or select departure city.</div>-->
-                                    <#--</div>-->
                                     <div class="help-block pull-right">
-                                        <div ng-show="myForm.$submitted && myForm.cityFrom.$error.required">Please enter departure city.</div>
-                                        <div ng-show="myForm.cityFrom.$dirty && testHiddenDataFrom()">Please enter correctly departure city.</div>
+                                        <div ng-show="myForm.$submitted && myForm.cityFrom.$error.required">Enter departure city.</div>
+                                        <div ng-show="myForm.cityFrom.$dirty && testHiddenDataFrom()">Enter correctly departure city.</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-2">
-                                <button type="button" class="button swap-button" ng-click="swapFromTo()"><i class="fa fa-retweet"></i></i></button>
+                                <button type="button"  class="button swap-button" ng-click="swapFromTo()"><i class="fas fa-exchange-alt"></i></button>
                             </div>
                             <div class="col-sm-5">
                                 <div class="inputBox" ng-class="{true: 'error'}[myForm.cityTo.$error.required]">
                                     <div class="inputText label-input-param" id="arrival-label">Arrival city</div>
                                     <input type="text" id="inputTo" name="cityTo"  ng-model="cityTo" class="input" onfocus="geolocate(); clearTo()" placeholder="" required>
                                     <div class="help-block pull-right">
-                                        <div ng-show="myForm.$submitted && myForm.cityTo.$error.required">Please enter arrival city.</div>
-                                        <div ng-show="myForm.cityTo.$dirty && testHiddenDataTo()">Please enter correctly arrival city.</div>
+                                        <div ng-show="myForm.$submitted && myForm.cityTo.$error.required">Enter arrival city.</div>
+                                        <div ng-show="myForm.cityTo.$dirty && testHiddenDataTo()">Enter correctly arrival city.</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-5 ">
                                 <div class="inputBox">
                                     <div class="inputText label-input-param" id="date-label">Departure date</div>
                                     <input type="text" class="input" name="dateFrom" ng-model="dateFrom" id="inputDate" ng-bind="bindingCalendar()" placeholder="" required>
                                     <div class="help-block pull-right" ng-if="myForm.$submitted">
-                                        <div ng-show="showCalendarMessage(myForm.dateFrom)">Please select departure date.</div>
+                                        <div ng-show="showCalendarMessage(myForm.dateFrom)">Select departure date.</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-offset-2 col-sm-5">
                                 <div class="inputBox">
                                     <div class="input dropdown-toggle " id="test">
                                         <a href="#" class="inputText" data-toggle="dropdown"><span ng-bind="passengersText"></span><span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
@@ -241,7 +236,7 @@
                                                 <div class="accordion-panel">
                                                     <dl class="accordion">
                                                         <dt class="label-header">Routes filter <i class="plus-icon"></i></dt>
-                                                        <dd>
+                                                        <dd style="height: auto">
                                                             <div class="content">
                                                                 <div class="col-sm-4">
                                                                     <div class="label-header text-left">
