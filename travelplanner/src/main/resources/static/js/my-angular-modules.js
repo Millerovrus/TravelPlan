@@ -8,6 +8,7 @@ angular.module('myApp',['controllerModule'])
     });
 angular.module('controllerModule')
     .controller('myParameterController', function requestFunc($scope, $http, $window,  $location, $anchorScroll, $document, $timeout) {
+        $scope.savedRouteIds = [];
 
         $scope.saveRoute=function (record) {
             $http({
@@ -24,15 +25,16 @@ angular.module('controllerModule')
                             return true;
                     };
                     /* */
-                    // $scope.savedRouteIds = [];
-                    // $scope.chechIfSaved = function (data) {
-                    //     if($scope.savedRouteIds.includes(data))
-                    //         return false;
-                    //     else {
-                    //         $scope.savedRouteIds.push(data);
-                    //         return true;
-                    //     }
-                    // };
+                    $scope.checkIfSaved = function (data) {
+                        if(data === record.idRouteForView){
+                            if($scope.savedRouteIds.includes(data))
+                                return true;
+                            else {
+                                $scope.savedRouteIds.push(data);
+                                return true;
+                            }
+                        }
+                    };
                     alert("Route had been saved :)");
 
                 },
@@ -87,8 +89,6 @@ angular.module('controllerModule')
                     $scope.goToLoaded();
                 });
         };
-
-
 
         /*autoscroll */
         $scope.goToLoaded = function() {

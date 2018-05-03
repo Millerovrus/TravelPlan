@@ -316,6 +316,7 @@
                                                                             </div>
                                                                             <div class="divider-inverse"></div>
                                                                             <div class="json-data">
+                                                                                <div>:: {{savedRouteIds}}</div>
                                                                                 <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
                                                                                 <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
                                                                             </div>
@@ -351,13 +352,16 @@
                                                                                  <div class="row">
                                                                                     <form >
                                                                                     <#if isAuthorized>
-                                                                                        <div ng-hide="saved(record.idRouteForView)" ng-keypress="checkIfEnterKeyWasPressed($event)">
-                                                                                            <input type="button" ng-click="saveRoute(record)" class="button" value="Save route">
-                                                                                        </div>
-                                                                                        <#--<div ng-hide="chechIfSaved(record.idRouteForView)" ng-keypress="checkIfEnterKeyWasPressed($event)">-->
+                                                                                        <#--<div ng-hide="saved(record.idRouteForView)" ng-keypress="checkIfEnterKeyWasPressed($event)">-->
                                                                                             <#--<input type="button" ng-click="saveRoute(record)" class="button" value="Save route">-->
                                                                                         <#--</div>-->
-                                                                                        <#--<div>:: {{savedRouteIds}}</div>-->
+                                                                                        <!-- test route hiding -->
+                                                                                        <div ng-hide="checkIfSaved(record.idRouteForView)" ng-keypress="checkIfEnterKeyWasPressed($event)">
+                                                                                            <input type="button" ng-click="saveRoute(record)" class="button" value="Save rouftgdzbfxte">
+                                                                                        </div>
+                                                                                        <div ng-if="checkIfSaved(record.idRouteForView)" ng-keypress="checkIfEnterKeyWasPressed($event)">
+                                                                                            <h4 style="font-size:18px;">This route had already saved!</h4>
+                                                                                        </div>
                                                                                     </#if>
                                                                                     </form>
                                                                                 </div>
