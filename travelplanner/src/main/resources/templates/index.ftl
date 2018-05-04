@@ -224,7 +224,7 @@
                     </div>
                 </div>
 
-                <div class="container-fluid" id="scroll-to">
+                <div class="container-fluid" id="scroll-to" ng-show="hasResults">
                     <div ng-show="loaded" id="loaded">
                         <div class="routes-box">
                             <div ng-controller="mapController">

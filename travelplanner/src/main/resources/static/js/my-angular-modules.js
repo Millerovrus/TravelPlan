@@ -69,7 +69,8 @@ angular.module('controllerModule')
                 function success(response) {
                     $scope.records = response.data;
                     $scope.$emit('UNLOAD');
-                    $scope.loaded=true;
+                    $scope.loaded = true;
+                    $scope.hasResults = true;
                     initMap();
                     //инициализируем значения фильтров
                     $scope.filterModel = {
@@ -79,6 +80,10 @@ angular.module('controllerModule')
                         optimal : true,
                         orderByAttribute : 'cost'
                     };
+                    if (response.data.length === 0){
+                        alert("Search hasn't given any results");
+                        $scope.hasResults = false;
+                    }
                 },
                 function error(response, status) {
                     console.error('Repos error', status, response);
