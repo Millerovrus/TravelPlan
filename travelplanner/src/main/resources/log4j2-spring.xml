@@ -18,6 +18,27 @@
                 </pattern>
             </PatternLayout>
         </File>
+        <File name="Security-File-Appender" fileName="${log-path}/security_log.log" >
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
+        <File name="Algorithms-File-Appender" fileName="${log-path}/algorithms_log.log" >
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
+        <File name="Api-File-Appender" fileName="${log-path}/api_log.log" >
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
         <File name="SpringBoot-File-Appender" fileName="${log-path}/springboot_log.log" >
             <PatternLayout>
                 <pattern>
@@ -30,6 +51,15 @@
         <Logger name="org.springframework.web" level="info" additivity="false">
             <AppenderRef ref="SpringBoot-File-Appender"/>
             <AppenderRef ref="Console-Appender"/>
+        </Logger>
+        <Logger name="com.netcracker.travelplanner.api" level="info" additivity="false">
+            <AppenderRef ref="Api-File-Appender"/>
+        </Logger>
+        <Logger name="com.netcracker.travelplanner.security" level="info" additivity="false">
+            <AppenderRef ref="Security-File-Appender"/>
+        </Logger>
+        <Logger name="com.netcracker.travelplanner.algorithms" level="info" additivity="false">
+            <AppenderRef ref="Algorithms-File-Appender"/>
         </Logger>
         <Logger name="com.netcracker.travelplanner" level="debug" additivity="false">
             <AppenderRef ref="App-File-Appender"/>
