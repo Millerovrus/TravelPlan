@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Smarth Wayder</title>
+    <title>SMART WAYder</title>
     <link rel="shortcut icon" type="image/png" href="../img/darth-vader-fav.png"/>
     <!-- Bootstrap, fonts -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -68,7 +68,7 @@
             </button>
             <div style="margin-top: 5px;">
                 <img src="../img/vader-icon.png" class="pull-left" style="margin-right: 5px; margin-top: 5px;" aria-hidden="true">
-                <a class="navbar-brand" href="/">Smarth Wayder</a>
+                <a class="navbar-brand" href="/">SMART WAYder</a>
             </div>
             <#--<a class="navbar-brand" href="/"><i class="fas fa-ravelry" aria-hidden="true"></i>Travel planner</a>-->
         </div>
@@ -302,6 +302,9 @@
                                             </div>
                                         </div>
                                         <div class="row">
+                                            <div class="col-sm-6" ng-if="records.length===0">
+                                                <h3 class="text-center"> There are no routes found.</h3>
+                                            </div>
                                             <div class="col-sm-6">
                                                 <div class="fancy-collapse-panel" >
                                                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
@@ -316,7 +319,6 @@
                                                                             </div>
                                                                             <div class="divider-inverse"></div>
                                                                             <div class="json-data">
-                                                                                <div>:: {{savedRouteIds}}</div>
                                                                                 <p><b>Total cost:</b> {{record.cost}} (RUB)</p>
                                                                                 <p><b>Travel time:</b> {{record.duration | secondsToTime | date: 'HH:mm'}}</p>
                                                                             </div>
