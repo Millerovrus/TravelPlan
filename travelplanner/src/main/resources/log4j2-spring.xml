@@ -48,21 +48,24 @@
         </File>
     </Appenders>
     <Loggers>
+        <Logger name="com.netcracker.travelplanner" level="debug" additivity="false">
+            <AppenderRef ref="App-File-Appender"/>
+            <AppenderRef ref="Console-Appender"/>
+        </Logger>
         <Logger name="org.springframework.web" level="info" additivity="false">
             <AppenderRef ref="SpringBoot-File-Appender"/>
             <AppenderRef ref="Console-Appender"/>
         </Logger>
-        <Logger name="com.netcracker.travelplanner.api" level="info" additivity="false">
+        <Logger name="com.netcracker.travelplanner.api" level="debug" additivity="false">
             <AppenderRef ref="Api-File-Appender"/>
+            <AppenderRef ref="Console-Appender"/>
         </Logger>
-        <Logger name="com.netcracker.travelplanner.security" level="info" additivity="false">
+        <Logger name="com.netcracker.travelplanner.security" level="debug" additivity="false">
             <AppenderRef ref="Security-File-Appender"/>
+            <AppenderRef ref="Console-Appender"/>
         </Logger>
-        <Logger name="com.netcracker.travelplanner.algorithms" level="info" additivity="false">
+        <Logger name="com.netcracker.travelplanner.algorithms" level="debug" additivity="false">
             <AppenderRef ref="Algorithms-File-Appender"/>
-        </Logger>
-        <Logger name="com.netcracker.travelplanner" level="debug" additivity="false">
-            <AppenderRef ref="App-File-Appender"/>
             <AppenderRef ref="Console-Appender"/>
         </Logger>
         <Root>
