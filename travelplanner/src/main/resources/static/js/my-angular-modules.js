@@ -81,7 +81,7 @@ angular.module('controllerModule')
                         orderByAttribute : 'cost'
                     };
                     if (response.data.length === 0){
-                        alert("Search hasn't given any results");
+                        alert("No routes found");
                         $scope.hasResults = false;
                     }
                 },
