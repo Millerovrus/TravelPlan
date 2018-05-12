@@ -226,9 +226,12 @@
 
                 <div class="container-fluid" id="scroll-to" ng-show="hasResults">
                     <div ng-show="loaded" id="loaded">
-                        <div class="routes-box">
-                            <div ng-controller="mapController">
-                                <div class="output-collapse" >
+                        <div ng-controller="mapController">
+                            <div class="col-sm-12" ng-if="records.length===0">
+                                <h3 class="text-center"> There are no routes found.</h3>
+                            </div>
+                            <div class="routes-box" ng-if="records.length!==0">
+                                <div class="output-collapse">
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col-sm-12">
@@ -302,9 +305,6 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-sm-6" ng-if="records.length===0">
-                                                <h3 class="text-center"> There are no routes found.</h3>
-                                            </div>
                                             <div class="col-sm-6">
                                                 <div class="fancy-collapse-panel" >
                                                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
