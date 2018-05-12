@@ -80,10 +80,10 @@ angular.module('controllerModule')
                         optimal : true,
                         orderByAttribute : 'cost'
                     };
-                    if (response.data.length === 0){
-                        alert("No routes found");
-                        $scope.hasResults = false;
-                    }
+                    // if (response.data.length === 0){
+                    //     alert("There are no routes found.");
+                    //     $scope.hasResults = false;
+                    // }
                 },
                 function error(response, status) {
                     console.error('Repos error', status, response);
