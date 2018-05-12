@@ -260,11 +260,13 @@ public class Algorithm {
             }
         }
 
-        if (minCostInd == minDurInd){
-            routes.get(minCostInd).setDescription("Cheapest & fastest!");
-        } else {
-            routes.get(minCostInd).setDescription("Cheapest!");
-            routes.get(minDurInd).setDescription("Fastest!");
+        if (routes.size() > 0){
+            if (minCostInd == minDurInd){
+                routes.get(minCostInd).setDescription("Cheapest & fastest!");
+            } else {
+                routes.get(minCostInd).setDescription("Cheapest!");
+                routes.get(minDurInd).setDescription("Fastest!");
+            }
         }
     }
 }
