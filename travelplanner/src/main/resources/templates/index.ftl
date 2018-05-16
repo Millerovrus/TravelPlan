@@ -67,7 +67,7 @@
             </button>
             <div style="margin-top: 5px;">
                 <img src="../img/vader-icon.png" class="pull-left" style="margin-right: 5px; margin-top: 5px;" aria-hidden="true">
-                <a class="navbar-brand" href="/"> SMART WAYder</a>
+                <a class="navbar-brand" href="/"> SMART WAYDER</a>
 
             </div>
             <#--<a class="navbar-brand" href="/"><i class="fas fa-ravelry" aria-hidden="true"></i>Travel planner</a>-->
