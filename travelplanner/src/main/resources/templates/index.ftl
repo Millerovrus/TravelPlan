@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>SMART WAYder</title>
+    <title>SMART WAYDER</title>
     <link rel="shortcut icon" type="image/png" href="../img/darth-vader-fav.png"/>
     <!-- Bootstrap, fonts -->
     <link href="css/bootstrap.css" rel="stylesheet">
