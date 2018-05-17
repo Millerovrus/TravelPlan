@@ -68,7 +68,7 @@ public class UserController {
         model.addAttribute("email", userService.findUserByEmail(email) != null);
         try {
             if (userService.findUserByEmail(email) == null) {
-                user.setAvatar("img/man-user.png");
+                user.setAvatar("img/darth-vader-128.png");
                 //Хэширование пароля, шифрование данных и сохрание в БД
                 userService.save(user);
                 logger.info("Registration is successful!");
