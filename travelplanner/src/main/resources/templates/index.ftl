@@ -53,7 +53,6 @@
 </head>
 
 <body ng-controller="appController" onload="initAutocompleteFields()">
-
 <!-- navbar -->
 <#if !isAuthorized>
 <my-navbar></my-navbar>

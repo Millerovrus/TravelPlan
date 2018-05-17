@@ -66,6 +66,13 @@ p{
 }
 
 /* navbar top*/
+@font-face {
+    font-family: "STAR";
+    src: url("../fonts/STARWARS.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
 #navbar-collapse{
     background-color: #2d2d2d;
 }
@@ -73,7 +80,8 @@ p{
 .navbar-inverse .navbar-brand{
     color: #fff0f5;
     font-weight: bolder;
-    font-family: "Raleway";
+    /*font-family: "Raleway";*/
+    font-family: "STAR", sans-serif;
     font-size: 28px;
     letter-spacing: 1px;
     margin-top: -4px;
