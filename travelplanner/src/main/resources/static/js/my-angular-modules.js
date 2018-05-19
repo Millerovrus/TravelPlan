@@ -35,8 +35,6 @@ angular.module('controllerModule')
                             }
                         }
                     };
-                    alert("Route had been saved :)");
-
                 },
                 function error(response, status) {
                     console.error('error', status, response);
