@@ -70,6 +70,7 @@ angular.module('controllerModule')
                     $scope.loaded = true;
                     $scope.hasResults = true;
                     initMap();
+                    firstSetMap($scope.records[0]);
                     //инициализируем значения фильтров
                     $scope.filterModel = {
                         plane : true,
