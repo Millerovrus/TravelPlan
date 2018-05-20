@@ -358,10 +358,10 @@
                                                                                         <#--</div>-->
                                                                                         <!-- test route hiding -->
                                                                                         <div ng-hide="checkIfSaved(record.idRouteForView)" ng-keypress="checkIfEnterKeyWasPressed($event)">
-                                                                                            <input type="button" ng-click="saveRoute(record)" class="button" value="Save rouftgdzbfxte">
+                                                                                            <input type="button" ng-click="saveRoute(record)" class="button" value="Save route">
                                                                                         </div>
                                                                                         <div ng-if="checkIfSaved(record.idRouteForView)" ng-keypress="checkIfEnterKeyWasPressed($event)">
-                                                                                            <h4 style="font-size:18px;">This route had already saved!</h4>
+                                                                                            <h4 style="font-size:18px;">This route has already saved!</h4>
                                                                                         </div>
                                                                                     </#if>
                                                                                     </form>

@@ -35,12 +35,12 @@ angular.module('controllerModule')
                             }
                         }
                     };
-                    alert("Route had been saved :)");
+                    // alert("Route had been saved :)");
 
                 },
                 function error(response, status) {
                     console.error('error', status, response);
-                    alert("Routes hadn't been save :(");
+                    // alert("Routes hadn't been save :(");
                 });
         };
 
